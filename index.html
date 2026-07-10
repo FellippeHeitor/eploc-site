@@ -5,13 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="eploc: extensao para produtividade juridica com melhorias visuais e automacoes para eproc, SEI e RUPE."
+      content="eploc: extensão para produtividade jurídica com melhorias visuais e automações para eproc, SEI e RUPE, agora disponível na Chrome Web Store."
     />
-    <title>eploc | Produtividade Juridica no Navegador</title>
+    <title>eploc | Produtividade Jurídica com Mais Clareza</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;500;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap"
       rel="stylesheet"
     />
     <link rel="icon" href="assets/icons/icon32.png" />
@@ -22,83 +22,204 @@
     <div class="bg-shape bg-shape-b" aria-hidden="true"></div>
 
     <header class="topbar">
-      <a class="brand" href="#inicio" aria-label="Ir para o inicio">
-        <img src="assets/icons/icon48.png" alt="Logo eploc" width="48" height="48" />
-        <span>eploc</span>
+      <a class="brand" href="#inicio" aria-label="Ir para o início">
+        <img src="assets/eploc-logo-master-1000.png" alt="Logo eploc" />
       </a>
-      <nav class="menu" aria-label="Navegacao principal">
+      <nav class="menu" aria-label="Navegação principal">
         <a href="#recursos">Recursos</a>
-        <a href="#instalacao">Instalacao</a>
-        <a href="#modulos">Modulos</a>
+        <a href="#experiencia">Experiência</a>
+        <a href="#novidades">Novidades</a>
+        <a href="#modulos">Cobertura</a>
       </nav>
-      <a class="btn btn-ghost" href="#instalacao">Como instalar</a>
+      <a
+        class="btn btn-ghost"
+        href="https://chromewebstore.google.com/detail/eploc/fkpkkenjcfpplmhlfdbabhcdhmhiojhj"
+        target="_blank"
+        rel="noreferrer"
+        >Abrir na Chrome Web Store</a
+      >
     </header>
 
     <main>
       <section id="inicio" class="hero">
         <div class="hero-copy reveal">
-          <p class="eyebrow">Extensao para o dia a dia forense</p>
+          <p class="eyebrow">Extensão para o fluxo jurídico real</p>
           <h1>
-            Menos cliques repetitivos.
-            <span>Mais foco no que importa.</span>
+            Clareza para trabalhar.
+            <span>Velocidade para decidir.</span>
           </h1>
           <p class="lead">
-            O eploc aplica melhorias visuais e automacoes nos sistemas eproc, SEI e RUPE,
-            trazendo um fluxo de trabalho juridico mais rapido e mais legivel.
+            O eploc reorganiza a experiência em eproc, SEI e RUPE com melhorias visuais,
+            atalhos úteis e automações discretas que reduzem atrito sem bagunçar a rotina.
           </p>
           <div class="hero-cta">
-            <a class="btn btn-solid" href="#instalacao">Instalar no navegador</a>
-            <a class="btn btn-link" href="#recursos">Ver recursos</a>
+            <a
+              class="btn btn-solid"
+              href="https://chromewebstore.google.com/detail/eploc/fkpkkenjcfpplmhlfdbabhcdhmhiojhj"
+              target="_blank"
+              rel="noreferrer"
+              >Instalar extensão</a
+            >
+            <a class="btn btn-link" href="#recursos">Explorar recursos</a>
+            <a class="btn btn-link" href="#novidades">Ver novidades</a>
           </div>
-          <ul class="stats" aria-label="Indicadores da extensao">
+          <ul class="stats" aria-label="Indicadores da extensão">
             <li>
               <strong class="stat-number" data-target="3">0</strong>
               <span>Sistemas atendidos</span>
             </li>
             <li>
-              <strong class="stat-number" data-target="11">0</strong>
-              <span>Scripts ativos</span>
+              <strong class="stat-number" data-target="1">0</strong>
+              <span>Instalação pela loja oficial</span>
             </li>
             <li>
-              <strong class="stat-number" data-target="100">0</strong>
-              <span>Configuravel por modulos</span>
+              <strong class="stat-number" data-target="100" data-suffix="%">0</strong>
+              <span>Experiência pensada para navegador</span>
             </li>
           </ul>
         </div>
         <div class="hero-art reveal">
-          <img src="assets/icons/eploc128.png" alt="Identidade visual eploc" />
-          <div class="floating-card">
-            <p>Manifest V3</p>
-            <strong>Leve, modular e seguro</strong>
+          <div class="hero-device">
+            <div class="device-glow" aria-hidden="true"></div>
+            <img src="assets/eploc-logo-sem-texto-1000.png" alt="Identidade visual eploc" />
+            <div class="device-panel">
+              <span class="chip">Chrome Web Store</span>
+              <strong>Visual mais limpo, automação mais útil</strong>
+              <p>Uma camada de ergonomia para quem passa o dia inteiro entre sistemas.</p>
+            </div>
           </div>
+          <div class="floating-card">
+            <p>Disponível agora</p>
+            <strong>Instale direto pela Chrome Web Store</strong>
+          </div>
+        </div>
+      </section>
+
+      <section class="highlights reveal" aria-label="Destaques do produto">
+        <div>
+          <span>Leitura mais clara</span>
+          <p>Telas menos poluídas e mais previsíveis</p>
+        </div>
+        <div>
+          <span>Automação sem excesso</span>
+          <p>Ganhos concretos nas tarefas repetitivas</p>
+        </div>
+        <div>
+          <span>Controle modular</span>
+          <p>Ative apenas o que faz sentido para seu fluxo</p>
         </div>
       </section>
 
       <section id="recursos" class="section">
         <div class="section-head reveal">
           <p class="eyebrow">Recursos em destaque</p>
-          <h2>Feito para quem vive no fluxo processual</h2>
+          <h2>Feito para reduzir ruído e acelerar contexto</h2>
         </div>
         <div class="grid grid-3">
           <article class="card reveal">
-            <h3>Paineis e atalhos contextuais</h3>
+            <h3>Painéis e atalhos contextuais</h3>
             <p>
-              Ferramentas auxiliares no eproc para acelerar tarefas repetitivas e reduzir
-              navegacao desnecessaria.
+              Ferramentas auxiliares no eproc para encurtar caminhos, expor ações relevantes
+              e reduzir navegação desnecessária.
             </p>
+            <ul class="feature-list">
+              <li>Mini painel lateral do processo</li>
+              <li>Painel fixo persistente</li>
+              <li>Auto-check e atalhos contextuais</li>
+            </ul>
           </article>
           <article class="card reveal">
-            <h3>Leitura mais limpa</h3>
+            <h3>Hierarquia visual melhor resolvida</h3>
             <p>
-              Ajustes visuais para melhorar contraste, distribuicao de informacao e
-              entendimento das telas mais usadas.
+              Ajustes de contraste, espaçamento e organização para tornar as telas mais
+              legíveis e menos cansativas.
             </p>
+            <ul class="feature-list">
+              <li>SEI mais horizontal e descritivo</li>
+              <li>RUPE com espelho de critérios</li>
+              <li>Leitura mais previsível nas telas críticas</li>
+            </ul>
           </article>
           <article class="card reveal">
-            <h3>Configuracao centralizada</h3>
+            <h3>Configuração centralizada</h3>
             <p>
-              Ative ou desative cada script com seguranca e faca exportacao/importacao de
-              ajustes em JSON.
+              Controle fino por módulo com importação e exportação de ajustes para manter o
+              comportamento sob medida.
+            </p>
+            <ul class="feature-list">
+              <li>Importação e exportação em JSON</li>
+              <li>Aceite e avisos na área Sobre</li>
+              <li>Ativação modular por script</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section id="experiencia" class="section experience">
+        <div class="experience-copy reveal">
+          <p class="eyebrow">Experiência de uso</p>
+          <h2>Menos interface brigando com você</h2>
+          <p>
+            O objetivo do eploc não é chamar atenção para si, mas remover fricção do caminho:
+            destacar o que importa, simplificar a leitura e deixar a interface mais coerente
+            durante a jornada de trabalho.
+          </p>
+          <ul class="benefits">
+            <li>Melhor leitura em listas, painéis e páginas de consulta</li>
+            <li>Automações pontuais para tarefas que se repetem todo dia</li>
+            <li>Estrutura modular para evoluir sem comprometer previsibilidade</li>
+          </ul>
+        </div>
+        <div class="experience-card reveal">
+          <div class="experience-surface">
+            <div class="surface-row surface-row-strong"></div>
+            <div class="surface-row surface-row-soft"></div>
+            <div class="surface-grid">
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
+            <div class="surface-note">
+              <strong>Menos ruído visual</strong>
+              <p>Mais foco em informação processual e menos dispersão na interface.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="novidades" class="section updates">
+        <div class="section-head reveal">
+          <p class="eyebrow">Novidades da base atual</p>
+          <h2>O que já aparece no repositório da versão em produção</h2>
+        </div>
+        <div class="grid grid-2">
+          <article class="update-card reveal">
+            <h3>Histórico inteligente de e-mails</h3>
+            <p>
+              O eproc agora registra destinatários usados, sugere contatos ao digitar e cruza
+              co-destinatários frequentes para acelerar o campo Para:.
+            </p>
+          </article>
+          <article class="update-card reveal">
+            <h3>Gerenciador de contatos salvos</h3>
+            <p>
+              A página de configurações já expõe edição, filtro, exclusão e cadastro manual dos
+              contatos aprendidos pela extensão.
+            </p>
+          </article>
+          <article class="update-card reveal">
+            <h3>Importação e exportação ampliadas</h3>
+            <p>
+              O backup em JSON passou a incluir também o histórico local de e-mails, não só as
+              preferências sincronizadas.
+            </p>
+          </article>
+          <article class="update-card reveal">
+            <h3>Área Sobre com changelog e avisos</h3>
+            <p>
+              A extensão já mostra badge de atualização, changelog colapsável e termos de uso na
+              interface de configurações.
             </p>
           </article>
         </div>
@@ -106,31 +227,34 @@
 
       <section id="modulos" class="section section-alt">
         <div class="section-head reveal">
-          <p class="eyebrow">Cobertura de modulos</p>
-          <h2>Compatibilidade para rotinas reais</h2>
+          <p class="eyebrow">Cobertura de módulos</p>
+          <h2>Compatibilidade alinhada a rotinas reais</h2>
         </div>
         <div class="modules">
           <article class="module reveal">
             <h3>eproc</h3>
             <ul>
-              <li>Autocomplete de CNJ</li>
+              <li>Auto-completar número CNJ</li>
               <li>Painel fixo de processo</li>
               <li>Monitor de novas minutas</li>
-              <li>Sanitizador de emails</li>
+              <li>Sanitizador de e-mails</li>
+              <li>Histórico inteligente de destinatários</li>
             </ul>
           </article>
           <article class="module reveal">
             <h3>SEI</h3>
             <ul>
-              <li>Descricao horizontal aprimorada</li>
+              <li>Descrição horizontal aprimorada</li>
               <li>Melhoria de leitura em listagens</li>
+              <li>Destaque opcional por termos</li>
             </ul>
           </article>
           <article class="module reveal">
             <h3>RUPE</h3>
             <ul>
               <li>Espelho de painel de pesquisa</li>
-              <li>Navegacao mais previsivel</li>
+              <li>Navegação mais previsível</li>
+              <li>Painel com estado persistente</li>
             </ul>
           </article>
         </div>
@@ -138,27 +262,30 @@
 
       <section id="instalacao" class="section install">
         <div class="section-head reveal">
-          <p class="eyebrow">Instalacao em minutos</p>
-          <h2>Comece a usar no Chrome ou Edge</h2>
+          <p class="eyebrow">Disponível na loja</p>
+          <h2>Instale em um clique e entre no fluxo</h2>
         </div>
-        <ol class="steps">
-          <li class="reveal">Baixe ou clone o projeto da extensao e execute npm install.</li>
-          <li class="reveal">Rode npm run build para gerar os arquivos em dist.</li>
-          <li class="reveal">Abra chrome://extensions ou edge://extensions.</li>
-          <li class="reveal">Ative modo desenvolvedor e carregue a pasta dist.</li>
-        </ol>
-        <div class="install-note reveal">
+        <div class="install-panel reveal">
           <p>
-            O eploc foi desenvolvido com arquitetura modular para evoluir rapidamente sem
-            comprometer estabilidade.
+            O eploc está publicado na Chrome Web Store. Sem modo desenvolvedor, sem passos
+            técnicos e sem fricção desnecessária para começar.
           </p>
+          <div class="hero-cta">
+            <a
+              class="btn btn-solid"
+              href="https://chromewebstore.google.com/detail/eploc/fkpkkenjcfpplmhlfdbabhcdhmhiojhj"
+              target="_blank"
+              rel="noreferrer"
+              >Abrir página da extensão</a
+            >
+          </div>
         </div>
       </section>
     </main>
 
     <footer class="footer">
-      <img src="assets/icons/icon32.png" alt="icone eploc" width="32" height="32" />
-      <p>eploc <span id="year"></span> | Melhorias visuais e produtividade juridica</p>
+      <img src="assets/icons/icon32.png" alt="Ícone eploc" width="32" height="32" />
+      <p>eploc <span id="year"></span> | Melhor leitura, menos atrito, mais produtividade</p>
     </footer>
 
     <script src="script.js"></script>

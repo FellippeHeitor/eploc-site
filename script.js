@@ -28,7 +28,7 @@ revealNodes.forEach((node, index) => {
 
 const runCounter = (node) => {
   const target = Number(node.dataset.target || 0);
-  const suffix = target === 100 ? '%' : '';
+  const suffix = node.dataset.suffix || '';
   const durationMs = 1200;
   const startAt = performance.now();
 
