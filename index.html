@@ -18,19 +18,26 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
+    <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
     <div class="bg-shape bg-shape-a" aria-hidden="true"></div>
     <div class="bg-shape bg-shape-b" aria-hidden="true"></div>
 
-    <header class="topbar">
+    <header class="topbar" id="topbar">
       <a class="brand" href="#inicio" aria-label="Ir para o início">
         <img src="assets/eploc-logo-master-1000.png" alt="Logo eploc" />
       </a>
-      <nav class="menu" aria-label="Navegação principal">
+      <nav class="menu" id="menu" aria-label="Navegação principal">
         <a href="#recursos">Recursos</a>
         <a href="#experiencia">Experiência</a>
         <a href="#novidades">Novidades</a>
         <a href="#modulos">Cobertura</a>
+        <a href="#faq">FAQ</a>
       </nav>
+      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
       <a
         class="btn btn-ghost"
         href="https://chromewebstore.google.com/detail/eploc/fkpkkenjcfpplmhlfdbabhcdhmhiojhj"
@@ -69,12 +76,12 @@
               <span>Sistemas atendidos</span>
             </li>
             <li>
-              <strong class="stat-number" data-target="1">0</strong>
-              <span>Instalação pela loja oficial</span>
+              <strong class="stat-number" data-target="1000" data-suffix="+">0</strong>
+              <span>Usuários ativos</span>
             </li>
             <li>
-              <strong class="stat-number" data-target="100" data-suffix="%">0</strong>
-              <span>Experiência pensada para navegador</span>
+              <strong class="stat-number" data-target="5" data-suffix=" ★">0</strong>
+              <span>Avaliação na loja</span>
             </li>
           </ul>
         </div>
@@ -171,18 +178,69 @@
           </ul>
         </div>
         <div class="experience-card reveal">
-          <div class="experience-surface">
-            <div class="surface-row surface-row-strong"></div>
-            <div class="surface-row surface-row-soft"></div>
-            <div class="surface-grid">
-              <div></div>
-              <div></div>
-              <div></div>
-              <div></div>
+          <div class="sim-controls">
+            <span class="sim-label">Visualização:</span>
+            <div class="sim-tabs">
+              <button class="sim-tab active" id="tabSemEploc" type="button" aria-label="Ver sistema original sem a extensão">Original (Sem eploc)</button>
+              <button class="sim-tab" id="tabComEploc" type="button" aria-label="Ver sistema otimizado com a extensão eploc">Com eploc</button>
             </div>
-            <div class="surface-note">
-              <strong>Menos ruído visual</strong>
-              <p>Mais foco em informação processual e menos dispersão na interface.</p>
+          </div>
+          
+          <div class="sim-window" id="simWindow">
+            <div class="sim-window-header">
+              <div class="sim-dots">
+                <span></span><span></span><span></span>
+              </div>
+              <div class="sim-address-bar">https://eproc.tj.jus.br/eproc/</div>
+            </div>
+            
+            <div class="sim-window-body">
+              <aside class="sim-sidebar">
+                <div class="sim-sidebar-title">Menu eproc</div>
+                <ul class="sim-nav-list">
+                  <li>Consultas</li>
+                  <li>Processos</li>
+                  <li>Prazos</li>
+                  <li class="sim-extra-menu">Relatórios Extras</li>
+                  <li class="sim-extra-menu">Gerador Certidões</li>
+                </ul>
+              </aside>
+              
+              <main class="sim-content">
+                <div class="sim-process-header">
+                  <div class="sim-cnj-box">
+                    <span class="sim-cnj-label">Processo:</span>
+                    <strong class="sim-cnj-number">5004321-88.2026.8.24.0023</strong>
+                    <button class="sim-copy-badge" id="simCopyBadge" type="button">Copiar CNJ</button>
+                  </div>
+                  <span class="sim-status-badge">Em Andamento</span>
+                </div>
+                
+                <div class="sim-alert-box">
+                  <span class="sim-alert-icon">⚠️</span>
+                  <div class="sim-alert-text">
+                    <strong>Petições pendentes de análise</strong>
+                    <p>Há 3 novas petições neste processo aguardando juntada.</p>
+                  </div>
+                </div>
+
+                <div class="sim-quick-actions" id="simQuickActions">
+                  <div class="sim-action-card">
+                    <span>Minuta Rápida</span>
+                  </div>
+                  <div class="sim-action-card">
+                    <span>Gerenciar Prazo</span>
+                  </div>
+                  <div class="sim-action-card">
+                    <span>Intimação</span>
+                  </div>
+                </div>
+              </main>
+            </div>
+            
+            <div class="sim-tooltip">
+              <span class="tooltip-badge" id="simTooltipBadge">Original</span>
+              <p id="simTooltipText">Esta é a visualização padrão do tribunal: fontes pequenas, interface poluída com menus que você não usa no dia a dia e sem atalhos rápidos.</p>
             </div>
           </div>
         </div>
@@ -231,7 +289,7 @@
           <h2>Compatibilidade alinhada a rotinas reais</h2>
         </div>
         <div class="modules">
-          <article class="module reveal">
+          <article class="module module-eproc reveal">
             <h3>eproc</h3>
             <ul>
               <li>Auto-completar número CNJ</li>
@@ -241,7 +299,7 @@
               <li>Histórico inteligente de destinatários</li>
             </ul>
           </article>
-          <article class="module reveal">
+          <article class="module module-sei reveal">
             <h3>SEI</h3>
             <ul>
               <li>Descrição horizontal aprimorada</li>
@@ -249,7 +307,7 @@
               <li>Destaque opcional por termos</li>
             </ul>
           </article>
-          <article class="module reveal">
+          <article class="module module-rupe reveal">
             <h3>RUPE</h3>
             <ul>
               <li>Espelho de painel de pesquisa</li>
@@ -257,26 +315,97 @@
               <li>Painel com estado persistente</li>
             </ul>
           </article>
+      </section>
+
+      <section id="faq" class="section">
+        <div class="section-head reveal" style="text-align: center;">
+          <p class="eyebrow">Dúvidas Frequentes</p>
+          <h2>Perguntas Frequentes</h2>
+        </div>
+        
+        <div class="faq-grid reveal">
+          <details name="faq">
+            <summary>O eploc é seguro para uso institucional?</summary>
+            <div class="faq-content">
+              <p>Sim, totalmente! O eploc é desenvolvido sob rígidos padrões de segurança e privacidade jurídica. A extensão processa 100% das informações localmente no seu computador. Ela não coleta, não armazena e não transmite dados processuais, credenciais ou e-mails a servidores externos. O código é aberto para auditoria e verificação de segurança.</p>
+            </div>
+          </details>
+
+          <details name="faq">
+            <summary>Em quais navegadores posso utilizar o eploc?</summary>
+            <div class="faq-content">
+              <p>O eploc está disponível oficialmente na Chrome Web Store, o que significa que é totalmente compatível com o Google Chrome, Microsoft Edge, Brave, Opera, Vivaldi e qualquer outro navegador baseado na tecnologia Chromium.</p>
+            </div>
+          </details>
+
+          <details name="faq">
+            <summary>Como funciona a ativação modular dos recursos?</summary>
+            <div class="faq-content">
+              <p>Após a instalação, o eploc adiciona um menu de configurações acessível através do ícone da extensão no navegador. Nele, você tem controle total para habilitar ou desabilitar módulos específicos do eproc, SEI ou RUPE conforme a sua preferência e necessidade de trabalho.</p>
+            </div>
+          </details>
+
+          <details name="faq">
+            <summary>A extensão interfere no funcionamento padrão dos tribunais?</summary>
+            <div class="faq-content">
+              <p>Não. O eploc funciona como uma camada de ergonomia e usabilidade aplicada por cima do sistema. Ele não altera a lógica interna dos sistemas judiciais, apenas reorganiza as informações visuais na tela e automatiza atalhos que você já realizaria manualmente, garantindo total conformidade operacional.</p>
+            </div>
+          </details>
+
+          <details name="faq">
+            <summary>A extensão eploc é gratuita?</summary>
+            <div class="faq-content">
+              <p>Sim, o eploc é 100% gratuito e open-source. Ele foi criado pela comunidade e para a comunidade de profissionais jurídicos com a finalidade de otimizar a usabilidade diária e reduzir a fadiga cognitiva.</p>
+            </div>
+          </details>
         </div>
       </section>
 
       <section id="instalacao" class="section install">
         <div class="section-head reveal">
-          <p class="eyebrow">Disponível na loja</p>
-          <h2>Instale em um clique e entre no fluxo</h2>
+          <p class="eyebrow">Instalação Simples</p>
+          <h2>Como começar em 3 passos simples</h2>
         </div>
-        <div class="install-panel reveal">
-          <p>
-            O eploc está publicado na Chrome Web Store. Sem modo desenvolvedor, sem passos
-            técnicos e sem fricção desnecessária para começar.
+        
+        <div class="steps-grid reveal">
+          <article class="step-card">
+            <span class="step-number">01</span>
+            <h3>Acesse a Loja</h3>
+            <p>Clique em qualquer botão de download do site para abrir a página oficial na Chrome Web Store.</p>
+          </article>
+          
+          <article class="step-card">
+            <span class="step-number">02</span>
+            <h3>Instale com 1 Clique</h3>
+            <p>Na página da loja, clique em "Usar no Chrome" e confirme. A instalação é feita em segundos.</p>
+          </article>
+          
+          <article class="step-card">
+            <span class="step-number">03</span>
+            <h3>Entre no Fluxo</h3>
+            <p>Acesse o eproc, SEI ou RUPE normalmente. As melhorias visuais estarão ativas sem precisar configurar nada.</p>
+          </article>
+        </div>
+
+        <div class="security-banner reveal">
+          <div class="security-icon" aria-hidden="true">🛡️</div>
+          <div class="security-text">
+            <h3>Privacidade e Segurança Jurídica Garantidas</h3>
+            <p>O eploc funciona de forma 100% local no seu navegador. A extensão não armazena, não transmite e não compartilha nenhuma informação confidencial, credencial ou dado processual com servidores externos. Segurança total para o seu dia a dia.</p>
+          </div>
+        </div>
+
+        <div class="install-panel reveal" style="margin-top: 40px; text-align: center;">
+          <p style="margin-bottom: 20px;">
+            Comece agora a otimizar sua rotina de trabalho. O eploc é totalmente gratuito.
           </p>
-          <div class="hero-cta">
+          <div class="hero-cta" style="justify-content: center;">
             <a
               class="btn btn-solid"
               href="https://chromewebstore.google.com/detail/eploc/fkpkkenjcfpplmhlfdbabhcdhmhiojhj"
               target="_blank"
               rel="noreferrer"
-              >Abrir página da extensão</a
+              >Instalar na Chrome Web Store</a
             >
           </div>
         </div>
@@ -287,6 +416,12 @@
       <img src="assets/icons/icon32.png" alt="Ícone eploc" width="32" height="32" />
       <p>eploc <span id="year"></span> | Melhor leitura, menos atrito, mais produtividade</p>
     </footer>
+
+    <button class="back-to-top" id="backToTop" aria-label="Voltar ao topo" title="Voltar ao topo">
+      <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="18 15 12 9 6 15"></polyline>
+      </svg>
+    </button>
 
     <script src="script.js"></script>
   </body>
