@@ -1,84 +1,246 @@
 :root {
-  --bg-color: #fff0f6;
-  --primary-pink: #ff6b9e;
-  --primary-dark: #e64e83;
-  --secondary-pink: #ffa8c5;
-  --text-main: #4a1528;
-  --text-muted: #854d63;
-  --surface: #ffffff;
-  
-  --radius-sm: 16px;
-  --radius-lg: 32px;
-  --radius-pill: 999px;
-  --shadow-bubble: 0 12px 24px rgba(255, 107, 158, 0.15);
-  --shadow-hover: 0 16px 32px rgba(255, 107, 158, 0.25);
-  --transition-bouncy: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    /* Paleta de cores inspirada na logo (chiclete) */
+    --bg-color: #fdf2f8; /* Fundo rosa bem suave */
+    --bubblegum-pink: #f472b6; /* Rosa chiclete brilhante */
+    --bubblegum-dark: #db2777; /* Rosa mais escuro para contrastes */
+    --accent-blue: #0284c7; /* Azul dos textos e bordas da logo */
+    --white: #ffffff;
+    --text-main: #334155;
+    --text-light: #64748b;
 }
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
 
 body {
-  font-family: 'Nunito', sans-serif;
-  color: var(--text-main);
-  background-color: var(--bg-color);
-  background-image: radial-gradient(circle at 10% 20%, rgba(255, 168, 197, 0.2) 0%, transparent 40%),
-                    radial-gradient(circle at 90% 80%, rgba(255, 107, 158, 0.15) 0%, transparent 40%);
-  background-attachment: fixed;
-  line-height: 1.6;
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    line-height: 1.6;
 }
 
-.container { width: 90%; max-width: 1100px; margin: 0 auto; }
-
-.topbar {
-  background-color: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(12px);
-  position: sticky; top: 15px; border-radius: var(--radius-pill); z-index: 100;
-  padding: 12px 24px; margin: 15px auto; width: 95%; max-width: 1150px;
-  box-shadow: 0 4px 12px rgba(255, 107, 158, 0.08);
+/* --- Cabeçalho --- */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 5%;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 4px 10px rgba(244, 114, 182, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
-.header-container { display: flex; align-items: center; justify-content: space-between; width: 100%; }
-.brand-logo { height: 38px; width: auto; display: block; }
-.menu { display: flex; gap: 25px; }
-.menu a { text-decoration: none; color: var(--text-muted); font-weight: 800; transition: color 0.2s; }
-.menu a:hover { color: var(--primary-pink); }
-
-.btn-bubble {
-  text-decoration: none; padding: 12px 28px; border-radius: var(--radius-pill);
-  font-weight: 800; font-size: 1.05rem; color: white;
-  background: linear-gradient(135deg, var(--primary-pink), var(--primary-dark));
-  box-shadow: 0 6px 16px rgba(255, 107, 158, 0.3); transition: var(--transition-bouncy); display: inline-block; border: none; cursor: pointer;
+/* 1. Transforma o container em Flexbox e centraliza os filhos verticalmente */
+.logo-container {
+    display: flex;
+    align-items: center; /* Alinhamento vertical perfeito */
+    gap: 16px;           /* Espaçamento ideal entre a imagem e o texto */
 }
-.btn-bubble:hover { transform: translateY(-4px) scale(1.03); box-shadow: var(--shadow-hover); }
 
-.hero { padding: 100px 0 60px; text-align: center; display: flex; flex-direction: column; align-items: center; }
-.badge { background-color: var(--secondary-pink); color: var(--text-main); padding: 6px 16px; border-radius: var(--radius-pill); font-weight: 800; font-size: 0.85rem; text-transform: uppercase; margin-bottom: 20px; display: inline-block; }
-.hero h1 { font-size: clamp(2.5rem, 5vw, 4.2rem); font-weight: 900; line-height: 1.1; margin-bottom: 24px; }
-.highlight { color: var(--primary-pink); }
-.hero .lead { font-size: 1.25rem; color: var(--text-muted); max-width: 600px; margin: 0 auto 40px; }
+/* 2. Define a altura exata da imagem */
+.logo {
+    height: 150px;       /* Altura solicitada */
+    width: auto;         /* Mantém a proporção original do ícone */
+    display: block;      /* Remove qualquer espaçamento residual inferior de elementos inline */
+}
 
-.section { padding: 60px 0; }
-.section-head { text-align: center; margin-bottom: 40px; }
-.section-head h2 { font-size: 2.2rem; font-weight: 900; color: var(--text-main); }
-.section-head p { color: var(--text-muted); font-size: 1.1rem; }
+/* 3. Ajusta o texto para equilibrar visualmente com o tamanho da logo */
+.logo-text {
+    font-family: 'Varela Round', sans-serif;
+    font-size: 3.8rem;   /* Tamanho aumentado para harmonizar com os 150px de altura da imagem */
+    font-weight: bold;
+    letter-spacing: -1px;
+    line-height: 1;      /* Zera a entrelinha para que margens invisíveis da fonte não desalinhem o texto */
+    user-select: none;
+    color: #0284c7;
+}
 
-.grid-auto { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
-.card { background: var(--surface); padding: 40px 30px; border-radius: var(--radius-lg); box-shadow: var(--shadow-bubble); text-align: center; transition: var(--transition-bouncy); border: 2px solid transparent; }
-.card:hover { transform: translateY(-10px); border-color: var(--secondary-pink); }
-.card-icon { font-size: 3rem; margin-bottom: 20px; }
-.card h3 { font-size: 1.4rem; font-weight: 800; margin-bottom: 12px; }
+/* --- Botões (Estilo Bolha/Chiclete) --- */
+.cta-button {
+    background: linear-gradient(135deg, #f9a8d4 0%, #f472b6 100%);
+    color: var(--white);
+    text-decoration: none;
+    padding: 0.75rem 1.75rem;
+    border-radius: 9999px; /* Formato pílula/bolha */
+    font-weight: 700;
+    box-shadow: 0 4px 15px rgba(244, 114, 182, 0.4), inset 0 2px 4px rgba(255,255,255,0.4);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border: 2px solid transparent;
+}
 
-.list-layout { display: flex; flex-direction: column; gap: 20px; max-width: 800px; margin: 0 auto; }
-.list-item { background: var(--surface); padding: 24px 32px; border-radius: var(--radius-sm); display: flex; flex-direction: column; gap: 8px; border-left: 6px solid var(--primary-pink); box-shadow: 0 4px 12px rgba(255, 107, 158, 0.08); transition: transform 0.2s; }
-.list-item:hover { transform: translateX(8px); }
-.system-title { font-size: 1.3rem; font-weight: 800; color: var(--primary-dark); }
+.cta-button:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 6px 20px rgba(244, 114, 182, 0.6), inset 0 2px 4px rgba(255,255,255,0.6);
+    border: 2px solid var(--white);
+}
 
-.footer { text-align: center; padding: 40px 0; color: var(--text-muted); font-weight: 600; margin-top: 40px; }
-.reveal { opacity: 0; transform: translateY(30px) scale(0.95); transition: opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
-.reveal.in { opacity: 1; transform: translateY(0) scale(1); }
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(244, 114, 182, 0.7), inset 0 2px 4px rgba(255,255,255,0.4); }
+    70% { box-shadow: 0 0 0 15px rgba(244, 114, 182, 0), inset 0 2px 4px rgba(255,255,255,0.4); }
+    100% { box-shadow: 0 0 0 0 rgba(244, 114, 182, 0), inset 0 2px 4px rgba(255,255,255,0.4); }
+}
 
-@media (max-width: 768px) {
-  .header-container { flex-direction: column; gap: 15px; }
-  .menu { flex-wrap: wrap; justify-content: center; }
+.pulse {
+    animation: pulse 2s infinite;
+}
+
+/* --- Hero Section --- */
+.hero {
+    text-align: center;
+    padding: 6rem 1rem;
+    background: radial-gradient(circle at top center, #ffffff 0%, var(--bg-color) 100%);
+}
+
+.hero h1 {
+    color: var(--accent-blue);
+    font-size: 2.8rem;
+    margin-bottom: 1.2rem;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    max-width: 650px;
+    margin: 0 auto 2.5rem auto;
+    color: var(--text-light);
+}
+
+/* --- Utilitários --- */
+.hidden {
+    display: none !important;
+}
+
+/* --- Mídia (Vídeo e Screenshots) --- */
+.media-section {
+    padding: 2rem 5%;
+    text-align: center;
+}
+
+.media-section h2 {
+    color: var(--bubblegum-dark);
+    margin-bottom: 2rem;
+}
+
+.video-wrapper {
+    max-width: 800px;
+    margin: 0 auto 2rem auto;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(2, 132, 199, 0.15);
+}
+
+.video-wrapper iframe {
+    width: 100%;
+    aspect-ratio: 16/9;
+    display: block;
+}
+
+.screenshots-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.screenshots-grid img {
+    width: 100%;
+    border-radius: 16px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+    border: 3px solid var(--white);
+}
+
+/* --- Funcionalidades --- */
+.features {
+    padding: 4rem 5%;
+}
+
+.features h2 {
+    text-align: center;
+    color: var(--bubblegum-dark);
+    margin-bottom: 3rem;
+    font-size: 2rem;
+}
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.feature-card {
+    background: var(--white);
+    padding: 2.5rem 2rem;
+    border-radius: 30px; /* Bordas bem redondas remetendo à bolha de chiclete */
+    box-shadow: 0 10px 25px rgba(244, 114, 182, 0.08);
+    border: 2px solid #fce7f3;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--bubblegum-pink);
+    box-shadow: 0 15px 35px rgba(244, 114, 182, 0.15);
+}
+
+.feature-card h3 {
+    color: var(--accent-blue);
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+}
+
+/* --- Disclaimer/Avisos --- */
+.disclaimer {
+    background: var(--white);
+    padding: 4rem 5%;
+    margin-top: 2rem;
+    border-top: 4px dashed var(--bubblegum-pink);
+}
+
+.disclaimer h2 {
+    text-align: center;
+    color: var(--bubblegum-dark);
+    margin-bottom: 2rem;
+}
+
+.disclaimer-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.disclaimer p {
+    background: #f8fafc;
+    padding: 1.2rem;
+    border-left: 5px solid var(--accent-blue);
+    border-radius: 0 12px 12px 0;
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+}
+
+.disclaimer p strong {
+    color: var(--accent-blue);
+}
+
+/* --- Footer --- */
+footer {
+    text-align: center;
+    padding: 2rem;
+    background: var(--bubblegum-dark);
+    color: var(--bg-color);
+    font-size: 0.9rem;
+}
+
+/* --- Responsividade --- */
+@media (max-width: 600px) {
+    .hero h1 { font-size: 2rem; }
+    .header { flex-direction: column; gap: 1rem; }
 }
