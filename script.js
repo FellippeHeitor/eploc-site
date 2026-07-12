@@ -5,6 +5,21 @@
 document.addEventListener('DOMContentLoaded', () => {
     console.log('eploc landing page inicializada com sucesso.');
 
+    // Detecção de navegador para personalizar o botão de instalação
+    const userAgent = navigator.userAgent;
+    let buttonText = "Instalar no Chrome"; // Texto padrão
+
+    if (userAgent.includes("Edg")) {
+        buttonText = "Instalar no Edge";
+    } else if (userAgent.includes("OPR") || userAgent.includes("Opera")) {
+        buttonText = "Instalar no Opera";
+    }
+
+    // Aplica o texto correto em todos os botões com a classe cta-button
+    document.querySelectorAll('.cta-button').forEach(button => {
+        button.textContent = buttonText;
+    });
+
     // =====================================================================
     // INSTRUÇÕES PARA REVELAR A SEÇÃO DE VÍDEO E SCREENSHOTS FUTURAMENTE:
     // =====================================================================
@@ -12,10 +27,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // 2. Localize a tag: <section id="media-section" class="media-section hidden">
     // 3. Remova a palavra "hidden" da propriedade class.
     // 4. Insira o iframe do YouTube e as tags <img> nos lugares indicados.
-    
-    // Alternativamente, se quiser remover a classe por JavaScript no futuro:
-    // const mediaSection = document.getElementById('media-section');
-    // mediaSection.classList.remove('hidden');
 
     // Efeito suave de rolagem para links âncora (se você adicionar links internos no futuro)
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
