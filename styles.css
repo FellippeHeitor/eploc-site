@@ -1,246 +1,351 @@
 :root {
-    /* Paleta de cores inspirada na logo (chiclete) */
-    --bg-color: #fdf2f8; /* Fundo rosa bem suave */
-    --bubblegum-pink: #f472b6; /* Rosa chiclete brilhante */
-    --bubblegum-dark: #db2777; /* Rosa mais escuro para contrastes */
-    --accent-blue: #0284c7; /* Azul dos textos e bordas da logo */
-    --white: #ffffff;
-    --text-main: #334155;
-    --text-light: #64748b;
+    /* Paleta Bubble-gum Chiclete (Nostalgia 80s) refinada para melhor contraste */
+    --primary: #f72585;        /* Rosa Chiclete Vibrante (Ploc) */
+    --primary-light: #ff8fb3;  /* Rosa Claro Pastel */
+    --primary-dark: #b5175d;   /* Rosa Escuro (para contrastes e bordas) */
+    --secondary: #4cc9f0;      /* Azul Turquesa/Ciano (complementar do Ploc) */
+    --secondary-light: #e0f7ff;/* Azul sutil para fundos */
+    --bg-light: #fdf5f8;       /* Fundo quase branco com levíssimo toque rosado */
+    --bg-white: #ffffff;
+    --text-dark: #3a0ca3;      /* Roxo escuro/Azul marinho no lugar de preto para manter a vibe anos 80 */
+    --text-muted: #7209b7;     /* Roxo vibrante para textos secundários */
 }
 
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: 'Varela Round', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Segoe UI', 'Nunito', Roboto, Helvetica, Arial, sans-serif;
 }
 
 body {
-    background-color: var(--bg-color);
-    color: var(--text-main);
+    color: var(--text-dark);
     line-height: 1.6;
+    background-color: var(--bg-white);
+    overflow-x: hidden;
 }
 
-/* --- Cabeçalho --- */
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 5%;
-    background: rgba(255, 255, 255, 0.7);
-    backdrop-filter: blur(12px);
-    box-shadow: 0 4px 10px rgba(244, 114, 182, 0.1);
-    position: sticky;
-    top: 0;
-    z-index: 100;
-}
-
-/* 1. Transforma o container em Flexbox e centraliza os filhos verticalmente */
-.logo-container {
-    display: flex;
-    align-items: center; /* Alinhamento vertical perfeito */
-    gap: 16px;           /* Espaçamento ideal entre a imagem e o texto */
-}
-
-/* 2. Define a altura exata da imagem */
-.logo {
-    height: 150px;       /* Altura solicitada */
-    width: auto;         /* Mantém a proporção original do ícone */
-    display: block;      /* Remove qualquer espaçamento residual inferior de elementos inline */
-}
-
-/* 3. Ajusta o texto para equilibrar visualmente com o tamanho da logo */
-.logo-text {
-    font-family: 'Varela Round', sans-serif;
-    font-size: 3.8rem;   /* Tamanho aumentado para harmonizar com os 150px de altura da imagem */
-    font-weight: bold;
-    letter-spacing: -1px;
-    line-height: 1;      /* Zera a entrelinha para que margens invisíveis da fonte não desalinhem o texto */
-    user-select: none;
-    color: #0284c7;
-}
-
-/* --- Botões (Estilo Bolha/Chiclete) --- */
-.cta-button {
-    background: linear-gradient(135deg, #f9a8d4 0%, #f472b6 100%);
-    color: var(--white);
-    text-decoration: none;
-    padding: 0.75rem 1.75rem;
-    border-radius: 9999px; /* Formato pílula/bolha */
-    font-weight: 700;
-    box-shadow: 0 4px 15px rgba(244, 114, 182, 0.4), inset 0 2px 4px rgba(255,255,255,0.4);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    border: 2px solid transparent;
-}
-
-.cta-button:hover {
-    transform: translateY(-2px) scale(1.05);
-    box-shadow: 0 6px 20px rgba(244, 114, 182, 0.6), inset 0 2px 4px rgba(255,255,255,0.6);
-    border: 2px solid var(--white);
-}
-
-@keyframes pulse {
-    0% { box-shadow: 0 0 0 0 rgba(244, 114, 182, 0.7), inset 0 2px 4px rgba(255,255,255,0.4); }
-    70% { box-shadow: 0 0 0 15px rgba(244, 114, 182, 0), inset 0 2px 4px rgba(255,255,255,0.4); }
-    100% { box-shadow: 0 0 0 0 rgba(244, 114, 182, 0), inset 0 2px 4px rgba(255,255,255,0.4); }
-}
-
-.pulse {
-    animation: pulse 2s infinite;
-}
-
-/* --- Hero Section --- */
-.hero {
+/* Header & Hero */
+header {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: white;
+    padding: 6rem 1rem 5rem;
     text-align: center;
-    padding: 6rem 1rem;
-    background: radial-gradient(circle at top center, #ffffff 0%, var(--bg-color) 100%);
+    border-bottom-left-radius: 50px;
+    border-bottom-right-radius: 50px;
+    box-shadow: 0 15px 30px rgba(247, 37, 133, 0.25);
+    position: relative;
+    transition: all 0.4s ease;
 }
 
-.hero h1 {
-    color: var(--accent-blue);
-    font-size: 2.8rem;
-    margin-bottom: 1.2rem;
+header.scrolled {
+    padding: 3rem 1rem 2.5rem;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+}
+
+.hero-container {
+    max-width: 850px;
+    margin: 0 auto;
+}
+
+/* Estilização da Imagem da Logo no Cabeçalho */
+.logo-wrapper-header {
+    max-width: 450px;
+    margin: 0 auto 1.5rem;
+    transition: transform 0.3s ease;
+}
+
+header.scrolled .logo-wrapper-header {
+    transform: scale(0.85);
+    margin-bottom: 0.8rem;
+}
+
+.main-logo-img {
+    width: 100%;
+    height: auto;
+    filter: drop-shadow(3px 5px 8px rgba(58, 12, 163, 0.3)); /* Sombra ajustada para o roxo escuro */
+}
+
+.tagline {
+    font-size: 1.6rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(58, 12, 163, 0.2);
+    letter-spacing: -0.5px;
+}
+
+.subtitle {
+    font-size: 1.15rem;
+    margin-bottom: 2.5rem;
+    font-weight: 500;
+    opacity: 0.95;
+    text-shadow: 1px 1px 2px rgba(58, 12, 163, 0.15);
+}
+
+/* Botão de Call To Action */
+.cta-container {
+    margin-top: 1rem;
+}
+
+.btn-primary {
+    /* Transforma o botão em flexbox para alinhamento perfeito */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem; /* Espaço perfeito entre o balão/ícone e o texto */
+
+    background-color: var(--bg-white);
+    color: var(--primary);
+    padding: 1.1rem 3rem;
+    font-size: 1.25rem;
+    font-weight: 800;
+    text-decoration: none;
+    border-radius: 50px;
+    box-shadow: 0 10px 20px rgba(58, 12, 163, 0.2);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 3px solid transparent;
+}
+
+/* Garante que o ícone mantenha a proporção ideal dentro do botão */
+.btn-primary img {
+    width: 28px;  /* Altura e largura ideais para equilibrar com a fonte 1.25rem */
+    height: 28px;
+    object-fit: contain;
+    display: block;
+}
+
+.btn-primary:hover {
+    transform: scale(1.06) translateY(-4px);
+    box-shadow: 0 15px 25px rgba(247, 37, 133, 0.4);
+    background-color: var(--bg-light);
+    color: var(--primary-dark);
+    border-color: var(--primary-light);
+}
+
+.btn-primary:focus-visible, .tab-btn:focus-visible {
+    outline: 4px dashed var(--bg-white);
+    outline-offset: 6px;
+}
+
+/* Sections */
+section {
+    padding: 5rem 1.5rem;
+    max-width: 1150px;
+    margin: 0 auto;
+}
+
+section:nth-child(even) {
+    background-color: var(--bg-light);
+    border-radius: 40px;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+h2 {
+    font-size: 2.4rem;
+    color: var(--primary);
+    margin-bottom: 2.5rem;
+    text-align: center;
     font-weight: 800;
     letter-spacing: -0.5px;
 }
 
-.hero p {
-    font-size: 1.2rem;
-    max-width: 650px;
-    margin: 0 auto 2.5rem auto;
-    color: var(--text-light);
-}
-
-/* --- Utilitários --- */
-.hidden {
-    display: none !important;
-}
-
-/* --- Mídia (Vídeo e Screenshots) --- */
-.media-section {
-    padding: 2rem 5%;
-    text-align: center;
-}
-
-.media-section h2 {
-    color: var(--bubblegum-dark);
-    margin-bottom: 2rem;
-}
-
+/* Video Player */
 .video-wrapper {
-    max-width: 800px;
-    margin: 0 auto 2rem auto;
-    border-radius: 20px;
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
     overflow: hidden;
-    box-shadow: 0 10px 30px rgba(2, 132, 199, 0.15);
+    border-radius: 25px;
+    box-shadow: 0 20px 40px rgba(247, 37, 133, 0.2);
+    background: var(--primary-light);
+    border: 6px solid var(--primary-light);
 }
 
 .video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    aspect-ratio: 16/9;
+    height: 100%;
+    border: 0;
+    border-radius: 18px;
+}
+
+/* Galeria Adaptável Dinamicamente (Mobile-First UI) */
+.media-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    align-items: start;
+}
+
+.media-card {
+    background: var(--bg-white);
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(58, 12, 163, 0.05);
+    border: 2px solid var(--bg-light);
+    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* Garante alinhamento parelho no Grid */
+}
+
+.media-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 18px 30px rgba(247, 37, 133, 0.2);
+    border-color: var(--primary-light);
+}
+
+.media-card img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    display: block;
+    border-bottom: 3px solid var(--bg-light);
+}
+
+.media-card p {
+    padding: 1.3rem;
+    font-size: 1.1rem;
+    text-align: center;
+    font-weight: 700;
+    color: var(--text-dark);
+    background: linear-gradient(to bottom, #ffffff, var(--bg-light));
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Navegação por Abas (Docs / Termos) */
+.tabs {
+    display: flex;
+    justify-content: center;
+    gap: 1.2rem;
+    margin-bottom: 2.5rem;
+    flex-wrap: wrap;
+}
+
+.tab-btn {
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    font-weight: 700;
+    border: none;
+    border-radius: 50px;
+    background-color: var(--bg-white);
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 5px 10px rgba(247, 37, 133, 0.1);
+    border: 2px solid transparent;
+}
+
+.tab-btn.active, .tab-btn:hover {
+    background: var(--primary);
+    color: var(--bg-white);
+    transform: scale(1.05);
+    box-shadow: 0 8px 18px rgba(247, 37, 133, 0.3);
+}
+
+.tab-btn:focus-visible {
+    outline: 3px dashed var(--primary);
+    outline-offset: 4px;
+}
+
+.tab-content {
+    display: none;
+    animation: bubblePop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1) forwards;
+    background: var(--bg-white);
+    padding: 2.5rem;
+    border-radius: 28px;
+    box-shadow: 0 8px 25px rgba(58, 12, 163, 0.05);
+    border: 2px solid var(--bg-light);
+}
+
+.tab-content.active {
     display: block;
 }
 
-.screenshots-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.5rem;
-    max-width: 1000px;
-    margin: 0 auto;
+/* Textos e Blocos de Informação */
+/* Estilo para links dentro do guia */
+.simple-guide a {
+    color: var(--primary);          /* Usa o Rosa Chiclete Vibrante */
+    font-weight: 700;               /* Deixa a palavra mais gordinha */
+    text-decoration: underline;
+    text-underline-offset: 4px;     /* Afasta a linha do texto para não amassar as letras */
+    margin: 0 0.25rem;              /* Cria um "respiro" nas laterais da palavra */
+    transition: color 0.2s ease;
 }
 
-.screenshots-grid img {
-    width: 100%;
-    border-radius: 16px;
-    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
-    border: 3px solid var(--white);
+.simple-guide a:hover {
+    color: var(--primary-dark);
+}
+.simple-guide p { 
+    margin-bottom: 1.2rem; 
+    font-size: 1.15rem; 
+    display: flex; 
+    align-items: flex-start; 
 }
 
-/* --- Funcionalidades --- */
-.features {
-    padding: 4rem 5%;
+.simple-guide strong { 
+    color: var(--primary); 
+    font-size: 1.4rem; 
+    margin-right: 0.6rem; 
+    line-height: 1; 
 }
 
-.features h2 {
-    text-align: center;
-    color: var(--bubblegum-dark);
-    margin-bottom: 3rem;
-    font-size: 2rem;
+.disclaimer-box { 
+    background: var(--bg-light); 
+    border: 3px dashed var(--primary-light); 
+    padding: 1.8rem; 
+    border-radius: 20px; 
+    color: var(--text-dark); 
 }
 
-.feature-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
+.disclaimer-box h3 { 
+    margin-bottom: 0.8rem; 
+    color: var(--primary-dark); 
+    font-weight: 800; 
 }
 
-.feature-card {
-    background: var(--white);
-    padding: 2.5rem 2rem;
-    border-radius: 30px; /* Bordas bem redondas remetendo à bolha de chiclete */
-    box-shadow: 0 10px 25px rgba(244, 114, 182, 0.08);
-    border: 2px solid #fce7f3;
-    transition: transform 0.3s ease, border-color 0.3s ease;
+/* Footer */
+footer { 
+    background: var(--text-dark); 
+    color: var(--bg-light); 
+    text-align: center; 
+    padding: 4rem 1rem; 
+    margin-top: 5rem; 
+    border-top-left-radius: 50px; 
+    border-top-right-radius: 50px; 
+    position: relative; 
 }
 
-.feature-card:hover {
-    transform: translateY(-8px);
-    border-color: var(--bubblegum-pink);
-    box-shadow: 0 15px 35px rgba(244, 114, 182, 0.15);
+.footer-brand { margin-bottom: 1rem; }
+
+.footer-logo { 
+    width: 60px; 
+    height: auto; 
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3)); 
 }
 
-.feature-card h3 {
-    color: var(--accent-blue);
-    margin-bottom: 1rem;
-    font-size: 1.3rem;
+.footer-sub { 
+    font-size: 0.95rem; 
+    margin-top: 0.6rem; 
+    opacity: 0.75; 
 }
 
-/* --- Disclaimer/Avisos --- */
-.disclaimer {
-    background: var(--white);
-    padding: 4rem 5%;
-    margin-top: 2rem;
-    border-top: 4px dashed var(--bubblegum-pink);
+@keyframes bubblePop {
+    0% { opacity: 0; transform: scale(0.93); }
+    70% { transform: scale(1.02); }
+    100% { opacity: 1; transform: scale(1); }
 }
 
-.disclaimer h2 {
-    text-align: center;
-    color: var(--bubblegum-dark);
-    margin-bottom: 2rem;
-}
-
-.disclaimer-content {
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.disclaimer p {
-    background: #f8fafc;
-    padding: 1.2rem;
-    border-left: 5px solid var(--accent-blue);
-    border-radius: 0 12px 12px 0;
-    margin-bottom: 1rem;
-    font-size: 0.95rem;
-}
-
-.disclaimer p strong {
-    color: var(--accent-blue);
-}
-
-/* --- Footer --- */
-footer {
-    text-align: center;
-    padding: 2rem;
-    background: var(--bubblegum-dark);
-    color: var(--bg-color);
-    font-size: 0.9rem;
-}
-
-/* --- Responsividade --- */
-@media (max-width: 600px) {
-    .hero h1 { font-size: 2rem; }
-    .header { flex-direction: column; gap: 1rem; }
+/* Media Queries adicionais para garantir fluidez no mobile */
+@media (max-width: 768px) {
+    header { padding: 4rem 1rem 3rem; }
+    h2 { font-size: 2rem; }
+    .tab-btn { width: 100%; text-align: center; }
 }

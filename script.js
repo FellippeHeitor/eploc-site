@@ -1,46 +1,49 @@
-/**
- * Script principal - eploc Landing Page
- */
-
 document.addEventListener('DOMContentLoaded', () => {
-    console.log('eploc landing page inicializada com sucesso.');
+    
+    // Lógica para alternar as abas (Tabs) com acessibilidade
+    const tabButtons = document.querySelectorAll('.tab-btn');
+    const tabContents = document.querySelectorAll('.tab-content');
 
-    // Detecção de navegador para personalizar o botão de instalação
-    const userAgent = navigator.userAgent;
-    let buttonText = "Instalar no Chrome"; // Texto padrão
-
-    if (userAgent.includes("Edg")) {
-        buttonText = "Instalar no Edge";
-    } else if (userAgent.includes("OPR") || userAgent.includes("Opera")) {
-        buttonText = "Instalar no Opera";
-    }
-
-    // Aplica o texto correto em todos os botões com a classe cta-button
-    document.querySelectorAll('.cta-button').forEach(button => {
-        button.textContent = buttonText;
-    });
-
-    // =====================================================================
-    // INSTRUÇÕES PARA REVELAR A SEÇÃO DE VÍDEO E SCREENSHOTS FUTURAMENTE:
-    // =====================================================================
-    // 1. Abra o arquivo index.html.
-    // 2. Localize a tag: <section id="media-section" class="media-section hidden">
-    // 3. Remova a palavra "hidden" da propriedade class.
-    // 4. Insira o iframe do YouTube e as tags <img> nos lugares indicados.
-
-    // Efeito suave de rolagem para links âncora (se você adicionar links internos no futuro)
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
+    tabButtons.forEach(button => {
+        button.addEventListener('click', (e) => {
             e.preventDefault();
-            const targetId = this.getAttribute('href');
-            if (targetId === '#') return;
+
+            // Reseta todas as abas e conteúdos
+            tabButtons.forEach(btn => {
+                btn.classList.remove('active');
+                btn.setAttribute('aria-selected', 'false'); // Acessibilidade
+            });
             
-            const targetElement = document.querySelector(targetId);
-            if (targetElement) {
-                targetElement.scrollIntoView({
-                    behavior: 'smooth'
-                });
+            tabContents.forEach(content => {
+                content.classList.remove('active');
+            });
+
+            // Ativa o botão clicado
+            button.classList.add('active');
+            button.setAttribute('aria-selected', 'true'); // Acessibilidade
+            
+            // Busca o conteúdo correspondente
+            const targetId = button.getAttribute('data-target');
+            const targetContent = document.getElementById(targetId);
+            
+            // Segurança: verifica se o ID existe antes de adicionar a classe
+            if (targetContent) {
+                targetContent.classList.add('active');
             }
         });
     });
+
+    // Efeito de transição do cabeçalho ao rolar a página (Scroll)
+    const header = document.getElementById('main-header');
+    
+    if (header) {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 60) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        }, { passive: true }); // Otimização de performance para scroll
+    }
+
 });

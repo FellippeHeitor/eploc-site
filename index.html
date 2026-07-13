@@ -3,74 +3,111 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>eploc - Produtividade e Usabilidade</title>
+    <title>eploc - grudado no eproc pra aumentar sua produtividade</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="icon32.png">
     <link rel="stylesheet" href="styles.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
+    <script src="script.js" defer></script>
 </head>
 <body>
-    <header class="header">
-        <div class="logo-container">
-            <img src="assets/eploc-logo-sem-texto-1000.png" alt="Logo eploc" class="logo">
-            <span class="logo-text">eploc</span>
+
+    <header id="main-header">
+        <div class="hero-container">
+            <div class="logo-wrapper-header">
+                <img src="assets/eploc-logo-master-1000.png" alt="Logotipo eploc" class="main-logo-img">
+            </div>
+            
+            <p class="tagline">Automatize tarefas repetitivas e acelere seu fluxo de trabalho jurídico!</p>
+            <p class="subtitle">Melhorias visuais e de produtividade para eproc, SEI e RUPE, feitas para o seu dia a dia forense.</p>
+            
+            <div class="cta-container">
+                <a href="https://chromewebstore.google.com/detail/eploc/fkpkkenjcfpplmhlfdbabhcdhmhiojhj" target="_blank" class="btn-primary" rel="noopener noreferrer">
+                    <img src="icon32.png" alt="Ícone do eploc"> Instalar no Chrome
+                </a>
+            </div>
         </div>
-        <a href="https://chromewebstore.google.com/detail/eploc/fkpkkenjcfpplmhlfdbabhcdhmhiojhj" target="_blank" class="cta-button">Instalar no Chrome</a>
     </header>
 
     <main>
-        <section class="hero">
-            <h1>Agilize sua rotina no eproc, SEI e RUPE</h1>
-            <p>Melhorias visuais e de usabilidade focadas em agilidade. Uma extensão independente pensada para facilitar o preenchimento de dados, buscas e navegação diária.</p>
-            <a href="https://chromewebstore.google.com/detail/eploc/fkpkkenjcfpplmhlfdbabhcdhmhiojhj" target="_blank" class="cta-button pulse">Baixar Extensão</a>
-        </section>
-
-        <section id="media-section" class="media-section hidden">
-            <h2>Veja o eploc em ação</h2>
-            
+        <section id="walkthrough">
+            <h2>Veja o eploc em ação!</h2>
             <div class="video-wrapper">
-                </div>
-
-            <div class="screenshots-grid">
-                </div>
-        </section>
-
-        <section class="features">
-            <h2>Principais Funcionalidades</h2>
-            <div class="feature-grid">
-                <div class="feature-card">
-                    <h3>📧 Histórico Inteligente</h3>
-                    <p>Sugestões de e-mails com aprendizado contínuo. Previsão por coocorrência de destinatários e formatação automática ao colar contatos.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>📌 Painéis Fixos e Atalhos</h3>
-                    <p>Mantenha o contexto sempre à vista. O mini painel de atalhos e o painel fixo do processo no eproc evitam cliques desnecessários e idas e vindas na tela.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>🔍 Otimização de Buscas</h3>
-                    <p>Conta com autocomplete para números de processo no padrão CNJ no eproc, espelho de painel de pesquisa no RUPE e uma visualização horizontal muito mais descritiva e limpa no SEI.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>⚙️ Monitoramento de Novas Minutas</h3>
-                    <p>Monitoramento automático de novas minutas, centralização de relatórios gerais e exibição nativa do nome dos usuários nas tabelas do sistema.</p>
-                </div>
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/-3suvonscRs?si=awy3JBn_BFLCqrED" title="Apresentação das funcionalidades do eploc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
             </div>
         </section>
 
-        <section class="disclaimer">
-            <h2>Transparência e Privacidade</h2>
-            <div class="disclaimer-content">
-                <p><strong>Privacidade Total (LGPD):</strong> O eploc funciona 100% localmente no seu navegador. Não há coleta, armazenamento ou transmissão de dados processuais, pessoais ou senhas para servidores externos.</p>
-                <p><strong>Ferramenta Independente:</strong> Esta extensão é um projeto autônomo. Não possui vínculo, convênio ou homologação oficial com o TJMG, TRF, CNJ ou qualquer outra instituição do Poder Judiciário.</p>
-                <p><strong>Responsabilidade do Usuário:</strong> Sistemas processuais passam por atualizações constantes. O usuário deve sempre conferir a integridade, exatidão e o protocolo de todos os atos diretamente nos sistemas oficiais.</p>
+        <section id="galeria">
+            <h2>Galeria de Funcionalidades</h2>
+            <div class="media-grid">
+                
+                <div class="media-card">
+                    <img src="assets/screenshots/mini-painel-atalhos.gif" alt="Animação mostrando o mini painel de atalhos contextuais no eproc" loading="lazy">
+                    <p>Mini painel de atalhos contextuais</p>
+                </div>
+
+                <div class="media-card">
+                    <img src="assets/screenshots/sanitizador-autocomplete-emails.gif" alt="Demonstração do histórico inteligente e sanitizador de e-mails" loading="lazy">
+                    <p>Histórico inteligente e sanitizador de e-mails</p>
+                </div>
+
+                <div class="media-card">
+                    <img src="assets/screenshots/nomes-usuarios.webp" alt="Captura de tela exibindo nomes de usuários mais claros na interface" loading="lazy">
+                    <p>Exibição clara de nomes de usuários</p>
+                </div>
+
+                <div class="media-card">
+                    <img src="assets/screenshots/painel-lateral.gif" alt="Animação do painel lateral fixo para consulta rápida de processos" loading="lazy">
+                    <p>Painel lateral fixo para consulta rápida</p>
+                </div>
+
+                <div class="media-card">
+                    <img src="assets/screenshots/auto-complete-cnj.gif" alt="Animação do recurso de auto-completar no padrão CNJ" loading="lazy">
+                    <p>Auto-completar inteligente (Padrão CNJ)</p>
+                </div>
+
+                <div class="media-card">
+                    <img src="assets/screenshots/sei-descritivo.webp" alt="Visualização horizontal e descritiva otimizada no sistema SEI" loading="lazy">
+                    <p>Visualização horizontal mais descritiva no SEI</p>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="docs">
+            <div class="tabs" role="tablist" aria-label="Documentação e Termos">
+                <button type="button" class="tab-btn active" id="tab-install" data-target="install" role="tab" aria-selected="true" aria-controls="install">Como Usar</button>
+                <button type="button" class="tab-btn" id="tab-terms" data-target="terms" role="tab" aria-selected="false" aria-controls="terms">Termos e Privacidade</button>
+            </div>
+            
+            <div id="install" class="tab-content active" role="tabpanel" aria-labelledby="tab-install" tabindex="0">
+                <h2>Pronto para usar em segundos</h2>
+                <div class="simple-guide">
+                    <p><strong>1.</strong> Clique <a href="https://chromewebstore.google.com/detail/eploc/fkpkkenjcfpplmhlfdbabhcdhmhiojhj" target="_blank" rel="noopener noreferrer">aqui</a> e instale a extensão diretamente da Chrome Web Store.</p>
+                    <p><strong>4.</strong> Acesse os sistemas (eproc, SEI, etc.) e clique no ícone da extensão para configurar quais melhorias você deseja ativar.</p>
+                </div>
+            </div>
+
+            <div id="terms" class="tab-content" role="tabpanel" aria-labelledby="tab-terms" tabindex="0">
+                <h2>Termos de Uso</h2>
+                
+                <div class="disclaimer-box">
+                    <h3>Independência e Responsabilidade</h3>
+                    <p>Esta extensão é uma ferramenta independente. <strong>NÃO possui vínculo, endosso ou homologação oficial com o Tribunal de Justiça de Minas Gerais (TJMG), o CNJ ou qualquer instituição do Poder Judiciário.</strong></p>
+                    <p style="margin-top: 1rem;">O desenvolvedor não se responsabiliza por falhas de exibição, erros de preenchimento ou por perda de prazos. É obrigação exclusiva do usuário conferir a exatidão de todos os atos realizados nos sistemas oficiais.</p>
+                </div>
+
+                <h3 style="margin-top: 1.5rem;">Privacidade (LGPD)</h3>
+                <p>Em conformidade com a Lei Geral de Proteção de Dados, <strong>esta extensão funciona 100% localmente no seu navegador</strong>. Nenhuma informação de processos, senhas ou dados pessoais é enviada para servidores externos.</p>
             </div>
         </section>
     </main>
 
     <footer>
-        <p>&copy; 2026 Fellippe Heitor</p>
+        <div class="footer-brand">
+            <img src="assets/eploc-logo-sem-texto-1000.png" alt="eploc mini logo" class="footer-logo">
+        </div>
+        <p><strong>eploc</strong> &bull; grudado no eproc</p>
+        <p class="footer-sub">&copy; Fellippe Heitor, 2026</p>
     </footer>
 
-    <script src="script.js"></script>
 </body>
 </html>
