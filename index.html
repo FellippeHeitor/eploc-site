@@ -3,110 +3,234 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>eploc - grudado no eproc pra aumentar sua produtividade</title>
+    <title>eploc — grudado no eproc pra aumentar sua produtividade</title>
+    <meta name="description" content="Automatize tarefas repetitivas e acelere seu fluxo de trabalho no eproc, SEI e RUPE. Extensão gratuita para Chrome, 100% local e em conformidade com a LGPD.">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="eploc — grudado no eproc pra aumentar sua produtividade">
+    <meta property="og:description" content="Automatize tarefas repetitivas e acelere seu fluxo de trabalho no eproc, SEI e RUPE. Extensão gratuita para Chrome, 100% local e em conformidade com a LGPD.">
+    <meta property="og:image" content="assets/eploc-logo-master-1000.png">
+    <meta name="twitter:card" content="summary_large_image">
+
     <link rel="icon" type="image/png" sizes="32x32" href="icon32.png">
     <link rel="stylesheet" href="styles.css">
     <script src="script.js" defer></script>
 </head>
 <body>
 
-    <header id="main-header">
-        <div class="hero-container">
-            <div class="logo-wrapper-header">
-                <img src="assets/eploc-logo-master-1000.png" alt="Logotipo eploc" class="main-logo-img">
+    <nav class="nav">
+        <div class="wrap">
+            <a href="#" class="nav-brand">
+                <img src="assets/eploc-logo-sem-texto-1000.png" alt="">
+                eploc
+            </a>
+            <ul class="nav-links">
+                <li><a href="#recursos">Recursos</a></li>
+                <li><a href="#walkthrough">Vídeo</a></li>
+                <li><a href="#galeria">Galeria</a></li>
+                <li><a href="#docs">Como usar</a></li>
+            </ul>
+            <a href="https://chromewebstore.google.com/detail/eploc/fkpkkenjcfpplmhlfdbabhcdhmhiojhj" target="_blank" rel="noopener noreferrer" class="nav-cta">Instalar</a>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-blobs" aria-hidden="true"><span class="blob blob-pink"></span><span class="blob blob-cyan"></span></div>
+        <div class="wrap hero-inner">
+            <div>
+                <span class="eyebrow">Extensão para Chrome · eproc · SEI · RUPE</span>
+                <h1>Sua rotina no eproc, mais rápida — sem perder <em>o grude</em>.</h1>
+                <p class="lede">Automatize tarefas repetitivas, organize atalhos e acelere seu fluxo de trabalho jurídico. Tudo roda no seu navegador — nenhum dado sai do seu computador.</p>
+
+                <div class="cta-container cta-row">
+                    <a href="https://chromewebstore.google.com/detail/eploc/fkpkkenjcfpplmhlfdbabhcdhmhiojhj" target="_blank" class="btn-primary" rel="noopener noreferrer">
+                        <img src="icon32.png" alt=""> Instalar grátis no Chrome
+                    </a>
+                    <a href="#walkthrough" class="btn-ghost">Ver como funciona ↓</a>
+                </div>
+
+                <div class="trust-row">
+                    <span class="trust-chip">100% local · LGPD</span>
+                    <span class="trust-chip">Independente do TJMG/CNJ</span>
+                    <span class="trust-chip">Grátis</span>
+                </div>
             </div>
-            
-            <p class="tagline">Automatize tarefas repetitivas e acelere seu fluxo de trabalho jurídico!</p>
-            <p class="subtitle">Melhorias visuais e de produtividade para eproc, SEI e RUPE, feitas para o seu dia a dia forense.</p>
-            
-            <div class="cta-container">
-                <a href="https://chromewebstore.google.com/detail/eploc/fkpkkenjcfpplmhlfdbabhcdhmhiojhj" target="_blank" class="btn-primary" rel="noopener noreferrer">
-                    <img src="icon32.png" alt="Ícone do eploc"> Instalar no Chrome
-                </a>
+            <div class="hero-art">
+                <img src="assets/eploc-logo-master-1000.png" alt="Logotipo eploc">
             </div>
         </div>
     </header>
 
     <main>
+        <section id="recursos">
+            <div class="wrap">
+                <div class="section-head">
+                    <span class="eyebrow">Recursos</span>
+                    <h2>Pensado para quem vive dentro do eproc</h2>
+                    <p class="lede">Quatro melhorias que trabalham em segundo plano, no ritmo do seu expediente.</p>
+                </div>
+                <div class="features">
+                    <div class="feature-card">
+                        <div class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="3"></rect><path d="M3 9h18"></path><path d="M7 13h4"></path></svg></div>
+                        <h3>Atalhos contextuais</h3>
+                        <p>Um mini painel mostra só os atalhos relevantes para a tela em que você está.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 6l9 7 9-7"></path><rect x="3" y="5" width="18" height="14" rx="2"></rect></svg></div>
+                        <h3>Sanitizador de e-mails</h3>
+                        <p>Histórico inteligente que limpa e sugere endereços automaticamente.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 12h4l2-7 4 14 2-7h4"></path></svg></div>
+                        <h3>Auto-completar CNJ</h3>
+                        <p>Reconhece e completa números de processo no padrão CNJ enquanto você digita.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="3"></rect><path d="M15 4v16"></path></svg></div>
+                        <h3>Painel lateral fixo</h3>
+                        <p>Consulte outro processo sem perder o que você estava preenchendo.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <section id="walkthrough">
-            <h2>Veja o eploc em ação!</h2>
-            <div class="video-wrapper">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/-3suvonscRs?si=awy3JBn_BFLCqrED" title="Apresentação das funcionalidades do eploc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <div class="wrap">
+                <div class="section-head">
+                    <span class="eyebrow">Veja funcionando</span>
+                    <h2>Três minutos e você já entendeu</h2>
+                </div>
+                <div class="video-shell">
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/-3suvonscRs?si=awy3JBn_BFLCqrED" title="Apresentação das funcionalidades do eploc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
+                    </div>
+                </div>
             </div>
         </section>
 
         <section id="galeria">
-            <h2>Galeria de Funcionalidades</h2>
-            <div class="media-grid">
-                
-                <div class="media-card">
-                    <img src="assets/screenshots/mini-painel-atalhos.gif" alt="Animação mostrando o mini painel de atalhos contextuais no eproc" loading="lazy">
-                    <p>Mini painel de atalhos contextuais</p>
+            <div class="wrap">
+                <div class="section-head">
+                    <span class="eyebrow">Galeria</span>
+                    <h2>Do dia a dia forense, em detalhes</h2>
                 </div>
+                <div class="media-grid gallery">
 
-                <div class="media-card">
-                    <img src="assets/screenshots/sanitizador-autocomplete-emails.gif" alt="Demonstração do histórico inteligente e sanitizador de e-mails" loading="lazy">
-                    <p>Histórico inteligente e sanitizador de e-mails</p>
+                    <div class="media-card g-card">
+                        <video muted loop playsinline preload="none" poster="assets/screenshots/mini-painel-atalhos-poster.jpg" aria-label="Animação mostrando o mini painel de atalhos contextuais no eproc">
+                            <source src="assets/screenshots/mini-painel-atalhos.webm" type="video/webm">
+                            <source src="assets/screenshots/mini-painel-atalhos.mp4" type="video/mp4">
+                        </video>
+                        <p>Mini painel de atalhos contextuais</p>
+                    </div>
+
+                    <div class="media-card g-card">
+                        <video muted loop playsinline preload="none" poster="assets/screenshots/sanitizador-autocomplete-emails-poster.jpg" aria-label="Demonstração do histórico inteligente e sanitizador de e-mails">
+                            <source src="assets/screenshots/sanitizador-autocomplete-emails.webm" type="video/webm">
+                            <source src="assets/screenshots/sanitizador-autocomplete-emails.mp4" type="video/mp4">
+                        </video>
+                        <p>Histórico inteligente e sanitizador de e-mails</p>
+                    </div>
+
+                    <div class="media-card g-card">
+                        <img src="assets/screenshots/nomes-usuarios.webp" alt="Captura de tela exibindo nomes de usuários mais claros na interface" loading="lazy">
+                        <p>Exibição clara de nomes de usuários</p>
+                    </div>
+
+                    <div class="media-card g-card">
+                        <video muted loop playsinline preload="none" poster="assets/screenshots/painel-lateral-poster.jpg" aria-label="Animação do painel lateral fixo para consulta rápida de processos">
+                            <source src="assets/screenshots/painel-lateral.webm" type="video/webm">
+                            <source src="assets/screenshots/painel-lateral.mp4" type="video/mp4">
+                        </video>
+                        <p>Painel lateral fixo para consulta rápida</p>
+                    </div>
+
+                    <div class="media-card g-card">
+                        <video muted loop playsinline preload="none" poster="assets/screenshots/auto-complete-cnj-poster.jpg" aria-label="Animação do recurso de auto-completar no padrão CNJ">
+                            <source src="assets/screenshots/auto-complete-cnj.webm" type="video/webm">
+                            <source src="assets/screenshots/auto-complete-cnj.mp4" type="video/mp4">
+                        </video>
+                        <p>Auto-completar inteligente (Padrão CNJ)</p>
+                    </div>
+
+                    <div class="media-card g-card">
+                        <img src="assets/screenshots/sei-descritivo.webp" alt="Visualização horizontal e descritiva otimizada no sistema SEI" loading="lazy">
+                        <p>Visualização horizontal mais descritiva no SEI</p>
+                    </div>
+
                 </div>
-
-                <div class="media-card">
-                    <img src="assets/screenshots/nomes-usuarios.webp" alt="Captura de tela exibindo nomes de usuários mais claros na interface" loading="lazy">
-                    <p>Exibição clara de nomes de usuários</p>
-                </div>
-
-                <div class="media-card">
-                    <img src="assets/screenshots/painel-lateral.gif" alt="Animação do painel lateral fixo para consulta rápida de processos" loading="lazy">
-                    <p>Painel lateral fixo para consulta rápida</p>
-                </div>
-
-                <div class="media-card">
-                    <img src="assets/screenshots/auto-complete-cnj.gif" alt="Animação do recurso de auto-completar no padrão CNJ" loading="lazy">
-                    <p>Auto-completar inteligente (Padrão CNJ)</p>
-                </div>
-
-                <div class="media-card">
-                    <img src="assets/screenshots/sei-descritivo.webp" alt="Visualização horizontal e descritiva otimizada no sistema SEI" loading="lazy">
-                    <p>Visualização horizontal mais descritiva no SEI</p>
-                </div>
-
+                <p class="gallery-note">As animações rodam em vídeo leve (webm/mp4) em vez de GIF — mesmo visual, carregamento bem mais rápido.</p>
             </div>
         </section>
 
         <section id="docs">
-            <div class="tabs" role="tablist" aria-label="Documentação e Termos">
-                <button type="button" class="tab-btn active" id="tab-install" data-target="install" role="tab" aria-selected="true" aria-controls="install">Como Usar</button>
-                <button type="button" class="tab-btn" id="tab-terms" data-target="terms" role="tab" aria-selected="false" aria-controls="terms">Termos e Privacidade</button>
-            </div>
-            
-            <div id="install" class="tab-content active" role="tabpanel" aria-labelledby="tab-install" tabindex="0">
-                <h2>Pronto para usar em segundos</h2>
-                <div class="simple-guide">
-                    <p><strong>1.</strong> Clique <a href="https://chromewebstore.google.com/detail/eploc/fkpkkenjcfpplmhlfdbabhcdhmhiojhj" target="_blank" rel="noopener noreferrer">aqui</a> e instale a extensão diretamente da Chrome Web Store.</p>
-                    <p><strong>4.</strong> Acesse os sistemas (eproc, SEI, etc.) e clique no ícone da extensão para configurar quais melhorias você deseja ativar.</p>
+            <div class="wrap">
+                <div class="section-head">
+                    <span class="eyebrow">Documentação</span>
+                    <h2>Pronto para usar em segundos</h2>
                 </div>
-            </div>
+                <div class="docs-shell">
+                    <div class="tabs" role="tablist" aria-label="Documentação e Termos">
+                        <button type="button" class="tab-btn active" id="tab-install" data-target="install" role="tab" aria-selected="true" aria-controls="install">Como Usar</button>
+                        <button type="button" class="tab-btn" id="tab-terms" data-target="terms" role="tab" aria-selected="false" aria-controls="terms">Termos e Privacidade</button>
+                    </div>
 
-            <div id="terms" class="tab-content" role="tabpanel" aria-labelledby="tab-terms" tabindex="0">
-                <h2>Termos de Uso</h2>
-                
-                <div class="disclaimer-box">
-                    <h3>Independência e Responsabilidade</h3>
-                    <p>Esta extensão é uma ferramenta independente. <strong>NÃO possui vínculo, endosso ou homologação oficial com o Tribunal de Justiça de Minas Gerais (TJMG), o CNJ ou qualquer instituição do Poder Judiciário.</strong></p>
-                    <p style="margin-top: 1rem;">O desenvolvedor não se responsabiliza por falhas de exibição, erros de preenchimento ou por perda de prazos. É obrigação exclusiva do usuário conferir a exatidão de todos os atos realizados nos sistemas oficiais.</p>
+                    <div id="install" class="tab-content active" role="tabpanel" aria-labelledby="tab-install" tabindex="0">
+                        <ol class="steps">
+                            <li><span><a href="https://chromewebstore.google.com/detail/eploc/fkpkkenjcfpplmhlfdbabhcdhmhiojhj" target="_blank" rel="noopener noreferrer">Clique aqui</a> e instale a extensão diretamente da Chrome Web Store.</span></li>
+                            <li><span>Abra o eproc, SEI ou RUPE — o eploc já começa a funcionar sozinho.</span></li>
+                            <li><span>Clique no ícone da extensão para ativar ou desativar cada melhoria.</span></li>
+                        </ol>
+                    </div>
+
+                    <div id="terms" class="tab-content" role="tabpanel" aria-labelledby="tab-terms" tabindex="0">
+                        <div class="legal-note">
+                            <span class="label">Independência e Responsabilidade</span>
+                            <p>Esta extensão é uma ferramenta independente. <strong>NÃO possui vínculo, endosso ou homologação oficial com o Tribunal de Justiça de Minas Gerais (TJMG), o CNJ ou qualquer instituição do Poder Judiciário.</strong></p>
+                            <p>O desenvolvedor não se responsabiliza por falhas de exibição, erros de preenchimento ou por perda de prazos. É obrigação exclusiva do usuário conferir a exatidão de todos os atos realizados nos sistemas oficiais.</p>
+                        </div>
+                        <div class="legal-note">
+                            <span class="label">Privacidade (LGPD)</span>
+                            <p>Em conformidade com a Lei Geral de Proteção de Dados, <strong>esta extensão funciona 100% localmente no seu navegador</strong>. Nenhuma informação de processos, senhas ou dados pessoais é enviada para servidores externos.</p>
+                        </div>
+                    </div>
                 </div>
-
-                <h3 style="margin-top: 1.5rem;">Privacidade (LGPD)</h3>
-                <p>Em conformidade com a Lei Geral de Proteção de Dados, <strong>esta extensão funciona 100% localmente no seu navegador</strong>. Nenhuma informação de processos, senhas ou dados pessoais é enviada para servidores externos.</p>
             </div>
         </section>
     </main>
 
     <footer>
-        <div class="footer-brand">
-            <img src="assets/eploc-logo-sem-texto-1000.png" alt="eploc mini logo" class="footer-logo">
+        <div class="wrap">
+            <div class="footer-grid">
+                <div>
+                    <div class="footer-brand">
+                        <img src="assets/eploc-logo-sem-texto-1000.png" alt="">
+                        eploc
+                    </div>
+                    <p>Grudado no eproc para aumentar sua produtividade forense.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Produto</h4>
+                    <ul>
+                        <li><a href="#recursos">Recursos</a></li>
+                        <li><a href="#walkthrough">Vídeo</a></li>
+                        <li><a href="#galeria">Galeria</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Suporte</h4>
+                    <ul>
+                        <li><a href="#docs">Como usar</a></li>
+                        <li><a href="#" data-tab-link="terms">Termos e privacidade</a></li>
+                        <li><a href="mailto:fellippepip@gmail.com">Reportar um problema</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>&copy; Fellippe Heitor, 2026</span>
+                <span>eploc &bull; grudado no eproc</span>
+            </div>
         </div>
-        <p><strong>eploc</strong> &bull; grudado no eproc</p>
-        <p class="footer-sub">&copy; Fellippe Heitor, 2026</p>
     </footer>
 
 </body>
