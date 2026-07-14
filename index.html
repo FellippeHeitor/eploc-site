@@ -117,7 +117,7 @@
                 <div class="media-grid gallery">
 
                     <div class="media-card g-card">
-                        <video muted loop playsinline preload="none" poster="assets/screenshots/mini-painel-atalhos-poster.jpg" aria-label="Animação mostrando o mini painel de atalhos contextuais no eproc">
+                        <video muted loop playsinline preload="none" poster="assets/screenshots/mini-painel-atalhos-poster.jpg" aria-label="Animação mostrando o mini painel de atalhos contextuais no eproc" tabindex="0" role="button">
                             <source src="assets/screenshots/mini-painel-atalhos.webm" type="video/webm">
                             <source src="assets/screenshots/mini-painel-atalhos.mp4" type="video/mp4">
                         </video>
@@ -125,7 +125,7 @@
                     </div>
 
                     <div class="media-card g-card">
-                        <video muted loop playsinline preload="none" poster="assets/screenshots/sanitizador-autocomplete-emails-poster.jpg" aria-label="Demonstração do histórico inteligente e sanitizador de e-mails">
+                        <video muted loop playsinline preload="none" poster="assets/screenshots/sanitizador-autocomplete-emails-poster.jpg" aria-label="Demonstração do histórico inteligente e sanitizador de e-mails" tabindex="0" role="button">
                             <source src="assets/screenshots/sanitizador-autocomplete-emails.webm" type="video/webm">
                             <source src="assets/screenshots/sanitizador-autocomplete-emails.mp4" type="video/mp4">
                         </video>
@@ -133,12 +133,12 @@
                     </div>
 
                     <div class="media-card g-card">
-                        <img src="assets/screenshots/nomes-usuarios.webp" alt="Captura de tela exibindo nomes de usuários mais claros na interface" loading="lazy">
+                        <img src="assets/screenshots/nomes-usuarios.webp" alt="Captura de tela exibindo nomes de usuários mais claros na interface" loading="lazy" tabindex="0" role="button">
                         <p>Exibição clara de nomes de usuários</p>
                     </div>
 
                     <div class="media-card g-card">
-                        <video muted loop playsinline preload="none" poster="assets/screenshots/painel-lateral-poster.jpg" aria-label="Animação do painel lateral fixo para consulta rápida de processos">
+                        <video muted loop playsinline preload="none" poster="assets/screenshots/painel-lateral-poster.jpg" aria-label="Animação do painel lateral fixo para consulta rápida de processos" tabindex="0" role="button">
                             <source src="assets/screenshots/painel-lateral.webm" type="video/webm">
                             <source src="assets/screenshots/painel-lateral.mp4" type="video/mp4">
                         </video>
@@ -146,7 +146,7 @@
                     </div>
 
                     <div class="media-card g-card">
-                        <video muted loop playsinline preload="none" poster="assets/screenshots/auto-complete-cnj-poster.jpg" aria-label="Animação do recurso de auto-completar no padrão CNJ">
+                        <video muted loop playsinline preload="none" poster="assets/screenshots/auto-complete-cnj-poster.jpg" aria-label="Animação do recurso de auto-completar no padrão CNJ" tabindex="0" role="button">
                             <source src="assets/screenshots/auto-complete-cnj.webm" type="video/webm">
                             <source src="assets/screenshots/auto-complete-cnj.mp4" type="video/mp4">
                         </video>
@@ -154,7 +154,7 @@
                     </div>
 
                     <div class="media-card g-card">
-                        <img src="assets/screenshots/sei-descritivo.webp" alt="Visualização horizontal e descritiva otimizada no sistema SEI" loading="lazy">
+                        <img src="assets/screenshots/sei-descritivo.webp" alt="Visualização horizontal e descritiva otimizada no sistema SEI" loading="lazy" tabindex="0" role="button">
                         <p>Visualização horizontal mais descritiva no SEI</p>
                     </div>
 
@@ -232,6 +232,12 @@
             </div>
         </div>
     </footer>
+
+    <div class="img-modal" id="img-modal" hidden>
+        <button class="img-modal-close" type="button" aria-label="Fechar">&times;</button>
+        <img class="img-modal-content" id="img-modal-content" src="" alt="">
+        <video class="img-modal-content" id="img-modal-video" controls loop playsinline hidden></video>
+    </div>
 
 </body>
 </html>
