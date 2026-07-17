@@ -26,8 +26,19 @@
                 <li><a href="index.html#docs">Como usar</a></li>
             </ul>
             <a href="https://chromewebstore.google.com/detail/eploc/fkpkkenjcfpplmhlfdbabhcdhmhiojhj" target="_blank" rel="noopener noreferrer" class="nav-cta">Instalar</a>
+            <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="mobile-nav" aria-label="Abrir menu"><span></span></button>
         </div>
     </nav>
+
+    <div id="mobile-nav" class="mobile-nav" hidden>
+        <ul class="mobile-nav-links">
+            <li><a href="index.html#recursos">Recursos</a></li>
+            <li><a href="index.html#walkthrough">Vídeo</a></li>
+            <li><a href="index.html#galeria">Galeria</a></li>
+            <li><a href="index.html#docs">Como usar</a></li>
+        </ul>
+        <a href="https://chromewebstore.google.com/detail/eploc/fkpkkenjcfpplmhlfdbabhcdhmhiojhj" target="_blank" rel="noopener noreferrer" class="nav-cta">Instalar</a>
+    </div>
 
     <main>
         <section id="reportar">
@@ -37,8 +48,9 @@
                     <h2>Reportar um problema</h2>
                     <p class="lede">Encontrou um bug ou algo que não funcionou como esperado? Descreva abaixo e vamos investigar.</p>
                 </div>
-                <div class="video-shell">
+                <div class="video-shell form-shell">
                     <div class="form-wrapper">
+                        <div class="form-skeleton" aria-hidden="true"></div>
                         <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfQJ1EzNCw1L_JcXozSJd5X5oWWTKhOfb9l1JoswXFzAXZMQA/viewform?embedded=true" title="Formulário para reportar um problema" loading="lazy">Carregando…</iframe>
                     </div>
                 </div>

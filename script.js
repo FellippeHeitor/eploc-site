@@ -1,5 +1,51 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+    // Menu mobile (drawer aberto/fechado via atributo hidden)
+    const navToggle = document.querySelector('.nav-toggle');
+    const mobileNav = document.getElementById('mobile-nav');
+
+    if (navToggle && mobileNav) {
+        function openMobileNav() {
+            mobileNav.hidden = false;
+            navToggle.setAttribute('aria-expanded', 'true');
+            mobileNav.querySelector('a').focus();
+        }
+
+        function closeMobileNav() {
+            mobileNav.hidden = true;
+            navToggle.setAttribute('aria-expanded', 'false');
+            navToggle.focus();
+        }
+
+        navToggle.addEventListener('click', () => {
+            if (mobileNav.hidden) {
+                openMobileNav();
+            } else {
+                closeMobileNav();
+            }
+        });
+
+        mobileNav.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', closeMobileNav);
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && !mobileNav.hidden) {
+                closeMobileNav();
+            }
+        });
+    }
+
+    // Esconde o skeleton do formulário embutido assim que o iframe carrega
+    const formWrapper = document.querySelector('.form-wrapper');
+    const formIframe = formWrapper && formWrapper.querySelector('iframe');
+
+    if (formIframe) {
+        formIframe.addEventListener('load', () => {
+            formWrapper.classList.add('is-loaded');
+        });
+    }
+
     // Lógica para alternar as abas (Tabs) com acessibilidade
     const tabButtons = document.querySelectorAll('.tab-btn');
     const tabContents = document.querySelectorAll('.tab-content');
