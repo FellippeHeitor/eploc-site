@@ -2,6 +2,21 @@
 
 Site institucional da extensão eploc. Estático: `index.html`, `styles.css`, `script.js`.
 
+## Recursos consumidos pela extensão
+
+- `video.html` — casca https para embeds do YouTube. A extensão eploc (repo irmão) embute o
+  player nela em vez de apontar direto para youtube.com, porque páginas `chrome-extension://`
+  não enviam o header `Referer` que o YouTube exige (senão dá "Erro 153"). Recebe `?v=<id do
+  vídeo>` (e opcionalmente `&t=<segundos>`) via query string. Não depende de nada do site em
+  si — pode ser aberta isolada.
+- `videos.json` — mapa `{ "<id do script>": "<URL do vídeo>" }`, servido estaticamente pelo
+  GitHub Pages (CORS liberado por padrão). É o catálogo de vídeos demonstrativos por
+  funcionalidade, compartilhado entre a página de configurações da extensão (mostra o vídeo ao
+  passar o mouse sobre o card do script) e este site. `id do script` é o `id` do descriptor em
+  `ScriptRegistry.register(...)` no repo da extensão (ex.: `eproc-alertas-inline`). Editar este
+  arquivo e dar push já atualiza o vídeo exibido nos dois lugares, sem precisar de nova versão
+  da extensão.
+
 ## Workflow: atualizar o site a partir do changelog/descrição da extensão
 
 Quando o usuário pedir para "atualizar o site com base no changelog/webstore do eploc":
