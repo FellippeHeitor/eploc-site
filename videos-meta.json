@@ -1,0 +1,178 @@
+{
+  "eproc-acoes-favoritas": {
+    "name": "Ações favoritas do processo",
+    "group": "Painel do processo"
+  },
+  "eproc-filtro-preferencias-processo": {
+    "name": "Filtro nas listas de preferências do processo",
+    "group": "Painel do processo"
+  },
+  "eproc-mini-painel-atalhos": {
+    "name": "Mini painel de atalhos do processo",
+    "group": "Painel do processo"
+  },
+  "eproc-painel-fixo-processo": {
+    "name": "Painel fixo do processo",
+    "group": "Painel do processo"
+  },
+  "eproc-persistir-preferencias-processo": {
+    "name": "Persistir preferências e painéis do processo",
+    "group": "Painel do processo"
+  },
+  "eproc-icones-secoes-colapsadas-painel": {
+    "name": "Colapsar e fixar seções do Painel do Servidor",
+    "group": "Painéis e relatórios"
+  },
+  "eproc-persistir-colunas-relatorio": {
+    "name": "Persistir colunas visíveis do Relatório Geral",
+    "group": "Painéis e relatórios"
+  },
+  "eproc-agrupar-eventos-relacionados": {
+    "name": "Agrupar eventos relacionados",
+    "group": "Eventos"
+  },
+  "eproc-auto-carregar-todos-eventos": {
+    "name": "Carregar todos os eventos automaticamente",
+    "group": "Eventos"
+  },
+  "eproc-exibir-nomes-usuarios": {
+    "name": "Exibir nomes dos usuários nos eventos",
+    "group": "Eventos"
+  },
+  "eproc-link-referencia-evento": {
+    "name": "Link para referência de evento",
+    "group": "Eventos"
+  },
+  "eproc-atalho-arvore-minuta": {
+    "name": "Atalho para árvore no menu da minuta",
+    "group": "Árvore e minuta"
+  },
+  "eproc-arvore-focar-eventos": {
+    "name": "Focar evento/documento na árvore (links da minuta)",
+    "group": "Árvore e minuta"
+  },
+  "eproc-auto-manter-agendamento": {
+    "name": "Manter agendamento da minuta automaticamente",
+    "group": "Árvore e minuta"
+  },
+  "eproc-resumo-minuta-flutuante": {
+    "name": "Painel de resumo da minuta",
+    "group": "Árvore e minuta"
+  },
+  "eproc-auto-buscar-prevencao": {
+    "name": "Buscar preventos em segundo plano",
+    "group": "Pesquisa e filtros"
+  },
+  "eproc-autocomplete-cnj": {
+    "name": "Completar número do processo CNJ automaticamente",
+    "group": "Pesquisa e filtros"
+  },
+  "eploc-filtro-localizador-secundario": {
+    "name": "Filtro por trechos no campo de localizador secundário",
+    "group": "Pesquisa e filtros"
+  },
+  "eproc-filtro-novo-localizador": {
+    "name": "Filtro por trechos no campo de novo localizador",
+    "group": "Pesquisa e filtros"
+  },
+  "eproc-auto-check-processo-selecionar": {
+    "name": "Marcar processo aberto em relatórios automaticamente",
+    "group": "Pesquisa e filtros"
+  },
+  "eproc-pesquisa-rapida-avancada": {
+    "name": "Pesquisa rápida por nome ou CPF/CNPJ",
+    "group": "Pesquisa e filtros"
+  },
+  "eploc-resumo-localizador-secundario": {
+    "name": "Resumo dos localizadores secundários selecionados",
+    "group": "Pesquisa e filtros"
+  },
+  "eproc-historico-emails": {
+    "name": "Histórico de e-mails avançado",
+    "group": "E-mail"
+  },
+  "eproc-modelos-mensagem": {
+    "name": "Modelos de mensagem",
+    "group": "E-mail"
+  },
+  "eproc-lembrete-prefill": {
+    "name": "Criar Novo Lembrete rápido",
+    "group": "Destaques e lembretes"
+  },
+  "eproc-destaques-trecho": {
+    "name": "Destaques de trecho",
+    "group": "Destaques e lembretes"
+  },
+  "eproc-monitor-novas-minutas": {
+    "name": "Monitor de Novas Minutas",
+    "group": "Monitoramento"
+  },
+  "eproc-monitor-relatorio": {
+    "name": "Monitor de Relatórios",
+    "group": "Monitoramento"
+  },
+  "eproc-perfil-completo-navbar": {
+    "name": "Ajustar largura do seletor de perfil na barra superior",
+    "group": "Menu superior"
+  },
+  "eproc-midias-link": {
+    "name": "Atalho PJe Midias",
+    "group": "Menu superior"
+  },
+  "eproc-atalhos-navbar-descritivos": {
+    "name": "Atalhos descritivos no menu superior",
+    "group": "Menu superior"
+  },
+  "eproc-favoritos-menu-lateral": {
+    "name": "Favoritos no menu lateral",
+    "group": "Menu superior"
+  },
+  "eproc-numero-processo-navbar": {
+    "name": "Número do processo no menu superior",
+    "group": "Menu superior"
+  },
+  "eproc-ajustar-eventos-migrados-pje": {
+    "name": "Ajustar eventos de processos migrados do PJe (TJMG)",
+    "group": "Migração PJe (TJMG)"
+  },
+  "eproc-migracao-pje": {
+    "name": "Migração de processos PJe → eproc (TJMG)",
+    "group": "Migração PJe (TJMG)"
+  },
+  "eproc-restaurar-descricao-eventos-migrados": {
+    "name": "Restaurar descrição de eventos migrados",
+    "group": "Migração PJe (TJMG)"
+  },
+  "eproc-alertas-inline": {
+    "name": "Alertas menos intrusivos",
+    "group": "Interface do eproc"
+  },
+  "eproc-favicon-personalizado": {
+    "name": "Favicon personalizado",
+    "group": "Interface do eproc"
+  },
+  "eproc-login-gerenciador-senhas": {
+    "name": "Permitir credenciais salvas na tela de login",
+    "group": "Interface do eproc"
+  },
+  "eproc-desviar-botoes-navegacao": {
+    "name": "Reposicionar botões de subir/descer página",
+    "group": "Interface do eproc"
+  },
+  "rupe-espelho-painel-pesquisa": {
+    "name": "Espelho dos Critérios de Pesquisa de Certidão",
+    "group": "RUPE e TJMG"
+  },
+  "tjmg-dativos-pesquisa-paginacao": {
+    "name": "Melhorar consulta de advogados dativos (TJMG)",
+    "group": "RUPE e TJMG"
+  },
+  "rupe-cpha-preenchimento": {
+    "name": "Preenchimento automático de CPHA",
+    "group": "RUPE e TJMG"
+  },
+  "sei-mais-descritivo-horizontal": {
+    "name": "SEI mais descritivo e horizontal",
+    "group": "SEI"
+  }
+}

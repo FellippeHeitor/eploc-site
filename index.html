@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>eploc — grudado no eproc pra aumentar sua produtividade</title>
-    <meta name="description" content="Automatize tarefas repetitivas e acelere seu fluxo de trabalho no eproc, SEI e RUPE. Extensão gratuita para Chrome, 100% local por padrão e em conformidade com a LGPD.">
+    <meta name="description" content="Automatize tarefas repetitivas e acelere seu fluxo de trabalho no eproc, SEI e RUPE. Extensão gratuita para Chrome e Edge, 100% local por padrão e em conformidade com a LGPD.">
 
     <meta property="og:type" content="website">
     <meta property="og:title" content="eploc — grudado no eproc pra aumentar sua produtividade">
-    <meta property="og:description" content="Automatize tarefas repetitivas e acelere seu fluxo de trabalho no eproc, SEI e RUPE. Extensão gratuita para Chrome, 100% local por padrão e em conformidade com a LGPD.">
+    <meta property="og:description" content="Automatize tarefas repetitivas e acelere seu fluxo de trabalho no eproc, SEI e RUPE. Extensão gratuita para Chrome e Edge, 100% local por padrão e em conformidade com a LGPD.">
     <meta property="og:image" content="assets/eploc-logo-master-1000.png">
     <meta name="twitter:card" content="summary_large_image">
 
@@ -25,8 +25,9 @@
                 eploc
             </a>
             <ul class="nav-links">
-                <li><a href="#recursos">Recursos</a></li>
                 <li><a href="#walkthrough">Vídeo</a></li>
+                <li><a href="#recursos">Recursos</a></li>
+                <li data-needs-videos hidden><a href="#tutoriais">Tutoriais</a></li>
                 <li><a href="#galeria">Galeria</a></li>
                 <li><a href="#docs">Como usar</a></li>
             </ul>
@@ -37,8 +38,9 @@
 
     <div id="mobile-nav" class="mobile-nav" hidden>
         <ul class="mobile-nav-links">
-            <li><a href="#recursos">Recursos</a></li>
             <li><a href="#walkthrough">Vídeo</a></li>
+            <li><a href="#recursos">Recursos</a></li>
+            <li data-needs-videos hidden><a href="#tutoriais">Tutoriais</a></li>
             <li><a href="#galeria">Galeria</a></li>
             <li><a href="#docs">Como usar</a></li>
         </ul>
@@ -49,7 +51,7 @@
         <div class="hero-blobs" aria-hidden="true"><span class="blob blob-pink"></span><span class="blob blob-cyan"></span></div>
         <div class="wrap hero-inner">
             <div>
-                <span class="eyebrow">Extensão para Chrome · eproc · SEI · RUPE</span>
+                <span class="eyebrow">Extensão para Chrome e Edge · eproc · SEI · RUPE</span>
                 <h1>Sua rotina no eproc, mais rápida e eficiente com <em>eploc</em>.</h1>
                 <p class="lede">Automatize tarefas repetitivas, organize atalhos e acelere seu fluxo de trabalho jurídico. Tudo roda no seu navegador — por padrão, nenhum dado sai do seu computador.</p>
 
@@ -65,6 +67,8 @@
                     <span class="trust-chip">Independente</span>
                     <span class="trust-chip">Grátis</span>
                 </div>
+
+                <p class="whats-new"><span class="whats-new-label">Novidades</span> <a href="#detalhes">Painel do Servidor com seções fixáveis</a> <a href="#detalhes">Atalho para a árvore na minuta</a> <a href="#detalhes">Preferências do processo que não se perdem</a></p>
             </div>
             <div class="hero-art">
                 <img src="assets/eploc-logo-master-1000.png" alt="Logotipo eploc">
@@ -73,6 +77,20 @@
     </header>
 
     <main>
+        <section id="walkthrough">
+            <div class="wrap">
+                <div class="section-head">
+                    <span class="eyebrow">Veja funcionando</span>
+                    <h2>Em minutos você já entendeu tudo</h2>
+                </div>
+                <div class="video-shell">
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/-3suvonscRs?si=awy3JBn_BFLCqrED" title="Apresentação das funcionalidades do eploc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <section id="recursos">
             <div class="wrap">
                 <div class="section-head">
@@ -81,57 +99,57 @@
                     <p class="lede">Melhorias que trabalham em segundo plano, no ritmo do seu expediente.</p>
                 </div>
                 <div class="features">
-                    <div class="feature-card">
+                    <div class="feature-card" data-video="eproc-painel-fixo-processo">
                         <div class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="3"></rect><path d="M15 4v16"></path></svg></div>
                         <h3>Painel do processo flutuante</h3>
                         <p>Resumo persistente do processo, desanexável, arrastável e redimensionável, com seções recolhíveis e cópia rápida de número, classe, CPF, CNPJ, OAB e partes.</p>
                     </div>
-                    <div class="feature-card">
+                    <div class="feature-card" data-video="eproc-mini-painel-atalhos">
                         <div class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="3"></rect><path d="M3 9h18"></path><path d="M7 13h4"></path></svg></div>
                         <h3>Sidebar e acesso rápido</h3>
                         <p>Navegue pelas seções do processo com minimapa proporcional e fixe até 6 rotinas favoritas em uma grid no menu lateral.</p>
                     </div>
-                    <div class="feature-card">
+                    <div class="feature-card" data-video="eproc-pesquisa-rapida-avancada">
                         <div class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><path d="M21 21l-4.35-4.35"></path></svg></div>
                         <h3>Pesquisa avançada integrada</h3>
                         <p>Busque por nome de parte ou CPF/CNPJ na barra superior — o eploc preenche e aciona o formulário de pesquisa correto automaticamente.</p>
                     </div>
-                    <div class="feature-card">
+                    <div class="feature-card" data-video="eproc-autocomplete-cnj">
                         <div class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 12h4l2-7 4 14 2-7h4"></path></svg></div>
                         <h3>Auto-completar CNJ</h3>
                         <p>Reconhece e completa números de processo no padrão CNJ, com sufixo da comarca e ano detectados automaticamente.</p>
                     </div>
-                    <div class="feature-card">
+                    <div class="feature-card" data-video="eproc-monitor-relatorio">
                         <div class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"></path><circle cx="12" cy="12" r="3"></circle></svg></div>
                         <h3>Monitor de relatórios</h3>
                         <p>Marque processos em relatórios para monitoramento: o eploc destaca as células cujo valor mudou desde a última verificação.</p>
                     </div>
-                    <div class="feature-card">
+                    <div class="feature-card" data-video="eproc-migracao-pje">
                         <div class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 19V5"></path><path d="M4 19h16"></path><path d="M8 15l3-3 3 2 4-5"></path></svg></div>
                         <h3>Migração PJe → eproc</h3>
-                        <p>Na importação de processos do PJe (TJMG), reduza o painel de resumo das regras de migração e um tenha acesso a um gráfico com o histórico já migrado.</p>
+                        <p>Na importação de processos do PJe (TJMG), as regras de migração ficam num menu expansível e um gráfico mostra o histórico de processos já migrados.</p>
                     </div>
-                    <div class="feature-card">
+                    <div class="feature-card" data-video="eproc-historico-emails">
                         <div class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 6l9 7 9-7"></path><rect x="3" y="5" width="18" height="14" rx="2"></rect></svg></div>
                         <h3>Histórico de e-mails com chips</h3>
                         <p>Destinatários viram chips removíveis, com autocompleção, sugestão de contatos frequentes e colagem que já extrai e-mails de um texto.</p>
                     </div>
-                    <div class="feature-card">
+                    <div class="feature-card" data-video="rupe-cpha-preenchimento">
                         <div class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="6" y="3" width="12" height="18" rx="2"></rect><path d="M9 3v2h6V3"></path><path d="M9 11h6"></path><path d="M9 15h4"></path></svg></div>
                         <h3>Preenchimento de CPHA (RUPE)</h3>
                         <p>Cole os dados do advogado e o eploc reconhece e preenche automaticamente os campos do cadastro de CPHA para você conferir.</p>
                     </div>
-                    <div class="feature-card">
+                    <div class="feature-card" data-video="eproc-resumo-minuta-flutuante">
                         <div class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"></rect><path d="M7 8h10"></path><path d="M7 12h10"></path><path d="M7 16h6"></path></svg></div>
                         <h3>Painel de dados da minuta</h3>
                         <p>Ao editar uma minuta, um painel flutuante lista localizadores, intimação/citação, destinatário, remessa, audiência e assinante.</p>
                     </div>
-                    <div class="feature-card">
+                    <div class="feature-card" data-video="eproc-agrupar-eventos-relacionados">
                         <div class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 16a4 4 0 0 1-1-7.874A5 5 0 0 1 15.9 6.1 4.5 4.5 0 0 1 17.5 15"></path><path d="M12 12v7"></path><path d="M9 16l3-3 3 3"></path></svg></div>
                         <h3>Backup opcional na nuvem</h3>
-                        <p>Desativado por padrão: se você conectar sua conta Google, suas configurações podem ser salvas na pasta privada do seu próprio Google Drive.</p>
+                        <p>Desativado por padrão: se você conectar sua conta Google, suas configurações e dados ficam na pasta privada do seu próprio Google Drive, com até 20 versões e sincronização contínua entre dispositivos.</p>
                     </div>
-                    <div class="feature-card">
+                    <div class="feature-card" data-video="eproc-destaques-trecho">
                         <div class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="4" rx="1"></rect><rect x="3" y="10" width="18" height="4" rx="1"></rect><path d="M3 18h18"></path></svg></div>
                         <h3>Eventos agrupados</h3>
                         <p>Eventos sequenciais ou que compartilham o mesmo documento são mesclados em uma única linha expansível na tabela de eventos.</p>
@@ -152,45 +170,83 @@
                     <h2>Pequenos detalhes que ajudam todo dia</h2>
                     <p class="lede">Além dos recursos principais, dezenas de ajustes finos deixam a rotina mais leve.</p>
                 </div>
-                <ul class="detail-list">
-                    <li><span>Busca de prevenção roda em segundo plano e só abre uma aba quando encontra processos preventos.</span></li>
-                    <li><span>Alertas do eproc que travam a navegação são substituídos por um banner flutuante, sem bloquear o clique em outros elementos da tela.</span></li>
-                    <li><span>Espelho de pesquisa no RUPE mantém visíveis os critérios usados na emissão de uma certidão positiva/negativa.</span></li>
-                    <li><span>No SEI, a listagem de processos pode destacar itens por termos configuráveis (ex.: "urgente", "prioridade").</span></li>
-                    <li><span>Filtro por múltiplos termos simultâneos no campo "Novo localizador" das minutas (ex.: "concl emenda").</span></li>
-                    <li><span>Aviso imediato quando um número de processo (CNJ) tem o dígito verificador inválido.</span></li>
-                    <li><span>Atalhos do menu superior (Alt+1, Alt+2...) ganham ícone e nome descritivo automáticos.</span></li>
-                    <li><span>Botões flutuantes de navegação acompanham o menu lateral, sem cobrir a barra de comandos.</span></li>
-                    <li><span>Ações favoritas do processo ganham ícones automáticos escolhidos de acordo com o texto do botão.</span></li>
-                    <li><span>Copie CPF, CNPJ, número da OAB e outros dados do painel do processo com um clique.</span></li>
-                    <li><span>Modelos de mensagem prontos para respostas rápidas por e-mail, com um modelo padrão.</span></li>
-                    <li><span>Menções a outros eventos (ex. "Refer. ao evento 12") viram links que rolam até a linha certa — inclusive entre processos citados no mesmo texto.</span></li>
-                    <li><span>Gerenciador de senhas do navegador funciona no login do eproc.</span></li>
-                    <li><span>Link direto para o PJe Mídias quando há mídia vinculada ao processo.</span></li>
-                    <li><span>Favicon colorido e personalizável para diferenciar as abas do eproc.</span></li>
-                    <li><span>Clique automático em "Manter Agendamento" na minuta, se você preferir ativar (opcional).</span></li>
-                    <li><span>Selecione um trecho de um evento (ou passe o mouse sobre a descrição) para criar um lembrete rápido, já com o texto preenchido.</span></li>
-                    <li><span>Ao enviar um e-mail que menciona anexo, o eploc avisa se nenhum documento foi marcado na tabela de anexos.</span></li>
-                    <li><span>Número do processo repetido no menu superior, com chip "JESP" para Juizados Especiais e cópia com um clique.</span></li>
-                    <li><span>O popup da extensão tem busca instantânea entre as funcionalidades da página atual, filtrando por nome ou descrição.</span></li>
-                    <li><span>Em processos migrados de outro sistema, a descrição real de cada evento substitui o rótulo genérico "PETIÇÃO" em telas de vinculação de documentos.</span></li>
-                    <li><span>O backup no Google Drive pode varrer todo o histórico salvo para recuperar contatos, modelos e outros dados que tenham desaparecido do backup atual.</span></li>
-                    <li><span>Consulta de advogados dativos no RUPE (TJMG) ganha busca nos filtros e unifica todos os resultados paginados em uma única lista.</span></li>
-                </ul>
+                <div class="detail-groups">
+                    <div class="detail-group">
+                        <h3>Pesquisa e localizadores</h3>
+                        <ul class="detail-list">
+                            <li data-video="eproc-auto-buscar-prevencao"><span>Busca de prevenção roda em segundo plano e só abre uma aba quando encontra processos preventos.</span></li>
+                            <li data-video="eproc-filtro-novo-localizador"><span>Filtro por múltiplos termos simultâneos no campo "Novo localizador" das minutas (ex.: "concl emenda").</span></li>
+                            <li data-video="eproc-autocomplete-cnj"><span>Aviso imediato quando um número de processo (CNJ) tem o dígito verificador inválido.</span></li>
+                            <li data-video="eproc-pesquisa-rapida-avancada"><span>A pesquisa rápida por nome ou CPF/CNPJ se repete sozinha quando o eproc a cancela por mudança de perfil, comum logo após migrar processos do PJe.</span></li>
+                            <li data-video="eploc-resumo-localizador-secundario"><span>Localizadores secundários já selecionados aparecem como chips removíveis abaixo do campo.</span></li>
+                        </ul>
+                    </div>
+                    <div class="detail-group">
+                        <h3>Painel do processo e eventos</h3>
+                        <ul class="detail-list">
+                            <li data-video="eproc-painel-fixo-processo"><span>Copie CPF, CNPJ, número da OAB e outros dados do painel do processo com um clique.</span></li>
+                            <li data-video="eproc-acoes-favoritas"><span>Ações favoritas do processo ganham ícones automáticos escolhidos de acordo com o texto do botão.</span></li>
+                            <li data-video="eproc-link-referencia-evento"><span>Menções a outros eventos (ex. "Refer. ao evento 12") viram links que rolam até a linha certa — inclusive entre processos citados no mesmo texto.</span></li>
+                            <li data-video="eproc-lembrete-prefill"><span>Selecione um trecho de um evento (ou passe o mouse sobre a descrição) para criar um lembrete rápido, já com o texto preenchido.</span></li>
+                            <li data-video="eproc-restaurar-descricao-eventos-migrados"><span>Em processos migrados de outro sistema, a descrição real de cada evento substitui o rótulo genérico "PETIÇÃO" em telas de vinculação de documentos.</span></li>
+                            <li data-video="eproc-icones-secoes-colapsadas-painel"><span>Seções do Painel do Servidor podem ser recolhidas ou fixadas com destaque (cores configuráveis) e reordenadas por setas — tudo lembrado separadamente por perfil/unidade.</span></li>
+                            <li data-video="eproc-filtro-preferencias-processo"><span>Campo de busca nas listas de preferências do processo, filtrando enquanto você digita, com várias palavras em qualquer ordem.</span></li>
+                            <li data-video="eproc-persistir-preferencias-processo"><span>Os painéis de Preferências do processo (Minutas, Movimentação, Intimação, Automatizações) e as caixas "Manter Aberto" voltam ao estado que você deixou quando o eproc os reseta sozinho.</span></li>
+                            <li data-video="eproc-persistir-colunas-relatorio"><span>As colunas visíveis do Relatório Geral também são memorizadas e restauradas.</span></li>
+                        </ul>
+                    </div>
+                    <div class="detail-group">
+                        <h3>Minutas e e-mail</h3>
+                        <ul class="detail-list">
+                            <li data-video="eproc-atalho-arvore-minuta"><span>Item "Árvore" no menu flutuante da minuta abre a árvore de documentos em nova aba, e menções a "Evento N" no texto viram links que já abrem o evento/documento destacado.</span></li>
+                            <li data-video="eproc-auto-manter-agendamento"><span>Clique automático em "Manter Agendamento" na minuta, se você preferir ativar (opcional).</span></li>
+                            <li data-video="eproc-modelos-mensagem"><span>Modelos de mensagem prontos para respostas rápidas por e-mail, com um modelo padrão.</span></li>
+                            <li><span>Ao enviar um e-mail que menciona anexo, o eploc avisa se nenhum documento foi marcado na tabela de anexos.</span></li>
+                        </ul>
+                    </div>
+                    <div class="detail-group">
+                        <h3>Menu superior e interface</h3>
+                        <ul class="detail-list">
+                            <li data-video="eproc-atalhos-navbar-descritivos"><span>Atalhos do menu superior (Alt+1, Alt+2...) ganham ícone e nome descritivo automáticos.</span></li>
+                            <li data-video="eproc-desviar-botoes-navegacao"><span>Botões flutuantes de navegação acompanham o menu lateral, sem cobrir a barra de comandos.</span></li>
+                            <li data-video="eproc-numero-processo-navbar"><span>Número do processo repetido no menu superior, com chip "JESP" para Juizados Especiais e cópia com um clique.</span></li>
+                            <li data-video="eproc-perfil-completo-navbar"><span>O seletor de perfil na barra superior se ajusta ao nome selecionado, sem cortar, com opção de simplificar nomes de perfil (remove "USUÁRIO" repetido).</span></li>
+                            <li data-video="eproc-favicon-personalizado"><span>Favicon colorido e personalizável para diferenciar as abas do eproc.</span></li>
+                            <li data-video="eproc-midias-link"><span>Link direto para o PJe Mídias quando há mídia vinculada ao processo.</span></li>
+                            <li data-video="eproc-login-gerenciador-senhas"><span>Gerenciador de senhas do navegador funciona no login do eproc.</span></li>
+                            <li data-video="eproc-alertas-inline"><span>Alertas do eproc que travam a navegação são substituídos por um banner flutuante, sem bloquear o clique em outros elementos da tela.</span></li>
+                            <li><span>O popup da extensão tem busca instantânea entre as funcionalidades da página atual, filtrando por nome ou descrição.</span></li>
+                        </ul>
+                    </div>
+                    <div class="detail-group">
+                        <h3>RUPE, SEI e TJMG</h3>
+                        <ul class="detail-list">
+                            <li data-video="rupe-espelho-painel-pesquisa"><span>Espelho de pesquisa no RUPE mantém visíveis os critérios usados na emissão de uma certidão positiva/negativa.</span></li>
+                            <li data-video="sei-mais-descritivo-horizontal"><span>No SEI, a listagem de processos pode destacar itens por termos configuráveis (ex.: "urgente", "prioridade").</span></li>
+                            <li data-video="tjmg-dativos-pesquisa-paginacao"><span>Consulta de advogados dativos no RUPE (TJMG) ganha busca nos filtros e unifica todos os resultados paginados em uma única lista.</span></li>
+                        </ul>
+                    </div>
+                    <div class="detail-group">
+                        <h3>Backup e configurações</h3>
+                        <ul class="detail-list">
+                            <li><span>O backup no Google Drive pode varrer todo o histórico salvo para recuperar contatos, modelos e outros dados que tenham desaparecido do backup atual.</span></li>
+                            <li><span>Exporte só as bases que quiser (e-mails, modelos de mensagem, destaques, processos monitorados) num arquivo JSON para compartilhar com outra pessoa.</span></li>
+                            <li><span>Na página de configurações, os cards das funcionalidades com vídeo de demonstração mostram o vídeo ao passar o mouse.</span></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <section id="walkthrough">
+        <section id="tutoriais" data-needs-videos hidden>
             <div class="wrap">
                 <div class="section-head">
-                    <span class="eyebrow">Veja funcionando</span>
-                    <h2>Em minutos você já entendeu tudo</h2>
+                    <span class="eyebrow">Tutoriais</span>
+                    <h2>Cada recurso, em vídeo</h2>
+                    <p class="lede">Demonstrações curtas de funcionalidades do eploc. Novos vídeos entram aos poucos.</p>
                 </div>
-                <div class="video-shell">
-                    <div class="video-wrapper">
-                        <iframe src="https://www.youtube.com/embed/-3suvonscRs?si=awy3JBn_BFLCqrED" title="Apresentação das funcionalidades do eploc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
-                    </div>
-                </div>
+                <div class="video-filters" id="video-filters" role="group" aria-label="Filtrar vídeos por tema" hidden></div>
+                <div class="video-grid" id="video-grid"></div>
             </div>
         </section>
 
@@ -269,7 +325,7 @@
 
                     <div id="install" class="tab-content active" role="tabpanel" aria-labelledby="tab-install" tabindex="0">
                         <ol class="steps">
-                            <li><span><a href="https://chromewebstore.google.com/detail/eploc/fkpkkenjcfpplmhlfdbabhcdhmhiojhj" target="_blank" rel="noopener noreferrer">Clique aqui</a> e instale a extensão diretamente da Chrome Web Store.</span></li>
+                            <li><span><a href="https://chromewebstore.google.com/detail/eploc/fkpkkenjcfpplmhlfdbabhcdhmhiojhj" target="_blank" rel="noopener noreferrer">Clique aqui</a> e instale a extensão diretamente da Chrome Web Store (funciona no Chrome e no Edge).</span></li>
                             <li><span>Abra o eproc, SEI ou RUPE — o eploc já começa a funcionar sozinho.</span></li>
                             <li><span>Clique no ícone da extensão para ativar ou desativar cada melhoria.</span></li>
                         </ol>
@@ -310,8 +366,9 @@
                 <div class="footer-col">
                     <h4>Produto</h4>
                     <ul>
-                        <li><a href="#recursos">Recursos</a></li>
                         <li><a href="#walkthrough">Vídeo</a></li>
+                        <li><a href="#recursos">Recursos</a></li>
+                        <li data-needs-videos hidden><a href="#tutoriais">Tutoriais</a></li>
                         <li><a href="#galeria">Galeria</a></li>
                     </ul>
                 </div>
@@ -335,6 +392,11 @@
         <button class="img-modal-close" type="button" aria-label="Fechar">&times;</button>
         <img class="img-modal-content" id="img-modal-content" src="" alt="">
         <video class="img-modal-content" id="img-modal-video" controls loop playsinline hidden></video>
+    </div>
+
+    <div class="img-modal video-modal" id="video-modal" hidden role="dialog" aria-modal="true" aria-label="Vídeo de demonstração">
+        <button class="video-modal-close" type="button" aria-label="Fechar">&times;</button>
+        <div class="video-modal-frame" id="video-modal-frame"></div>
     </div>
 
 </body>

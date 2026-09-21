@@ -350,6 +350,34 @@ h3 { font-size: 1.15rem; font-weight: 700; }
 }
 .trust-chip::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--cyan); }
 
+.whats-new {
+    margin-top: 1.4rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: .5rem .6rem;
+    font-size: .82rem;
+}
+@media (max-width: 880px) { .whats-new { justify-content: center; } }
+.whats-new-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: .68rem;
+    font-weight: 600;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: #fff;
+    background: var(--pink);
+    padding: .2rem .6rem;
+    border-radius: 100px;
+}
+.whats-new a {
+    color: var(--ink-muted);
+    text-decoration: none;
+    border-bottom: 1px dotted var(--ink-muted);
+    transition: color .15s ease, border-color .15s ease;
+}
+.whats-new a:hover { color: var(--pink); border-color: var(--pink); }
+
 .hero-art { position: relative; display: flex; justify-content: center; }
 .hero-art img {
     width: min(320px, 80%);
@@ -393,13 +421,21 @@ section { padding: 4.5rem 0; scroll-margin-top: 4.5rem; }
 .feature-card p { color: var(--ink-muted); font-size: .94rem; }
 
 /* Detalhes */
+.detail-groups { columns: 2; column-gap: 3rem; }
+@media (max-width: 800px) { .detail-groups { columns: 1; } }
+.detail-group { break-inside: avoid; margin-bottom: 2.6rem; }
+.detail-group h3 {
+    font-size: 1.05rem;
+    padding-bottom: .6rem;
+    margin-bottom: 1.1rem;
+    border-bottom: 1px solid var(--line);
+}
 .detail-list {
     list-style: none;
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: .9rem 2rem;
+    grid-template-columns: 1fr;
+    gap: .9rem;
 }
-@media (max-width: 700px) { .detail-list { grid-template-columns: 1fr; } }
 .detail-list li {
     display: flex;
     gap: .7rem;
@@ -419,6 +455,28 @@ section { padding: 4.5rem 0; scroll-margin-top: 4.5rem; }
     background-position: center;
     background-size: 11px;
 }
+
+/* Link "Ver vídeo" (inserido por script.js quando o id tem URL em videos.json) */
+.video-link {
+    display: inline-flex;
+    align-items: center;
+    gap: .35rem;
+    margin-left: .5rem;
+    padding: .1rem .6rem;
+    font: 600 .68rem/1.6 'IBM Plex Mono', monospace;
+    color: var(--pink);
+    background: var(--pink-wash);
+    border: 1px solid var(--pink-soft);
+    border-radius: 100px;
+    text-decoration: none;
+    white-space: nowrap;
+    cursor: pointer;
+    vertical-align: 1px;
+    transition: background-color .15s ease, color .15s ease;
+}
+.video-link:hover { background: var(--pink); border-color: var(--pink); color: #fff; }
+.video-link svg { width: 9px; height: 9px; fill: currentColor; }
+.feature-card .video-link { margin: .9rem 0 0; }
 
 /* Vídeo */
 .video-shell {
@@ -527,6 +585,94 @@ section { padding: 4.5rem 0; scroll-margin-top: 4.5rem; }
     text-align: center;
 }
 
+/* Tutoriais em vídeo (montados por script.js a partir de videos.json) */
+.video-filters { display: flex; flex-wrap: wrap; justify-content: center; gap: .5rem; margin-bottom: 1.8rem; }
+.video-filters[hidden] { display: none; }
+.filter-chip {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: .72rem;
+    font-weight: 500;
+    color: var(--ink-muted);
+    background: var(--surface);
+    border: 1px solid var(--line);
+    padding: .4rem .8rem;
+    border-radius: 100px;
+    cursor: pointer;
+    transition: color .15s ease, border-color .15s ease, background-color .15s ease;
+}
+.filter-chip:hover { color: var(--ink); border-color: var(--ink-muted); }
+.filter-chip[aria-pressed="true"] { color: #fff; background: var(--pink); border-color: var(--pink); }
+
+.video-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
+@media (max-width: 900px) { .video-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 540px) { .video-grid { grid-template-columns: 1fr; } }
+
+.tut-card {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    text-align: left;
+    font: inherit;
+    color: inherit;
+    text-decoration: none;
+    cursor: pointer;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-m);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: transform .2s ease, box-shadow .2s ease;
+}
+.tut-card:hover { transform: translateY(-4px); box-shadow: 0 14px 30px -14px color-mix(in srgb, var(--pink) 40%, transparent); }
+.tut-card[hidden] { display: none; }
+
+.tut-poster {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    display: grid;
+    place-items: center;
+    background: linear-gradient(135deg, var(--pink-wash), var(--cyan-soft));
+}
+.tut-play {
+    width: 54px; height: 54px;
+    border-radius: 50%;
+    background: var(--pink);
+    color: #fff;
+    display: grid;
+    place-items: center;
+    box-shadow: 0 10px 22px -8px color-mix(in srgb, var(--pink) 60%, transparent);
+    transition: transform .2s ease;
+}
+.tut-card:hover .tut-play { transform: scale(1.08); }
+.tut-play svg { width: 22px; height: 22px; fill: currentColor; margin-left: 3px; }
+.tut-tag {
+    position: absolute;
+    top: .7rem; left: .7rem;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: .66rem;
+    font-weight: 600;
+    letter-spacing: .04em;
+    color: var(--ink-muted);
+    background: color-mix(in srgb, var(--surface) 85%, transparent);
+    padding: .25rem .6rem;
+    border-radius: 100px;
+}
+.tut-title { padding: .9rem 1rem 1rem; font-size: .92rem; font-weight: 500; color: var(--ink); }
+
+.video-modal-frame {
+    width: min(960px, 100%);
+    aspect-ratio: 16 / 9;
+    cursor: default;
+}
+.video-modal-frame.is-portrait { width: auto; height: min(100%, 85vh); aspect-ratio: 9 / 16; max-width: 100%; }
+.video-modal-frame iframe {
+    display: block;
+    width: 100%; height: 100%;
+    border: 0;
+    border-radius: var(--radius-m);
+    background: #000;
+}
+
 /* Modal de imagem em tamanho real */
 .img-modal {
     position: fixed;
@@ -548,7 +694,8 @@ section { padding: 4.5rem 0; scroll-margin-top: 4.5rem; }
     cursor: default;
 }
 .img-modal-content[hidden] { display: none; }
-.img-modal-close {
+.img-modal-close,
+.video-modal-close {
     position: absolute;
     top: 1.2rem;
     right: 1.5rem;
@@ -560,7 +707,8 @@ section { padding: 4.5rem 0; scroll-margin-top: 4.5rem; }
     cursor: pointer;
     padding: .3rem .6rem;
 }
-.img-modal-close:hover { opacity: .75; }
+.img-modal-close:hover,
+.video-modal-close:hover { opacity: .75; }
 
 /* ============================================================
    Documentação / Termos (abas)
