@@ -27,6 +27,10 @@
     "name": "Persistir colunas visíveis do Relatório Geral",
     "group": "Painéis e relatórios"
   },
+  "eproc-copiar-cnj-relatorio": {
+    "name": "Botão de cópia do número do processo em relatórios",
+    "group": "Painéis e relatórios"
+  },
   "eproc-agrupar-eventos-relacionados": {
     "name": "Agrupar eventos relacionados",
     "group": "Eventos"
@@ -148,11 +152,15 @@
     "group": "Interface do eproc"
   },
   "eproc-favicon-personalizado": {
-    "name": "Favicon personalizado",
+    "name": "Cor personalizada do eproc",
     "group": "Interface do eproc"
   },
   "eproc-login-gerenciador-senhas": {
     "name": "Permitir credenciais salvas na tela de login",
+    "group": "Interface do eproc"
+  },
+  "eproc-perfil-favorito-login": {
+    "name": "Perfil favorito no login",
     "group": "Interface do eproc"
   },
   "eproc-desviar-botoes-navegacao": {

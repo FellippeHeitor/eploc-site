@@ -68,7 +68,7 @@
                     <span class="trust-chip">Grátis</span>
                 </div>
 
-                <p class="whats-new"><span class="whats-new-label">Novidades</span> <a href="#detalhes">Painel do Servidor com seções fixáveis</a> <a href="#detalhes">Atalho para a árvore na minuta</a> <a href="#detalhes">Preferências do processo que não se perdem</a></p>
+                <p class="whats-new"><span class="whats-new-label">Novidades</span> <a href="#detalhes">Links para eventos dentro dos documentos</a> <a href="#detalhes">Pastas nas preferências do processo</a> <a href="#detalhes">Perfil favorito no login</a></p>
             </div>
             <div class="hero-art">
                 <img src="assets/eploc-logo-master-1000.png" alt="Logotipo eploc">
@@ -144,17 +144,17 @@
                         <h3>Painel de dados da minuta</h3>
                         <p>Ao editar uma minuta, um painel flutuante lista localizadores, intimação/citação, destinatário, remessa, audiência e assinante.</p>
                     </div>
-                    <div class="feature-card" data-video="eproc-agrupar-eventos-relacionados">
+                    <div class="feature-card">
                         <div class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 16a4 4 0 0 1-1-7.874A5 5 0 0 1 15.9 6.1 4.5 4.5 0 0 1 17.5 15"></path><path d="M12 12v7"></path><path d="M9 16l3-3 3 3"></path></svg></div>
                         <h3>Backup opcional na nuvem</h3>
                         <p>Desativado por padrão: se você conectar sua conta Google, suas configurações e dados ficam na pasta privada do seu próprio Google Drive, com até 20 versões e sincronização contínua entre dispositivos.</p>
                     </div>
-                    <div class="feature-card" data-video="eproc-destaques-trecho">
+                    <div class="feature-card" data-video="eproc-agrupar-eventos-relacionados">
                         <div class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="4" rx="1"></rect><rect x="3" y="10" width="18" height="4" rx="1"></rect><path d="M3 18h18"></path></svg></div>
                         <h3>Eventos agrupados</h3>
                         <p>Eventos sequenciais ou que compartilham o mesmo documento são mesclados em uma única linha expansível na tabela de eventos.</p>
                     </div>
-                    <div class="feature-card">
+                    <div class="feature-card" data-video="eproc-destaques-trecho">
                         <div class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 6h11"></path><path d="M4 12h7"></path><path d="M4 18h11"></path><path d="M15 12h5" stroke-width="4" stroke-linecap="round" opacity=".25"></path></svg></div>
                         <h3>Destaques em eventos</h3>
                         <p>Marque termos ou frases relevantes nos eventos, por processo ou globalmente, para encontrá-los rapidamente depois.</p>
@@ -187,12 +187,16 @@
                             <li data-video="eproc-painel-fixo-processo"><span>Copie CPF, CNPJ, número da OAB e outros dados do painel do processo com um clique.</span></li>
                             <li data-video="eproc-acoes-favoritas"><span>Ações favoritas do processo ganham ícones automáticos escolhidos de acordo com o texto do botão.</span></li>
                             <li data-video="eproc-link-referencia-evento"><span>Menções a outros eventos (ex. "Refer. ao evento 12") viram links que rolam até a linha certa — inclusive entre processos citados no mesmo texto.</span></li>
+                            <li data-video="eproc-link-referencia-evento"><span>Em documentos abertos a partir do processo, menções como "evento 17" ou "evento 31, DEC1" viram links que levam ao evento — e abrem o documento citado.</span></li>
                             <li data-video="eproc-lembrete-prefill"><span>Selecione um trecho de um evento (ou passe o mouse sobre a descrição) para criar um lembrete rápido, já com o texto preenchido.</span></li>
                             <li data-video="eproc-restaurar-descricao-eventos-migrados"><span>Em processos migrados de outro sistema, a descrição real de cada evento substitui o rótulo genérico "PETIÇÃO" em telas de vinculação de documentos.</span></li>
+                            <li data-video="eproc-ajustar-eventos-migrados-pje"><span>Em processos migrados do PJe, eventos do mesmo ID que a migração lançou intercalados com outros são mesclados numa só linha, com um marcador na posição original de cada um.</span></li>
+                            <li data-video="eproc-migracao-pje"><span>Ao migrar um único processo do PJe, é possível abri-lo no eproc assim que a migração terminar.</span></li>
                             <li data-video="eproc-icones-secoes-colapsadas-painel"><span>Seções do Painel do Servidor podem ser recolhidas ou fixadas com destaque (cores configuráveis) e reordenadas por setas — tudo lembrado separadamente por perfil/unidade.</span></li>
-                            <li data-video="eproc-filtro-preferencias-processo"><span>Campo de busca nas listas de preferências do processo, filtrando enquanto você digita, com várias palavras em qualquer ordem.</span></li>
+                            <li data-video="eproc-filtro-preferencias-processo"><span>Campo de busca nas listas de preferências do processo, filtrando enquanto você digita, com várias palavras em qualquer ordem. O filtro pode virar uma pasta que agrupa os itens encontrados e inclui automaticamente os novos.</span></li>
                             <li data-video="eproc-persistir-preferencias-processo"><span>Os painéis de Preferências do processo (Minutas, Movimentação, Intimação, Automatizações) e as caixas "Manter Aberto" voltam ao estado que você deixou quando o eproc os reseta sozinho.</span></li>
                             <li data-video="eproc-persistir-colunas-relatorio"><span>As colunas visíveis do Relatório Geral também são memorizadas e restauradas.</span></li>
+                            <li data-video="eproc-copiar-cnj-relatorio"><span>Nas tabelas de relatórios e da área de trabalho de minutas, um botão ao lado do número do processo o copia com um clique, com ou sem pontuação.</span></li>
                         </ul>
                     </div>
                     <div class="detail-group">
@@ -209,12 +213,13 @@
                         <ul class="detail-list">
                             <li data-video="eproc-atalhos-navbar-descritivos"><span>Atalhos do menu superior (Alt+1, Alt+2...) ganham ícone e nome descritivo automáticos.</span></li>
                             <li data-video="eproc-desviar-botoes-navegacao"><span>Botões flutuantes de navegação acompanham o menu lateral, sem cobrir a barra de comandos.</span></li>
-                            <li data-video="eproc-numero-processo-navbar"><span>Número do processo repetido no menu superior, com chip "JESP" para Juizados Especiais e cópia com um clique.</span></li>
+                            <li data-video="eproc-numero-processo-navbar"><span>Número do processo repetido no menu superior, com chip "JESP" para Juizados Especiais e cópia com um clique. Ao rolar a página, os avisos do topo ("Segredo de Justiça", "Doença Grave" etc.) também passam para o menu superior.</span></li>
                             <li data-video="eproc-perfil-completo-navbar"><span>O seletor de perfil na barra superior se ajusta ao nome selecionado, sem cortar, com opção de simplificar nomes de perfil (remove "USUÁRIO" repetido).</span></li>
-                            <li data-video="eproc-favicon-personalizado"><span>Favicon colorido e personalizável para diferenciar as abas do eproc.</span></li>
+                            <li data-video="eproc-favicon-personalizado"><span>Cor personalizada do eproc (favicon, logos e animação de carregamento) para diferenciar as abas.</span></li>
                             <li data-video="eproc-midias-link"><span>Link direto para o PJe Mídias quando há mídia vinculada ao processo.</span></li>
                             <li data-video="eproc-login-gerenciador-senhas"><span>Gerenciador de senhas do navegador funciona no login do eproc.</span></li>
-                            <li data-video="eproc-alertas-inline"><span>Alertas do eproc que travam a navegação são substituídos por um banner flutuante, sem bloquear o clique em outros elementos da tela.</span></li>
+                            <li data-video="eproc-perfil-favorito-login"><span>Marque um perfil com uma estrela na tela de login e ele passa a ser selecionado automaticamente nas próximas entradas.</span></li>
+                            <li data-video="eproc-alertas-inline"><span>Alertas do eproc que travam a navegação são substituídos por um banner flutuante, sem bloquear o clique em outros elementos da tela. Os alertas dos últimos 7 dias ficam num histórico, com contador na barra superior para os que fecharam sem serem lidos.</span></li>
                             <li><span>O popup da extensão tem busca instantânea entre as funcionalidades da página atual, filtrando por nome ou descrição.</span></li>
                         </ul>
                     </div>
