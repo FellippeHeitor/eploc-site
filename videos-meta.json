@@ -1,4 +1,8 @@
 {
+  "eploc-visao-geral": {
+    "name": "Visão geral do eploc (versão anterior)",
+    "group": "Visão geral"
+  },
   "eproc-acoes-favoritas": {
     "name": "Ações favoritas do processo",
     "group": "Painel do processo"
