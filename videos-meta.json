@@ -35,6 +35,10 @@
     "name": "Botão de cópia do número do processo em relatórios",
     "group": "Painéis e relatórios"
   },
+  "eproc-remover-hover-relatorio": {
+    "name": "Remover destaque de hover nas tabelas de relatório",
+    "group": "Painéis e relatórios"
+  },
   "eproc-agrupar-eventos-relacionados": {
     "name": "Agrupar eventos relacionados",
     "group": "Eventos"
