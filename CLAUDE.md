@@ -22,8 +22,14 @@ Site institucional da extensão eploc. Estático: `index.html`, `styles.css`, `s
   URL preenchida (YouTube, incl. Shorts; outras URLs abrem em nova aba), na ordem deste arquivo
   de metadados; sem nenhum vídeo, a seção e seus links de navegação ficam ocultos. Ao publicar um
   vídeo basta preencher a URL em `videos.json`. Ao criar um script novo na extensão, adicione
-  também a entrada aqui (sem ela o card usa o id como título e o tema "Outros"). Não há
-  thumbnails do YouTube de propósito — evita requisições ao Google no carregamento da página.
+  também a entrada aqui (sem ela o card usa o id como título e o tema "Outros").
+- `assets/thumbs/<id do YouTube>.jpg` — thumbnails da galeria, servidas localmente para não
+  fazer requisições ao Google no carregamento da página. São geradas por
+  `scripts/fetch-thumbnails.mjs` (baixa as que faltam e apaga as órfãs), que roda sozinho no
+  GitHub Actions (`.github/workflows/thumbnails.yml`) a cada push que altera `videos.json` e
+  commita o resultado — por isso, depois de um push em `videos.json`, dê `git pull` antes do
+  próximo commit. Enquanto a thumbnail não existe, o card mostra o fundo em gradiente. Para gerar
+  localmente: `node scripts/fetch-thumbnails.mjs`.
 
 ## Workflow: atualizar o site a partir do changelog/descrição da extensão
 

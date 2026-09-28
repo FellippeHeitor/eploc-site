@@ -1,0 +1,46 @@
+name: Thumbnails dos tutoriais
+
+# Mantém assets/thumbs/ em sincronia com videos.json: baixa as thumbnails dos
+# vídeos novos, apaga as que não são mais usadas e publica o resultado.
+on:
+  push:
+    branches: [main]
+    paths: [videos.json, scripts/fetch-thumbnails.mjs]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: thumbnails
+  cancel-in-progress: false
+
+jobs:
+  thumbnails:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - run: node scripts/fetch-thumbnails.mjs
+
+      - name: Commit e publicação
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git add -A assets/thumbs
+          if git diff --cached --quiet; then
+            echo "Nenhuma thumbnail nova."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "chore: atualiza thumbnails dos tutoriais"
+          git pull --rebase
+          git push
+          # Pushes feitos com o GITHUB_TOKEN podem não disparar o build do Pages
+          gh api -X POST "repos/${{ github.repository }}/pages/builds" || true

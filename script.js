@@ -287,6 +287,19 @@ document.addEventListener('DOMContentLoaded', () => {
             '<span class="tut-title"></span>';
         card.querySelector('.tut-tag').textContent = item.group;
         card.querySelector('.tut-title').textContent = item.title;
+
+        // Thumbnail local (assets/thumbs/, baixada por scripts/fetch-thumbnails.mjs);
+        // enquanto não existir, fica o fundo em gradiente
+        if (item.yt) {
+            const thumb = document.createElement('img');
+            thumb.className = 'tut-thumb';
+            thumb.src = 'assets/thumbs/' + item.yt.id + '.jpg';
+            thumb.alt = '';
+            thumb.loading = 'lazy';
+            thumb.decoding = 'async';
+            thumb.addEventListener('error', () => thumb.remove());
+            card.querySelector('.tut-poster').prepend(thumb);
+        }
         card.setAttribute('aria-label', 'Assistir: ' + item.title + (isEmbeddable ? '' : ' (abre em nova aba)'));
 
         if (isEmbeddable) {
