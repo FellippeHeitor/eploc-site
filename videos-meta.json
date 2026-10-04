@@ -23,6 +23,18 @@
     "name": "Persistir preferências e painéis do processo",
     "group": "Painel do processo"
   },
+  "eproc-indicador-audiencia-futura": {
+    "name": "Indicar audiência futura na capa",
+    "group": "Painel do processo"
+  },
+  "eproc-contador-partes": {
+    "name": "Contador de partes",
+    "group": "Painel do processo"
+  },
+  "eproc-sigilo-documentos-lote": {
+    "name": "Alterar sigilo de vários documentos de uma vez",
+    "group": "Painel do processo"
+  },
   "eproc-icones-secoes-colapsadas-painel": {
     "name": "Colapsar e fixar seções do Painel do Servidor",
     "group": "Painéis e relatórios"
@@ -53,6 +65,10 @@
   },
   "eproc-link-referencia-evento": {
     "name": "Link para referência de evento",
+    "group": "Eventos"
+  },
+  "eproc-nome-completo-documentos": {
+    "name": "Nome completo dos documentos nos eventos",
     "group": "Eventos"
   },
   "eproc-atalho-arvore-minuta": {
@@ -115,6 +131,14 @@
     "name": "Destaques de trecho",
     "group": "Destaques e lembretes"
   },
+  "eproc-lembretes-acoes-em-lote": {
+    "name": "Ações em lote nos lembretes",
+    "group": "Destaques e lembretes"
+  },
+  "eproc-lembretes-alinhados-esquerda": {
+    "name": "Lembretes alinhados à esquerda",
+    "group": "Destaques e lembretes"
+  },
   "eproc-monitor-novas-minutas": {
     "name": "Monitor de Novas Minutas",
     "group": "Monitoramento"
@@ -173,6 +197,14 @@
   },
   "eproc-desviar-botoes-navegacao": {
     "name": "Reposicionar botões de subir/descer página",
+    "group": "Interface do eproc"
+  },
+  "eproc-lembrar-multiplos-monitores": {
+    "name": "Lembrar configuração de múltiplos monitores",
+    "group": "Interface do eproc"
+  },
+  "eproc-rotulos-clicaveis": {
+    "name": "Rótulos de caixas de seleção clicáveis",
     "group": "Interface do eproc"
   },
   "rupe-espelho-painel-pesquisa": {
