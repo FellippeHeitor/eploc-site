@@ -8,6 +8,9 @@ páginas via `{% include ... %}` (por isso as páginas começam com front matter
 para seções do index usam `{{ home }}#secao`, que fica vazio no próprio index e vira `index.html`
 nas demais páginas. Abrir o `.html` direto no navegador mostra o `{% include %}` cru; para ver o
 resultado local, use `jekyll serve`. Páginas novas devem ter o front matter e os dois includes.
+Arquivos do repo que não são do site (este `CLAUDE.md`, `scripts/`) ficam no `exclude` de
+`_config.yml` — o Pages processa Liquid até em `.md` sem front matter, e um `{% ... %}` solto
+nele quebra o build.
 
 ## Recursos consumidos pela extensão
 

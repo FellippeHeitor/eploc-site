@@ -1,0 +1,4 @@
+# Arquivos do repo que não fazem parte do site publicado
+exclude:
+  - CLAUDE.md
+  - scripts/
