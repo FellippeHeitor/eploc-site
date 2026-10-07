@@ -805,7 +805,8 @@ section { padding: 4.5rem 0; scroll-margin-top: 4.5rem; }
    ============================================================ */
 footer { border-top: 1px solid var(--line); margin-top: 2rem; padding: 3.5rem 0 2.5rem; }
 
-.footer-grid { display: grid; grid-template-columns: 1.3fr 1fr 1fr; gap: 2.5rem; }
+.footer-grid { display: grid; grid-template-columns: 1.3fr 1fr 1fr 1fr; gap: 2.5rem; }
+@media (max-width: 960px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 700px) { .footer-grid { grid-template-columns: 1fr; gap: 2rem; } }
 
 .footer-brand {
@@ -829,6 +830,8 @@ footer p { color: var(--ink-muted); font-size: .9rem; }
 .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: .55rem; }
 .footer-col a { text-decoration: none; color: var(--ink); font-size: .92rem; }
 .footer-col a:hover { color: var(--pink); }
+.footer-social { display: inline-flex; align-items: center; gap: .5rem; }
+.footer-social svg { width: 16px; height: 16px; fill: currentColor; flex-shrink: 0; }
 
 .footer-bottom {
     margin-top: 2.6rem;
