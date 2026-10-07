@@ -78,17 +78,25 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Links do rodapé que apontam para uma aba específica dentro de #docs
+    // Links do rodapé que apontam para uma aba específica dentro de #docs. Fora do index a aba
+    // não existe e o link segue para index.html#<aba>, tratado logo abaixo.
     document.querySelectorAll('[data-tab-link]').forEach(link => {
         link.addEventListener('click', (e) => {
-            e.preventDefault();
             const targetButton = document.getElementById(`tab-${link.dataset.tabLink}`);
             if (targetButton) {
+                e.preventDefault();
                 activateTab(targetButton);
                 targetButton.closest('section').scrollIntoView({ behavior: 'smooth' });
             }
         });
     });
+
+    // Chegada por index.html#<aba> (ex.: #terms vindo de outra página)
+    const hashTabButton = location.hash && document.getElementById(`tab-${location.hash.slice(1)}`);
+    if (hashTabButton) {
+        activateTab(hashTabButton);
+        hashTabButton.closest('section').scrollIntoView();
+    }
 
     // Reproduz os vídeos da galeria apenas quando visíveis, e pausa fora da tela
     // (evita download/CPU desnecessários e respeita prefers-reduced-motion)

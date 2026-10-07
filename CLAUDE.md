@@ -2,6 +2,13 @@
 
 Site institucional da extensão eploc. Estático: `index.html`, `styles.css`, `script.js`.
 
+O GitHub Pages publica com Jekyll (build "legacy" do branch `main`). O menu (`<nav>` + menu
+mobile) e o rodapé ficam em `_includes/nav.html` e `_includes/footer.html`, compartilhados pelas
+páginas via `{% include ... %}` (por isso as páginas começam com front matter `---` vazio). Links
+para seções do index usam `{{ home }}#secao`, que fica vazio no próprio index e vira `index.html`
+nas demais páginas. Abrir o `.html` direto no navegador mostra o `{% include %}` cru; para ver o
+resultado local, use `jekyll serve`. Páginas novas devem ter o front matter e os dois includes.
+
 ## Recursos consumidos pela extensão
 
 - `video.html` — casca https para embeds do YouTube. A extensão eploc (repo irmão) embute o
