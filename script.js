@@ -46,6 +46,34 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // A extensão abre esta página com ?versao=&navegador=; repassa os dois
+    // para os campos "Dados técnicos" do formulário (ids em data-campo-*),
+    // no iframe e no link "Abrir em tela cheia". Só esses dois parâmetros,
+    // cortados, viram texto pré-preenchido nos campos.
+    if (formIframe) {
+        const params = new URLSearchParams(window.location.search);
+        const campos = [
+            [formIframe.dataset.campoVersao, params.get('versao')],
+            [formIframe.dataset.campoNavegador, params.get('navegador')],
+        ].filter(([campo, valor]) => campo && valor);
+
+        if (campos.length > 0) {
+            const preencher = (url) => {
+                url.searchParams.set('usp', 'pp_url');
+                for (const [campo, valor] of campos) {
+                    url.searchParams.set(campo, valor.slice(0, 100));
+                }
+                return url.toString();
+            };
+
+            const urlIframe = new URL(formIframe.src);
+            formIframe.src = preencher(urlIframe);
+
+            const linkTelaCheia = document.querySelector('.form-fullscreen a');
+            if (linkTelaCheia) linkTelaCheia.href = preencher(new URL(linkTelaCheia.href));
+        }
+    }
+
     // Lógica para alternar as abas (Tabs) com acessibilidade
     const tabButtons = document.querySelectorAll('.tab-btn');
     const tabContents = document.querySelectorAll('.tab-content');

@@ -497,9 +497,14 @@ section { padding: 4.5rem 0; scroll-margin-top: 4.5rem; }
     max-width: 640px;
     margin: 0 auto;
 }
+/* O Google Forms não informa a altura do conteúdo (outro domínio), e cada
+   seção do formulário tem uma altura: o iframe ocupa a tela, menos a barra
+   do site, e rola por dentro. */
 .form-wrapper {
     position: relative;
-    height: 1430px;
+    height: calc(100dvh - 6rem);
+    min-height: 520px;
+    max-height: 1100px;
     padding: 1.4rem;
     background: var(--surface);
 }
@@ -542,10 +547,13 @@ section { padding: 4.5rem 0; scroll-margin-top: 4.5rem; }
 @keyframes form-spin { to { transform: rotate(360deg); } }
 
 @media (max-width: 760px) {
-    .form-wrapper { height: 1760px; padding: 1rem; }
+    .form-wrapper { padding: 1rem; }
 }
-@media (max-width: 480px) {
-    .form-wrapper { height: 2010px; }
+
+.form-fullscreen {
+    text-align: center;
+    margin-top: 1rem;
+    font-size: .95rem;
 }
 
 /* Galeria */
