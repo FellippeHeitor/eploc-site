@@ -43,7 +43,7 @@
                     <span class="trust-chip">Grátis</span>
                 </div>
 
-                <p class="whats-new"><span class="whats-new-label">Novidades</span> <a href="#detalhes">Configuração de múltiplos monitores restaurada</a> <a href="#detalhes">Audiências futuras na capa</a> <a href="#detalhes">Sigilo de vários documentos de uma vez</a></p>
+                <p class="whats-new"><span class="whats-new-label">Novidades</span> <a href="#detalhes">Busca nos campos de seleção</a> <a href="#detalhes">Sigilo nível 3 em processos migrados</a> <a href="#detalhes">Reativar localizadores pelo histórico</a></p>
             </div>
             <div class="hero-art">
                 <img src="assets/eploc-logo-master-1000.png" alt="Logotipo eploc">
@@ -140,6 +140,8 @@
                             <li data-video="eproc-autocomplete-cnj"><span>Aviso imediato quando um número de processo (CNJ) tem o dígito verificador inválido.</span></li>
                             <li data-video="eproc-pesquisa-rapida-avancada"><span>A pesquisa rápida por nome ou CPF/CNPJ se repete sozinha quando o eproc a cancela por mudança de perfil, comum logo após migrar processos do PJe.</span></li>
                             <li data-video="eploc-resumo-localizador-secundario"><span>Localizadores secundários já selecionados aparecem como chips removíveis abaixo do campo.</span></li>
+                            <li data-video="eproc-filtro-selects"><span>Listas de opções sem busca própria, como o tipo de parte, ganham um filtro por trechos em qualquer ordem, tolerante a abreviações e erros de digitação, e uma estrela para fixar as opções mais usadas no topo.</span></li>
+                            <li data-video="eproc-reativar-localizador-historico"><span>No histórico de localizadores, selecione os excluídos e reative-os de uma vez: o editor da capa abre com eles já incluídos, para conferir e salvar.</span></li>
                         </ul>
                     </div>
                     <div class="detail-group">
@@ -155,6 +157,7 @@
                             <li data-video="eproc-lembrete-prefill"><span>Selecione um trecho de um evento (ou passe o mouse sobre a descrição) para criar um lembrete rápido, já com o texto preenchido.</span></li>
                             <li data-video="eproc-lembretes-acoes-em-lote"><span>Selecione vários lembretes do processo e desative-os de uma vez, com opção de alinhar o texto deles à esquerda.</span></li>
                             <li data-video="eproc-sigilo-documentos-lote"><span>Na alteração de sigilo em bloco, escolha o nível no cabeçalho da coluna e ele é aplicado a todos os documentos marcados.</span></li>
+                            <li data-video="eproc-sigilo-nivel3-migrados"><span>Em processos migrados do PJe (TJMG), uma faixa acima dos eventos aponta os documentos que ficaram com sigilo "Interno Nível 3", com atalhos para cada um e para alterar o sigilo em bloco.</span></li>
                             <li data-video="eproc-restaurar-descricao-eventos-migrados"><span>Em processos migrados de outro sistema, a descrição real de cada evento substitui o rótulo genérico "PETIÇÃO" em telas de vinculação de documentos.</span></li>
                             <li data-video="eproc-ajustar-eventos-migrados-pje"><span>Em processos migrados do PJe, eventos do mesmo ID que a migração lançou intercalados com outros são mesclados numa só linha, com um marcador na posição original de cada um.</span></li>
                             <li data-video="eproc-migracao-pje"><span>Ao migrar um único processo do PJe, é possível abri-lo no eproc assim que a migração terminar.</span></li>
@@ -183,7 +186,9 @@
                             <li data-video="eproc-numero-processo-navbar"><span>Número do processo repetido no menu superior (inclusive no cadastro de minuta), com chip "JESP" para Juizados Especiais e cópia com um clique. Ao rolar a página, os avisos do topo ("Segredo de Justiça", "Doença Grave" etc.) também passam para o menu superior.</span></li>
                             <li data-video="eproc-perfil-completo-navbar"><span>O seletor de perfil na barra superior se ajusta ao nome selecionado, sem cortar, com opção de simplificar nomes de perfil (remove "USUÁRIO" repetido).</span></li>
                             <li data-video="eproc-favicon-personalizado"><span>Cor personalizada do eproc (favicon, logos e animação de carregamento) para diferenciar as abas.</span></li>
+                            <li data-video="eproc-logo-tjmg-navbar"><span>O link para o portal do TJMG no menu superior mostra o símbolo do tribunal no lugar da sigla "MG" ou "TJMG".</span></li>
                             <li data-video="eproc-lembrar-multiplos-monitores"><span>O eploc memoriza a quantidade de monitores e a posição da janela de documentos e as restaura quando o eproc as perde, com atalho no menu do usuário para restaurar na hora.</span></li>
+                            <li data-video="eproc-lembrar-dicas-fechadas"><span>As dicas nativas do eproc já fechadas não reaparecem, e o botão de ajuda ("?") reúne todas elas num painel, agrupadas por assunto.</span></li>
                             <li data-video="eproc-rotulos-clicaveis"><span>Caixas de seleção como "Manter Minutas Aberto" e "Exibir Excluídas/Anuladas" marcam e desmarcam também pelo texto.</span></li>
                             <li data-video="eproc-midias-link"><span>Link direto para o PJe Mídias quando há mídia vinculada ao processo.</span></li>
                             <li data-video="eproc-login-gerenciador-senhas"><span>Gerenciador de senhas do navegador funciona no login do eproc.</span></li>
@@ -198,6 +203,7 @@
                             <li data-video="rupe-espelho-painel-pesquisa"><span>Espelho de pesquisa no RUPE mantém visíveis os critérios usados na emissão de uma certidão positiva/negativa.</span></li>
                             <li data-video="sei-mais-descritivo-horizontal"><span>No SEI, a listagem de processos pode destacar itens por termos configuráveis (ex.: "urgente", "prioridade").</span></li>
                             <li data-video="tjmg-dativos-pesquisa-paginacao"><span>Consulta de advogados dativos no RUPE (TJMG) ganha busca nos filtros e unifica todos os resultados paginados em uma única lista.</span></li>
+                            <li data-video="tjmg-meu-gabinete-altura-login"><span>O quadro de login do Meu Gabinete (TJMG) ganha altura suficiente para exibir todo o formulário de acesso.</span></li>
                         </ul>
                     </div>
                     <div class="detail-group">

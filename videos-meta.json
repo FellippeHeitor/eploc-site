@@ -115,6 +115,14 @@
     "name": "Resumo dos localizadores secundários selecionados",
     "group": "Pesquisa e filtros"
   },
+  "eproc-filtro-selects": {
+    "name": "Busca nos campos de seleção",
+    "group": "Pesquisa e filtros"
+  },
+  "eproc-reativar-localizador-historico": {
+    "name": "Reativar localizadores pelo histórico",
+    "group": "Pesquisa e filtros"
+  },
   "eproc-historico-emails": {
     "name": "Histórico de e-mails avançado",
     "group": "E-mail"
@@ -167,6 +175,10 @@
     "name": "Número do processo no menu superior",
     "group": "Menu superior"
   },
+  "eproc-logo-tjmg-navbar": {
+    "name": "Símbolo do TJMG no menu superior",
+    "group": "Menu superior"
+  },
   "eproc-ajustar-eventos-migrados-pje": {
     "name": "Ajustar eventos de processos migrados do PJe (TJMG)",
     "group": "Migração PJe (TJMG)"
@@ -177,6 +189,10 @@
   },
   "eproc-restaurar-descricao-eventos-migrados": {
     "name": "Restaurar descrição de eventos migrados",
+    "group": "Migração PJe (TJMG)"
+  },
+  "eproc-sigilo-nivel3-migrados": {
+    "name": "Apontar documentos com sigilo nível 3 em processos migrados (TJMG)",
     "group": "Migração PJe (TJMG)"
   },
   "eproc-alertas-inline": {
@@ -207,6 +223,10 @@
     "name": "Rótulos de caixas de seleção clicáveis",
     "group": "Interface do eproc"
   },
+  "eproc-lembrar-dicas-fechadas": {
+    "name": "Lembrar dicas do eproc já fechadas",
+    "group": "Interface do eproc"
+  },
   "rupe-espelho-painel-pesquisa": {
     "name": "Espelho dos Critérios de Pesquisa de Certidão",
     "group": "RUPE e TJMG"
@@ -217,6 +237,10 @@
   },
   "rupe-cpha-preenchimento": {
     "name": "Preenchimento automático de CPHA",
+    "group": "RUPE e TJMG"
+  },
+  "tjmg-meu-gabinete-altura-login": {
+    "name": "Corrigir a área visível para login no Meu Gabinete (TJMG)",
     "group": "RUPE e TJMG"
   },
   "sei-mais-descritivo-horizontal": {
