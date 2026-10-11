@@ -5,13 +5,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>eploc — grudado no eproc pra aumentar sua produtividade</title>
-    <meta name="description" content="Automatize tarefas repetitivas e acelere seu fluxo de trabalho no eproc, SEI e RUPE. Extensão gratuita para Chrome e Edge, 100% local por padrão e em conformidade com a LGPD.">
+    <title>eploc — extensão gratuita para eproc, SEI e RUPE</title>
+    <meta name="description" content="Menos cliques no eproc. Extensão gratuita para Chrome e Edge que copia dados, cria links entre eventos e preenche formulários no eproc, SEI e RUPE. 100% local.">
 
     <meta property="og:type" content="website">
-    <meta property="og:title" content="eploc — grudado no eproc pra aumentar sua produtividade">
-    <meta property="og:description" content="Automatize tarefas repetitivas e acelere seu fluxo de trabalho no eproc, SEI e RUPE. Extensão gratuita para Chrome e Edge, 100% local por padrão e em conformidade com a LGPD.">
-    <meta property="og:image" content="assets/eploc-logo-master-1000.png">
+    <meta property="og:title" content="eploc — extensão gratuita para eproc, SEI e RUPE">
+    <meta property="og:description" content="Menos cliques no eproc. Extensão gratuita para Chrome e Edge que copia dados, cria links entre eventos e preenche formulários no eproc, SEI e RUPE. 100% local.">
+    <meta property="og:image" content="assets/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
     <meta name="twitter:card" content="summary_large_image">
 
     <link rel="icon" type="image/png" sizes="32x32" href="icon32.png">
@@ -26,194 +28,232 @@
         <div class="hero-blobs" aria-hidden="true"><span class="blob blob-pink"></span><span class="blob blob-cyan"></span></div>
         <div class="wrap hero-inner">
             <div>
-                <span class="eyebrow">Extensão para Chrome e Edge · eproc · SEI · RUPE</span>
-                <h1>Sua rotina no eproc, mais rápida e eficiente com <em>eploc</em>.</h1>
-                <p class="lede">Automatize tarefas repetitivas, organize atalhos e acelere seu fluxo de trabalho jurídico. Tudo roda no seu navegador — por padrão, nenhum dado sai do seu computador.</p>
+                <span class="eyebrow">Extensão gratuita para Chrome e Edge · eproc · SEI · RUPE</span>
+                <h1>O eproc com <em>menos cliques</em>.</h1>
+                <p class="lede">O eploc se encaixa no eproc, no SEI e no RUPE e tira do caminho o trabalho repetitivo: copia dados com um clique, transforma "evento 12" em link, preenche formulários e lembra das suas preferências. Tudo roda no seu navegador — nenhum dado de processo sai do seu computador.</p>
 
                 <div class="cta-container cta-row">
                     <a href="https://chromewebstore.google.com/detail/eploc/fkpkkenjcfpplmhlfdbabhcdhmhiojhj" target="_blank" class="btn-primary" rel="noopener noreferrer">
-                        Instalar grátis no Chrome
+                        Instalar grátis
                     </a>
-                    <a href="#galeria" class="btn-ghost">Ver como funciona ↓</a>
+                    <a href="#demo" class="btn-ghost">Ver em 30 segundos ↓</a>
                 </div>
+                <p class="cta-note">Funciona no Chrome e no Edge · Instala em 10 segundos · Sem cadastro</p>
 
-                <div class="trust-row">
-                    <span class="trust-chip">100% local por padrão · LGPD</span>
-                    <span class="trust-chip">Independente</span>
-                    <span class="trust-chip">Grátis</span>
-                </div>
-
-                <p class="whats-new"><span class="whats-new-label">Novidades</span> <a href="#detalhes">Busca nos campos de seleção</a> <a href="#detalhes">Sigilo nível 3 em processos migrados</a> <a href="#detalhes">Reativar localizadores pelo histórico</a></p>
+                <p class="whats-new"><span class="whats-new-label">Novidades</span> <a href="#filtro-selects">Busca nos campos de seleção</a> <a href="#migracao">Sigilo nível 3 em processos migrados</a> <a href="#reativar-localizador">Reativar localizadores pelo histórico</a></p>
             </div>
             <div class="hero-art">
                 <img src="assets/eploc-logo-master-1000.png" alt="Logotipo eploc">
+                <p class="hero-tagline">grudado no eproc</p>
             </div>
         </div>
     </header>
 
+    <div class="trust-strip">
+        <ul class="wrap">
+            <li>Grátis</li>
+            <li>100% local</li>
+            <li>Sem cadastro</li>
+            <li>Chrome e Edge</li>
+        </ul>
+    </div>
+
     <main>
+        <section id="demo">
+            <div class="wrap">
+                <div class="section-head">
+                    <span class="eyebrow">Demonstração</span>
+                    <h2>Veja o eploc trabalhando</h2>
+                </div>
+                <div class="media-grid gallery demo-grid">
+                    <div class="media-card g-card">
+                        <video muted loop playsinline preload="none" poster="assets/screenshots/mini-painel-atalhos-poster.jpg" aria-label="Animação mostrando o mini painel de atalhos contextuais no eproc" tabindex="0" role="button">
+                            <source src="assets/screenshots/mini-painel-atalhos.webm" type="video/webm">
+                            <source src="assets/screenshots/mini-painel-atalhos.mp4" type="video/mp4">
+                        </video>
+                        <p><strong>Os atalhos certos, na hora certa</strong> Mini painel de ações contextuais.</p>
+                    </div>
+                    <div class="media-card g-card">
+                        <video muted loop playsinline preload="none" poster="assets/screenshots/auto-complete-cnj-poster.jpg" aria-label="Animação do recurso de auto-completar no padrão CNJ" tabindex="0" role="button">
+                            <source src="assets/screenshots/auto-complete-cnj.webm" type="video/webm">
+                            <source src="assets/screenshots/auto-complete-cnj.mp4" type="video/mp4">
+                        </video>
+                        <p><strong>Número de processo pela metade? Ele completa.</strong> Auto-completar no padrão CNJ.</p>
+                    </div>
+                    <div class="media-card g-card">
+                        <video muted loop playsinline preload="none" poster="assets/screenshots/sanitizador-autocomplete-emails-poster.jpg" aria-label="Demonstração do histórico inteligente e sanitizador de e-mails" tabindex="0" role="button">
+                            <source src="assets/screenshots/sanitizador-autocomplete-emails.webm" type="video/webm">
+                            <source src="assets/screenshots/sanitizador-autocomplete-emails.mp4" type="video/mp4">
+                        </video>
+                        <p><strong>E-mail sem redigitar destinatário</strong> Histórico, sugestões e limpeza automática de endereços.</p>
+                    </div>
+                </div>
+                <p class="section-more"><a href="#detalhes" class="btn-ghost">Ver todos os recursos ↓</a></p>
+            </div>
+        </section>
+
         <section id="recursos">
             <div class="wrap">
                 <div class="section-head">
                     <span class="eyebrow">Recursos</span>
                     <h2>Pensado para quem vive dentro do eproc</h2>
-                    <p class="lede">Melhorias que trabalham em segundo plano, no ritmo do seu expediente.</p>
+                    <p class="lede">Funciona sozinho a partir da instalação. Cada melhoria pode ser ligada ou desligada no ícone da extensão.</p>
                 </div>
                 <div class="features">
                     <div class="feature-card" data-video="eproc-painel-fixo-processo">
                         <div class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="3"></rect><path d="M15 4v16"></path></svg></div>
-                        <h3>Painel do processo flutuante</h3>
-                        <p>Resumo persistente do processo, desanexável, arrastável e redimensionável, com seções recolhíveis e cópia rápida de número, classe, CPF, CNPJ, OAB e partes.</p>
-                    </div>
-                    <div class="feature-card" data-video="eproc-mini-painel-atalhos">
-                        <div class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="3"></rect><path d="M3 9h18"></path><path d="M7 13h4"></path></svg></div>
-                        <h3>Sidebar e acesso rápido</h3>
-                        <p>Navegue pelas seções do processo com minimapa proporcional e fixe até 6 rotinas favoritas em uma grid no menu lateral.</p>
+                        <h3>Os dados do processo sempre à vista</h3>
+                        <p>Um painel que acompanha você pela página, com número, classe, partes, CPF, CNPJ e OAB a um clique de copiar. Arraste, redimensione, recolha.</p>
                     </div>
                     <div class="feature-card" data-video="eproc-pesquisa-rapida-avancada">
                         <div class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><path d="M21 21l-4.35-4.35"></path></svg></div>
-                        <h3>Pesquisa avançada integrada</h3>
-                        <p>Busque por nome de parte ou CPF/CNPJ na barra superior — o eploc preenche e aciona o formulário de pesquisa correto automaticamente.</p>
+                        <h3>Pesquise do jeito que você pensa</h3>
+                        <p>Digite um nome ou CPF/CNPJ na barra de cima. O eploc escolhe o formulário certo e faz a busca por você.</p>
                     </div>
-                    <div class="feature-card" data-video="eproc-autocomplete-cnj">
-                        <div class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 12h4l2-7 4 14 2-7h4"></path></svg></div>
-                        <h3>Auto-completar CNJ</h3>
-                        <p>Reconhece e completa números de processo no padrão CNJ, com sufixo da comarca e ano detectados automaticamente.</p>
+                    <div class="feature-card" data-video="eproc-link-referencia-evento">
+                        <div class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M10 14a4 4 0 0 0 5.66 0l3-3a4 4 0 0 0-5.66-5.66l-1 1"></path><path d="M14 10a4 4 0 0 0-5.66 0l-3 3a4 4 0 0 0 5.66 5.66l1-1"></path></svg></div>
+                        <h3>"Evento 12" vira link</h3>
+                        <p>Referências a eventos e documentos, nos eventos e nas minutas, viram links que levam direto ao lugar certo.</p>
                     </div>
                     <div class="feature-card" data-video="eproc-monitor-relatorio">
                         <div class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"></path><circle cx="12" cy="12" r="3"></circle></svg></div>
-                        <h3>Monitor de relatórios</h3>
-                        <p>Marque processos em relatórios para monitoramento: o eploc destaca as células cujo valor mudou desde a última verificação.</p>
-                    </div>
-                    <div class="feature-card" data-video="eproc-migracao-pje">
-                        <div class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 19V5"></path><path d="M4 19h16"></path><path d="M8 15l3-3 3 2 4-5"></path></svg></div>
-                        <h3>Migração PJe → eproc</h3>
-                        <p>Na importação de processos do PJe (TJMG), as regras de migração ficam num menu expansível e um gráfico mostra o histórico de processos já migrados.</p>
-                    </div>
-                    <div class="feature-card" data-video="eproc-historico-emails">
-                        <div class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 6l9 7 9-7"></path><rect x="3" y="5" width="18" height="14" rx="2"></rect></svg></div>
-                        <h3>Histórico de e-mails com chips</h3>
-                        <p>Destinatários viram chips removíveis, com autocompleção, sugestão de contatos frequentes e colagem que já extrai e-mails de um texto.</p>
-                    </div>
-                    <div class="feature-card" data-video="rupe-cpha-preenchimento">
-                        <div class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="6" y="3" width="12" height="18" rx="2"></rect><path d="M9 3v2h6V3"></path><path d="M9 11h6"></path><path d="M9 15h4"></path></svg></div>
-                        <h3>Preenchimento de CPHA (RUPE)</h3>
-                        <p>Cole os dados do advogado e o eploc reconhece e preenche automaticamente os campos do cadastro de CPHA para você conferir.</p>
-                    </div>
-                    <div class="feature-card" data-video="eproc-resumo-minuta-flutuante">
-                        <div class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"></rect><path d="M7 8h10"></path><path d="M7 12h10"></path><path d="M7 16h6"></path></svg></div>
-                        <h3>Painel de dados da minuta</h3>
-                        <p>Ao editar uma minuta, um painel flutuante lista localizadores, intimação/citação, destinatário, remessa, audiência e assinante.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 16a4 4 0 0 1-1-7.874A5 5 0 0 1 15.9 6.1 4.5 4.5 0 0 1 17.5 15"></path><path d="M12 12v7"></path><path d="M9 16l3-3 3 3"></path></svg></div>
-                        <h3>Backup opcional na nuvem</h3>
-                        <p>Desativado por padrão: se você conectar sua conta Google, suas configurações e dados ficam na pasta privada do seu próprio Google Drive, com até 20 versões e sincronização contínua entre dispositivos.</p>
+                        <h3>Saiba o que mudou nos relatórios</h3>
+                        <p>Marque processos para acompanhar e o eploc destaca o que mudou desde a última vez que você olhou.</p>
                     </div>
                     <div class="feature-card" data-video="eproc-agrupar-eventos-relacionados">
                         <div class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="4" rx="1"></rect><rect x="3" y="10" width="18" height="4" rx="1"></rect><path d="M3 18h18"></path></svg></div>
-                        <h3>Eventos agrupados</h3>
-                        <p>Eventos sequenciais ou que compartilham o mesmo documento são mesclados em uma única linha expansível na tabela de eventos.</p>
+                        <h3>Uma tabela de eventos que dá para ler</h3>
+                        <p>Eventos em sequência ou do mesmo documento viram uma linha só, e você destaca os termos que importam.</p>
                     </div>
-                    <div class="feature-card" data-video="eproc-destaques-trecho">
-                        <div class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 6h11"></path><path d="M4 12h7"></path><path d="M4 18h11"></path><path d="M15 12h5" stroke-width="4" stroke-linecap="round" opacity=".25"></path></svg></div>
-                        <h3>Destaques em eventos</h3>
-                        <p>Marque termos ou frases relevantes nos eventos, por processo ou globalmente, para encontrá-los rapidamente depois.</p>
+                    <div class="feature-card" data-video="eproc-historico-emails">
+                        <div class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 6l9 7 9-7"></path><rect x="3" y="5" width="18" height="14" rx="2"></rect></svg></div>
+                        <h3>E-mails sem retrabalho</h3>
+                        <p>Destinatários sugeridos, modelos prontos e aviso quando você menciona um anexo e esquece de marcar.</p>
                     </div>
                 </div>
+            </div>
+        </section>
+
+        <section id="migracao" class="band">
+            <div class="wrap migration">
+                <div class="migration-head">
+                    <span class="eyebrow">Migração PJe → eproc</span>
+                    <h2>Migrando do PJe? O eploc conhece o caminho.</h2>
+                    <p class="lede">A migração do TJMG deixou rastros: sigilo trocado, eventos fora de ordem, rótulos genéricos. O eploc arruma isso enquanto você trabalha.</p>
+                </div>
+                <ul class="detail-list">
+                    <li data-video="eproc-sigilo-nivel3-migrados"><span>Aponta os documentos que ficaram com sigilo "Interno Nível 3", com atalho para cada um, e permite corrigir em bloco.</span></li>
+                    <li data-video="eproc-ajustar-eventos-migrados-pje"><span>Junta em uma linha os eventos do mesmo ID que a migração espalhou, com um marcador na posição original de cada um.</span></li>
+                    <li data-video="eproc-restaurar-descricao-eventos-migrados"><span>Mostra a descrição real de cada evento no lugar de "PETIÇÃO" nas telas de vinculação de documentos.</span></li>
+                    <li data-video="eproc-migracao-pje"><span>Abre o processo no eproc assim que a migração termina.</span></li>
+                    <li data-video="eproc-pesquisa-rapida-avancada"><span>Refaz sozinho a pesquisa que o eproc cancela após a troca de perfil.</span></li>
+                    <li data-video="eproc-migracao-pje"><span>Organiza a tela de importação: regras de migração num menu expansível e um gráfico com o histórico de processos já migrados.</span></li>
+                </ul>
             </div>
         </section>
 
         <section id="detalhes">
             <div class="wrap">
                 <div class="section-head">
-                    <span class="eyebrow">E tem mais</span>
-                    <h2>Pequenos detalhes que ajudam todo dia</h2>
-                    <p class="lede">Além dos recursos principais, dezenas de ajustes finos deixam a rotina mais leve.</p>
+                    <span class="eyebrow">Tudo o que o eploc faz</span>
+                    <h2>E mais dezenas de detalhes que somam horas no fim do mês</h2>
+                    <p class="lede">Organizados pelo que você está tentando fazer.</p>
                 </div>
                 <div class="detail-groups">
-                    <div class="detail-group">
-                        <h3>Pesquisa e localizadores</h3>
+                    <details class="detail-group" id="encontrar">
+                        <summary><h3>Encontrar mais rápido</h3></summary>
                         <ul class="detail-list">
-                            <li data-video="eproc-auto-buscar-prevencao"><span>Busca de prevenção roda em segundo plano e só abre uma aba quando encontra processos preventos.</span></li>
-                            <li data-video="eproc-filtro-novo-localizador"><span>Filtro por múltiplos termos simultâneos no campo "Novo localizador" das minutas (ex.: "concl emenda"), com busca aproximada que aceita abreviações e pequenos erros de digitação e mostra primeiro os resultados mais relevantes.</span></li>
-                            <li data-video="eproc-autocomplete-cnj"><span>Aviso imediato quando um número de processo (CNJ) tem o dígito verificador inválido.</span></li>
-                            <li data-video="eproc-pesquisa-rapida-avancada"><span>A pesquisa rápida por nome ou CPF/CNPJ se repete sozinha quando o eproc a cancela por mudança de perfil, comum logo após migrar processos do PJe.</span></li>
-                            <li data-video="eploc-resumo-localizador-secundario"><span>Localizadores secundários já selecionados aparecem como chips removíveis abaixo do campo.</span></li>
-                            <li data-video="eproc-filtro-selects"><span>Listas de opções sem busca própria, como o tipo de parte, ganham um filtro por trechos em qualquer ordem, tolerante a abreviações e erros de digitação, e uma estrela para fixar as opções mais usadas no topo.</span></li>
-                            <li data-video="eproc-reativar-localizador-historico"><span>No histórico de localizadores, selecione os excluídos e reative-os de uma vez: o editor da capa abre com eles já incluídos, para conferir e salvar.</span></li>
+                            <li data-video="eproc-autocomplete-cnj"><span><strong>Número de processo pela metade? Ele completa.</strong> Números no padrão CNJ são reconhecidos e completados, com sufixo da comarca e ano detectados automaticamente.</span></li>
+                            <li data-video="eproc-auto-buscar-prevencao"><span><strong>Prevenção sem abas inúteis.</strong> A busca roda em segundo plano e só abre uma aba quando encontra algo.</span></li>
+                            <li data-video="eproc-filtro-novo-localizador"><span><strong>O localizador certo com meia palavra.</strong> No campo "Novo localizador" das minutas, digite vários termos ao mesmo tempo (ex.: "concl emenda"): a busca aproximada aceita abreviações e pequenos erros de digitação e mostra primeiro os resultados mais relevantes.</span></li>
+                            <li data-video="eproc-filtro-selects" id="filtro-selects"><span><strong>Listas longas que dá para filtrar.</strong> Listas de opções sem busca própria, como o tipo de parte, ganham um filtro por trechos em qualquer ordem, tolerante a abreviações e erros de digitação, e uma estrela para fixar as opções mais usadas no topo.</span></li>
+                            <li data-video="eproc-filtro-preferencias-processo"><span><strong>A preferência certa sem rolar a lista.</strong> As listas de preferências do processo filtram enquanto você digita, com várias palavras em qualquer ordem. O filtro pode virar uma pasta que agrupa os itens encontrados e inclui automaticamente os novos.</span></li>
+                            <li data-video="eproc-reativar-localizador-historico" id="reativar-localizador"><span><strong>Localizadores excluídos voltam de uma vez.</strong> No histórico de localizadores, selecione os excluídos e reative todos: o editor da capa abre com eles já incluídos, para conferir e salvar.</span></li>
+                            <li data-video="eploc-resumo-localizador-secundario"><span><strong>Localizadores secundários à vista.</strong> Os já selecionados aparecem como chips removíveis abaixo do campo.</span></li>
                         </ul>
-                    </div>
-                    <div class="detail-group">
-                        <h3>Painel do processo e eventos</h3>
+                    </details>
+                    <details class="detail-group" id="navegar">
+                        <summary><h3>Navegar pelo processo</h3></summary>
                         <ul class="detail-list">
-                            <li data-video="eproc-painel-fixo-processo"><span>Copie CPF, CNPJ, número da OAB e outros dados do painel do processo com um clique.</span></li>
-                            <li data-video="eproc-acoes-favoritas"><span>Ações favoritas do processo ganham ícones automáticos escolhidos de acordo com o texto do botão, e as ações que você não usa podem ser ocultadas numa pasta própria no fim do painel.</span></li>
-                            <li data-video="eproc-link-referencia-evento"><span>Menções a outros eventos (ex. "Refer. ao evento 12") viram links que rolam até a linha certa — inclusive entre processos citados no mesmo texto.</span></li>
-                            <li data-video="eproc-link-referencia-evento"><span>Em documentos abertos a partir do processo, menções como "evento 17" ou "evento 31, DEC1" viram links que levam ao evento — e abrem o documento citado.</span></li>
-                            <li data-video="eproc-indicador-audiencia-futura"><span>A capa do processo mostra as audiências designadas com data futura, com link até o evento, e alerta para audiência já passada sem registro de realização.</span></li>
-                            <li data-video="eproc-contador-partes"><span>O cabeçalho de cada polo da tabela de partes mostra quantas partes ele tem.</span></li>
-                            <li data-video="eproc-nome-completo-documentos"><span>Links de documento nos eventos mostram o nome completo do tipo, com a sigla logo abaixo (ex.: "Certidão de Cumprimento de Mandado de Prisão 1" / "CCUMPMP1").</span></li>
-                            <li data-video="eproc-lembrete-prefill"><span>Selecione um trecho de um evento (ou passe o mouse sobre a descrição) para criar um lembrete rápido, já com o texto preenchido.</span></li>
-                            <li data-video="eproc-lembretes-acoes-em-lote"><span>Selecione vários lembretes do processo e desative-os de uma vez, com opção de alinhar o texto deles à esquerda.</span></li>
-                            <li data-video="eproc-sigilo-documentos-lote"><span>Na alteração de sigilo em bloco, escolha o nível no cabeçalho da coluna e ele é aplicado a todos os documentos marcados.</span></li>
-                            <li data-video="eproc-sigilo-nivel3-migrados"><span>Em processos migrados do PJe (TJMG), uma faixa acima dos eventos aponta os documentos que ficaram com sigilo "Interno Nível 3", com atalhos para cada um e para alterar o sigilo em bloco.</span></li>
-                            <li data-video="eproc-restaurar-descricao-eventos-migrados"><span>Em processos migrados de outro sistema, a descrição real de cada evento substitui o rótulo genérico "PETIÇÃO" em telas de vinculação de documentos.</span></li>
-                            <li data-video="eproc-ajustar-eventos-migrados-pje"><span>Em processos migrados do PJe, eventos do mesmo ID que a migração lançou intercalados com outros são mesclados numa só linha, com um marcador na posição original de cada um.</span></li>
-                            <li data-video="eproc-migracao-pje"><span>Ao migrar um único processo do PJe, é possível abri-lo no eproc assim que a migração terminar.</span></li>
-                            <li data-video="eproc-icones-secoes-colapsadas-painel"><span>Seções do Painel do Servidor podem ser recolhidas ou fixadas com destaque (cores configuráveis) e reordenadas por setas — tudo lembrado separadamente por perfil/unidade.</span></li>
-                            <li data-video="eproc-filtro-preferencias-processo"><span>Campo de busca nas listas de preferências do processo, filtrando enquanto você digita, com várias palavras em qualquer ordem. O filtro pode virar uma pasta que agrupa os itens encontrados e inclui automaticamente os novos.</span></li>
-                            <li data-video="eproc-persistir-preferencias-processo"><span>Os painéis de Preferências do processo (Minutas, Movimentação, Intimação, Automatizações) e as caixas "Manter Aberto" voltam ao estado que você deixou quando o eproc os reseta sozinho.</span></li>
-                            <li data-video="eproc-persistir-colunas-relatorio"><span>As colunas visíveis do Relatório Geral também são memorizadas e restauradas.</span></li>
-                            <li data-video="eproc-copiar-cnj-relatorio"><span>Nas tabelas de relatórios e da área de trabalho de minutas, um botão ao lado do número do processo o copia com um clique, com ou sem pontuação.</span></li>
-                            <li data-video="eproc-remover-hover-relatorio"><span>Opção para desligar o destaque cinza que o eproc aplica à linha sob o mouse nas tabelas dos relatórios.</span></li>
+                            <li data-video="eproc-favoritos-menu-lateral"><span><strong>Direto à seção que importa.</strong> O menu lateral ganha um minimapa proporcional das seções do processo e uma grade com até 6 rotinas favoritas.</span></li>
+                            <li data-video="eproc-link-referencia-evento"><span><strong>"Refer. ao evento 12" leva ao evento 12.</strong> Menções a outros eventos viram links que rolam até a linha certa — inclusive entre processos citados no mesmo texto.</span></li>
+                            <li data-video="eproc-link-referencia-evento"><span><strong>Documentos que apontam para os eventos.</strong> Em documentos abertos a partir do processo, menções como "evento 17" ou "evento 31, DEC1" viram links que levam ao evento — e abrem o documento citado.</span></li>
+                            <li data-video="eproc-destaques-trecho"><span><strong>Ache de novo o que já leu.</strong> Marque termos ou frases relevantes nos eventos, por processo ou globalmente, e eles ficam destacados para você encontrá-los depois.</span></li>
+                            <li data-video="eproc-nome-completo-documentos"><span><strong>Sem decifrar siglas.</strong> Links de documento nos eventos mostram o nome completo do tipo, com a sigla logo abaixo (ex.: "Certidão de Cumprimento de Mandado de Prisão 1" / "CCUMPMP1").</span></li>
+                            <li data-video="eproc-contador-partes"><span><strong>Quantas partes, num relance.</strong> O cabeçalho de cada polo da tabela de partes mostra quantas partes ele tem.</span></li>
+                            <li data-video="eproc-acoes-favoritas"><span><strong>Suas ações primeiro.</strong> Ações favoritas do processo ganham ícones automáticos escolhidos de acordo com o texto do botão, e as que você não usa podem ser ocultadas numa pasta própria no fim do painel.</span></li>
+                            <li data-video="eproc-numero-processo-navbar"><span><strong>O número do processo sempre no topo.</strong> Ele fica repetido no menu superior (inclusive no cadastro de minuta), com chip "JESP" para Juizados Especiais e cópia com um clique. Ao rolar a página, os avisos do topo ("Segredo de Justiça", "Doença Grave" etc.) também passam para o menu superior.</span></li>
+                            <li data-video="eproc-atalhos-navbar-descritivos"><span><strong>Atalhos que dizem o que fazem.</strong> Os atalhos do menu superior (Alt+1, Alt+2...) ganham ícone e nome descritivo automáticos.</span></li>
+                            <li data-video="eproc-desviar-botoes-navegacao"><span><strong>Botões que não atrapalham.</strong> Os botões flutuantes de navegação acompanham o menu lateral, sem cobrir a barra de comandos.</span></li>
+                            <li data-video="eproc-midias-link"><span><strong>Mídias a um clique.</strong> Link direto para o PJe Mídias quando há mídia vinculada ao processo.</span></li>
                         </ul>
-                    </div>
-                    <div class="detail-group">
-                        <h3>Minutas e e-mail</h3>
+                    </details>
+                    <details class="detail-group" id="copiar">
+                        <summary><h3>Copiar e preencher sem redigitar</h3></summary>
                         <ul class="detail-list">
-                            <li data-video="eproc-atalho-arvore-minuta"><span>Item "Árvore" no menu flutuante da minuta abre a árvore de documentos em nova aba, e menções a "Evento N" no texto viram links que já abrem o evento/documento destacado.</span></li>
-                            <li data-video="eproc-auto-manter-agendamento"><span>Clique automático em "Manter Agendamento" na minuta, se você preferir ativar (opcional).</span></li>
-                            <li data-video="eproc-modelos-mensagem"><span>Modelos de mensagem prontos para respostas rápidas por e-mail, com um modelo padrão.</span></li>
-                            <li><span>Ao enviar um e-mail que menciona anexo, o eploc avisa se nenhum documento foi marcado na tabela de anexos.</span></li>
+                            <li data-video="eproc-painel-fixo-processo"><span><strong>Dados das partes sem selecionar texto.</strong> Copie CPF, CNPJ, número da OAB e outros dados do painel do processo com um clique.</span></li>
+                            <li data-video="eproc-copiar-cnj-relatorio"><span><strong>Número do processo com um clique.</strong> Nas tabelas de relatórios e da área de trabalho de minutas, um botão ao lado do número o copia, com ou sem pontuação.</span></li>
+                            <li data-video="rupe-cpha-preenchimento"><span><strong>CPHA sem digitar campo por campo.</strong> No RUPE, cole os dados do advogado e o eploc reconhece e preenche os campos do cadastro de CPHA para você conferir.</span></li>
+                            <li data-video="eproc-lembrete-prefill"><span><strong>Lembrete com o texto já pronto.</strong> Selecione um trecho de um evento (ou passe o mouse sobre a descrição) para criar um lembrete rápido, já com o texto preenchido.</span></li>
+                            <li data-video="eproc-sigilo-documentos-lote"><span><strong>Sigilo em bloco num passo só.</strong> Na alteração de sigilo em bloco, escolha o nível no cabeçalho da coluna e ele é aplicado a todos os documentos marcados.</span></li>
+                            <li data-video="eproc-login-gerenciador-senhas"><span><strong>Login sem digitar a senha.</strong> O gerenciador de senhas do navegador passa a funcionar no login do eproc.</span></li>
                         </ul>
-                    </div>
-                    <div class="detail-group">
-                        <h3>Menu superior e interface</h3>
+                    </details>
+                    <details class="detail-group" id="nada-passa">
+                        <summary><h3>Não deixar nada passar</h3></summary>
                         <ul class="detail-list">
-                            <li data-video="eproc-atalhos-navbar-descritivos"><span>Atalhos do menu superior (Alt+1, Alt+2...) ganham ícone e nome descritivo automáticos.</span></li>
-                            <li data-video="eproc-desviar-botoes-navegacao"><span>Botões flutuantes de navegação acompanham o menu lateral, sem cobrir a barra de comandos.</span></li>
-                            <li data-video="eproc-numero-processo-navbar"><span>Número do processo repetido no menu superior (inclusive no cadastro de minuta), com chip "JESP" para Juizados Especiais e cópia com um clique. Ao rolar a página, os avisos do topo ("Segredo de Justiça", "Doença Grave" etc.) também passam para o menu superior.</span></li>
-                            <li data-video="eproc-perfil-completo-navbar"><span>O seletor de perfil na barra superior se ajusta ao nome selecionado, sem cortar, com opção de simplificar nomes de perfil (remove "USUÁRIO" repetido).</span></li>
-                            <li data-video="eproc-favicon-personalizado"><span>Cor personalizada do eproc (favicon, logos e animação de carregamento) para diferenciar as abas.</span></li>
-                            <li data-video="eproc-logo-tjmg-navbar"><span>O link para o portal do TJMG no menu superior mostra o símbolo do tribunal no lugar da sigla "MG" ou "TJMG".</span></li>
-                            <li data-video="eproc-lembrar-multiplos-monitores"><span>O eploc memoriza a quantidade de monitores e a posição da janela de documentos e as restaura quando o eproc as perde, com atalho no menu do usuário para restaurar na hora.</span></li>
-                            <li data-video="eproc-lembrar-dicas-fechadas"><span>As dicas nativas do eproc já fechadas não reaparecem, e o botão de ajuda ("?") reúne todas elas num painel, agrupadas por assunto.</span></li>
-                            <li data-video="eproc-rotulos-clicaveis"><span>Caixas de seleção como "Manter Minutas Aberto" e "Exibir Excluídas/Anuladas" marcam e desmarcam também pelo texto.</span></li>
-                            <li data-video="eproc-midias-link"><span>Link direto para o PJe Mídias quando há mídia vinculada ao processo.</span></li>
-                            <li data-video="eproc-login-gerenciador-senhas"><span>Gerenciador de senhas do navegador funciona no login do eproc.</span></li>
-                            <li data-video="eproc-perfil-favorito-login"><span>Marque um perfil com uma estrela na tela de login e ele passa a ser selecionado automaticamente nas próximas entradas.</span></li>
-                            <li data-video="eproc-alertas-inline"><span>Alertas do eproc que travam a navegação são substituídos por um banner flutuante, sem bloquear o clique em outros elementos da tela. Os alertas dos últimos 7 dias ficam num histórico, com contador na barra superior para os que fecharam sem serem lidos.</span></li>
-                            <li><span>O popup da extensão tem busca instantânea entre as funcionalidades da página atual, filtrando por nome ou descrição.</span></li>
+                            <li data-video="eproc-autocomplete-cnj"><span><strong>Número errado não passa.</strong> Você é avisado na hora quando o dígito verificador de um número CNJ não confere.</span></li>
+                            <li><span><strong>Anexo esquecido? Você fica sabendo.</strong> Ao enviar um e-mail que menciona anexo, o eploc avisa se nenhum documento foi marcado na tabela de anexos.</span></li>
+                            <li data-video="eproc-indicador-audiencia-futura"><span><strong>Audiência sem registro não passa batido.</strong> A capa do processo mostra as audiências designadas com data futura, com link até o evento, e alerta para audiência já passada sem registro de realização.</span></li>
+                            <li data-video="eproc-alertas-inline"><span><strong>Alertas que não travam a tela — nem se perdem.</strong> Alertas do eproc que bloqueiam a navegação viram um banner flutuante, sem impedir o clique em outros elementos. Os dos últimos 7 dias ficam num histórico, com contador na barra superior para os que fecharam sem serem lidos.</span></li>
+                            <li data-video="eproc-lembretes-acoes-em-lote"><span><strong>Lembretes em lote.</strong> Selecione vários lembretes do processo e desative-os de uma vez, com opção de alinhar o texto deles à esquerda.</span></li>
                         </ul>
-                    </div>
-                    <div class="detail-group">
-                        <h3>RUPE, SEI e TJMG</h3>
+                    </details>
+                    <details class="detail-group" id="minutas">
+                        <summary><h3>Minutas e e-mails</h3></summary>
                         <ul class="detail-list">
-                            <li data-video="rupe-espelho-painel-pesquisa"><span>Espelho de pesquisa no RUPE mantém visíveis os critérios usados na emissão de uma certidão positiva/negativa.</span></li>
-                            <li data-video="sei-mais-descritivo-horizontal"><span>No SEI, a listagem de processos pode destacar itens por termos configuráveis (ex.: "urgente", "prioridade").</span></li>
-                            <li data-video="tjmg-dativos-pesquisa-paginacao"><span>Consulta de advogados dativos no RUPE (TJMG) ganha busca nos filtros e unifica todos os resultados paginados em uma única lista.</span></li>
-                            <li data-video="tjmg-meu-gabinete-altura-login"><span>O quadro de login do Meu Gabinete (TJMG) ganha altura suficiente para exibir todo o formulário de acesso.</span></li>
+                            <li data-video="eproc-resumo-minuta-flutuante"><span><strong>Confira a minuta sem rolar a tela.</strong> Ao editar uma minuta, um painel flutuante lista localizadores, intimação/citação, destinatário, remessa, audiência e assinante.</span></li>
+                            <li data-video="eproc-atalho-arvore-minuta"><span><strong>Da minuta à árvore de documentos.</strong> O item "Árvore" no menu flutuante da minuta abre a árvore de documentos em nova aba, e menções a "Evento N" no texto viram links que já abrem o evento/documento destacado.</span></li>
+                            <li data-video="eproc-historico-emails"><span><strong>Cole um texto, ganhe os destinatários.</strong> Destinatários viram chips removíveis, com autocompleção, sugestão de contatos frequentes e colagem que já extrai os e-mails de um texto.</span></li>
+                            <li data-video="eproc-modelos-mensagem"><span><strong>Respostas prontas.</strong> Modelos de mensagem para responder rápido por e-mail, com um modelo padrão.</span></li>
+                            <li data-video="eproc-auto-manter-agendamento"><span><strong>"Manter Agendamento" sem clicar.</strong> Se você preferir ativar, o eploc clica na opção da minuta sozinho (opcional).</span></li>
                         </ul>
-                    </div>
-                    <div class="detail-group">
-                        <h3>Backup e configurações</h3>
+                    </details>
+                    <details class="detail-group" id="do-seu-jeito">
+                        <summary><h3>O eproc do seu jeito</h3></summary>
                         <ul class="detail-list">
-                            <li><span>O backup no Google Drive pode varrer todo o histórico salvo para recuperar contatos, modelos e outros dados que tenham desaparecido do backup atual.</span></li>
-                            <li><span>Exporte só as bases que quiser (e-mails, modelos de mensagem, destaques, processos monitorados) num arquivo JSON para compartilhar com outra pessoa.</span></li>
-                            <li><span>Na página de configurações, os cards das funcionalidades com vídeo de demonstração mostram o vídeo ao passar o mouse.</span></li>
+                            <li data-video="eproc-favicon-personalizado"><span><strong>Cada aba com sua cor.</strong> Personalize a cor do eproc (favicon, logos e animação de carregamento) para diferenciar as abas.</span></li>
+                            <li data-video="eproc-perfil-favorito-login"><span><strong>Seu perfil, já escolhido.</strong> Marque um perfil com uma estrela na tela de login e ele passa a ser selecionado automaticamente nas próximas entradas.</span></li>
+                            <li data-video="eproc-persistir-preferencias-processo"><span><strong>Painéis que não resetam.</strong> Os painéis de Preferências do processo (Minutas, Movimentação, Intimação, Automatizações) e as caixas "Manter Aberto" voltam ao estado que você deixou quando o eproc os reseta sozinho.</span></li>
+                            <li data-video="eproc-persistir-colunas-relatorio"><span><strong>Colunas do jeito que você deixou.</strong> As colunas visíveis do Relatório Geral também são memorizadas e restauradas.</span></li>
+                            <li data-video="eproc-icones-secoes-colapsadas-painel"><span><strong>Painel do Servidor organizado.</strong> Seções podem ser recolhidas ou fixadas com destaque (cores configuráveis) e reordenadas por setas — tudo lembrado separadamente por perfil/unidade.</span></li>
+                            <li data-video="eproc-lembrar-multiplos-monitores"><span><strong>Vários monitores sem rearrumar.</strong> O eploc memoriza a quantidade de monitores e a posição da janela de documentos e as restaura quando o eproc as perde, com atalho no menu do usuário para restaurar na hora.</span></li>
+                            <li data-video="eproc-perfil-completo-navbar"><span><strong>O nome do perfil inteiro.</strong> O seletor de perfil na barra superior se ajusta ao nome selecionado, sem cortar, com opção de simplificar nomes de perfil (remove "USUÁRIO" repetido).</span></li>
+                            <li data-video="eproc-lembrar-dicas-fechadas"><span><strong>Dica fechada fica fechada.</strong> As dicas nativas do eproc já fechadas não reaparecem, e o botão de ajuda ("?") reúne todas elas num painel, agrupadas por assunto.</span></li>
+                            <li data-video="eproc-rotulos-clicaveis"><span><strong>Clique no texto, não só na caixinha.</strong> Caixas de seleção como "Manter Minutas Aberto" e "Exibir Excluídas/Anuladas" marcam e desmarcam também pelo texto.</span></li>
+                            <li data-video="eproc-remover-hover-relatorio"><span><strong>Tabelas sem faixa cinza.</strong> Opção para desligar o destaque que o eproc aplica à linha sob o mouse nas tabelas dos relatórios.</span></li>
                         </ul>
-                    </div>
+                    </details>
+                    <details class="detail-group" id="sei-rupe-tjmg">
+                        <summary><h3>SEI, RUPE e TJMG</h3></summary>
+                        <ul class="detail-list">
+                            <li data-video="sei-mais-descritivo-horizontal"><span><strong>Urgências em destaque no SEI.</strong> A listagem de processos pode destacar itens por termos configuráveis (ex.: "urgente", "prioridade").</span></li>
+                            <li data-video="rupe-espelho-painel-pesquisa"><span><strong>Os critérios da certidão à vista.</strong> O espelho de pesquisa no RUPE mantém visíveis os critérios usados na emissão de uma certidão positiva/negativa.</span></li>
+                            <li data-video="tjmg-dativos-pesquisa-paginacao"><span><strong>Dativos numa lista só.</strong> A consulta de advogados dativos no RUPE (TJMG) ganha busca nos filtros e unifica todos os resultados paginados em uma única lista.</span></li>
+                            <li data-video="tjmg-meu-gabinete-altura-login"><span><strong>Login do Meu Gabinete inteiro.</strong> O quadro de login do Meu Gabinete (TJMG) ganha altura suficiente para exibir todo o formulário de acesso.</span></li>
+                            <li data-video="eproc-logo-tjmg-navbar"><span><strong>O símbolo do TJMG no menu.</strong> O link para o portal do TJMG no menu superior mostra o símbolo do tribunal no lugar da sigla "MG" ou "TJMG".</span></li>
+                        </ul>
+                    </details>
+                    <details class="detail-group" id="backup">
+                        <summary><h3>Backup e configurações</h3></summary>
+                        <ul class="detail-list">
+                            <li><span><strong>Suas configurações em qualquer computador.</strong> Desativado por padrão: se você conectar sua conta Google, suas configurações e dados ficam na pasta privada do seu próprio Google Drive, com até 20 versões e sincronização contínua entre dispositivos.</span></li>
+                            <li><span><strong>Nada some do backup.</strong> O backup no Google Drive pode varrer todo o histórico salvo para recuperar contatos, modelos e outros dados que tenham desaparecido do backup atual.</span></li>
+                            <li><span><strong>Compartilhe só o que quiser.</strong> Exporte só as bases que escolher (e-mails, modelos de mensagem, destaques, processos monitorados) num arquivo JSON para outra pessoa.</span></li>
+                            <li><span><strong>Ache a funcionalidade pelo nome.</strong> O popup da extensão tem busca instantânea entre as funcionalidades da página atual, filtrando por nome ou descrição.</span></li>
+                            <li><span><strong>Veja antes de ligar.</strong> Na página de configurações, os cards das funcionalidades com vídeo de demonstração mostram o vídeo ao passar o mouse.</span></li>
+                        </ul>
+                    </details>
                 </div>
             </div>
         </section>
@@ -237,98 +277,121 @@
                     <h2>Do dia a dia forense, em detalhes</h2>
                 </div>
                 <div class="media-grid gallery">
-
-                    <div class="media-card g-card">
-                        <video muted loop playsinline preload="none" poster="assets/screenshots/mini-painel-atalhos-poster.jpg" aria-label="Animação mostrando o mini painel de atalhos contextuais no eproc" tabindex="0" role="button">
-                            <source src="assets/screenshots/mini-painel-atalhos.webm" type="video/webm">
-                            <source src="assets/screenshots/mini-painel-atalhos.mp4" type="video/mp4">
-                        </video>
-                        <p>Mini painel de atalhos contextuais</p>
-                    </div>
-
-                    <div class="media-card g-card">
-                        <video muted loop playsinline preload="none" poster="assets/screenshots/sanitizador-autocomplete-emails-poster.jpg" aria-label="Demonstração do histórico inteligente e sanitizador de e-mails" tabindex="0" role="button">
-                            <source src="assets/screenshots/sanitizador-autocomplete-emails.webm" type="video/webm">
-                            <source src="assets/screenshots/sanitizador-autocomplete-emails.mp4" type="video/mp4">
-                        </video>
-                        <p>Histórico inteligente e sanitizador de e-mails</p>
-                    </div>
-
-                    <div class="media-card g-card">
-                        <img src="assets/screenshots/nomes-usuarios.webp" alt="Captura de tela exibindo nomes de usuários mais claros na interface" loading="lazy" tabindex="0" role="button">
-                        <p>Exibição clara de nomes de usuários</p>
-                    </div>
-
                     <div class="media-card g-card">
                         <video muted loop playsinline preload="none" poster="assets/screenshots/painel-lateral-poster.jpg" aria-label="Animação do painel lateral fixo para consulta rápida de processos" tabindex="0" role="button">
                             <source src="assets/screenshots/painel-lateral.webm" type="video/webm">
                             <source src="assets/screenshots/painel-lateral.mp4" type="video/mp4">
                         </video>
-                        <p>Painel lateral fixo para consulta rápida</p>
-                    </div>
-
-                    <div class="media-card g-card">
-                        <video muted loop playsinline preload="none" poster="assets/screenshots/auto-complete-cnj-poster.jpg" aria-label="Animação do recurso de auto-completar no padrão CNJ" tabindex="0" role="button">
-                            <source src="assets/screenshots/auto-complete-cnj.webm" type="video/webm">
-                            <source src="assets/screenshots/auto-complete-cnj.mp4" type="video/mp4">
-                        </video>
-                        <p>Auto-completar inteligente (Padrão CNJ)</p>
-                    </div>
-
-                    <div class="media-card g-card">
-                        <img src="assets/screenshots/sei-descritivo.webp" alt="Visualização horizontal e descritiva otimizada no sistema SEI" loading="lazy" tabindex="0" role="button">
-                        <p>Visualização horizontal mais descritiva no SEI</p>
+                        <p><strong>Consulta rápida sem sair da tela</strong> Painel lateral fixo.</p>
                     </div>
 
                     <div class="media-card g-card">
                         <video muted loop playsinline preload="none" poster="assets/screenshots/eploc-acoes-favoritas-poster.jpg" aria-label="Animação do recurso de ações favoritas no eploc" tabindex="0" role="button">
                             <source src="assets/screenshots/eploc-acoes-favoritas.webm" type="video/webm">
                         </video>
-                        <p>Ações favoritas no eproc</p>
+                        <p><strong>Suas ações mais usadas primeiro</strong> Ações favoritas no eproc.</p>
+                    </div>
+
+                    <div class="media-card g-card">
+                        <img src="assets/screenshots/nomes-usuarios.webp" alt="Captura de tela exibindo nomes de usuários mais claros na interface" loading="lazy" tabindex="0" role="button">
+                        <p><strong>Saiba quem fez cada ato</strong> Nomes dos usuários por extenso nos eventos.</p>
+                    </div>
+
+                    <div class="media-card g-card">
+                        <img src="assets/screenshots/sei-descritivo.webp" alt="Visualização horizontal e descritiva otimizada no sistema SEI" loading="lazy" tabindex="0" role="button">
+                        <p><strong>Um SEI mais fácil de ler</strong> Visualização horizontal e mais descritiva.</p>
                     </div>
                 </div>
-                <p class="gallery-note">Mais recursos disponíveis em breve.</p>
             </div>
         </section>
 
-        <section id="docs">
+        <section id="privacidade" class="band">
+            <div class="wrap privacy">
+                <div>
+                    <span class="eyebrow">Privacidade sem letra miúda</span>
+                    <h2>Seus processos não saem do seu computador.</h2>
+                </div>
+                <div class="privacy-body">
+                    <p>O eploc não tem servidor. Ele roda inteiro dentro do seu navegador, e nenhum dado de processo, senha ou informação pessoal é enviado a ninguém — nem ao desenvolvedor.</p>
+                    <p>Quer usar em mais de um computador? Ative o backup opcional: suas configurações vão para uma pasta privada no <strong>seu</strong> Google Drive, que só você acessa. Desligado por padrão.</p>
+                    <p class="privacy-more"><a href="termos.html">Termos de uso e privacidade (LGPD)</a></p>
+                </div>
+            </div>
+        </section>
+
+        <section id="sobre">
+            <div class="wrap">
+                <div class="maker">
+                    <span class="eyebrow">Feito por quem usa</span>
+                    <h2>Feito com quem vive dentro do eproc</h2>
+                    <blockquote>
+                        <p>O eploc nasceu das pequenas irritações do expediente no eproc e cresce com as sugestões de quem usa. Encontrou um problema ou tem uma ideia? Entre no grupo do WhatsApp ou escreva pelo formulário — leio todas as mensagens.</p>
+                        <p class="maker-sign">— Fellippe Heitor</p>
+                    </blockquote>
+                    <div class="cta-row maker-cta">
+                        <a href="https://chat.whatsapp.com/KW8aEPxUKRK3kcJ5yKpCju" target="_blank" rel="noopener noreferrer" class="btn-primary">Entrar no grupo do WhatsApp</a>
+                        <a href="reportar-problema.html" class="btn-ghost">Fale com o eploc</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="docs" class="band">
             <div class="wrap">
                 <div class="section-head">
-                    <span class="eyebrow">Documentação</span>
+                    <span class="eyebrow">Como usar</span>
                     <h2>Pronto para usar em segundos</h2>
                 </div>
                 <div class="docs-shell">
-                    <div class="tabs" role="tablist" aria-label="Documentação e Termos">
-                        <button type="button" class="tab-btn active" id="tab-install" data-target="install" role="tab" aria-selected="true" aria-controls="install">Como Usar</button>
-                        <button type="button" class="tab-btn" id="tab-terms" data-target="terms" role="tab" aria-selected="false" aria-controls="terms">Termos e Privacidade</button>
-                    </div>
-
-                    <div id="install" class="tab-content active" role="tabpanel" aria-labelledby="tab-install" tabindex="0">
-                        <ol class="steps">
-                            <li><span><a href="https://chromewebstore.google.com/detail/eploc/fkpkkenjcfpplmhlfdbabhcdhmhiojhj" target="_blank" rel="noopener noreferrer">Clique aqui</a> e instale a extensão diretamente da Chrome Web Store (funciona no Chrome e no Edge).</span></li>
-                            <li><span>Abra o eproc, SEI ou RUPE — o eploc já começa a funcionar sozinho.</span></li>
-                            <li><span>Clique no ícone da extensão para ativar ou desativar cada melhoria.</span></li>
-                        </ol>
-                    </div>
-
-                    <div id="terms" class="tab-content" role="tabpanel" aria-labelledby="tab-terms" tabindex="0">
-                        <div class="legal-note">
-                            <span class="label">Independência e Responsabilidade</span>
-                            <p>Esta extensão é uma ferramenta independente. <strong>NÃO possui vínculo, endosso ou homologação oficial com o Tribunal de Justiça de Minas Gerais (TJMG), o CNJ ou qualquer instituição do Poder Judiciário.</strong></p>
-                            <p>O desenvolvedor não se responsabiliza por falhas de exibição, erros de preenchimento ou por perda de prazos. É obrigação exclusiva do usuário conferir a exatidão de todos os atos realizados nos sistemas oficiais.</p>
-                        </div>
-                        <div class="legal-note">
-                            <span class="label">Privacidade (LGPD)</span>
-                            <p>Em conformidade com a Lei Geral de Proteção de Dados, <strong>esta extensão funciona 100% localmente no seu navegador, por padrão</strong>. O desenvolvedor não opera servidor algum: nenhuma informação de processos, senhas ou dados pessoais é enviada para servidores externos.</p>
-                            <p>Opcionalmente, e desativado por padrão, é possível conectar sua conta Google para salvar um backup das suas configurações e dados locais (contatos de e-mail, modelos de mensagem, destaques) na pasta de dados privada da sua própria conta do Google Drive. Esse envio só ocorre se você habilitar o recurso; os dados ficam na sua conta, não em servidores do desenvolvedor ou de terceiros, e podem ser revisados, restaurados ou excluídos por você a qualquer momento.</p>
-                            <p><strong>Sobre o aviso "Ler e alterar todos os seus dados em todos os Websites":</strong> o eploc só atua nos sites do eproc, SEI, RUPE/TJMG e páginas correlatas do TJMG (como a consulta de dativos) — nunca em sites fora desse escopo. O texto genérico aparece porque o domínio <code>jus.br</code> é compartilhado por dezenas de tribunais diferentes, e o Chrome/Edge trata cada subdomínio (ex.: eproc de cada tribunal) como um site à parte; ao ultrapassar um certo número de sites, o navegador resume tudo nessa frase padrão em vez de listar cada um. Isso costuma reaparecer a cada atualização que adiciona suporte a um novo tribunal ou sistema, exigindo apenas que você clique em "Reativar".</p>
-                        </div>
-                        <div class="legal-note">
-                            <span class="label">Propriedade Intelectual</span>
-                            <p>Todos os direitos sobre o código-fonte, design e funcionalidades desta extensão são reservados ao desenvolvedor. O eploc é programa de computador registrado no Instituto Nacional da Propriedade Industrial (INPI) sob o nº BR 51 2026 008457 1. O uso atual e gratuito das funcionalidades básicas não gera direito adquirido, podendo o desenvolvedor introduzir módulos sob modelo de assinatura no futuro.</p>
-                        </div>
-                    </div>
+                    <ol class="steps">
+                        <li><span><a href="https://chromewebstore.google.com/detail/eploc/fkpkkenjcfpplmhlfdbabhcdhmhiojhj" target="_blank" rel="noopener noreferrer">Instale o eploc na Chrome Web Store</a> (funciona no Chrome e no Edge).</span></li>
+                        <li><span>Abra o eproc, SEI ou RUPE — o eploc já começa a funcionar sozinho.</span></li>
+                        <li><span>Clique no ícone da extensão para ativar ou desativar cada melhoria.</span></li>
+                    </ol>
                 </div>
+            </div>
+        </section>
+
+        <section id="faq">
+            <div class="wrap">
+                <div class="section-head">
+                    <span class="eyebrow">Dúvidas</span>
+                    <h2>Perguntas frequentes</h2>
+                </div>
+                <div class="faq">
+                    <details class="faq-item">
+                        <summary>O Chrome diz que o eploc pode "ler e alterar todos os seus dados em todos os sites". Por quê?</summary>
+                        <p>É um texto genérico do navegador. O eploc só atua no eproc, SEI, RUPE e páginas do TJMG. Como cada tribunal tem seu próprio endereço dentro de <code>jus.br</code>, o Chrome resume a lista nessa frase. Depois de algumas atualizações, pode ser preciso clicar em "Reativar".</p>
+                    </details>
+                    <details class="faq-item">
+                        <summary>É oficial do TJMG?</summary>
+                        <p>Não. O eploc é independente e não tem vínculo com o TJMG, o CNJ ou qualquer tribunal. Ele só melhora a tela — os atos continuam sendo seus e devem ser conferidos como sempre.</p>
+                    </details>
+                    <details class="faq-item">
+                        <summary>Funciona no Edge?</summary>
+                        <p>Sim. Instale pela mesma página da Chrome Web Store.</p>
+                    </details>
+                    <details class="faq-item">
+                        <summary>Quanto custa?</summary>
+                        <p>O eploc é gratuito.</p>
+                    </details>
+                    <details class="faq-item">
+                        <summary>Posso desligar o que não uso?</summary>
+                        <p>Sim. Cada melhoria liga e desliga pelo ícone da extensão.</p>
+                    </details>
+                    <details class="faq-item">
+                        <summary>Encontrei um erro. O que faço?</summary>
+                        <p>Use o formulário <a href="reportar-problema.html">Fale com o eploc</a> ou avise no <a href="https://chat.whatsapp.com/KW8aEPxUKRK3kcJ5yKpCju" target="_blank" rel="noopener noreferrer">grupo do WhatsApp</a>.</p>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <section id="instalar" class="final-cta">
+            <div class="wrap">
+                <h2>Seu próximo processo já pode ser mais rápido.</h2>
+                <a href="https://chromewebstore.google.com/detail/eploc/fkpkkenjcfpplmhlfdbabhcdhmhiojhj" target="_blank" rel="noopener noreferrer" class="btn-primary">Instalar o eploc grátis</a>
+                <p class="cta-note">Chrome e Edge · 100% local · Sem cadastro</p>
             </div>
         </section>
     </main>

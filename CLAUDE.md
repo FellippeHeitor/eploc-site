@@ -8,6 +8,14 @@ páginas via `{% include ... %}` (por isso as páginas começam com front matter
 para seções do index usam `{{ home }}#secao`, que fica vazio no próprio index e vira `index.html`
 nas demais páginas. Abrir o `.html` direto no navegador mostra o `{% include %}` cru; para ver o
 resultado local, use `jekyll serve`. Páginas novas devem ter o front matter e os dois includes.
+Os termos completos (independência, privacidade/LGPD, propriedade intelectual) ficam em
+`termos.html`; o index só tem uma linha de aviso no rodapé. Links antigos para `index.html#terms`
+são redirecionados para `termos.html` por `script.js`.
+
+Ordem do index (pensada para convencer antes de detalhar): hero → faixa de confiança →
+`#demo` (3 vídeos) → `#recursos` (6 cards de benefício) → `#migracao` (PJe → eproc) →
+`#detalhes` (lista completa em acordeões) → `#tutoriais` → `#galeria` → `#privacidade` →
+`#sobre` → `#docs` → `#faq` → CTA final.
 Arquivos do repo que não são do site (este `CLAUDE.md`, `scripts/`) ficam no `exclude` de
 `_config.yml` — o Pages processa Liquid até em `.md` sem front matter, e um `{% ... %}` solto
 nele quebra o build.
@@ -48,16 +56,25 @@ Quando o usuário pedir para "atualizar o site com base no changelog/webstore do
 1. Leia as fontes no projeto da extensão (repo irmão):
    - `/Users/fellippeheitor/git/eploc/src/CHANGELOG.md` — entrada(s) mais recente(s) no topo.
    - `/Users/fellippeheitor/git/eploc/WEBSTORE.md` (raiz do repo, não `src/`) — descrição completa e atual, útil para conferir wording já consolidado.
-2. Em `index.html`, há duas seções que recebem essas novidades:
-   - `#recursos` → `.features` — cards para os recursos **principais/flagship**. A grade tem ~12 cards; ao trazer um recurso novo grande o suficiente para entrar aqui, considere substituir um card mais fraco em vez de só crescer a lista (ver commit `8bcd964` como exemplo desse tipo de curadoria).
-   - `#detalhes` → `.detail-list` — lista de ajustes menores, uma frase curta por `<li><span>...</span></li>`, sem marketing, no mesmo tom direto dos itens existentes.
+2. Em `index.html`, há três seções que recebem essas novidades:
+   - `#recursos` → `.features` — 6 cards ("os que você usa no primeiro dia"), com título de
+     **benefício** (o ganho, não o nome da tela). Mantenha em 6: um recurso novo grande o
+     suficiente para entrar aqui substitui um card mais fraco, que desce para `#detalhes`.
+   - `#detalhes` → `.detail-list` — lista completa, uma frase curta por
+     `<li><span><strong>Resultado.</strong> Como funciona.</span></li>`: começa pelo ganho em
+     negrito e depois diz o como, no mesmo tom direto dos itens existentes.
+   - `#migracao` — itens específicos de processos migrados do PJe (TJMG) entram aqui, não em
+     `#detalhes`.
 3. Critério prático: novidades "novas funcionalidades" pequenas/específicas do changelog viram itens de `.detail-list`; só recursos realmente grandes e visuais ganham um novo `.feature-card` (com ícone SVG inline simples, no estilo dos existentes). Itens de "Melhorias" e "Corrigido" do changelog normalmente **não** entram no site — são polimento interno, não recurso novo.
 4. Não crie uma seção de changelog no site nem liste versão/data — o site fala de recursos, não de releases.
-   Única exceção: a faixa "Novidades" no hero (`.whats-new`, 2-3 links para `#detalhes`) destaca
+   Única exceção: a faixa "Novidades" no hero (`.whats-new`, 2-3 links) destaca
    os recursos mais recentes, sem versão nem data. Ao atualizar o site, troque o texto dela pelos
-   recursos novos da vez.
-5. Grupos de `#detalhes`: cada `<li>` entra no grupo temático (`.detail-group`) que combina; crie
-   um novo grupo só se nenhum servir. Cards e itens podem declarar `data-video="<id do script>"`:
+   recursos novos da vez. Cada link aponta para o `id` do próprio `<li>` (ou da seção, como
+   `#migracao`); `script.js` abre o acordeão que contém o alvo antes de rolar até ele.
+5. Grupos de `#detalhes`: são acordeões (`<details class="detail-group">`) nomeados pela tarefa,
+   não pela tela (Encontrar mais rápido, Navegar pelo processo, Copiar e preencher sem redigitar,
+   Não deixar nada passar, Minutas e e-mails, O eproc do seu jeito, SEI/RUPE/TJMG, Backup e
+   configurações). Cada `<li>` entra no grupo que combina; crie um novo só se nenhum servir. Cards e itens podem declarar `data-video="<id do script>"`:
    quando esse id tem URL em `videos.json`, `script.js` acrescenta sozinho um botão "Ver vídeo".
    Ao adicionar um item/card de um script que tem vídeo (ou terá), preencha o `data-video`.
 6. Depois de editar, mostre o diff relevante mas não rode build nem commit a menos que pedido.
