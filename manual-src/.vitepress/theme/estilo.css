@@ -1,0 +1,55 @@
+/* Cores da identidade do eploc (as mesmas de styles.css do site). */
+:root {
+  --vp-c-brand-1: #c4124f;
+  --vp-c-brand-2: #e8195f;
+  --vp-c-brand-3: #e8195f;
+  --vp-c-brand-soft: rgba(232, 25, 95, 0.12);
+  --eploc-ciano: #1f8fb0;
+  --eploc-ciano-soft: rgba(47, 180, 217, 0.14);
+}
+.dark {
+  --vp-c-brand-1: #ff7fb3;
+  --vp-c-brand-2: #ff5fa0;
+  --vp-c-brand-3: #e8195f;
+  --vp-c-brand-soft: rgba(255, 95, 160, 0.16);
+  --eploc-ciano: #5fd3ef;
+  --eploc-ciano-soft: rgba(95, 211, 239, 0.14);
+}
+
+.selos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 0 8px;
+}
+.selo {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 22px;
+  border: 1px solid var(--vp-c-divider);
+  color: var(--vp-c-text-2);
+  background: var(--vp-c-bg-soft);
+}
+.selo-plataforma {
+  color: var(--eploc-ciano);
+  background: var(--eploc-ciano-soft);
+  border-color: transparent;
+}
+.selo-free {
+  color: var(--vp-c-green-1);
+  background: var(--vp-c-green-soft);
+  border-color: transparent;
+}
+.selo-pro {
+  color: var(--vp-c-brand-1);
+  background: var(--vp-c-brand-soft);
+  border-color: transparent;
+}
+
+/* Na página, os selos ficam acima do título; o h1 vem logo depois. */
+.vp-doc .selos + div h1 {
+  margin-top: 4px;
+}

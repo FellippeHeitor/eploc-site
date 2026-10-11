@@ -33,9 +33,18 @@ as páginas com front matter. Páginas `noindex` ficam fora via `defaults` (`sit
 `_config.yml` — inclua ali qualquer página nova que não deva ser indexada. Páginas cuja URL
 canônica é sem `.html` (`privacidade`, `migracao-pje`) declaram `permalink: /<nome>` no front
 matter, para o sitemap listar a mesma URL do `canonical`.
-Arquivos do repo que não são do site (este `CLAUDE.md`, `scripts/`) ficam no `exclude` de
+Arquivos do repo que não são do site (este `CLAUDE.md`, `scripts/`, `manual-src/`) ficam no `exclude` de
 `_config.yml` — o Pages processa Liquid até em `.md` sem front matter, e um `{% ... %}` solto
 nele quebra o build.
+
+## Manual (`/manual`)
+
+O manual oficial fica em https://eploc.com.br/manual. Fonte em Markdown (VitePress) em
+`manual-src/` — fora do Jekyll pelo `exclude` — e saída gerada em `manual/` pelo workflow
+`.github/workflows/manual.yml` a cada push no `main` que altera `manual-src/` (o workflow commita o
+resultado; dê `git pull` antes do próximo commit e não edite `manual/` à mão). Cada funcionalidade
+tem uma página `manual-src/funcionalidades/<id do script>.md`; a ajuda contextual da extensão linka
+para esse caminho, então não renomeie os arquivos. Detalhes (molde das páginas, front matter, comandos) em `manual-src/README.md`.
 
 ## Recursos consumidos pela extensão
 
