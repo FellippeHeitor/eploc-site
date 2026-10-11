@@ -17,6 +17,12 @@ limitado dos dados do Google"). Os termos de uso (independência, propriedade in
 `termos.html`, que só resume a privacidade e aponta para a política; o index só tem uma linha
 de aviso no rodapé. Links antigos para `index.html#terms`
 são redirecionados para `termos.html` por `script.js`.
+A migração PJe → eproc tem página própria, `migracao-pje.html` (https://eploc.com.br/migracao-pje,
+pensada para quem busca o assunto no Google); a seção `#migracao` do index é um resumo que aponta
+para ela, e o rodapé linka a página. Item novo de processo migrado entra nos dois lugares. A página
+reaproveita os botões "Ver vídeo" (`data-video`) — por isso inclui o `#video-modal`.
+O `index.html` traz dados estruturados `SoftwareApplication` (JSON-LD no `<head>`); se mudar a
+descrição, o preço ou os navegadores suportados, atualize também esse bloco.
 
 Ordem do index (pensada para convencer antes de detalhar): hero → faixa de confiança →
 `#demo` (3 vídeos) → `#recursos` (6 cards de benefício) → `#migracao` (PJe → eproc) →
@@ -70,7 +76,7 @@ Quando o usuário pedir para "atualizar o site com base no changelog/webstore do
      `<li><span><strong>Resultado.</strong> Como funciona.</span></li>`: começa pelo ganho em
      negrito e depois diz o como, no mesmo tom direto dos itens existentes.
    - `#migracao` — itens específicos de processos migrados do PJe (TJMG) entram aqui, não em
-     `#detalhes`.
+     `#detalhes`, e também em `migracao-pje.html`.
 3. Critério prático: novidades "novas funcionalidades" pequenas/específicas do changelog viram itens de `.detail-list`; só recursos realmente grandes e visuais ganham um novo `.feature-card` (com ícone SVG inline simples, no estilo dos existentes). Itens de "Melhorias" e "Corrigido" do changelog normalmente **não** entram no site — são polimento interno, não recurso novo.
 4. Não crie uma seção de changelog no site nem liste versão/data — o site fala de recursos, não de releases.
    Única exceção: a faixa "Novidades" no hero (`.whats-new`, 2-3 links) destaca
