@@ -34,7 +34,7 @@ inclui um novo tribunal.
 | Aba ativa (`activeTab`) | O popup saber em que página você está, para listar as funcionalidades que valem nela. |
 | Identidade (`identity`) | Conectar sua conta Google ao [backup no Google Drive](./geral/backup-google-drive), só se você ligar esse recurso. |
 | Alarmes (`alarms`) | Agendar a sincronização com o Google Drive. |
-| Scripts e documento auxiliar (`scripting`, `offscreen`) | Não são usados pelas funcionalidades descritas neste manual. |
+| Scripts e documento auxiliar (`scripting`, `offscreen`) | Recursos técnicos do navegador que permitem à extensão realizar tarefas em segundo plano, sem abrir janelas. |
 
 Nenhuma dessas permissões envia dados ao desenvolvedor. Detalhes em
 [Privacidade e dados](./privacidade).
