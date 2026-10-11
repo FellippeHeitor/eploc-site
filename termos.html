@@ -1,0 +1,50 @@
+---
+---
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Termos e privacidade — eploc</title>
+    <meta name="description" content="Termos de uso, privacidade (LGPD) e propriedade intelectual do eploc, extensão independente para eproc, SEI e RUPE.">
+
+    <link rel="icon" type="image/png" sizes="32x32" href="icon32.png">
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+
+    {% include nav.html %}
+
+    <main>
+        <section id="terms">
+            <div class="wrap">
+                <div class="section-head">
+                    <span class="eyebrow">Termos</span>
+                    <h2>Termos e privacidade</h2>
+                </div>
+                <div class="docs-shell">
+                    <div class="legal-note">
+                        <span class="label">Independência e Responsabilidade</span>
+                        <p>Esta extensão é uma ferramenta independente. <strong>NÃO possui vínculo, endosso ou homologação oficial com o Tribunal de Justiça de Minas Gerais (TJMG), o CNJ ou qualquer instituição do Poder Judiciário.</strong></p>
+                        <p>O desenvolvedor não se responsabiliza por falhas de exibição, erros de preenchimento ou por perda de prazos. É obrigação exclusiva do usuário conferir a exatidão de todos os atos realizados nos sistemas oficiais.</p>
+                    </div>
+                    <div class="legal-note">
+                        <span class="label">Privacidade (LGPD)</span>
+                        <p>Em conformidade com a Lei Geral de Proteção de Dados, <strong>esta extensão funciona 100% localmente no seu navegador, por padrão</strong>. O desenvolvedor não opera servidor algum: nenhuma informação de processos, senhas ou dados pessoais é enviada para servidores externos.</p>
+                        <p>Opcionalmente, e desativado por padrão, é possível conectar sua conta Google para salvar um backup das suas configurações e dados locais (contatos de e-mail, modelos de mensagem, destaques) na pasta de dados privada da sua própria conta do Google Drive. Esse envio só ocorre se você habilitar o recurso; os dados ficam na sua conta, não em servidores do desenvolvedor ou de terceiros, e podem ser revisados, restaurados ou excluídos por você a qualquer momento.</p>
+                        <p><strong>Sobre o aviso "Ler e alterar todos os seus dados em todos os Websites":</strong> o eploc só atua nos sites do eproc, SEI, RUPE/TJMG e páginas correlatas do TJMG (como a consulta de dativos) — nunca em sites fora desse escopo. O texto genérico aparece porque o domínio <code>jus.br</code> é compartilhado por dezenas de tribunais diferentes, e o Chrome/Edge trata cada subdomínio (ex.: eproc de cada tribunal) como um site à parte; ao ultrapassar um certo número de sites, o navegador resume tudo nessa frase padrão em vez de listar cada um. Isso costuma reaparecer a cada atualização que adiciona suporte a um novo tribunal ou sistema, exigindo apenas que você clique em "Reativar".</p>
+                    </div>
+                    <div class="legal-note">
+                        <span class="label">Propriedade Intelectual</span>
+                        <p>Todos os direitos sobre o código-fonte, design e funcionalidades desta extensão são reservados ao desenvolvedor. O eploc é programa de computador registrado no Instituto Nacional da Propriedade Industrial (INPI) sob o nº BR 51 2026 008457 1. O uso atual e gratuito das funcionalidades básicas não gera direito adquirido, podendo o desenvolvedor introduzir módulos sob modelo de assinatura no futuro.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    {% include footer.html %}
+
+</body>
+</html>

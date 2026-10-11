@@ -74,56 +74,29 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Lógica para alternar as abas (Tabs) com acessibilidade
-    const tabButtons = document.querySelectorAll('.tab-btn');
-    const tabContents = document.querySelectorAll('.tab-content');
-
-    function activateTab(button) {
-        tabButtons.forEach(btn => {
-            btn.classList.remove('active');
-            btn.setAttribute('aria-selected', 'false');
-        });
-
-        tabContents.forEach(content => {
-            content.classList.remove('active');
-        });
-
-        button.classList.add('active');
-        button.setAttribute('aria-selected', 'true');
-
-        const targetId = button.getAttribute('data-target');
-        const targetContent = document.getElementById(targetId);
-
-        if (targetContent) {
-            targetContent.classList.add('active');
-        }
+    // Os termos ficavam numa aba de #docs (index.html#terms); links antigos,
+    // inclusive os da extensão, seguem para a página própria
+    if (location.hash === '#terms' && document.getElementById('docs')) {
+        location.replace('termos.html');
+        return;
     }
 
-    tabButtons.forEach(button => {
-        button.addEventListener('click', (e) => {
-            e.preventDefault();
-            activateTab(button);
-        });
+    // Links para um item dentro de um acordeão de #detalhes (ex.: faixa "Novidades")
+    // abrem o <details> antes de rolar até ele
+    function openDetailsFor(hash) {
+        const target = hash.length > 1 && document.getElementById(decodeURIComponent(hash.slice(1)));
+        const details = target && target.closest('details');
+        if (details) details.open = true;
+        return target;
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+        link.addEventListener('click', () => openDetailsFor(link.getAttribute('href')));
     });
 
-    // Links do rodapé que apontam para uma aba específica dentro de #docs. Fora do index a aba
-    // não existe e o link segue para index.html#<aba>, tratado logo abaixo.
-    document.querySelectorAll('[data-tab-link]').forEach(link => {
-        link.addEventListener('click', (e) => {
-            const targetButton = document.getElementById(`tab-${link.dataset.tabLink}`);
-            if (targetButton) {
-                e.preventDefault();
-                activateTab(targetButton);
-                targetButton.closest('section').scrollIntoView({ behavior: 'smooth' });
-            }
-        });
-    });
-
-    // Chegada por index.html#<aba> (ex.: #terms vindo de outra página)
-    const hashTabButton = location.hash && document.getElementById(`tab-${location.hash.slice(1)}`);
-    if (hashTabButton) {
-        activateTab(hashTabButton);
-        hashTabButton.closest('section').scrollIntoView();
+    if (location.hash) {
+        const hashTarget = openDetailsFor(location.hash);
+        if (hashTarget && hashTarget.closest('details')) hashTarget.scrollIntoView();
     }
 
     // Reproduz os vídeos da galeria apenas quando visíveis, e pausa fora da tela
