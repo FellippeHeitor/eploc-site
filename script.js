@@ -392,6 +392,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!items.length) return;
 
         attachVideoLinks(items);
+        if (!videoGrid) return;
 
         const cards = items.map(buildVideoCard);
         videoGrid.replaceChildren(...cards);
@@ -399,7 +400,8 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelectorAll('[data-needs-videos]').forEach(el => { el.hidden = false; });
     }
 
-    if (videoGrid && videoModal) {
+    // Páginas sem a galeria (ex.: migracao-pje.html) só usam os botões "Ver vídeo"
+    if (videoModal) {
         loadVideoGallery().catch(() => {});
 
         videoModalClose.addEventListener('click', closeTutorialModal);
