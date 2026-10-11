@@ -84,5 +84,5 @@ Sim. Em **Exportar bases de dados**, exporte só os modelos ou os contatos e env
 
 ### Quanto custa?
 
-As funcionalidades descritas neste manual são gratuitas e trazem o selo **Free**. Funcionalidades
-de um futuro plano **Pro** serão identificadas pelo selo **Pro** na página de cada uma.
+As funcionalidades descritas neste manual são gratuitas e trazem o selo **Free** na página de cada
+uma.
