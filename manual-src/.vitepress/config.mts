@@ -1,6 +1,7 @@
 import { readdirSync, readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { defineConfig, type DefaultTheme } from "vitepress";
+import { ORDEM_GRUPOS, rotuloGrupo } from "./grupos";
 
 const raiz = fileURLToPath(new URL("..", import.meta.url));
 
@@ -31,29 +32,12 @@ function lerPaginas(pasta: string): Pagina[] {
     });
 }
 
-// Ordem dos grupos na barra lateral: a mesma da página de configurações da extensão.
-const ORDEM_GRUPOS: [plataforma: string, grupo: string][] = [
-  ["eproc", "Menu superior"],
-  ["eproc", "Painel do processo"],
-  ["eproc", "Eventos"],
-  ["eproc", "Árvore e minuta"],
-  ["eproc", "Pesquisa e filtros"],
-  ["eproc", "Relatórios"],
-  ["eproc", "Destaques e lembretes"],
-  ["eproc", "E-mail"],
-  ["eproc", "Monitoramento"],
-  ["eproc", "Migração PJe (TJMG)"],
-  ["eproc", "Geral do eproc"],
-  ["RUPE", "RUPE"],
-  ["SEI", "SEI"],
-  ["TJMG", "TJMG"],
-];
 
 function sidebarFuncionalidades(): DefaultTheme.SidebarItem[] {
   const paginas = lerPaginas("funcionalidades");
   const porTitulo = (a: Pagina, b: Pagina) => a.title.localeCompare(b.title, "pt-BR");
   const grupos = ORDEM_GRUPOS.map(([plataforma, grupo]) => ({
-    text: plataforma === grupo ? plataforma : `${plataforma} · ${grupo}`,
+    text: rotuloGrupo(plataforma, grupo),
     collapsed: true,
     items: paginas
       .filter((p) => p.plataforma === plataforma && p.grupo === grupo)

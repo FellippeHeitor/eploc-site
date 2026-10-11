@@ -2,27 +2,16 @@
 import { computed } from "vue";
 import { withBase } from "vitepress";
 import { data } from "../funcionalidades.data";
+import { ORDEM_GRUPOS, rotuloGrupo } from "../../grupos";
 
-const ORDEM_PLATAFORMAS = ["eproc", "RUPE", "SEI", "TJMG"];
-
-const grupos = computed(() => {
-  const mapa = new Map<string, typeof data>();
-  for (const f of data) {
-    const chave = f.plataforma === f.grupo ? f.plataforma : `${f.plataforma} · ${f.grupo}`;
-    if (!mapa.has(chave)) mapa.set(chave, []);
-    mapa.get(chave)!.push(f);
-  }
-  return [...mapa.entries()]
-    .sort(
-      ([a, la], [b, lb]) =>
-        ORDEM_PLATAFORMAS.indexOf(la[0].plataforma) - ORDEM_PLATAFORMAS.indexOf(lb[0].plataforma) ||
-        a.localeCompare(b, "pt-BR")
-    )
-    .map(([nome, itens]) => ({
-      nome,
-      itens: [...itens].sort((x, y) => x.title.localeCompare(y.title, "pt-BR")),
-    }));
-});
+const grupos = computed(() =>
+  ORDEM_GRUPOS.map(([plataforma, grupo]) => ({
+    nome: rotuloGrupo(plataforma, grupo),
+    itens: data
+      .filter((f) => f.plataforma === plataforma && f.grupo === grupo)
+      .sort((x, y) => x.title.localeCompare(y.title, "pt-BR")),
+  })).filter((g) => g.itens.length)
+);
 </script>
 
 <template>
