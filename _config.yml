@@ -17,3 +17,4 @@ defaults:
 exclude:
   - CLAUDE.md
   - scripts/
+  - manual-src/
