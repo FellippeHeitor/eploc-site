@@ -11,13 +11,19 @@ cd manual-src
 npm ci
 npm run dev        # pré-visualização em http://localhost:5173/manual/
 npm run build      # gera ../manual
+npm run pdf        # gera ../manual/eploc-manual.pdf (depois do build)
 ```
+
+O PDF é montado por `scripts/gerar-pdf.mjs`: abre cada página já construída no Chromium, na ordem
+da barra lateral, e junta tudo num documento com capa e sumário (links internos funcionando). Usa
+o Google Chrome instalado ou o executável indicado em `CHROME_PATH`. A versão da extensão citada
+na capa vem de `.vitepress/versao.json` — atualize-a a cada release da extensão.
 
 
 ## Publicação
 
 O workflow `.github/workflows/manual.yml` roda a cada push no `main` que altera `manual-src/`:
-gera `manual/` e commita o resultado (mesmo esquema das thumbnails). Depois de um push aqui, dê
+gera `manual/` (com o PDF em `manual/eploc-manual.pdf`) e commita o resultado (mesmo esquema das thumbnails). Depois de um push aqui, dê
 `git pull` antes do próximo commit. Não edite `manual/` à mão.
 
 ## Organização

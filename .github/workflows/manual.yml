@@ -1,6 +1,6 @@
 name: Manual
 
-# Gera o manual (VitePress, fonte em manual-src/) na pasta manual/, que o
+# Gera o manual (VitePress, fonte em manual-src/) e o PDF na pasta manual/, que o
 # GitHub Pages publica em https://eploc.com.br/manual, e commita o resultado.
 on:
   push:
@@ -33,6 +33,7 @@ jobs:
         run: |
           npm ci
           npm run build
+          npm run pdf
 
       - name: Commit e publicação
         env:

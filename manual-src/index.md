@@ -19,6 +19,8 @@ tem e o que ela não faz.
 - **Procurando um recurso?** Use a busca (no topo da página) ou a lista de
   [Funcionalidades](./funcionalidades/).
 - **Dúvidas sobre dados?** Veja [Privacidade e dados](./privacidade).
+- **Precisa enviar o manual a um tribunal ou à equipe de TI?** Baixe a
+  [versão em PDF](https://eploc.com.br/manual/eploc-manual.pdf), com todo o conteúdo deste site.
 
 ## Como ler as páginas de funcionalidade
 

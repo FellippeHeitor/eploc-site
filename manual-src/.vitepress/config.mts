@@ -77,6 +77,7 @@ export default defineConfig({
       { text: "Funcionalidades", link: "/funcionalidades/" },
       { text: "Privacidade", link: "/privacidade" },
       { text: "Dúvidas", link: "/perguntas-frequentes" },
+      { text: "PDF", link: "https://eploc.com.br/manual/eploc-manual.pdf", target: "_blank" },
       { text: "eploc.com.br", link: "https://eploc.com.br/" },
     ],
     sidebar: [
