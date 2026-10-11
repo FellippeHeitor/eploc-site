@@ -844,6 +844,7 @@ section { padding: 4.5rem 0; scroll-margin-top: 4.5rem; }
     font-size: 1.1rem;
     color: var(--ink-muted);
 }
+.maker blockquote p + p { margin-top: .8rem; }
 .maker-sign { margin-top: .8rem; font-family: 'Baloo 2', sans-serif; font-weight: 700; color: var(--ink); }
 .maker-cta { justify-content: center; }
 
