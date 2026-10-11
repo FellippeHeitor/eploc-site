@@ -10,8 +10,12 @@ páginas via `{% include ... %}` (por isso as páginas começam com front matter
 para seções do index usam `{{ home }}#secao`, que fica vazio no próprio index e vira `index.html`
 nas demais páginas. Abrir o `.html` direto no navegador mostra o `{% include %}` cru; para ver o
 resultado local, use `jekyll serve`. Páginas novas devem ter o front matter e os dois includes.
-Os termos completos (independência, privacidade/LGPD, propriedade intelectual) ficam em
-`termos.html`; o index só tem uma linha de aviso no rodapé. Links antigos para `index.html#terms`
+A política de privacidade fica em `privacidade.html`, publicada em https://eploc.com.br/privacidade
+(o Pages serve `.html` sem extensão; é a URL informada na Chrome Web Store e na tela de
+consentimento OAuth do Google, por isso não mude o nome do arquivo nem tire o trecho "Uso
+limitado dos dados do Google"). Os termos de uso (independência, propriedade intelectual) ficam em
+`termos.html`, que só resume a privacidade e aponta para a política; o index só tem uma linha
+de aviso no rodapé. Links antigos para `index.html#terms`
 são redirecionados para `termos.html` por `script.js`.
 
 Ordem do index (pensada para convencer antes de detalhar): hero → faixa de confiança →
