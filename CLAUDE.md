@@ -28,6 +28,11 @@ Ordem do index (pensada para convencer antes de detalhar): hero → faixa de con
 `#demo` (3 vídeos) → `#recursos` (6 cards de benefício) → `#migracao` (PJe → eproc) →
 `#detalhes` (lista completa em acordeões) → `#tutoriais` → `#galeria` → `#privacidade` →
 `#sobre` → `#docs` → `#faq` → CTA final.
+`/sitemap.xml` e `/robots.txt` são gerados pelo plugin `jekyll-sitemap` (`_config.yml`), com todas
+as páginas com front matter. Páginas `noindex` ficam fora via `defaults` (`sitemap: false`) em
+`_config.yml` — inclua ali qualquer página nova que não deva ser indexada. Páginas cuja URL
+canônica é sem `.html` (`privacidade`, `migracao-pje`) declaram `permalink: /<nome>` no front
+matter, para o sitemap listar a mesma URL do `canonical`.
 Arquivos do repo que não são do site (este `CLAUDE.md`, `scripts/`) ficam no `exclude` de
 `_config.yml` — o Pages processa Liquid até em `.md` sem front matter, e um `{% ... %}` solto
 nele quebra o build.

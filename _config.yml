@@ -1,3 +1,18 @@
+# URL pública, usada pelo jekyll-sitemap para montar /sitemap.xml (e o robots.txt que o aponta)
+url: https://eploc.com.br
+
+plugins:
+  - jekyll-sitemap
+
+# Páginas com <meta name="robots" content="noindex"> ficam fora do sitemap
+defaults:
+  - scope: { path: desinstalar.html }
+    values: { sitemap: false }
+  - scope: { path: reportar-problema.html }
+    values: { sitemap: false }
+  - scope: { path: video.html }
+    values: { sitemap: false }
+
 # Arquivos do repo que não fazem parte do site publicado
 exclude:
   - CLAUDE.md
