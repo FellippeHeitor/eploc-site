@@ -1,6 +1,8 @@
 # eploc-site
 
-Site institucional da extensão eploc. Estático: `index.html`, `styles.css`, `script.js`.
+Site institucional da extensão eploc, publicado em https://eploc.com.br (domínio próprio via `CNAME`;
+o endereço antigo `fellippeheitor.github.io/eploc-site/` redireciona para ele). Estático: `index.html`,
+`styles.css`, `script.js`. URLs absolutas (`og:image`, `og:url`, `canonical`) usam o domínio.
 
 O GitHub Pages publica com Jekyll (build "legacy" do branch `main`). O menu (`<nav>` + menu
 mobile) e o rodapé ficam em `_includes/nav.html` e `_includes/footer.html`, compartilhados pelas
