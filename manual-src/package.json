@@ -1,0 +1,17 @@
+{
+  "name": "eploc-manual",
+  "private": true,
+  "type": "module",
+  "description": "Manual oficial do eploc (VitePress). Publicado em https://eploc.com.br/manual.",
+  "scripts": {
+    "dev": "vitepress dev",
+    "build": "vitepress build",
+    "preview": "vitepress preview",
+    "pdf": "node scripts/gerar-pdf.mjs"
+  },
+  "devDependencies": {
+    "playwright-core": "^1.56.1",
+    "vitepress": "1.6.4",
+    "vue": "3.5.13"
+  }
+}

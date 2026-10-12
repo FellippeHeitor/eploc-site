@@ -1,0 +1,53 @@
+name: Manual
+
+# Gera o manual (VitePress, fonte em manual-src/) e o PDF na pasta manual/, que o
+# GitHub Pages publica em https://eploc.com.br/manual, e commita o resultado.
+on:
+  push:
+    branches: [main]
+    paths: [manual-src/**, .github/workflows/manual.yml]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: manual
+  cancel-in-progress: false
+
+jobs:
+  manual:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: manual-src/package-lock.json
+
+      - name: Build
+        working-directory: manual-src
+        run: |
+          npm ci
+          npm run build
+          npm run pdf
+
+      - name: Commit e publicação
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git add -A manual
+          if git diff --cached --quiet; then
+            echo "Manual sem alterações."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "chore: atualiza o manual publicado"
+          git pull --rebase
+          git push
+          # Pushes feitos com o GITHUB_TOKEN podem não disparar o build do Pages
+          gh api -X POST "repos/${{ github.repository }}/pages/builds" || true
