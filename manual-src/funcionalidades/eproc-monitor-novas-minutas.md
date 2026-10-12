@@ -29,7 +29,7 @@ ela e a linha fica destacada, para você notar a novidade.
 
 Não há opções além de ligar e desligar.
 
-## Limitações e problemas conhecidos
+## Observações
 
 - Só percebe minutas que aparecem na página enquanto ela está aberta. Não avisa sobre minutas
   criadas em processos que não estão abertos.

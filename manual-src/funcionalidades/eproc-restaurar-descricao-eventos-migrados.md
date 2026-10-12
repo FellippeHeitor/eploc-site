@@ -38,7 +38,7 @@ cada documento.
 
 Não há opções além de ligar e desligar.
 
-## Limitações e problemas conhecidos
+## Observações
 
 - É preciso abrir a página do processo antes. As descrições memorizadas valem por 30 minutos.
 - Com vários processos abertos em abas, a substituição só acontece nas telas do último processo cuja

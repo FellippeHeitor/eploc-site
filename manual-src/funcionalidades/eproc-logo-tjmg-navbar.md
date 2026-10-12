@@ -32,7 +32,7 @@ reconhecer.
 
 Não há opções além de ligar e desligar.
 
-## Limitações e problemas conhecidos
+## Observações
 
 Só tem efeito onde o eproc mostra esse link (no eproc do TJMG). Nos demais tribunais, não muda
 nada.

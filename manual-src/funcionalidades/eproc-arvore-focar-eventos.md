@@ -31,7 +31,7 @@ destaca e, se um documento foi indicado, abre esse documento.
 Não tem interruptor próprio: funciona sempre que o
 [Atalho para árvore no menu da minuta](./eproc-atalho-arvore-minuta) estiver ligado.
 
-## Limitações e problemas conhecidos
+## Observações
 
 - O evento é localizado pelo número "(N)" mostrado na árvore. Se o evento não estiver na árvore
   (por exemplo, por filtros aplicados), nada é destacado.

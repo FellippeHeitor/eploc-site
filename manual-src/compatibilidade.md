@@ -38,6 +38,11 @@ Outros tribunais que adotam o eproc ainda não estão habilitados: cada novo end
 pedir as permissões de novo, então eles são incluídos conforme a procura. Se você usa o eproc de um
 tribunal que não está na lista, fale com o desenvolvedor (veja [Contato](./contato)).
 
+Alguns tribunais personalizam o eproc (telas, campos, nomes de rotinas). Nesses casos, uma
+funcionalidade do eploc pode se comportar de forma diferente da descrita neste manual. Se alguma
+não funcionar como esperado no seu tribunal, avise pelo [Contato](./contato), informando o tribunal,
+a tela e o que aconteceu.
+
 ### Outros sistemas
 
 | Sistema | Endereço | Funcionalidades |
@@ -60,3 +65,7 @@ elas simplesmente não encontram o que procuram e não alteram nada.
 O eproc, o SEI e o RUPE são atualizados pelos tribunais sem aviso. Uma mudança de tela pode fazer
 uma funcionalidade deixar de funcionar até o eploc ser ajustado. Nesse caso, desligue a
 funcionalidade no [popup](./geral/popup) e avise pelo [Contato](./contato).
+
+Antes de abrir um chamado no suporte do tribunal sobre uma falha no sistema, desative o eploc e
+tente de novo. Veja
+[O sistema do tribunal apresentou um erro](./perguntas-frequentes#o-sistema-do-tribunal-apresentou-um-erro-devo-abrir-um-chamado).

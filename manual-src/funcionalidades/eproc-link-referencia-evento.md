@@ -39,7 +39,7 @@ abertos a partir do processo, menções como "evento 31, DEC1" também viram lin
 |---|---|---|
 | Em documentos abertos a partir do processo, transformar menções a eventos em links que saltam até o evento na página do processo | ligada | Desligada, os links só aparecem na própria página do processo. |
 
-## Limitações e problemas conhecidos
+## Observações
 
 - Nos documentos, os links só funcionam enquanto a página do processo que os abriu continuar aberta.
   Se ela for fechada, os links voltam a ser texto comum.

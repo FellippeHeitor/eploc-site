@@ -31,7 +31,7 @@ inteiro.
 |---|---|---|
 | Simplificar nomes de perfil (remove a palavra "USUÁRIO" quando repetida) | desligada | Encurta nomes como "EEP V.UNICA/USUÁRIO EPROC" para "EEP V.UNICA/EPROC", no seletor e na lista de perfis. |
 
-## Limitações e problemas conhecidos
+## Observações
 
 - A largura mínima é de 170 pixels, a mesma do eproc.
 - Quando falta espaço no menu (janela estreita), o seletor encolhe como os demais itens e o nome

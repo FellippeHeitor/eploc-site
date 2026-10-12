@@ -37,7 +37,7 @@ localizadores), na caixa de busca da lista.
 Este interruptor também decide se o campo **Novo localizador** aceita vários trechos em qualquer
 ordem. Veja [Filtro por trechos no campo de novo localizador](./eproc-filtro-novo-localizador).
 
-## Limitações e problemas conhecidos
+## Observações
 
 - Nesta lista, os resultados não são reordenados por relevância: eles só são filtrados, na ordem do
   eproc.

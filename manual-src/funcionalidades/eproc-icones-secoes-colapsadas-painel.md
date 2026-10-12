@@ -44,7 +44,7 @@ Tudo é lembrado separadamente para cada perfil/unidade do eproc.
 | Cor do glow | #00d9ff | Só com o glow ligado. |
 | Centralizar rolagem até a seção fixada ao carregar a página | ligada | Leva a tela até a seção fixada. |
 
-## Limitações e problemas conhecidos
+## Observações
 
 - Sem nenhuma seção fixada ainda, o Relatório Geral é fixado por padrão.
 - Para as seções que o eproc já permite recolher, o estado aberto/recolhido continua sendo guardado

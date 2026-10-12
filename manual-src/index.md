@@ -19,7 +19,7 @@ tem e o que ela não faz.
 - **Procurando um recurso?** Use a busca (no topo da página) ou a lista de
   [Funcionalidades](./funcionalidades/).
 - **Dúvidas sobre dados?** Veja [Privacidade e dados](./privacidade).
-- **Precisa enviar o manual a um tribunal ou à equipe de TI?** Baixe a
+- **Precisa enviar o manual a um tribunal ou a outra instituição?** Baixe a
   [versão em PDF](https://eploc.com.br/manual/eploc-manual.pdf), com todo o conteúdo deste site.
 
 ## Como ler as páginas de funcionalidade
@@ -28,12 +28,12 @@ Toda página de funcionalidade segue o mesmo molde:
 
 | Parte | O que traz |
 |---|---|
-| Selos no topo | Sistema (eproc, RUPE, SEI ou TJMG), plano (**Free** ou **Pro**), versão em que surgiu e se vem ligada ou desligada |
+| Selos no topo | Sistema (eproc, RUPE, SEI ou TJMG), plano (**Gratuito** ou **Pro**), versão em que surgiu e se vem ligada ou desligada |
 | O que faz | Resumo em 2 ou 3 frases |
 | Onde aparece | Sistema e tela |
 | Passo a passo | Como usar |
 | Configurações e opções | As opções do card da funcionalidade, com o valor padrão |
-| Limitações e problemas conhecidos | O que ela não faz ou onde pode falhar |
+| Observações | Características, cuidados e o que ela não faz |
 
 O nome de cada página é o mesmo que aparece nas configurações do eploc, para você encontrar o card
 correspondente com a busca das configurações.

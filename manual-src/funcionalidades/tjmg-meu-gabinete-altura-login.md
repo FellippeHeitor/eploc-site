@@ -29,7 +29,7 @@ Não é preciso fazer nada: ao abrir o Meu Gabinete, o quadro de login já apare
 
 Não há opções além de ligar e desligar.
 
-## Limitações e problemas conhecidos
+## Observações
 
 - A altura do quadro é fixada em 800 pixels. Em telas mais baixas, pode ser preciso rolar a página.
 

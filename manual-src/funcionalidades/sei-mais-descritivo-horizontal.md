@@ -32,10 +32,10 @@ escolher, como "urgente".
 
 | Opção | Padrão | Efeito |
 |---|---|---|
-| Termos para destaque (separados por ;) | `urgente; prioridade;` | Linhas que contêm algum desses termos recebem a cor de destaque. Maiúsculas e acentos não importam. |
+| Termos para destaque (separados por `;`) | `urgente; prioridade;` | Linhas que contêm algum desses termos recebem a cor de destaque. Maiúsculas e acentos não importam. |
 | Cor de destaque | #a5e491 (verde-claro) | Cor de fundo das linhas destacadas. |
 
-## Limitações e problemas conhecidos
+## Observações
 
 - Só atua na tela de controle de processos.
 - Trechos repetitivos dos marcadores, como "Informações prestadas no processo", são omitidos para

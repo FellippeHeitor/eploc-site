@@ -35,7 +35,7 @@ Um clique no número o copia. Quando o processo tramita em Juizado Especial, apa
 | Mover os avisos do topo ("Segredo de Justiça", "Doença Grave" etc.) para o menu superior ao rolar a página | ligada | Mantém os avisos à vista durante a rolagem. |
 | Ocultar o número do processo no painel fixo do processo, deixando só a classe processual | desligada | Evita mostrar o número duas vezes quando o [Painel fixo do processo](./eproc-painel-fixo-processo) também está ligado. |
 
-## Limitações e problemas conhecidos
+## Observações
 
 - O selo "JESP" é deduzido da competência, da classe e do órgão julgador. Varas comuns com Juizado
   Especial anexo não recebem o selo.

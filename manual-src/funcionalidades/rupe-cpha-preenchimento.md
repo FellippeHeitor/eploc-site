@@ -47,7 +47,7 @@ Os campos de seleção do formulário (banco, juiz etc.) também ganham busca po
 
 No card, **Gerenciar rótulos aprendidos** lista os rótulos que o eploc aprendeu e permite apagá-los.
 
-## Limitações e problemas conhecidos
+## Observações
 
 - O reconhecimento depende de como o advogado escreveu os dados. Sempre confira o formulário antes
   de salvar.

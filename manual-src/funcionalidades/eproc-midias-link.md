@@ -35,7 +35,7 @@ gravações, o ícone não aparece.
 
 Não há opções além de ligar e desligar.
 
-## Limitações e problemas conhecidos
+## Observações
 
 - A consulta usa a sua sessão no PJe Mídias (`midias.pje.jus.br`). Se ela expirar, o eploc tenta
   entrar de novo automaticamente. Se não conseguir, o ícone aparece sem número.

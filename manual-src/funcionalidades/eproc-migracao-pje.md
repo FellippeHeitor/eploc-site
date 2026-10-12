@@ -41,7 +41,7 @@ A escolha da caixa fica salva para as próximas migrações.
 | Exibir a opção "Ao concluir, abrir o processo no eproc" ao migrar um único processo | ligada | Mostra a caixa ao lado do botão de importar. |
 | Deixar a opção marcada (acompanha o checkbox da tela de importação) | ligada | Mesmo valor da caixa na tela. Só aparece com a opção anterior ligada. |
 
-## Limitações e problemas conhecidos
+## Observações
 
 - O gráfico é montado com o que o eploc registrou nas suas visitas a essa tela, neste navegador.
 - A abertura automática só é oferecida quando o lote tem um único processo.

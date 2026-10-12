@@ -35,7 +35,7 @@ guardadas ficam reunidas num painel, para consulta.
 
 Não há opções além de ligar e desligar.
 
-## Limitações e problemas conhecidos
+## Observações
 
 - A dica é reconhecida pelo identificador e pelo título que o eproc lhe dá. Se o eproc mudar o
   título de uma dica, ela é tratada como nova e aparece mais uma vez.

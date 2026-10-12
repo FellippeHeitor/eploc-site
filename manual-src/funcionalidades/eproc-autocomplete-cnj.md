@@ -50,7 +50,7 @@ válidos digitados no campo também são formatados automaticamente.
 |---|---|---|
 | Sufixo final (ex.: .8.13.0242) | vazio | Final do número usado para completar. Em branco, é detectado automaticamente ou pedido na primeira vez. |
 
-## Limitações e problemas conhecidos
+## Observações
 
 - O ano é deduzido pelo dígito verificador para processos de 2009 em diante. Se nenhum ano combinar,
   o número não é completado e você precisa digitar o ano.

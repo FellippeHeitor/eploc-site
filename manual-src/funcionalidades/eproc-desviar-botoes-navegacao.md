@@ -32,8 +32,8 @@ lateral (ou na borda da tela, se o menu estiver oculto).
 |---|---|---|
 | Comportamento dos botões de navegação | Mover para a esquerda (padrão) | Também pode ser "Ocultar sempre". |
 
-## Limitações e problemas conhecidos
+## Observações
 
-Nenhuma conhecida.
+Os botões continuam funcionando como no eproc: só mudam de lugar (ou somem, com a opção "Ocultar sempre").
 
 <!-- DEMO: eproc-desviar-botoes-navegacao -->

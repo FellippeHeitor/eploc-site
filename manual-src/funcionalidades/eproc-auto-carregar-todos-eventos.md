@@ -31,7 +31,7 @@ eproc deixa na tela depois.
 |---|---|---|
 | Ao clicar em link de evento ainda não carregado, carregar todos os eventos automaticamente | ligada | Quando um link leva a um evento que ainda não está na tabela, os eventos são carregados antes. |
 
-## Limitações e problemas conhecidos
+## Observações
 
 - Vem desligado: é preciso ligá-lo nas configurações.
 - Se o carregamento não terminar (o evento 1 não chega a aparecer na tabela), a paginação do eproc

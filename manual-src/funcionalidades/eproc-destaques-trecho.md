@@ -46,7 +46,7 @@ o botão de lembrete rápido (veja [Criar Novo Lembrete rápido](./eproc-lembret
 No card, **Gerenciar destaques e combinações de cores** abre a lista de destaques salvos, com opção
 de excluir, tornar global e apagar combinações de cores.
 
-## Limitações e problemas conhecidos
+## Observações
 
 - O destaque precisa estar num trecho contínuo de uma única descrição de evento.
 - Os destaques ficam neste computador e entram no backup (arquivo ou Google Drive).

@@ -43,7 +43,7 @@ confirmar várias edições de uma vez com **Salvar todos**.
 Não há opções além de ligar e desligar. Os contatos são gerenciados em **Gerenciar contatos
 salvos**.
 
-## Limitações e problemas conhecidos
+## Observações
 
 - O campo original do eproc continua existindo, oculto, e é ele que o eproc envia. O eploc o mantém
   sempre preenchido com os endereços separados por ";".

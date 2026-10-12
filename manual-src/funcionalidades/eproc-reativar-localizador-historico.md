@@ -36,7 +36,7 @@ Para desfazer a seleção antes de reativar, use o botão "Limpar seleção" da 
 
 Não há opções além de ligar e desligar.
 
-## Limitações e problemas conhecidos
+## Observações
 
 - Localizadores excluídos que já estão ativos de novo não são clicáveis. Ao passar o mouse sobre
   eles, o localizador ativo de mesmo nome fica destacado.

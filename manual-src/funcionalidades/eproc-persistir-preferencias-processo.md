@@ -36,7 +36,7 @@ recurso memoriza o que você marcou e corrige o eproc quando ele volta ao padrã
 
 Não há opções além de ligar e desligar.
 
-## Limitações e problemas conhecidos
+## Observações
 
 - Nada é alterado antes de você mexer numa caixa pela primeira vez com o recurso ligado.
 - O que você fechar à mão continua fechado até você reabrir ou recarregar a página.

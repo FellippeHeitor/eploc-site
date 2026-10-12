@@ -32,7 +32,7 @@ escolhido a todos os documentos marcados de uma vez.
 
 Não há opções além de ligar e desligar.
 
-## Limitações e problemas conhecidos
+## Observações
 
 - A lista do cabeçalho só oferece os níveis disponíveis em todas as linhas.
 - Só aparece no modo em bloco (a tela que tem o botão "Alteração Individual").

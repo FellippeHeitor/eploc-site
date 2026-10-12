@@ -37,7 +37,7 @@ eventos e marca ao lado de cada documento afetado.
 
 Não há opções além de ligar e desligar.
 
-## Limitações e problemas conhecidos
+## Observações
 
 - Só são verificados os documentos dos eventos importados (anteriores ao evento de migração ou com
   "ID no PJe").

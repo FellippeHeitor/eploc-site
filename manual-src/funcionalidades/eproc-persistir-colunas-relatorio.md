@@ -31,7 +31,7 @@ reseta, avisando quando faz isso.
 
 Não há opções além de ligar e desligar.
 
-## Limitações e problemas conhecidos
+## Observações
 
 - Nada é alterado antes de você mexer numa coluna pela primeira vez com o recurso ligado.
 - As colunas são guardadas separadamente para cada perfil/unidade do eproc.

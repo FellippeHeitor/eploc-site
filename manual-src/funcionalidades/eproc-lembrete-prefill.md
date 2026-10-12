@@ -35,7 +35,7 @@ lembrete é criado na tela de Novo Lembrete do próprio eproc.
 | Oferecer botão de Novo Lembrete rápido ao passar o mouse sem selecionar texto | ligada | Desligada, o botão só aparece quando você seleciona um trecho. |
 | Prefixar a descrição sugerida com "Evento N: " | ligada | Começa a descrição com o número do evento de onde o texto veio. |
 
-## Limitações e problemas conhecidos
+## Observações
 
 - O botão de lembrete faz parte do mesmo conjunto de botões dos
   [Destaques de trecho](./eproc-destaques-trecho). Os dois recursos funcionam juntos: com qualquer um

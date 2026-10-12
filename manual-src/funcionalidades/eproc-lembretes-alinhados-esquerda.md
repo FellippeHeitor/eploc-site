@@ -28,7 +28,7 @@ que facilita a leitura de lembretes longos.
 
 Não há opções além de ligar e desligar.
 
-## Limitações e problemas conhecidos
+## Observações
 
 Muda só o alinhamento do texto. A posição e o tamanho dos lembretes continuam os do eproc.
 

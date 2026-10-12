@@ -37,7 +37,7 @@ pessoas encontradas, o que coincide com eles, inclusive nomes com pequenas varia
 | Destacar equivalências entre o painel e a tabela de pessoas encontradas | ligada | Liga os destaques coloridos. |
 | Marcar automaticamente o registro que é sem dúvida a pessoa pesquisada (mesmo CPF/CNPJ) | desligada | Marca sozinho o registro com o mesmo CPF/CNPJ pesquisado. |
 
-## Limitações e problemas conhecidos
+## Observações
 
 - A coincidência aproximada de nomes é um auxílio. A decisão sobre a certidão continua sendo sua:
   confira sempre os dados.

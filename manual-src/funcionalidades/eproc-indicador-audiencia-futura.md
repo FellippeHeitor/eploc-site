@@ -34,7 +34,7 @@ alerta, sobre audiência com data passada sem registro de realização.
 |---|---|---|
 | Avisar também sobre audiência com data passada sem registro de realização | ligada | Mostra em tom de alerta as audiências passadas sem evento posterior de realização, cancelamento ou redesignação. |
 
-## Limitações e problemas conhecidos
+## Observações
 
 - Os dados vêm só da tabela de eventos já carregada. Se a audiência estiver numa página de eventos
   ainda não carregada, ela não aparece.

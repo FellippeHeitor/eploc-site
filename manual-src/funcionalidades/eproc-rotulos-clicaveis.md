@@ -29,7 +29,7 @@ acertar o quadradinho. Com este recurso, clicar no texto também marca e desmarc
 
 Não há opções além de ligar e desligar.
 
-## Limitações e problemas conhecidos
+## Observações
 
 Só vale para textos que o eproc associa a uma caixa. Caixas desabilitadas continuam sem responder.
 

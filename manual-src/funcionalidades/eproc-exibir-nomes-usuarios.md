@@ -37,7 +37,7 @@ Os nomes ficam guardados neste navegador, para aparecerem também em outras tela
 |---|---|---|
 | Desativar o balão que aparece ao passar o mouse sobre a matrícula | desligada | Esconde o balão nativo do eproc, já que o nome passa a aparecer na tela. |
 
-## Limitações e problemas conhecidos
+## Observações
 
 - O nome vem das informações que o próprio eproc mostra (o balão da matrícula nos eventos e a
   tabela de partes). Uma matrícula que o eploc ainda não viu em nenhuma dessas telas continua só com

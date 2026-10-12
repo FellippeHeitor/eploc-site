@@ -29,7 +29,7 @@ Mandado de Prisão 1" e, embaixo, "CCUMPMP1".
 
 Não há opções além de ligar e desligar.
 
-## Limitações e problemas conhecidos
+## Observações
 
 O nome completo vem das informações do próprio documento no eproc (o "Tipo Documento" do balão
 "Informações do Documento"). Quando o eproc não informa o tipo, a sigla continua como está.

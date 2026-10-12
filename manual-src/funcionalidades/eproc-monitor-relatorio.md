@@ -41,7 +41,7 @@ recurso ("Gerenciar colunas excluídas e processos monitorados").
 |---|---|---|
 | Guardar o valor anterior de cada coluna alterada (cifrado, só neste dispositivo) para mostrá-lo ao passar o mouse | desligada | Ao passar o mouse sobre a marca "NOVO", mostra o valor de antes. Desligada, o eploc guarda só uma impressão digital (hash) de cada valor, nunca o conteúdo. |
 
-## Limitações e problemas conhecidos
+## Observações
 
 - O acompanhamento é separado por perfil/unidade do eproc.
 - Com a opção do valor anterior desligada, não há como saber qual era o valor antigo, só que ele

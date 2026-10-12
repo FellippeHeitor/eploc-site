@@ -36,7 +36,7 @@ A busca por vários trechos em qualquer ordem depende de
 [Filtro por trechos no campo de localizador secundário](./eploc-filtro-localizador-secundario)
 estar ligado. Com ele desligado, este campo só encontra um trecho contínuo.
 
-## Limitações e problemas conhecidos
+## Observações
 
 - Os demais campos de seleção do eproc têm busca própria em
   [Busca nos campos de seleção](./eproc-filtro-selects).

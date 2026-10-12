@@ -32,7 +32,7 @@ por nome da parte), área de trabalho de minutas e outras listagens.
 |---|---|---|
 | Formato do número copiado | Com pontuação (0000000-00.0000.0.00.0000) | Também pode ser "Somente dígitos". |
 
-## Limitações e problemas conhecidos
+## Observações
 
 - O botão só aparece com o cursor sobre o próprio número e some assim que o cursor sai dele.
 - Se o navegador bloquear o acesso à área de transferência, o eploc usa um método alternativo de

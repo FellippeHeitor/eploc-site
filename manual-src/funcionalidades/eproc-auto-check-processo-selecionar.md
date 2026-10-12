@@ -28,7 +28,7 @@ marcada sozinha. Assim você sabe quais processos da lista já abriu.
 
 Não há opções além de ligar e desligar.
 
-## Limitações e problemas conhecidos
+## Observações
 
 - A marcação é a caixa de seleção do próprio eproc: ela some se o relatório for gerado de novo.
 - Vale só para o Relatório Geral.

@@ -36,7 +36,7 @@ Depois de entrar, você troca de perfil pelo seletor do menu superior, como semp
 Não há opções além de ligar e desligar. O favorito é escolhido na tela de login ou em **Escolher
 perfil favorito**.
 
-## Limitações e problemas conhecidos
+## Observações
 
 - O favorito é guardado por endereço do eproc e por usuário: 1º e 2º grau, ou usuários diferentes no
   mesmo navegador, têm favoritos separados.

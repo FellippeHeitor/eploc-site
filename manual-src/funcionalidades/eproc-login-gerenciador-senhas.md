@@ -30,7 +30,7 @@ o navegador possa salvar e preencher usuário e senha.
 
 Não há opções além de ligar e desligar.
 
-## Limitações e problemas conhecidos
+## Observações
 
 - A senha é guardada pelo gerenciador de senhas do navegador (Chrome ou Edge), não pelo eploc. O
   eploc não lê nem armazena senhas.

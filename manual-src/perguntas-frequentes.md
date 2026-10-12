@@ -24,7 +24,7 @@ fale com o desenvolvedor.
 
 ### Posso desligar o que não uso?
 
-Sim. Cada funcionalidade liga e desliga sozinha, pelo [popup](./geral/popup) ou pela
+Sim. Cada funcionalidade pode ser ligada e desligada individualmente, pelo [popup](./geral/popup) ou pela
 [página de configurações](./geral/configuracoes). A mudança vale na hora.
 
 ### Uma funcionalidade parou de funcionar. O que faço?
@@ -32,6 +32,23 @@ Sim. Cada funcionalidade liga e desliga sozinha, pelo [popup](./geral/popup) ou 
 O eproc, o SEI e o RUPE mudam sem aviso, e uma mudança de tela pode afetar o eploc. Desligue a
 funcionalidade pelo popup para voltar ao comportamento normal do sistema e avise pelo
 [Contato](./contato), dizendo o tribunal, a tela e o que aconteceu.
+
+### O sistema do tribunal apresentou um erro. Devo abrir um chamado?
+
+Antes de abrir um chamado no suporte do tribunal sobre uma falha no eproc, no SEI ou no RUPE:
+
+1. Desative o eploc pelo interruptor geral do [popup](./geral/popup) ("Extensão desativada").
+2. Recarregue a página e tente de novo.
+3. Se o problema continuar com o eploc desativado, ele é do sistema: abra o chamado normalmente.
+   Se o problema sumir, ele tem relação com o eploc: fale com o desenvolvedor (veja
+   [Contato](./contato)), e não com o suporte do tribunal.
+
+O suporte dos tribunais cuida dos sistemas oficiais, não do eploc. Dúvidas e problemas da extensão
+são atendidos pelo [formulário do site](https://eploc.com.br/reportar-problema.html), pelo grupo no
+WhatsApp ou por e-mail.
+
+Se precisar enviar capturas de tela ao suporte do tribunal, prefira tirá-las com o eploc desativado.
+Assim a tela aparece exatamente como o suporte a conhece, o que facilita o atendimento.
 
 ### Como encontro uma configuração?
 
@@ -84,5 +101,5 @@ Sim. Em **Exportar bases de dados**, exporte só os modelos ou os contatos e env
 
 ### Quanto custa?
 
-As funcionalidades descritas neste manual são gratuitas e trazem o selo **Free** na página de cada
+As funcionalidades descritas neste manual são gratuitas e trazem o selo **Gratuito** na página de cada
 uma.

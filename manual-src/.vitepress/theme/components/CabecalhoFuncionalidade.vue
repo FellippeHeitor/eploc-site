@@ -5,7 +5,7 @@ import { useData } from "vitepress";
 const { frontmatter } = useData();
 const fm = computed(() => frontmatter.value);
 const ehFuncionalidade = computed(() => Boolean(fm.value.id && fm.value.plano));
-const plano = computed(() => (fm.value.plano === "pro" ? "Pro" : "Free"));
+const plano = computed(() => (fm.value.plano === "pro" ? "Pro" : "Gratuito"));
 </script>
 
 <template>

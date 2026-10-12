@@ -56,7 +56,7 @@ Desligue **Habilitar backup no Google Drive**. Os backups já enviados continuam
 apagá-los, exclua-os antes em **Restaurar uma versão mais antiga**. No próprio Google Drive, em
 Configurações → Gerenciar apps, também é possível excluir os dados ocultos do aplicativo eploc.
 
-## Limitações e problemas conhecidos
+## Observações
 
 - Se a autorização expirar, o ícone do eploc mostra um "!" laranja e o popup oferece **Reconectar**.
   Uma falha de rede passageira não desconecta a conta.

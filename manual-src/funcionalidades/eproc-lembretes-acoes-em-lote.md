@@ -31,7 +31,7 @@ vez de um por um.
 
 Não há opções além de ligar e desligar.
 
-## Limitações e problemas conhecidos
+## Observações
 
 - Só aparece quando há mais de um lembrete.
 - Só os lembretes que você pode desativar (os que têm o ícone de lixeira) recebem a caixa de

@@ -37,7 +37,7 @@ por padrão).
 | Mínimo de opções para mostrar a busca | 8 | Listas menores continuam com a lista comum (de 2 a 100). |
 | Busca aproximada (tolera abreviações e pequenos erros de digitação, mostrando primeiro os resultados mais relevantes) | ligada | Também encontra opções com pequenas diferenças de grafia. |
 
-## Limitações e problemas conhecidos
+## Observações
 
 - Não vale para listas de várias escolhas, listas sempre abertas nem campos que já têm busca própria.
 - O campo "Novo localizador" tem recurso próprio:

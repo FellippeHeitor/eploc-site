@@ -30,7 +30,7 @@ com um "x" para removê-lo.
 
 Não há opções além de ligar e desligar.
 
-## Limitações e problemas conhecidos
+## Observações
 
 - Com um único localizador marcado, o resumo não aparece, porque o próprio campo já mostra o nome.
 - Se a caixa "Incluir processo em outros localizadores" for desmarcada, o resumo some, porque a

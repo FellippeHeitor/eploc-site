@@ -41,7 +41,7 @@ rápido para ligar e desligar funcionalidades da página em que você está.
 Para importar um backup, você também pode arrastar o arquivo JSON para o popup: ele abre a revisão da
 importação nas configurações (veja [Backup em arquivo](./backup-arquivo)).
 
-## Limitações e problemas conhecidos
+## Observações
 
 - O popup só lista as funcionalidades que se aplicam à página atual. Para ver todas, use a
   [página de configurações](./configuracoes).

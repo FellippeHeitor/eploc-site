@@ -38,7 +38,7 @@ eproc.
 
 Não há opções além de ligar e desligar.
 
-## Limitações e problemas conhecidos
+## Observações
 
 - Quando o menu lateral do eproc é recolhido, o mini painel se reposiciona no canto esquerdo.
 - Os [destaques de trecho](./eproc-destaques-trecho) aparecem também no minimapa, com as cores

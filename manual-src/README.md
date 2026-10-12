@@ -53,7 +53,7 @@ padrao: ligado           # ligado | desligado numa instalação nova
 ```
 
 Seções, nesta ordem: `## O que faz` (2–3 frases), `## Onde aparece`, `## Passo a passo`,
-`## Configurações e opções`, `## Limitações e problemas conhecidos`. O selo Free/Pro e o
+`## Configurações e opções`, `## Observações`. O selo de plano (Gratuito/Pro) e o
 "Disponível desde" aparecem sozinhos, a partir do front matter. Marque o lugar da demonstração
 animada com `<!-- DEMO: <id> -->`.
 

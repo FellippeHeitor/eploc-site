@@ -40,7 +40,7 @@ Não é preciso fazer nada. Em processos migrados:
 | Mesclar eventos com o mesmo ID no PJe lançados no mesmo instante, mesmo que intercalados com outros eventos (requer "Agrupar eventos relacionados") | ligada | Junta numa linha os eventos do mesmo ID no PJe. |
 | Deixar um marcador na posição original dos eventos mesclados fora de sequência | ligada | Mostra, no lugar de onde o evento saiu, um marcador que aponta para a linha mesclada. Só aparece com a opção anterior ligada. |
 
-## Limitações e problemas conhecidos
+## Observações
 
 - O processo é reconhecido como migrado pela etiqueta "Processo Migrado" do topo da página.
 - Só eventos com data e hora idênticas são mesclados. Os demais não mudam de lugar.

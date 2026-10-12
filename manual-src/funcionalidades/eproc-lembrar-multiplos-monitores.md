@@ -40,7 +40,7 @@ quantidade de monitores e a posição da janela de documentos e os restaura quan
 
 Não há opções além de ligar e desligar.
 
-## Limitações e problemas conhecidos
+## Observações
 
 - A configuração fica guardada só neste computador, porque depende dos monitores ligados a ele. Ela
   não vai para outros computadores nem para o backup.

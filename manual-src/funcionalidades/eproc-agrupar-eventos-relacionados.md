@@ -45,7 +45,7 @@ Não é preciso fazer nada: a tabela já aparece agrupada. O que muda:
 Não há opções neste card. As opções de mesclagem de eventos migrados do PJe ficam em
 [Ajustar eventos de processos migrados do PJe (TJMG)](./eproc-ajustar-eventos-migrados-pje).
 
-## Limitações e problemas conhecidos
+## Observações
 
 - Nenhum evento é apagado: as linhas originais só ficam ocultas e reaparecem ao expandir o grupo ou
   ao desligar o recurso.

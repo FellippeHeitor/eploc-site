@@ -29,7 +29,7 @@ interessado e outros).
 
 Não há opções além de ligar e desligar.
 
-## Limitações e problemas conhecidos
+## Observações
 
 Os advogados e demais representantes não entram na conta. São contadas só as partes.
 

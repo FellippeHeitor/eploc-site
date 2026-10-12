@@ -35,7 +35,7 @@ existente.
 |---|---|---|
 | Ao abrir a edição sem dados de resumo, abrir e fechar "Alterar Dados da Minuta" em segundo plano para preencher o painel | ligada | Permite montar o resumo de minutas já existentes. Pode causar um breve piscar na tela. |
 
-## Limitações e problemas conhecidos
+## Observações
 
 - O painel segue o tema claro ou escuro escolhido nas configurações do eploc.
 - A posição e o tamanho do painel ficam guardados no navegador, para cada endereço do eproc, e não

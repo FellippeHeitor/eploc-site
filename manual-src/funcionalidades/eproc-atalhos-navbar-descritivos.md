@@ -37,7 +37,7 @@ O ícone é escolhido automaticamente a partir do nome da rotina; não é precis
 |---|---|---|
 | Mostrar apenas os ícones, sem o texto da rotina | desligada | Mantém só o ícone, ocupando menos espaço no menu. |
 
-## Limitações e problemas conhecidos
+## Observações
 
 - Quando o nome da rotina não corresponde a nenhum ícone conhecido, o atalho fica com um ícone
   genérico.

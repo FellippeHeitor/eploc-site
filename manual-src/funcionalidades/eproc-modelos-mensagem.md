@@ -60,7 +60,7 @@ Variáveis disponíveis:
 Não há opções além de ligar e desligar. Os modelos são gerenciados em **Gerenciar modelos de
 mensagem**.
 
-## Limitações e problemas conhecidos
+## Observações
 
 - O campo de mensagem do eproc não aceita formatação (negrito, listas etc.). Os modelos são texto
   simples.

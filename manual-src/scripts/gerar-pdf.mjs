@@ -1,6 +1,6 @@
 /**
  * Gera o manual em PDF (manual/eploc-manual.pdf) a partir do site já
- * construído por `vitepress build`, para envio a tribunais e equipes de TI.
+ * construído por `vitepress build`, para envio a tribunais e outras instituições.
  *
  * - A ordem das páginas é a da barra lateral (themeConfig.sidebar), lida da
  *   própria configuração do VitePress: a mesma fonte do site.

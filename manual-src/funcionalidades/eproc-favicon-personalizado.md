@@ -32,7 +32,7 @@ carregamento. A cor escolhida também é usada nos balões de dica do eploc.
 |---|---|---|
 | Cor | #80b3e6 (azul-claro) | Cor do ícone da aba, das logos, da animação de carregamento e dos balões do eploc. |
 
-## Limitações e problemas conhecidos
+## Observações
 
 - A cor é uma só, aplicada a todos os endereços do eproc abertos neste navegador (não há uma cor
   para cada tribunal ou grau).

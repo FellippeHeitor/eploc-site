@@ -53,7 +53,7 @@ As pastas valem para todos os processos.
 |---|---|---|
 | Permitir agrupar itens em pastas ("Criar pasta" a partir do filtro) e ocultar preferências da unidade | ligada | Desligada, fica só o campo de busca. |
 
-## Limitações e problemas conhecidos
+## Observações
 
 - Só as preferências da unidade podem ser ocultadas. As individuais você mesmo pode excluir no
   eproc.

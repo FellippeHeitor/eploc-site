@@ -36,7 +36,7 @@ documento M" no texto da minuta em links que abrem a árvore já nesse ponto.
 Não há opções além de ligar e desligar. A parte que rola e destaca o evento na árvore é feita por
 [Focar evento/documento na árvore](./eproc-arvore-focar-eventos), que acompanha este recurso.
 
-## Limitações e problemas conhecidos
+## Observações
 
 - O primeiro clique em cada página demora um pouco, porque o endereço da árvore precisa ser obtido
   da página do processo.

@@ -34,7 +34,7 @@ de resultado só é aberta quando há possíveis preventos.
 |---|---|---|
 | Executar a busca automaticamente quando a prevenção estiver "NÃO executada" | desligada | Ao abrir um processo cuja prevenção ainda não foi executada, a busca roda sozinha uma vez. |
 
-## Limitações e problemas conhecidos
+## Observações
 
 - A busca é a mesma do eproc, feita numa janela oculta. Se o eproc demorar ou falhar, o botão indica
   a falha e você pode tentar de novo.

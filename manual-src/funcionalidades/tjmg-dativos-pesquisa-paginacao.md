@@ -34,7 +34,7 @@ navegar página por página.
 | Adicionar campo de busca aos filtros (selects) | ligada | Busca por digitação nos filtros. |
 | Unificar automaticamente todas as páginas de resultado | ligada | Junta todas as páginas numa lista. |
 
-## Limitações e problemas conhecidos
+## Observações
 
 - Se a quantidade carregada não bater com o total informado no rodapé, o eploc avisa e mantém a
   paginação, para você conferir manualmente.

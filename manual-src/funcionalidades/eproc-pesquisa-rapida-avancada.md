@@ -37,7 +37,7 @@ e já a executa.
 | Na pesquisa por nome, marcar automaticamente "Selecionar todos" no filtro de tipo de parte | desligada | A pesquisa por nome procura em todos os tipos de parte. |
 | Repetir automaticamente a pesquisa quando o eproc a cancelar por "mudança no perfil do usuário" (ex.: logo após migrar processos) | ligada | Quando o eproc cancela a pesquisa com esse aviso, o eploc a refaz sozinho. |
 
-## Limitações e problemas conhecidos
+## Observações
 
 - O formato "número/ano" (como `1000713/26`) é tratado pelo
   [Completar número do processo CNJ automaticamente](./eproc-autocomplete-cnj), e não como nome.

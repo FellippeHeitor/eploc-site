@@ -32,7 +32,7 @@ internas.
 |---|---|---|
 | Mostrar sugestão para ativar esta funcionalidade ao lado do botão 'Manter Agendamento' | ligada | Só aparece enquanto o recurso está desligado. Também pode ser dispensada pela própria dica ("Não sugerir mais"). |
 
-## Limitações e problemas conhecidos
+## Observações
 
 - Com o recurso ligado, todo agendamento é mantido sem confirmação sua. Se em algum caso você não
   quiser manter, desligue o recurso antes de abrir a minuta.

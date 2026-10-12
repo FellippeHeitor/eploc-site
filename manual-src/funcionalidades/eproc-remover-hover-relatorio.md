@@ -29,7 +29,7 @@ vista.
 
 Não há opções além de ligar e desligar.
 
-## Limitações e problemas conhecidos
+## Observações
 
 - Nas telas que não são relatórios, só vale para tabelas que contenham ao menos um número de
   processo.

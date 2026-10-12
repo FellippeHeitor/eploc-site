@@ -41,7 +41,7 @@ Favoritas e ocultas valem para todos os processos.
 | Agrupar as ações favoritas | ligada | Reúne as favoritas no início do painel. Desligada, elas só mudam de cor e ficam no lugar original. |
 | Ícones nos botões de ação | Em todos os botões de ação | Também pode ser "Nas ações favoritadas" ou "Nenhum ícone". |
 
-## Limitações e problemas conhecidos
+## Observações
 
 - A ação é reconhecida pelo endereço do botão. Se o eproc mudar o endereço de uma ação, ela deixa de
   ser reconhecida como favorita ou oculta e precisa ser marcada de novo.

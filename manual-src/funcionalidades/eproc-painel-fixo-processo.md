@@ -50,7 +50,7 @@ Outros sinais do painel:
 Para ocultar o número do processo no painel quando ele já aparece no menu superior, veja
 [Número do processo no menu superior](./eproc-numero-processo-navbar).
 
-## Limitações e problemas conhecidos
+## Observações
 
 - Preso ao menu lateral, o painel se oculta quando o menu é recolhido ou quando você usa a busca do
   menu. O botão circular o reexibe até o menu voltar a abrir ou a página recarregar.

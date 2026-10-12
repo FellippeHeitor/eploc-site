@@ -35,7 +35,7 @@ menu.
 |---|---|---|
 | Número de fileiras de atalhos | 2 fileiras (6 atalhos) | Também pode ser "1 fileira (3 atalhos)". |
 
-## Limitações e problemas conhecidos
+## Observações
 
 - Só contam os cliques feitos no menu lateral ou na própria grade. Rotinas abertas por outros
   caminhos não entram.

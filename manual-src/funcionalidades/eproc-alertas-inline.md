@@ -46,7 +46,7 @@ recurso, em **Gerenciar avisos rotineiros e ocultos**.
 | Fechar automaticamente o banner após | 15 segundos | De 5 a 60 segundos. |
 | Manter histórico dos últimos alertas (avisa sobre os fechados sem clicar em OK) | ligada | Desligada, não há histórico nem ícone no menu. |
 
-## Limitações e problemas conhecidos
+## Observações
 
 - **Atenção:** com o alerta nativo, o eproc espera o clique em OK antes de continuar a tarefa. Com
   este recurso, o eproc segue imediatamente, sem esperar. Por isso o recurso vem desligado.
