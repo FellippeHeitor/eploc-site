@@ -74,6 +74,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // Tempo de casa no TJMG (desde janeiro de 2008): o Jekyll grava o valor da data
+    // do build, e aqui ele é recalculado para não envelhecer entre um push e outro
+    document.querySelectorAll('[data-anos-desde]').forEach(el => {
+        el.textContent = new Date().getFullYear() - Number(el.dataset.anosDesde);
+    });
+
     // Os termos ficavam numa aba de #docs (index.html#terms); links antigos,
     // inclusive os da extensão, seguem para a página própria
     if (location.hash === '#terms' && document.getElementById('docs')) {
@@ -99,7 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (hashTarget && hashTarget.closest('details')) hashTarget.scrollIntoView();
     }
 
-    // Reproduz os vídeos da galeria apenas quando visíveis, e pausa fora da tela
+    // Reproduz os vídeos da faixa #demo apenas quando visíveis, e pausa fora da tela
     // (evita download/CPU desnecessários e respeita prefers-reduced-motion)
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const galleryVideos = document.querySelectorAll('.g-card video');
@@ -119,48 +125,56 @@ document.addEventListener('DOMContentLoaded', () => {
         galleryVideos.forEach(video => observer.observe(video));
     }
 
-    // Abre as imagens e vídeos da galeria em um modal, em tamanho real
-    const galleryImages = document.querySelectorAll('.gallery .g-card img');
+    // Abre imagens e animações em um modal, em tamanho real: as da faixa #demo
+    // e as declaradas em data-clip="<arquivo> [<arquivo>...]" nos cards e itens
+    // de #detalhes, que ganham um botão "Ver animação"/"Ver imagem"
     const galleryVideoCards = document.querySelectorAll('.gallery .g-card video');
+    const clipHosts = document.querySelectorAll('[data-clip]');
     const imgModal = document.getElementById('img-modal');
     const imgModalContent = document.getElementById('img-modal-content');
     const imgModalVideo = document.getElementById('img-modal-video');
     const imgModalClose = document.querySelector('.img-modal-close');
     let lastFocusedElement = null;
 
-    function openImgModal(img) {
+    const VIDEO_TYPES = { webm: 'video/webm', mp4: 'video/mp4' };
+    const videoType = (src) => VIDEO_TYPES[src.split('.').pop().toLowerCase()];
+
+    function showModalImage(src, alt) {
         lastFocusedElement = document.activeElement;
         imgModalVideo.pause();
         imgModalVideo.removeAttribute('src');
         imgModalVideo.innerHTML = '';
         imgModalVideo.hidden = true;
-        imgModalContent.src = img.src;
-        imgModalContent.alt = img.alt;
+        imgModalContent.src = src;
+        imgModalContent.alt = alt;
         imgModalContent.hidden = false;
         imgModal.hidden = false;
         imgModalClose.focus();
     }
 
-    function openVideoModal(video) {
+    function showModalVideo(sources, label) {
         lastFocusedElement = document.activeElement;
-        video.pause();
         imgModalContent.hidden = true;
         imgModalContent.src = '';
         imgModalVideo.innerHTML = '';
-        video.querySelectorAll('source').forEach(source => {
-            const clone = document.createElement('source');
-            clone.src = source.src;
-            clone.type = source.type;
-            imgModalVideo.appendChild(clone);
+        sources.forEach(({ src, type }) => {
+            const source = document.createElement('source');
+            source.src = src;
+            source.type = type;
+            imgModalVideo.appendChild(source);
         });
-        if (video.hasAttribute('aria-label')) {
-            imgModalVideo.setAttribute('aria-label', video.getAttribute('aria-label'));
-        }
+        if (label) imgModalVideo.setAttribute('aria-label', label);
         imgModalVideo.load();
         imgModalVideo.hidden = false;
         imgModal.hidden = false;
         imgModalVideo.play().catch(() => {});
         imgModalClose.focus();
+    }
+
+    function openVideoModal(video) {
+        video.pause();
+        const sources = [...video.querySelectorAll('source')].map(source => ({ src: source.src, type: source.type }));
+        showModalVideo(sources, video.getAttribute('aria-label'));
     }
 
     function closeImgModal() {
@@ -174,17 +188,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    if ((galleryImages.length || galleryVideoCards.length) && imgModal) {
-        galleryImages.forEach(img => {
-            img.addEventListener('click', () => openImgModal(img));
-            img.addEventListener('keydown', (e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    openImgModal(img);
-                }
-            });
-        });
-
+    if ((galleryVideoCards.length || clipHosts.length) && imgModal) {
         galleryVideoCards.forEach(video => {
             video.addEventListener('click', () => openVideoModal(video));
             video.addEventListener('keydown', (e) => {
@@ -193,6 +197,29 @@ document.addEventListener('DOMContentLoaded', () => {
                     openVideoModal(video);
                 }
             });
+        });
+
+        clipHosts.forEach(host => {
+            const files = host.dataset.clip.trim().split(/\s+/);
+            const isVideo = Boolean(videoType(files[0]));
+            const title = (host.querySelector('h3, strong') || host).textContent.trim().replace(/\.$/, '');
+
+            const button = document.createElement('button');
+            button.type = 'button';
+            button.className = 'video-link';
+            button.innerHTML = isVideo
+                ? '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4l14 8-14 8z"></path></svg>Ver animação'
+                : '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"></rect></svg>Ver imagem';
+            button.setAttribute('aria-label', (isVideo ? 'Ver animação: ' : 'Ver imagem: ') + title);
+            button.addEventListener('click', () => {
+                if (isVideo) {
+                    showModalVideo(files.map(src => ({ src, type: videoType(src) })), title);
+                } else {
+                    showModalImage(files[0], title);
+                }
+            });
+
+            (host.classList.contains('feature-card') ? host : host.querySelector('span') || host).appendChild(button);
         });
 
         imgModalClose.addEventListener('click', closeImgModal);
@@ -400,7 +427,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelectorAll('[data-needs-videos]').forEach(el => { el.hidden = false; });
     }
 
-    // Páginas sem a galeria (ex.: migracao-pje.html) só usam os botões "Ver vídeo"
+    // Páginas sem a galeria #tutoriais (ex.: migracao-pje.html) só usam os botões "Ver vídeo"
     if (videoModal) {
         loadVideoGallery().catch(() => {});
 

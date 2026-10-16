@@ -25,9 +25,22 @@ O `index.html` traz dados estruturados `SoftwareApplication` (JSON-LD no `<head>
 descrição, o preço ou os navegadores suportados, atualize também esse bloco.
 
 Ordem do index (pensada para convencer antes de detalhar): hero → faixa de confiança →
-`#demo` (3 vídeos) → `#recursos` (6 cards de benefício) → `#migracao` (PJe → eproc) →
-`#detalhes` (lista completa em acordeões) → `#tutoriais` → `#galeria` → `#privacidade` →
+`#demo` (3 vídeos) → `#recursos` (6 cards de benefício) → `#depoimentos` → `#migracao` (PJe → eproc) →
+`#detalhes` (lista completa em acordeões) → `#tutoriais` → `#privacidade` →
 `#sobre` → `#docs` → `#faq` → CTA final.
+Público: servidores, juízes e advogados de qualquer tribunal com eproc (a lista de hosts está no `_hostsEproc` do
+manifest da extensão). Recursos exclusivos do TJMG levam `<span class="court-tag">TJMG</span>`
+logo após o `<strong>` do item, em vez de "(TJMG)" no texto.
+O tempo de casa no TJMG nunca é escrito à mão: `<span data-anos-desde="2008">{{ site.time | date: "%Y" | minus: 2008 }}</span>`
+(o Jekyll grava o valor do build e `script.js` recalcula pelo ano atual).
+A faixa de confiança traz a credencial e números ("Mais de 900 usuários ativos" — arredondado
+para baixo, nunca o número literal da Web Store). `#depoimentos` fica `hidden` até haver
+depoimentos reais, com nome e autorização — nunca invente. O título de `#detalhes` diz "Mais de
+60 melhorias": recontar os `<li>` (acordeões + `#migracao`) ao mudar a lista.
+Não há mais seção de galeria: animações e capturas de `assets/screenshots/` ficam junto do
+recurso que demonstram, via `data-clip="<arquivo> [<arquivo>...]"` num card ou `<li>` —
+`script.js` acrescenta um botão "Ver animação" (`.webm`/`.mp4`) ou "Ver imagem" que abre o
+`#img-modal`.
 `/sitemap.xml` e `/robots.txt` são gerados pelo plugin `jekyll-sitemap` (`_config.yml`), com todas
 as páginas com front matter. Páginas `noindex` ficam fora via `defaults` (`sitemap: false`) em
 `_config.yml` — inclua ali qualquer página nova que não deva ser indexada. Páginas cuja URL
@@ -93,7 +106,7 @@ Quando o usuário pedir para "atualizar o site com base no changelog/webstore do
      `#detalhes`, e também em `migracao-pje.html`.
 3. Critério prático: novidades "novas funcionalidades" pequenas/específicas do changelog viram itens de `.detail-list`; só recursos realmente grandes e visuais ganham um novo `.feature-card` (com ícone SVG inline simples, no estilo dos existentes). Itens de "Melhorias" e "Corrigido" do changelog normalmente **não** entram no site — são polimento interno, não recurso novo.
 4. Não crie uma seção de changelog no site nem liste versão/data — o site fala de recursos, não de releases.
-   Única exceção: a faixa "Novidades" no hero (`.whats-new`, 2-3 links) destaca
+   Única exceção: a faixa "Novo" no topo de `#detalhes` (`.whats-new`, 2-3 links) destaca
    os recursos mais recentes, sem versão nem data. Ao atualizar o site, troque o texto dela pelos
    recursos novos da vez. Cada link aponta para o `id` do próprio `<li>` (ou da seção, como
    `#migracao`); `script.js` abre o acordeão que contém o alvo antes de rolar até ele.

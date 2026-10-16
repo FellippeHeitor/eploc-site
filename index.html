@@ -61,9 +61,9 @@
         <div class="hero-blobs" aria-hidden="true"><span class="blob blob-pink"></span><span class="blob blob-cyan"></span></div>
         <div class="wrap hero-inner">
             <div>
-                <span class="eyebrow">Extensão gratuita para Chrome e Edge · eproc · SEI · RUPE</span>
+                <span class="eyebrow">Para servidores, juízes e advogados que usam o eproc</span>
                 <h1>O eproc com <em>menos cliques</em>.</h1>
-                <p class="lede">O eploc se encaixa no eproc, no SEI e no RUPE e tira do caminho o trabalho repetitivo: copia dados com um clique, transforma "evento 12" em link, preenche formulários e lembra das suas preferências. Tudo roda no seu navegador — nenhum dado de processo sai do seu computador.</p>
+                <p class="lede">O eploc se encaixa no eproc, no SEI e no RUPE e cuida do trabalho repetitivo: copia dados com um clique, transforma "evento 12" em link e preenche formulários. Nada sai do seu computador.</p>
 
                 <div class="cta-container cta-row">
                     <a href="https://chromewebstore.google.com/detail/eploc/fkpkkenjcfpplmhlfdbabhcdhmhiojhj" target="_blank" class="btn-primary" rel="noopener noreferrer">
@@ -71,9 +71,7 @@
                     </a>
                     <a href="#demo" class="btn-ghost">Ver em 30 segundos ↓</a>
                 </div>
-                <p class="cta-note">Funciona no Chrome e no Edge · Instala em 10 segundos · Sem cadastro</p>
-
-                <p class="whats-new"><span class="whats-new-label">Novidades</span> <a href="#filtro-selects">Busca nos campos de seleção</a> <a href="#migracao">Sigilo nível 3 em processos migrados</a> <a href="#reativar-localizador">Reativar localizadores pelo histórico</a></p>
+                <p class="cta-note">Grátis · Funciona no Chrome e no Edge · Instala em 10 segundos · Sem cadastro</p>
             </div>
             <div class="hero-art">
                 <img src="assets/eploc-logo-master-1000.png" alt="Logotipo eploc">
@@ -84,10 +82,10 @@
 
     <div class="trust-strip">
         <ul class="wrap">
-            <li>Grátis</li>
-            <li>100% local</li>
-            <li>Sem cadastro</li>
-            <li>Chrome e Edge</li>
+            <li>Mais de 900 usuários ativos</li>
+            <li>Criado por um servidor do TJMG com <span data-anos-desde="2008">{{ site.time | date: "%Y" | minus: 2008 }}</span> anos de casa</li>
+            <li>Registrado no INPI</li>
+            <li>Roda só no seu navegador</li>
         </ul>
     </div>
 
@@ -133,7 +131,7 @@
                     <p class="lede">Os recursos que você nota logo no primeiro expediente. Cada melhoria pode ser ligada ou desligada no ícone da extensão.</p>
                 </div>
                 <div class="features">
-                    <div class="feature-card" data-video="eproc-painel-fixo-processo">
+                    <div class="feature-card" data-video="eproc-painel-fixo-processo" data-clip="assets/screenshots/painel-lateral.webm assets/screenshots/painel-lateral.mp4">
                         <div class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="3"></rect><path d="M15 4v16"></path></svg></div>
                         <h3>Os dados do processo sempre à vista</h3>
                         <p>Um painel que acompanha você pela página, com número, classe, partes, CPF, CNPJ e OAB a um clique de copiar. Arraste, redimensione, recolha.</p>
@@ -167,10 +165,34 @@
             </div>
         </section>
 
+        <!-- Depoimentos: só reais, com nome e autorização. Preencha os três e tire o "hidden". -->
+        <section id="depoimentos" hidden>
+            <div class="wrap">
+                <div class="section-head">
+                    <span class="eyebrow">Quem usa</span>
+                    <h2>Mais de 900 pessoas já trabalham com o eploc</h2>
+                </div>
+                <div class="testimonials">
+                    <figure class="testimonial">
+                        <blockquote><p>[DEPOIMENTO 1]</p></blockquote>
+                        <figcaption><strong>[Nome]</strong> [Cargo · Unidade/Tribunal]</figcaption>
+                    </figure>
+                    <figure class="testimonial">
+                        <blockquote><p>[DEPOIMENTO 2]</p></blockquote>
+                        <figcaption><strong>[Nome]</strong> [Cargo · Unidade/Tribunal]</figcaption>
+                    </figure>
+                    <figure class="testimonial">
+                        <blockquote><p>[DEPOIMENTO 3]</p></blockquote>
+                        <figcaption><strong>[Nome]</strong> [Cargo · Unidade/Tribunal]</figcaption>
+                    </figure>
+                </div>
+            </div>
+        </section>
+
         <section id="migracao" class="band">
             <div class="wrap migration">
                 <div class="migration-head">
-                    <span class="eyebrow">Migração PJe → eproc</span>
+                    <span class="eyebrow">Migração PJe → eproc</span> <span class="court-tag">Só no TJMG</span>
                     <h2>Migrando do PJe? O eploc conhece o caminho.</h2>
                     <p class="lede">A migração do TJMG deixou rastros: sigilo trocado, eventos fora de ordem, rótulos genéricos. O eploc arruma isso enquanto você trabalha.</p>
                     <p class="migration-more"><a href="migracao-pje" class="btn-ghost">Guia da migração PJe → eproc →</a></p>
@@ -190,11 +212,12 @@
             <div class="wrap">
                 <div class="section-head">
                     <span class="eyebrow">Tudo o que o eploc faz</span>
-                    <h2>E mais dezenas de detalhes que somam horas no fim do mês</h2>
-                    <p class="lede">Organizados pelo que você está tentando fazer.</p>
+                    <h2>Mais de 60 melhorias que somam horas no fim do mês</h2>
+                    <p class="lede">Organizadas pelo que você está tentando fazer. Abra um grupo para ver os detalhes.</p>
+                    <p class="whats-new"><span class="whats-new-label">Novo</span> <a href="#filtro-selects">Busca nos campos de seleção</a> <a href="#migracao">Sigilo nível 3 em processos migrados</a> <a href="#reativar-localizador">Reativar localizadores pelo histórico</a></p>
                 </div>
                 <div class="detail-groups">
-                    <details class="detail-group" id="encontrar">
+                    <details class="detail-group" id="encontrar" open>
                         <summary><h3>Encontrar mais rápido</h3></summary>
                         <ul class="detail-list">
                             <li data-video="eproc-autocomplete-cnj"><span><strong>Número de processo pela metade? Ele completa.</strong> Números no padrão CNJ são reconhecidos e completados, com sufixo da comarca e ano detectados automaticamente.</span></li>
@@ -215,7 +238,8 @@
                             <li data-video="eproc-destaques-trecho"><span><strong>Ache de novo o que já leu.</strong> Marque termos ou frases relevantes nos eventos, por processo ou globalmente, e eles ficam destacados para você encontrá-los depois.</span></li>
                             <li data-video="eproc-nome-completo-documentos"><span><strong>Sem decifrar siglas.</strong> Links de documento nos eventos mostram o nome completo do tipo, com a sigla logo abaixo (ex.: "Certidão de Cumprimento de Mandado de Prisão 1" / "CCUMPMP1").</span></li>
                             <li data-video="eproc-contador-partes"><span><strong>Quantas partes, num relance.</strong> O cabeçalho de cada polo da tabela de partes mostra quantas partes ele tem.</span></li>
-                            <li data-video="eproc-acoes-favoritas"><span><strong>Suas ações primeiro.</strong> Ações favoritas do processo ganham ícones automáticos escolhidos de acordo com o texto do botão, e as que você não usa podem ser ocultadas numa pasta própria no fim do painel.</span></li>
+                            <li data-video="eproc-exibir-nomes-usuarios" data-clip="assets/screenshots/nomes-usuarios.webp"><span><strong>Saiba quem fez cada ato.</strong> O nome completo aparece ao lado da matrícula nos eventos e na tabela de minutas, e o nome do advogado ao lado da OAB citada na descrição dos eventos.</span></li>
+                            <li data-video="eproc-acoes-favoritas" data-clip="assets/screenshots/eploc-acoes-favoritas.webm"><span><strong>Suas ações primeiro.</strong> Ações favoritas do processo ganham ícones automáticos escolhidos de acordo com o texto do botão, e as que você não usa podem ser ocultadas numa pasta própria no fim do painel.</span></li>
                             <li data-video="eproc-numero-processo-navbar"><span><strong>O número do processo sempre no topo.</strong> Ele fica repetido no menu superior (inclusive no cadastro de minuta), com chip "JESP" para Juizados Especiais e cópia com um clique. Ao rolar a página, os avisos do topo ("Segredo de Justiça", "Doença Grave" etc.) também passam para o menu superior.</span></li>
                             <li data-video="eproc-atalhos-navbar-descritivos"><span><strong>Atalhos que dizem o que fazem.</strong> Os atalhos do menu superior (Alt+1, Alt+2...) ganham ícone e nome descritivo automáticos.</span></li>
                             <li data-video="eproc-desviar-botoes-navegacao"><span><strong>Botões que não atrapalham.</strong> Os botões flutuantes de navegação acompanham o menu lateral, sem cobrir a barra de comandos.</span></li>
@@ -227,7 +251,7 @@
                         <ul class="detail-list">
                             <li data-video="eproc-painel-fixo-processo"><span><strong>Dados das partes sem selecionar texto.</strong> Copie CPF, CNPJ, número da OAB e outros dados do painel do processo com um clique.</span></li>
                             <li data-video="eproc-copiar-cnj-relatorio"><span><strong>Número do processo com um clique.</strong> Nas tabelas de relatórios e da área de trabalho de minutas, um botão ao lado do número o copia, com ou sem pontuação.</span></li>
-                            <li data-video="rupe-cpha-preenchimento"><span><strong>CPHA sem digitar campo por campo.</strong> No RUPE, cole os dados do advogado e o eploc reconhece e preenche os campos do cadastro de CPHA para você conferir.</span></li>
+                            <li data-video="rupe-cpha-preenchimento"><span><strong>CPHA sem digitar campo por campo.</strong> <span class="court-tag">TJMG</span> No RUPE, cole os dados do advogado e o eploc reconhece e preenche os campos do cadastro de CPHA para você conferir.</span></li>
                             <li data-video="eproc-lembrete-prefill"><span><strong>Lembrete com o texto já pronto.</strong> Selecione um trecho de um evento (ou passe o mouse sobre a descrição) para criar um lembrete rápido, já com o texto preenchido.</span></li>
                             <li data-video="eproc-sigilo-documentos-lote"><span><strong>Sigilo em bloco num passo só.</strong> Na alteração de sigilo em bloco, escolha o nível no cabeçalho da coluna e ele é aplicado a todos os documentos marcados.</span></li>
                             <li data-video="eproc-login-gerenciador-senhas"><span><strong>Login sem digitar a senha.</strong> O gerenciador de senhas do navegador passa a funcionar no login do eproc.</span></li>
@@ -271,11 +295,11 @@
                     <details class="detail-group" id="sei-rupe-tjmg">
                         <summary><h3>SEI, RUPE e TJMG</h3></summary>
                         <ul class="detail-list">
-                            <li data-video="sei-mais-descritivo-horizontal"><span><strong>Urgências em destaque no SEI.</strong> A listagem de processos pode destacar itens por termos configuráveis (ex.: "urgente", "prioridade").</span></li>
-                            <li data-video="rupe-espelho-painel-pesquisa"><span><strong>Os critérios da certidão à vista.</strong> O espelho de pesquisa no RUPE mantém visíveis os critérios usados na emissão de uma certidão positiva/negativa.</span></li>
-                            <li data-video="tjmg-dativos-pesquisa-paginacao"><span><strong>Dativos numa lista só.</strong> A consulta de advogados dativos no RUPE (TJMG) ganha busca nos filtros e unifica todos os resultados paginados em uma única lista.</span></li>
-                            <li data-video="tjmg-meu-gabinete-altura-login"><span><strong>Login do Meu Gabinete inteiro.</strong> O quadro de login do Meu Gabinete (TJMG) ganha altura suficiente para exibir todo o formulário de acesso.</span></li>
-                            <li data-video="eproc-logo-tjmg-navbar"><span><strong>O símbolo do TJMG no menu.</strong> O link para o portal do TJMG no menu superior mostra o símbolo do tribunal no lugar da sigla "MG" ou "TJMG".</span></li>
+                            <li data-video="sei-mais-descritivo-horizontal" data-clip="assets/screenshots/sei-descritivo.webp"><span><strong>Um SEI mais fácil de ler.</strong> A lista de processos mostra marcadores e descrições lado a lado e destaca itens por termos configuráveis (ex.: "urgente", "prioridade").</span></li>
+                            <li data-video="rupe-espelho-painel-pesquisa"><span><strong>Os critérios da certidão à vista.</strong> <span class="court-tag">TJMG</span> O espelho de pesquisa no RUPE mantém visíveis os critérios usados na emissão de uma certidão positiva/negativa.</span></li>
+                            <li data-video="tjmg-dativos-pesquisa-paginacao"><span><strong>Dativos numa lista só.</strong> <span class="court-tag">TJMG</span> A consulta de advogados dativos no RUPE ganha busca nos filtros e unifica todos os resultados paginados em uma única lista.</span></li>
+                            <li data-video="tjmg-meu-gabinete-altura-login"><span><strong>Login do Meu Gabinete inteiro.</strong> <span class="court-tag">TJMG</span> O quadro de login do Meu Gabinete ganha altura suficiente para exibir todo o formulário de acesso.</span></li>
+                            <li data-video="eproc-logo-tjmg-navbar"><span><strong>O símbolo do TJMG no menu.</strong> <span class="court-tag">TJMG</span> O link para o portal do TJMG no menu superior mostra o símbolo do tribunal no lugar da sigla "MG" ou "TJMG".</span></li>
                         </ul>
                     </details>
                     <details class="detail-group" id="backup">
@@ -304,41 +328,6 @@
             </div>
         </section>
 
-        <section id="galeria">
-            <div class="wrap">
-                <div class="section-head">
-                    <span class="eyebrow">Galeria</span>
-                    <h2>Do dia a dia forense, em detalhes</h2>
-                </div>
-                <div class="media-grid gallery">
-                    <div class="media-card g-card">
-                        <video muted loop playsinline preload="none" poster="assets/screenshots/painel-lateral-poster.jpg" aria-label="Animação do painel lateral fixo para consulta rápida de processos" tabindex="0" role="button">
-                            <source src="assets/screenshots/painel-lateral.webm" type="video/webm">
-                            <source src="assets/screenshots/painel-lateral.mp4" type="video/mp4">
-                        </video>
-                        <p><strong>Consulta rápida sem sair da tela</strong> Painel lateral fixo.</p>
-                    </div>
-
-                    <div class="media-card g-card">
-                        <video muted loop playsinline preload="none" poster="assets/screenshots/eploc-acoes-favoritas-poster.jpg" aria-label="Animação do recurso de ações favoritas no eploc" tabindex="0" role="button">
-                            <source src="assets/screenshots/eploc-acoes-favoritas.webm" type="video/webm">
-                        </video>
-                        <p><strong>Suas ações mais usadas primeiro</strong> Ações favoritas no eproc.</p>
-                    </div>
-
-                    <div class="media-card g-card">
-                        <img src="assets/screenshots/nomes-usuarios.webp" alt="Captura de tela exibindo nomes de usuários mais claros na interface" loading="lazy" tabindex="0" role="button">
-                        <p><strong>Saiba quem fez cada ato</strong> Nomes dos usuários por extenso nos eventos.</p>
-                    </div>
-
-                    <div class="media-card g-card">
-                        <img src="assets/screenshots/sei-descritivo.webp" alt="Visualização horizontal e descritiva otimizada no sistema SEI" loading="lazy" tabindex="0" role="button">
-                        <p><strong>Um SEI mais fácil de ler</strong> Visualização horizontal e mais descritiva.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
         <section id="privacidade" class="band">
             <div class="wrap privacy">
                 <div>
@@ -359,14 +348,15 @@
                     <span class="eyebrow">Feito por quem usa</span>
                     <h2>Feito por quem vive dentro do eproc</h2>
                     <blockquote>
-                        <p>Sou servidor do TJMG há 18 anos, em Espera Feliz/MG, e desde 2023 faço parte da equipe da extensão PJe+R, do CNJ. Agora que estamos todos no mesmo barco do eproc, juntei essa experiência para trazer as funcionalidades de que eu mesmo sentia falta no dia a dia. O eploc, porém, é um projeto pessoal, sem relação com o meu trabalho voluntário no CNJ.</p>
-                        <p>Sou o usuário número 1 do eploc: tem coisa que só aparece depois de horas encarando o sistema. Encontrou um problema ou tem uma ideia? Entre no grupo do WhatsApp ou escreva pelo formulário — leio todas as mensagens.</p>
+                        <p>Sou servidor do TJMG há <span data-anos-desde="2008">{{ site.time | date: "%Y" | minus: 2008 }}</span> anos, em Espera Feliz/MG, e desde 2023 ajudo a desenvolver a extensão PJe+R, do CNJ. Quando todos passamos para o eproc, comecei a criar as melhorias de que eu mesmo sentia falta. Assim nasceu o eploc.</p>
+                        <p>Sou o usuário número 1: muita coisa só aparece depois de horas encarando o sistema. Encontrou um problema ou tem uma ideia? Escreva no grupo do WhatsApp ou pelo formulário — leio todas as mensagens.</p>
                         <p class="maker-sign">— Fellippe Heitor</p>
                     </blockquote>
                     <div class="cta-row maker-cta">
                         <a href="https://chat.whatsapp.com/KW8aEPxUKRK3kcJ5yKpCju" target="_blank" rel="noopener noreferrer" class="btn-primary">Entrar no grupo do WhatsApp</a>
                         <a href="reportar-problema.html" class="btn-ghost">Fale com o eploc</a>
                     </div>
+                    <p class="maker-note">O eploc é um projeto pessoal, independente do meu trabalho no TJMG e do meu trabalho voluntário no PJe+R.</p>
                 </div>
             </div>
         </section>
@@ -380,7 +370,7 @@
                 <div class="docs-shell">
                     <ol class="steps">
                         <li><span><a href="https://chromewebstore.google.com/detail/eploc/fkpkkenjcfpplmhlfdbabhcdhmhiojhj" target="_blank" rel="noopener noreferrer">Instale o eploc na Chrome Web Store</a> (funciona no Chrome e no Edge).</span></li>
-                        <li><span>Na página de configurações que se abre, aceite os termos de uso para ativar o eploc.</span></li>
+                        <li><span>Na página que se abre, confirme os termos de uso — leva 5 segundos.</span></li>
                         <li><span>Abra o eproc, SEI ou RUPE — a partir daí, o eploc funciona sozinho. Clique no ícone da extensão para ligar ou desligar cada melhoria.</span></li>
                         <li><span>Dúvidas sobre algum recurso? Consulte o <a href="manual/">manual do eploc</a>.</span></li>
                     </ol>
@@ -400,16 +390,24 @@
                         <p>É um texto genérico do navegador. O eploc só atua no eproc, SEI, RUPE e páginas do TJMG. Como cada tribunal tem seu próprio endereço dentro de <code>jus.br</code>, o Chrome resume a lista nessa frase. Depois de algumas atualizações, pode ser preciso clicar em "Reativar".</p>
                     </details>
                     <details class="faq-item">
-                        <summary>É oficial do TJMG?</summary>
+                        <summary>Funciona no eproc de outros tribunais?</summary>
+                        <p>Sim. O eploc funciona no eproc da Justiça Federal da 2ª, 4ª e 6ª Regiões e dos Tribunais de Justiça de MG, RJ, RS, SC, SP e TO. Ele nasceu no TJMG, por isso os recursos específicos de lá — como os da migração do PJe, do RUPE e do Meu Gabinete — só aparecem no TJMG. Usa o eproc em outro tribunal? Conte no <a href="https://chat.whatsapp.com/KW8aEPxUKRK3kcJ5yKpCju" target="_blank" rel="noopener noreferrer">grupo do WhatsApp</a> o que funcionou.</p>
+                    </details>
+                    <details class="faq-item">
+                        <summary>É oficial de algum tribunal?</summary>
                         <p>Não. O eploc é independente e não tem vínculo com o TJMG, o CNJ ou qualquer tribunal. Ele só melhora a tela — os atos continuam sendo seus e devem ser conferidos como sempre.</p>
                     </details>
                     <details class="faq-item">
-                        <summary>Funciona no Edge?</summary>
-                        <p>Sim. Instale pela mesma página da Chrome Web Store.</p>
+                        <summary>Por que o Google pede acesso ao meu Drive?</summary>
+                        <p>Só se você ligar o backup, que vem desligado. O eploc grava numa pasta de dados do aplicativo no seu Drive, separada dos seus arquivos: a extensão não enxerga seus documentos, e só ela enxerga essa pasta. O desenvolvedor não tem acesso a ela.</p>
                     </details>
                     <details class="faq-item">
-                        <summary>Quanto custa?</summary>
-                        <p>O eploc é gratuito.</p>
+                        <summary>Funciona no Edge?</summary>
+                        <p>Sim. Instale pela mesma página da Chrome Web Store. O Edge vai perguntar se você permite extensões de outras lojas — é só clicar em "Permitir".</p>
+                    </details>
+                    <details class="faq-item">
+                        <summary>Quanto custa? Vai continuar gratuito?</summary>
+                        <p>Hoje, tudo o que está nesta página é gratuito, e a intenção é manter assim. No futuro, novos recursos podem fazer parte de um plano Pro opcional.</p>
                     </details>
                     <details class="faq-item">
                         <summary>Posso desligar o que não uso?</summary>
