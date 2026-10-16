@@ -9,7 +9,7 @@ mobile) e o rodapé ficam em `_includes/nav.html` e `_includes/footer.html`, com
 páginas via `{% include ... %}` (por isso as páginas começam com front matter `---` vazio). Links
 para seções do index usam `{{ home }}#secao`, que fica vazio no próprio index e vira `index.html`
 nas demais páginas. Abrir o `.html` direto no navegador mostra o `{% include %}` cru; para ver o
-resultado local, use `jekyll serve`. Páginas novas devem ter o front matter e os dois includes.
+resultado local, use `bundle install` (uma vez) e `bundle exec jekyll serve` — o `Gemfile` fixa as versões do GitHub Pages. Páginas novas devem ter o front matter e os dois includes.
 A política de privacidade fica em `privacidade.html`, publicada em https://eploc.com.br/privacidade
 (o Pages serve `.html` sem extensão; é a URL informada na Chrome Web Store e na tela de
 consentimento OAuth do Google, por isso não mude o nome do arquivo nem tire o trecho "Uso
@@ -33,7 +33,7 @@ as páginas com front matter. Páginas `noindex` ficam fora via `defaults` (`sit
 `_config.yml` — inclua ali qualquer página nova que não deva ser indexada. Páginas cuja URL
 canônica é sem `.html` (`privacidade`, `migracao-pje`) declaram `permalink: /<nome>` no front
 matter, para o sitemap listar a mesma URL do `canonical`.
-Arquivos do repo que não são do site (este `CLAUDE.md`, `scripts/`, `manual-src/`) ficam no `exclude` de
+Arquivos do repo que não são do site (este `CLAUDE.md`, `scripts/`, `manual-src/`, `Gemfile`) ficam no `exclude` de
 `_config.yml` — o Pages processa Liquid até em `.md` sem front matter, e um `{% ... %}` solto
 nele quebra o build.
 

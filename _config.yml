@@ -18,3 +18,6 @@ exclude:
   - CLAUDE.md
   - scripts/
   - manual-src/
+  - Gemfile
+  - Gemfile.lock
+  - vendor/
