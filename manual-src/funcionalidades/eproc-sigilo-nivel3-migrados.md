@@ -27,11 +27,12 @@ eventos e marca ao lado de cada documento afetado.
 1. Abra um processo migrado. Se houver documentos importados com sigilo nível 3, aparece a faixa
    "N documentos com sigilo nível 3 em eventos importados do PJe", com os eventos clicáveis.
 2. Clique num evento da faixa para ir até ele.
-3. Use o atalho da faixa para abrir a alteração de sigilo de vários documentos de uma vez (veja
-   também [Alterar sigilo de vários documentos de uma vez](./eproc-sigilo-documentos-lote)).
-4. Ao lado de cada documento afetado aparece uma marca com o número 3. Clique nela para:
+3. Ao lado de cada documento afetado aparece uma marca com o número 3. Clique nela para:
    - **Confirmar nível 3 (não avisar mais)**, se o sigilo estiver correto;
    - **Alterar o sigilo deste documento**.
+4. O atalho da faixa abre a alteração de sigilo em bloco (veja
+   [Alterar sigilo de vários documentos de uma vez](./eproc-sigilo-documentos-lote)). Ela serve
+   para os demais documentos do processo: o eproc não lista ali os documentos com sigilo nível 3.
 
 ## Configurações e opções
 
@@ -41,6 +42,8 @@ Não há opções além de ligar e desligar.
 
 - Só são verificados os documentos dos eventos importados (anteriores ao evento de migração ou com
   "ID no PJe").
+- O eproc só permite alterar um a um o sigilo de documentos com nível acima de 1: eles não aparecem
+  na alteração de sigilo em bloco. Para os documentos de nível 3, use a marca de cada documento.
 - O nível de sigilo é lido do balão de informações do documento. Documentos sem essa informação não
   são apontados.
 

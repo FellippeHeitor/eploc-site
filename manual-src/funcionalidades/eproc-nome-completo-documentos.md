@@ -27,11 +27,15 @@ Mandado de Prisão 1" e, embaixo, "CCUMPMP1".
 
 ## Configurações e opções
 
-Não há opções além de ligar e desligar.
+| Opção | Padrão | Efeito |
+|---|---|---|
+| Tirar o "\n" que o eproc deixa no fim das observações dos documentos (ex.: documentos trasladados) | ligada | A observação "Documento gerado pelo traslado de peças do processo …" deixa de terminar com um "\n" solto. Um "\n" no meio do texto vira quebra de linha. |
 
 ## Observações
 
-O nome completo vem das informações do próprio documento no eproc (o "Tipo Documento" do balão
-"Informações do Documento"). Quando o eproc não informa o tipo, a sigla continua como está.
+- O nome completo vem das informações do próprio documento no eproc: o "Tipo Documento" do balão
+  "Informações do Documento" ou, no eproc de 2º grau, a dica do link. Quando o eproc não informa o
+  tipo, a sigla continua como está.
+- Funciona no eproc de 1º e de 2º grau.
 
 <!-- DEMO: eproc-nome-completo-documentos -->

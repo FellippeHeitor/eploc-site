@@ -36,5 +36,10 @@ Não há opções além de ligar e desligar.
 
 - A lista do cabeçalho só oferece os níveis disponíveis em todas as linhas.
 - Só aparece no modo em bloco (a tela que tem o botão "Alteração Individual").
+- O eproc não lista na alteração em bloco os documentos com sigilo acima do nível 1, como os de
+  nível 3 dos processos migrados do PJe. Esses só podem ser alterados individualmente, documento
+  por documento. Em processos migrados, a marca de
+  [Apontar documentos com sigilo nível 3](./eproc-sigilo-nivel3-migrados) leva direto a essa
+  alteração.
 
 <!-- DEMO: eproc-sigilo-documentos-lote -->

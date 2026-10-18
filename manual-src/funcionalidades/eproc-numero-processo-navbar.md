@@ -14,7 +14,7 @@ padrao: ligado
 
 Repete o número do processo no menu superior, que fica sempre visível enquanto você rola a página.
 Um clique no número o copia. Quando o processo tramita em Juizado Especial, aparece ao lado um selo
-"JESP".
+"JESP"; numa carta precatória, um selo "CP" (os dois juntos numa carta precatória de Juizado).
 
 ## Onde aparece
 
@@ -39,6 +39,8 @@ Um clique no número o copia. Quando o processo tramita em Juizado Especial, apa
 
 - O selo "JESP" é deduzido da competência, da classe e do órgão julgador. Varas comuns com Juizado
   Especial anexo não recebem o selo.
+- O selo "CP" aparece quando a classe do processo é carta precatória (cível, criminal ou de
+  Juizado).
 - Em janelas estreitas, o número pode ser cortado. Nesse caso ele volta a aparecer no painel fixo do
   processo, mesmo com a opção de ocultá-lo ligada.
 - Se as etiquetas de aviso não couberem no menu, a faixa delas rola para os lados com a roda do
