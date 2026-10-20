@@ -29,7 +29,11 @@ eventos e marca ao lado de cada documento afetado.
 2. Clique num evento da faixa para ir até ele.
 3. Ao lado de cada documento afetado aparece uma marca com o número 3. Clique nela para:
    - **Confirmar nível 3 (não avisar mais)**, se o sigilo estiver correto;
-   - **Alterar o sigilo deste documento**.
+   - escolher outro nível em **Alterar para:** (nível 0, 1 ou 2): o eploc altera o sigilo em
+     segundo plano, sem abrir a tela, e a marca passa a mostrar o novo nível. Se não conseguir, abre
+     a tela de sigilo do documento para você concluir. Para subir o sigilo (nível 4 ou 5), use a
+     opção abaixo;
+   - **Abrir a tela de sigilo deste documento**, para alterá-lo à mão.
 4. O atalho da faixa abre a alteração de sigilo em bloco (veja
    [Alterar sigilo de vários documentos de uma vez](./eproc-sigilo-documentos-lote)). Ela serve
    para os demais documentos do processo: o eproc não lista ali os documentos com sigilo nível 3.
