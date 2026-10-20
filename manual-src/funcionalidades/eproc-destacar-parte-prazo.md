@@ -14,8 +14,8 @@ padrao: ligado
 
 Na seleção das partes a intimar, os campos de prazo ficam numa coluna longe dos nomes das partes e
 dos polos. Quando você clica num campo de prazo, de data final ou de intimação urgente, a linha
-inteira fica destacada e o nome da parte ou do polo ganha um contorno. Assim você sabe para quem é o
-prazo que está digitando.
+inteira ganha um fundo cinza discreto e o nome da parte ou do polo ganha um contorno, também cinza.
+Assim você sabe para quem é o prazo que está digitando.
 
 ## Onde aparece
 
