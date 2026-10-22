@@ -39,5 +39,8 @@ alerta, sobre audiência com data passada sem registro de realização.
 - Os dados vêm só da tabela de eventos já carregada. Se a audiência estiver numa página de eventos
   ainda não carregada, ela não aparece.
 - Se o evento já está à vista, o link só destaca a linha, sem rolar a página.
+- Audiências de eventos migrados do PJe sem registro de realização não podem ser lançadas nem
+  canceladas no eproc. Na linha delas há um botão (sino riscado) para não sinalizá-las mais naquele
+  processo. A escolha vale só neste computador.
 
 <!-- DEMO: eproc-indicador-audiencia-futura -->

@@ -18,7 +18,8 @@ Um clique no número o copia. Quando o processo tramita em Juizado Especial, apa
 
 ## Onde aparece
 
-**eproc**, menu superior, na página do processo e no cadastro de minuta.
+**eproc**, menu superior, na página do processo, no cadastro de minuta, na tela de envio de e-mail
+e nas demais telas ligadas a um processo (como a de intimação).
 
 ## Passo a passo
 
@@ -41,6 +42,9 @@ Um clique no número o copia. Quando o processo tramita em Juizado Especial, apa
   Especial anexo não recebem o selo.
 - O selo "CP" aparece quando a classe do processo é carta precatória (cível, criminal ou de
   Juizado).
+- Nas telas sem a capa do processo (como a de e-mail), os selos "JESP" e "CP" aparecem quando o
+  processo já foi aberto antes neste computador; senão, aparece só o número. Os avisos do topo só
+  passam para o menu na página do processo.
 - Em janelas estreitas, o número pode ser cortado. Nesse caso ele volta a aparecer no painel fixo do
   processo, mesmo com a opção de ocultá-lo ligada.
 - Se as etiquetas de aviso não couberem no menu, a faixa delas rola para os lados com a roda do

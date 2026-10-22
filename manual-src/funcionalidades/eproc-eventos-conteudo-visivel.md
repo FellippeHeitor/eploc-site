@@ -30,7 +30,8 @@ Não é preciso fazer nada. Role a tabela de eventos:
 - quando o meio da linha está à vista, eles voltam ao meio, como o eproc mostra;
 - quando só o fim da linha está na tela, eles vão para baixo.
 
-Com as animações ligadas (aba Geral das configurações), o conteúdo desliza até o novo lugar.
+A troca acontece quando a rolagem para por um instante, e não a cada movimento. Com as animações
+ligadas (aba Geral das configurações), o conteúdo desliza até o novo lugar.
 
 ## Configurações e opções
 
@@ -39,6 +40,8 @@ Não há opções além de ligar e desligar.
 ## Observações
 
 - Nas linhas que cabem inteiras na tela, nada muda.
+- Para voltar ao meio, o meio da linha precisa entrar um pouco na tela. Assim o conteúdo não fica
+  indo e voltando quando a rolagem para bem em cima da borda.
 - A coluna de documentos fica como está.
 - Funciona também com o agrupamento de eventos ligado.
 
