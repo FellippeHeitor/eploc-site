@@ -82,7 +82,7 @@
 
     <div class="trust-strip">
         <ul class="wrap">
-            <li>Mais de 1.000 usuários</li>
+            <li>Mais de {{ site.data.webstore.usuarios | default: "1.000" }} usuários</li>
             <li>Criado por um servidor do TJMG com <span data-anos-desde="2008">{{ site.time | date: "%Y" | minus: 2008 }}</span> anos de casa</li>
             <li>Registrado no INPI</li>
             <li>Roda só no seu navegador</li>

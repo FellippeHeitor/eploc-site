@@ -33,8 +33,11 @@ manifest da extensão). Recursos exclusivos do TJMG levam `<span class="court-ta
 logo após o `<strong>` do item, em vez de "(TJMG)" no texto.
 O tempo de casa no TJMG nunca é escrito à mão: `<span data-anos-desde="2008">{{ site.time | date: "%Y" | minus: 2008 }}</span>`
 (o Jekyll grava o valor do build e `script.js` recalcula pelo ano atual).
-A faixa de confiança traz a credencial e números ("Mais de 900 usuários ativos" — arredondado
-para baixo, nunca o número literal da Web Store). `#depoimentos` só traz
+A faixa de confiança traz a credencial e números ("Mais de 1.000 usuários"). O número não é escrito
+à mão: vem de `{{ site.data.webstore.usuarios }}` (`_data/webstore.json`), que
+`scripts/fetch-users.mjs` lê da página da Web Store (não há API pública) e arredonda para baixo
+(centenas abaixo de 10.000, milhares acima). Roda todo dia no GitHub Actions
+(`.github/workflows/users.yml`), que commita quando o valor muda — dê `git pull` antes de commitar. `#depoimentos` só traz
 depoimentos reais, com autorização (nome e sobrenome, cidade, sem cargo) — nunca invente. O título de `#detalhes` diz "Mais de
 60 melhorias": recontar os `<li>` (acordeões + `#migracao`) ao mudar a lista.
 Não há mais seção de galeria: animações e capturas de `assets/screenshots/` ficam junto do
