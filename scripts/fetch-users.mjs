@@ -22,9 +22,11 @@ const res = await fetch(storeUrl, { headers: { 'User-Agent': 'Mozilla/5.0', 'Acc
 if (!res.ok) throw new Error(`Web Store respondeu ${res.status}`);
 const html = await res.text();
 
-const match = html.match(/>\s*([\d,]+)\+?\s+users?\s*</);
+// Aceita a página em inglês ("1,000 users") ou português ("1.000 usuários"),
+// já que o Google pode ignorar o hl=en conforme a origem da requisição.
+const match = html.match(/>\s*(\d{1,3}(?:[.,\s\u00a0]\d{3})*)\+?\s+(?:users?|usuários?)\s*</i);
 if (!match) throw new Error('Número de usuários não encontrado na página da Web Store');
-const total = Number(match[1].replace(/,/g, ''));
+const total = Number(match[1].replace(/\D/g, ''));
 if (!Number.isFinite(total) || total <= 0) throw new Error(`Número inválido: ${match[1]}`);
 
 const step = total < 10000 ? 100 : 1000;
