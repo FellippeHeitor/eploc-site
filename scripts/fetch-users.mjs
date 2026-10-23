@@ -16,7 +16,7 @@ import path from 'node:path';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const dataFile = path.join(root, '_data', 'webstore.json');
-const storeUrl = 'https://chromewebstore.google.com/detail/eploc/fkpkkenjcfpplmhlfdbabhcdhmhiojhj?hl=en';
+const storeUrl = 'https://chromewebstore.google.com/detail/eploc/fkpkkenjcfpplmhlfdbabhcdhmhiojhj?hl=en&gl=BR';
 
 const res = await fetch(storeUrl, { headers: { 'User-Agent': 'Mozilla/5.0', 'Accept-Language': 'en' } });
 if (!res.ok) throw new Error(`Web Store respondeu ${res.status}`);
@@ -35,6 +35,12 @@ function findUsers(html) {
 }
 
 const found = findUsers(html);
+// A Web Store manda para /detail/empty-title/ quando o item não está disponível
+// na região de quem pede (o runner do Actions fica nos EUA); o gl=BR acima tenta
+// contornar isso.
+if (!found && res.url.includes('/empty-title/')) {
+    throw new Error(`A Web Store não mostrou o eploc para esta região (${res.url}). Confira as regiões de distribuição no painel da Web Store.`);
+}
 if (!found) {
     // Mostra o que veio, para entender a falha no log do Actions
     const title = html.match(/<title>([^<]*)<\/title>/)?.[1];
