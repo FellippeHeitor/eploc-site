@@ -22,12 +22,28 @@ const res = await fetch(storeUrl, { headers: { 'User-Agent': 'Mozilla/5.0', 'Acc
 if (!res.ok) throw new Error(`Web Store respondeu ${res.status}`);
 const html = await res.text();
 
-// Aceita a página em inglês ("1,000 users") ou português ("1.000 usuários"),
-// já que o Google pode ignorar o hl=en conforme a origem da requisição.
-const match = html.match(/>\s*(\d{1,3}(?:[.,\s\u00a0]\d{3})*)\+?\s+(?:users?|usuários?)\s*</i);
-if (!match) throw new Error('Número de usuários não encontrado na página da Web Store');
-const total = Number(match[1].replace(/\D/g, ''));
-if (!Number.isFinite(total) || total <= 0) throw new Error(`Número inválido: ${match[1]}`);
+// Procura primeiro o texto visível, em inglês ("1,000 users") ou português
+// ("1.000 usuários"), já que o Google pode ignorar o hl=en conforme a origem.
+// Se não achar, tenta os dados embutidos da página (bloco ds:0), em que o
+// número aparece cru logo após a categoria: ["productivity/tools",null,5],1,null,1000,
+function findUsers(html) {
+    const text = html.match(/>\s*(\d{1,3}(?:[.,\s ]\d{3})*)\+?\s+(?:users?|usuários?)\s*</i);
+    if (text) return text[1];
+    const ds0 = html.indexOf("key: 'ds:0'");
+    if (ds0 < 0) return null;
+    return html.slice(ds0).match(/\["[\w/]+",null,\d+\],\d+,null,(\d+),/)?.[1] ?? null;
+}
+
+const found = findUsers(html);
+if (!found) {
+    // Mostra o que veio, para entender a falha no log do Actions
+    const title = html.match(/<title>([^<]*)<\/title>/)?.[1];
+    console.error(`URL final: ${res.url}\nStatus: ${res.status}\nTamanho: ${html.length}\nTítulo: ${title}`);
+    console.error(html.slice(0, 1500));
+    throw new Error('Número de usuários não encontrado na página da Web Store');
+}
+const total = Number(found.replace(/\D/g, ''));
+if (!Number.isFinite(total) || total <= 0) throw new Error(`Número inválido: ${found}`);
 
 const step = total < 10000 ? 100 : 1000;
 const rounded = Math.floor(total / step) * step;
