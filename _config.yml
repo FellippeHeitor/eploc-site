@@ -18,6 +18,7 @@ exclude:
   - CLAUDE.md
   - scripts/
   - manual-src/
+  - reels/
   - Gemfile
   - Gemfile.lock
   - vendor/
