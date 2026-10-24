@@ -25,8 +25,9 @@ recurso ("Gerenciar colunas excluídas e processos monitorados").
 
 1. Gere o Relatório Geral.
 2. Passe o mouse sobre a linha de um processo e clique no ícone de olho ("Monitorar este processo").
-   Para marcar todos os processos da página, use "Monitorar todos os processos listados nesta página
-   do relatório".
+   Para marcar todos os processos da página, clique no botão **eploc**, no fim da barra acima da
+   tabela, e escolha "Monitorar todos os processos desta página". No mesmo menu, "Parar de monitorar
+   os processos desta página" desfaz isso.
 3. Nas próximas vezes em que gerar o relatório:
    - as células que mudaram ficam destacadas, com a marca "NOVO";
    - as linhas sem mudança ficam esmaecidas.
@@ -37,8 +38,8 @@ recurso ("Gerenciar colunas excluídas e processos monitorados").
 
 ## Configurações e opções
 
-| Opção | Padrão | Efeito |
-|---|---|---|
+| Opção                                                                                                             | Padrão    | Efeito                                                                                                                                                      |
+| ----------------------------------------------------------------------------------------------------------------- | --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Guardar o valor anterior de cada coluna alterada (cifrado, só neste dispositivo) para mostrá-lo ao passar o mouse | desligada | Ao passar o mouse sobre a marca "NOVO", mostra o valor de antes. Desligada, o eploc guarda só uma impressão digital (hash) de cada valor, nunca o conteúdo. |
 
 ## Observações
