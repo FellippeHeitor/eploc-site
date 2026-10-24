@@ -49,9 +49,18 @@ as páginas com front matter. Páginas `noindex` ficam fora via `defaults` (`sit
 `_config.yml` — inclua ali qualquer página nova que não deva ser indexada. Páginas cuja URL
 canônica é sem `.html` (`privacidade`, `migracao-pje`) declaram `permalink: /<nome>` no front
 matter, para o sitemap listar a mesma URL do `canonical`.
-Arquivos do repo que não são do site (este `CLAUDE.md`, `scripts/`, `manual-src/`, `Gemfile`) ficam no `exclude` de
+Arquivos do repo que não são do site (este `CLAUDE.md`, `scripts/`, `manual-src/`, `reels/`, `Gemfile`) ficam no `exclude` de
 `_config.yml` — o Pages processa Liquid até em `.md` sem front matter, e um `{% ... %}` solto
 nele quebra o build.
+
+## Reels (`reels/`)
+
+Fonte dos vídeos curtos verticais (Shorts/Reels) de cada recurso, fora do Jekyll pelo `exclude`.
+Cada reel é uma pasta `reels/<nome>/` com `reel.html` (linha do tempo determinística em
+`renderFrame(t)`, que reproduz a interface real da extensão com números fictícios; aberto no
+navegador, toca em loop) e `render.mjs`, que grava o MP4 1080x1920 com Playwright + ffmpeg:
+`node reels/<nome>/render.mjs saida.mp4` (`--quadros 3,9.5` salva só PNGs desses instantes, para
+conferir). O MP4 não é versionado. Depois de publicar o vídeo, preencha a URL em `videos.json`.
 
 ## Manual (`/manual`)
 

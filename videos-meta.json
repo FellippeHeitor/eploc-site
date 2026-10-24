@@ -35,6 +35,10 @@
     "name": "Alterar sigilo de vários documentos de uma vez",
     "group": "Painel do processo"
   },
+  "eproc-idade-partes": {
+    "name": "Idade das partes",
+    "group": "Painel do processo"
+  },
   "eproc-icones-secoes-colapsadas-painel": {
     "name": "Colapsar e fixar seções do Painel do Servidor",
     "group": "Painéis e relatórios"
@@ -49,6 +53,10 @@
   },
   "eproc-remover-hover-relatorio": {
     "name": "Remover destaque de hover nas tabelas de relatório",
+    "group": "Painéis e relatórios"
+  },
+  "eproc-filtro-numero-relatorio": {
+    "name": "Filtro por número no Relatório Geral",
     "group": "Painéis e relatórios"
   },
   "eproc-agrupar-eventos-relacionados": {
@@ -71,6 +79,14 @@
     "name": "Nome completo dos documentos nos eventos",
     "group": "Eventos"
   },
+  "eproc-nivel-sigilo-documentos": {
+    "name": "Mostrar nível de sigilo dos documentos",
+    "group": "Eventos"
+  },
+  "eproc-eventos-conteudo-visivel": {
+    "name": "Manter descrição dos eventos à vista",
+    "group": "Eventos"
+  },
   "eproc-atalho-arvore-minuta": {
     "name": "Atalho para árvore no menu da minuta",
     "group": "Árvore e minuta"
@@ -85,6 +101,10 @@
   },
   "eproc-resumo-minuta-flutuante": {
     "name": "Painel de resumo da minuta",
+    "group": "Árvore e minuta"
+  },
+  "eproc-destacar-parte-prazo": {
+    "name": "Destacar a parte do prazo em foco",
     "group": "Árvore e minuta"
   },
   "eproc-auto-buscar-prevencao": {
@@ -129,6 +149,14 @@
   },
   "eproc-modelos-mensagem": {
     "name": "Modelos de mensagem",
+    "group": "E-mail"
+  },
+  "eproc-email-evento-primeiro": {
+    "name": "Evento antes do documento na tela de e-mail",
+    "group": "E-mail"
+  },
+  "eproc-memo-destinatarios-email": {
+    "name": "Destinatários do e-mail no memo",
     "group": "E-mail"
   },
   "eproc-lembrete-prefill": {
@@ -177,6 +205,10 @@
   },
   "eproc-logo-tjmg-navbar": {
     "name": "Símbolo do TJMG no menu superior",
+    "group": "Menu superior"
+  },
+  "eproc-fechar-janelas-documentos": {
+    "name": "Fechar janelas de documentos",
     "group": "Menu superior"
   },
   "eproc-ajustar-eventos-migrados-pje": {
@@ -241,6 +273,10 @@
   },
   "tjmg-meu-gabinete-altura-login": {
     "name": "Corrigir a área visível para login no Meu Gabinete (TJMG)",
+    "group": "RUPE e TJMG"
+  },
+  "rupe-rpv-lei-devedor": {
+    "name": "Lembrar lei de regência da RPV por devedor",
     "group": "RUPE e TJMG"
   },
   "sei-mais-descritivo-horizontal": {
