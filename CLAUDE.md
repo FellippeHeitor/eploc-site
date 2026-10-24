@@ -93,7 +93,9 @@ para esse caminho, então não renomeie os arquivos. Detalhes (molde das página
 
 ## Workflow: atualizar o site a partir do changelog/descrição da extensão
 
-Quando o usuário pedir para "atualizar o site com base no changelog/webstore do eploc":
+Quando o usuário pedir para "atualizar o site com base no changelog/webstore do eploc" — ou disser
+"release time", "let's release" ou equivalente (atalho para este fluxo: a extensão vai ganhar versão
+nova; não pergunte o que fazer):
 
 1. Leia as fontes no projeto da extensão (repo irmão):
    - `/Users/fellippeheitor/git/eploc/src/CHANGELOG.md` — entrada(s) mais recente(s) no topo.
@@ -119,6 +121,10 @@ Quando o usuário pedir para "atualizar o site com base no changelog/webstore do
    configurações). Cada `<li>` entra no grupo que combina; crie um novo só se nenhum servir. Cards e itens podem declarar `data-video="<id do script>"`:
    quando esse id tem URL em `videos.json`, `script.js` acrescenta sozinho um botão "Ver vídeo".
    Ao adicionar um item/card de um script que tem vídeo (ou terá), preencha o `data-video`.
-6. Depois de editar, mostre o diff relevante mas não rode build nem commit a menos que pedido.
+6. Atualize `manual-src/.vitepress/versao.json` para a versão mais recente do CHANGELOG — é a
+   versão impressa na capa do PDF do manual e não muda sozinha.
+7. Depois de editar, mostre o diff relevante mas não rode build nem commit a menos que pedido.
+   Quando o usuário responder "done" depois de revisar, isso significa "commite" (o usuário não commita
+   por conta própria). Não dê push a menos que pedido.
 
 Commits anteriores desse tipo usam mensagens como "Adiciona novas funcionalidades ao painel de recursos e melhorias na descrição das funcionalidades" — só crie o commit se o usuário pedir.
