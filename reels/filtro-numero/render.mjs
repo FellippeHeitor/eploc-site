@@ -1,6 +1,7 @@
 // Renderiza reel.html quadro a quadro em MP4 vertical 1080x1920 (H.264, 30 fps, com trilha silenciosa).
 // Uso: node reels/filtro-numero/render.mjs [saida.mp4] [--quadros 2,8.5,16]
 //   --quadros: só salva PNGs desses instantes (segundos), para conferir o visual.
+//   --zonas: desenha a zona segura (retângulo tracejado) nos quadros.
 import { createRequire } from "node:module";
 import { spawn } from "node:child_process";
 import { fileURLToPath, pathToFileURL } from "node:url";
@@ -17,7 +18,9 @@ const FPS = 30;
 
 const browser = await chromium.launch();
 const page = await browser.newPage({ viewport: { width: 540, height: 960 }, deviceScaleFactor: 2 });
-await page.goto(pathToFileURL(path.join(aqui, "reel.html")).href + "?render");
+// --zonas: desenha a zona segura nos quadros salvos.
+const zonas = args.includes("--zonas") ? "&zonas" : "";
+await page.goto(pathToFileURL(path.join(aqui, "reel.html")).href + "?render" + zonas);
 await page.evaluate(() => window.pronto);
 const duracao = await page.evaluate(() => window.DURACAO);
 
