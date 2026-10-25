@@ -2,6 +2,7 @@
 // Uso: node reels/filtro-numero/render.mjs [saida.mp4] [--quadros 2,8.5,16]
 //   --quadros: só salva PNGs desses instantes (segundos), para conferir o visual.
 //   --zonas: desenha a zona segura (retângulo tracejado) nos quadros.
+//   --capa: salva a capa (capa.html) como PNG 1080x1920 no caminho de saída.
 import { createRequire } from "node:module";
 import { spawn } from "node:child_process";
 import { fileURLToPath, pathToFileURL } from "node:url";
@@ -20,6 +21,15 @@ const browser = await chromium.launch();
 const page = await browser.newPage({ viewport: { width: 540, height: 960 }, deviceScaleFactor: 2 });
 // --zonas: desenha a zona segura nos quadros salvos.
 const zonas = args.includes("--zonas") ? "&zonas" : "";
+if (args.includes("--capa")) {
+  await page.goto(pathToFileURL(path.join(aqui, "capa.html")).href);
+  await page.evaluate(() => window.pronto);
+  const arq = saida.replace(/\.mp4$/, ".png");
+  await page.screenshot({ path: arq });
+  console.log(arq);
+  await browser.close();
+  process.exit(0);
+}
 await page.goto(pathToFileURL(path.join(aqui, "reel.html")).href + "?render" + zonas);
 await page.evaluate(() => window.pronto);
 const duracao = await page.evaluate(() => window.DURACAO);

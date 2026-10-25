@@ -60,7 +60,8 @@ Cada reel é uma pasta `reels/<nome>/` com `reel.html` (linha do tempo determin�
 `renderFrame(t)`, que reproduz a interface real da extensão com números fictícios; aberto no
 navegador, toca em loop) e `render.mjs`, que grava o MP4 1080x1920 com Playwright + ffmpeg:
 `node reels/<nome>/render.mjs saida.mp4` (`--quadros 3,9.5` salva só PNGs desses instantes, para
-conferir). O MP4 não é versionado. Depois de publicar o vídeo, preencha a URL em `videos.json`.
+conferir). A capa fica em `capa.html`, com o conteúdo dentro do recorte 4:5 do perfil do Instagram;
+`render.mjs capa.png --capa` gera o PNG. O MP4 e os PNGs não são versionados. Depois de publicar o vídeo, preencha a URL em `videos.json`.
 
 ## Manual (`/manual`)
 

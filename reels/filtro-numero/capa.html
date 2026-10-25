@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Capa: Filtro por número</title>
+<!--
+  Capa do reel (1080x1920). O conteúdo fica entre y 255 e 710 (lógicos), centrado, dentro do recorte
+  4:5 do perfil do Instagram (y 142–818) e longe dos botões da direita.
+  Gerada por: node reels/filtro-numero/render.mjs capa.png --capa
+-->
+<style>
+@font-face { font-family: 'Baloo 2'; font-weight: 600 800; src: url('../../assets/fonts/baloo2-var.woff2') format('woff2'); }
+@font-face { font-family: 'IBM Plex Sans'; font-weight: 400 700; src: url('../../assets/fonts/plexsans-var.woff2') format('woff2'); }
+@font-face { font-family: 'IBM Plex Mono'; font-weight: 600; src: url('../../assets/fonts/plexmono-600.woff2') format('woff2'); }
+:root { --paper: #fbf7f4; --ink: #221827; --ink-muted: #6b5f73; --pink: #e8195f; --pink-soft: #fbd9e6; --cyan-soft: #def4fa;
+  --azul: #1f5fd1; --azul-bg: #eaf1fd; --azul-borda: #9db9ec; --borda: #dcd8e2; --fraco: #959baa; --suave: #646b7a;
+  --mono: 'IBM Plex Mono', ui-monospace, monospace; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 540px; height: 960px; overflow: hidden; background: var(--paper); }
+body { font-family: 'IBM Plex Sans', sans-serif; color: var(--ink); position: relative; -webkit-font-smoothing: antialiased; }
+.blob { position: absolute; border-radius: 50%; filter: blur(40px); opacity: .6; }
+.blob--a { width: 420px; height: 420px; background: var(--pink-soft); left: -160px; top: 60px; }
+.blob--b { width: 380px; height: 380px; background: var(--cyan-soft); right: -160px; top: 520px; }
+.conteudo { position: absolute; left: 40px; right: 40px; top: 255px; display: flex; flex-direction: column; align-items: center; text-align: center; }
+.kicker { padding: 4px 12px; border-radius: 999px; background: var(--pink); color: #fff; font-weight: 600; font-size: 14px; }
+h1 { margin-top: 14px; font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 52px; line-height: .98; letter-spacing: -.5px; }
+h1 em { font-style: normal; color: var(--pink); }
+.sub { margin-top: 12px; font-size: 17px; color: var(--ink-muted); }
+.sub b { color: var(--ink); }
+.numero { margin-top: 30px; display: flex; align-items: flex-start; gap: 3px; padding: 14px 14px 10px; border-radius: 14px; background: #fff;
+  box-shadow: 0 1px 2px rgba(34,24,39,.05), 0 18px 40px -18px rgba(34,24,39,.35); }
+.grupo { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+.caixas { display: flex; gap: 3px; }
+.rot { font-size: 10px; color: var(--suave); }
+.sep { padding-top: 8px; color: var(--fraco); font-family: var(--mono); font-size: 16px; }
+.pos { min-width: 26px; height: 40px; padding: 0 3px; display: grid; place-items: center; border: 1px solid var(--borda); border-radius: 6px;
+  background: #fff; color: var(--fraco); font-family: var(--mono); font-weight: 600; font-size: 15px; }
+.pos--on { border: 1.5px solid var(--pink); background: var(--pink-soft); color: #a8073f; }
+.pos--larga { min-width: 46px; }
+.selo { margin-top: 26px; height: 44px; display: inline-flex; align-items: center; gap: 8px; padding: 0 18px; border-radius: 999px;
+  border: 1.5px solid var(--azul); background: var(--azul-bg); color: var(--azul); font-size: 18px; white-space: nowrap;
+  box-shadow: 0 10px 24px -12px rgba(31,95,209,.5); }
+.selo svg { width: 20px; height: 20px; }
+.selo .mono { font-family: var(--mono); font-weight: 600; font-size: 17px; }
+.selo b { font-weight: 700; }
+.marca { margin-top: 36px; display: flex; align-items: center; gap: 12px; }
+.marca img { width: 64px; height: 64px; }
+.marca div { text-align: left; font-weight: 600; font-size: 16px; line-height: 1.3; }
+.marca span { display: block; font-family: 'Baloo 2', sans-serif; font-weight: 700; font-size: 20px; color: var(--pink); }
+</style>
+</head>
+<body>
+<div class="blob blob--a"></div>
+<div class="blob blob--b"></div>
+<div class="conteudo">
+  <span class="kicker">Relatório Geral do eproc</span>
+  <h1>Filtre por <em>qualquer</em><br>dígito do número</h1>
+  <p class="sub">O eproc filtra só o último. O <b>eploc</b> filtra todos.</p>
+  <div class="numero">
+    <span class="grupo"><span class="caixas"><span class="pos pos--on">5</span><span class="pos">N</span><span class="pos">N</span><span class="pos">N</span><span class="pos">N</span><span class="pos pos--on">[0-2]</span><span class="pos">N</span></span><span class="rot">Número</span></span>
+    <span class="sep">-</span><span class="grupo"><span class="caixas"><span class="pos">D</span><span class="pos">D</span></span><span class="rot">Verif.</span></span>
+    <span class="sep">.</span><span class="grupo"><span class="caixas"><span class="pos pos--larga">AAAA</span></span><span class="rot">Ano</span></span>
+    <span class="sep">.</span><span class="grupo"><span class="caixas"><span class="pos pos--larga">OOOO</span></span><span class="rot">Origem</span></span>
+  </div>
+  <span class="selo">
+    <svg viewBox="0 -960 960 960" fill="currentColor"><path d="M440-160q-17 0-28.5-11.5T400-200v-240L168-736q-15-20-4.5-42t36.5-22h560q26 0 36.5 22t-4.5 42L560-440v240q0 17-11.5 28.5T520-160h-80Z"/></svg>
+    <span class="mono">5NNNN[0-2]</span><b>· 23 de 100</b>
+  </span>
+  <div class="marca">
+    <img src="../../assets/eploc-logo-sem-texto-1000.png" alt="">
+    <div>eploc · grátis para Chrome e Edge<span>eploc.com.br</span></div>
+  </div>
+</div>
+<script>window.pronto = document.fonts.ready.then(() => Promise.all([...document.images].map((i) => i.decode().catch(() => {}))));</script>
+</body>
+</html>
