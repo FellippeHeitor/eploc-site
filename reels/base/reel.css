@@ -1,0 +1,78 @@
+/* Base comum dos reels (reels/<nome>/reel.html): fontes, cores, legendas, cursor,
+   cartão final e zona segura. Cada reel acrescenta só o CSS da própria cena. */
+@font-face { font-family: 'Baloo 2'; font-weight: 600 800; src: url('../../assets/fonts/baloo2-var.woff2') format('woff2'); }
+@font-face { font-family: 'IBM Plex Sans'; font-weight: 400 700; src: url('../../assets/fonts/plexsans-var.woff2') format('woff2'); }
+@font-face { font-family: 'IBM Plex Mono'; font-weight: 500; src: url('../../assets/fonts/plexmono-500.woff2') format('woff2'); }
+@font-face { font-family: 'IBM Plex Mono'; font-weight: 600; src: url('../../assets/fonts/plexmono-600.woff2') format('woff2'); }
+
+:root {
+  /* Site */
+  --paper: #fbf7f4; --ink: #221827; --ink-muted: #6b5f73; --pink: #e8195f; --pink-soft: #fbd9e6;
+  --cyan: #2fb4d9; --cyan-soft: #def4fa;
+  /* Tokens da extensão (src/styles/tokens.css) */
+  --azul: #1f5fd1; --azul-bg: #eaf1fd; --azul-borda: #9db9ec; --bg: #f6f5f8; --borda: #dcd8e2;
+  --borda-forte: #bdb7c6; --tinta: #1d2433; --suave: #646b7a; --fraco: #959baa;
+  --mono: 'IBM Plex Mono', ui-monospace, monospace;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+/* Página de 540x960, renderizada com deviceScaleFactor 2 (vídeo de 1080x1920). */
+html, body { width: 540px; height: 960px; overflow: hidden; background: var(--paper); }
+body { font-family: 'IBM Plex Sans', sans-serif; color: var(--ink); position: relative; -webkit-font-smoothing: antialiased; }
+
+.blob { position: absolute; border-radius: 50%; filter: blur(40px); opacity: .55; }
+.blob--a { width: 380px; height: 380px; background: var(--pink-soft); left: -140px; top: -120px; }
+.blob--b { width: 340px; height: 340px; background: var(--cyan-soft); right: -150px; bottom: 40px; }
+
+/* ── Zona segura ──
+   Tudo o que precisa ser lido fica em x 33–444, y 144–624 (no vídeo, 65–888 × 288–1248 px):
+   o critério mais conservador entre Reels, Shorts e TikTok, que reservam o topo para o
+   cabeçalho do app, a direita para os botões e a base para a legenda do post.
+   Abra com ?zonas para ver o retângulo. */
+.zona { position: absolute; left: 33px; top: 144px; width: 411px; height: 480px; outline: 2px dashed #00b050; z-index: 99;
+  pointer-events: none; }
+
+/* ── Legendas ── */
+.legenda { position: absolute; left: 33px; right: 96px; top: 150px; height: 140px; }
+.cap { position: absolute; inset: 0; opacity: 0; }
+.cap__kicker { display: inline-block; padding: 3px 10px; border-radius: 999px; background: var(--pink); color: #fff;
+  font-weight: 600; font-size: 13px; letter-spacing: .3px; margin-bottom: 8px; }
+.cap__titulo { font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 31px; line-height: 1.02; letter-spacing: -.3px; }
+.cap__titulo em { font-style: normal; color: var(--pink); }
+.cap__sub { margin-top: 6px; font-size: 15px; line-height: 1.35; color: var(--ink-muted); }
+.cap__sub b { color: var(--ink); }
+
+/* ── Janela do navegador (moldura das cenas do eproc) ── */
+.nav-browser { height: 24px; background: #ecebf0; display: flex; align-items: center; gap: 5px; padding: 0 10px; }
+.nav-browser i { width: 8px; height: 8px; border-radius: 50%; background: #d4d1da; }
+.nav-browser span { margin-left: 10px; flex: 1; height: 14px; border-radius: 7px; background: #fff; font-size: 8.5px; color: var(--suave);
+  display: flex; align-items: center; padding-left: 8px; }
+.navbar { height: 32px; background: #0d5a96; display: flex; align-items: center; gap: 9px; padding: 0 10px; color: #fff; }
+.navbar .burger { width: 14px; height: 10px; border-top: 2px solid #fff; border-bottom: 2px solid #fff; position: relative; }
+.navbar .burger::after { content: ""; position: absolute; left: 0; right: 0; top: 2px; border-top: 2px solid #fff; }
+.navbar .perfil { margin-left: 6px; height: 20px; border-radius: 4px; background: #fff; color: #333; font-size: 8.5px; display: flex;
+  align-items: center; padding: 0 8px; font-weight: 600; }
+.navbar .sp { flex: 1; }
+.navbar .dot { width: 14px; height: 14px; border-radius: 50%; background: rgba(255,255,255,.35); }
+
+/* ── Cursor e clique ── */
+.cursor { position: absolute; left: 0; top: 0; width: 22px; height: 22px; z-index: 50; opacity: 0;
+  filter: drop-shadow(0 2px 3px rgba(0,0,0,.3)); }
+.ripple { position: absolute; width: 34px; height: 34px; margin: -17px 0 0 -17px; border-radius: 50%; border: 3px solid var(--pink);
+  z-index: 49; opacity: 0; }
+
+/* ── Cartão final ── */
+.final { position: absolute; inset: 0; background: var(--paper); opacity: 0; display: flex; flex-direction: column; align-items: center;
+  padding: 150px 96px 0 33px; z-index: 60; overflow: hidden; }
+.final .blob--a { top: auto; bottom: -140px; left: -120px; }
+.final .blob--b { bottom: auto; top: -100px; right: -130px; }
+.final__logo { width: 150px; height: 150px; position: relative; }
+.final__nome { position: relative; margin-top: 12px; font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 29px; line-height: 1.05;
+  text-align: center; }
+.final__lista { position: relative; margin-top: 16px; display: flex; flex-direction: column; gap: 7px; }
+.final__lista div { display: flex; align-items: center; gap: 10px; font-size: 16px; font-weight: 500; }
+.final__lista i { width: 22px; height: 22px; border-radius: 50%; background: var(--pink); display: grid; place-items: center; flex: none; }
+.final__lista i::after { content: ""; width: 9px; height: 5px; border-left: 2.4px solid #fff; border-bottom: 2.4px solid #fff;
+  transform: translateY(-1px) rotate(-45deg); }
+.final__cta { position: relative; margin-top: 22px; padding: 10px 22px; border-radius: 999px; background: var(--ink); color: #fff;
+  font-weight: 600; font-size: 17px; }
+.final__url { position: relative; margin-top: 8px; font-family: 'Baloo 2', sans-serif; font-weight: 700; font-size: 22px; color: var(--pink); }

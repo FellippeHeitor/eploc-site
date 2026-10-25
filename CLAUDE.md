@@ -56,12 +56,18 @@ nele quebra o build.
 ## Reels (`reels/`)
 
 Fonte dos vídeos curtos verticais (Shorts/Reels) de cada recurso, fora do Jekyll pelo `exclude`.
-Cada reel é uma pasta `reels/<nome>/` com `reel.html` (linha do tempo determinística em
-`renderFrame(t)`, que reproduz a interface real da extensão com números fictícios; aberto no
-navegador, toca em loop) e `render.mjs`, que grava o MP4 1080x1920 com Playwright + ffmpeg:
-`node reels/<nome>/render.mjs saida.mp4` (`--quadros 3,9.5` salva só PNGs desses instantes, para
-conferir). A capa fica em `capa.html`, com o conteúdo dentro do recorte 4:5 do perfil do Instagram;
-`render.mjs capa.png --capa` gera o PNG. O MP4 e os PNGs não são versionados. Depois de publicar o vídeo, preencha a URL em `videos.json`.
+Cada reel é uma pasta `reels/<nome>/` com `reel.html`, que reproduz a interface real da extensão
+(copie cores e textos do script no repo da extensão) com dados fictícios, e `capa.html`. A base
+comum fica em `reels/base/`: `reel.css` (fontes, cores, legendas, moldura do eproc, cursor, cartão
+final, zona segura) e `reel.js` (`iniciarReel({ duracao, legendas, cursor, final, desenhar })`,
+que monta legendas, cursor e cartão final e expõe `renderFrame(t)`, determinístico; aberto no
+navegador, o reel toca em loop). O reel só escreve a própria cena em `desenhar(t)`.
+`node reels/render.mjs <nome> saida.mp4` grava o MP4 1080x1920 com Playwright + ffmpeg
+(`--quadros 3,9.5` salva só PNGs desses instantes; `--zonas` desenha a zona segura; `--capa` gera o
+PNG da capa). Tudo o que precisa ser lido fica em x 33–444, y 144–624 da página (65–888 × 288–1248
+no vídeo), a zona segura mais conservadora entre Reels, Shorts e TikTok; a capa fica centrada no
+recorte 4:5 do perfil do Instagram. O MP4 e os PNGs não são versionados. Depois de publicar o
+vídeo, preencha a URL em `videos.json`.
 
 ## Manual (`/manual`)
 

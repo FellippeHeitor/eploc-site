@@ -5,51 +5,11 @@
 <title>Reel: Filtro por número</title>
 <!--
   Reel vertical (1080x1920) do "Filtro por número no Relatório Geral".
-  A página é uma linha do tempo determinística: renderFrame(t) desenha o
-  instante t (segundos). Aberta no navegador, toca sozinha; render.mjs chama
-  renderFrame quadro a quadro e gera o MP4. Números de processo fictícios.
+  Usa a base comum (../base/reel.css e reel.js); gerado por reels/render.mjs.
+  Números de processo fictícios.
 -->
+<link rel="stylesheet" href="../base/reel.css">
 <style>
-@font-face { font-family: 'Baloo 2'; font-weight: 600 800; src: url('../../assets/fonts/baloo2-var.woff2') format('woff2'); }
-@font-face { font-family: 'IBM Plex Sans'; font-weight: 400 700; src: url('../../assets/fonts/plexsans-var.woff2') format('woff2'); }
-@font-face { font-family: 'IBM Plex Mono'; font-weight: 500; src: url('../../assets/fonts/plexmono-500.woff2') format('woff2'); }
-@font-face { font-family: 'IBM Plex Mono'; font-weight: 600; src: url('../../assets/fonts/plexmono-600.woff2') format('woff2'); }
-
-:root {
-  /* Site */
-  --paper: #fbf7f4; --ink: #221827; --ink-muted: #6b5f73; --pink: #e8195f; --pink-soft: #fbd9e6;
-  --cyan: #2fb4d9; --cyan-soft: #def4fa;
-  /* Tokens da extensão (src/styles/tokens.css) */
-  --azul: #1f5fd1; --azul-bg: #eaf1fd; --azul-borda: #9db9ec; --bg: #f6f5f8; --borda: #dcd8e2;
-  --borda-forte: #bdb7c6; --tinta: #1d2433; --suave: #646b7a; --fraco: #959baa;
-  --mono: 'IBM Plex Mono', ui-monospace, monospace;
-}
-* { box-sizing: border-box; margin: 0; padding: 0; }
-html, body { width: 540px; height: 960px; overflow: hidden; background: var(--paper); }
-body { font-family: 'IBM Plex Sans', sans-serif; color: var(--ink); position: relative; -webkit-font-smoothing: antialiased; }
-
-.blob { position: absolute; border-radius: 50%; filter: blur(40px); opacity: .55; }
-.blob--a { width: 380px; height: 380px; background: var(--pink-soft); left: -140px; top: -120px; }
-.blob--b { width: 340px; height: 340px; background: var(--cyan-soft); right: -150px; bottom: 40px; }
-
-/* ── Zona segura ──
-   Tudo o que precisa ser lido fica em x 33–444, y 144–624 (no vídeo, 65–888 × 288–1248 px):
-   o critério mais conservador entre Reels, Shorts e TikTok, que reservam o topo para o
-   cabeçalho do app, a direita para os botões e a base para a legenda do post.
-   Abra com ?zonas para ver o retângulo. */
-.zona { position: absolute; left: 33px; top: 144px; width: 411px; height: 480px; outline: 2px dashed #00b050; z-index: 99;
-  pointer-events: none; }
-
-/* ── Legendas ── */
-.legenda { position: absolute; left: 33px; right: 96px; top: 150px; height: 140px; }
-.cap { position: absolute; inset: 0; opacity: 0; }
-.cap__kicker { display: inline-block; padding: 3px 10px; border-radius: 999px; background: var(--pink); color: #fff;
-  font-weight: 600; font-size: 13px; letter-spacing: .3px; margin-bottom: 8px; }
-.cap__titulo { font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 31px; line-height: 1.02; letter-spacing: -.3px; }
-.cap__titulo em { font-style: normal; color: var(--pink); }
-.cap__sub { margin-top: 6px; font-size: 15px; line-height: 1.35; color: var(--ink-muted); }
-.cap__sub b { color: var(--ink); }
-
 /* ── Gancho: o número em caixas ── */
 .gancho { position: absolute; left: 33px; right: 96px; top: 340px; display: flex; flex-direction: column; align-items: center; }
 .gancho__num { display: flex; gap: 3px; padding: 14px 12px; border-radius: 16px; background: #fff;
@@ -68,17 +28,6 @@ body { font-family: 'IBM Plex Sans', sans-serif; color: var(--ink); position: re
 /* ── Janela do navegador com o eproc ── */
 .janela { position: absolute; left: 24px; width: 500px; top: 296px; height: 640px; border-radius: 14px; overflow: hidden;
   background: #fff; box-shadow: 0 2px 4px rgba(34,24,39,.06), 0 24px 60px -20px rgba(34,24,39,.45); }
-.nav-browser { height: 24px; background: #ecebf0; display: flex; align-items: center; gap: 5px; padding: 0 10px; }
-.nav-browser i { width: 8px; height: 8px; border-radius: 50%; background: #d4d1da; }
-.nav-browser span { margin-left: 10px; flex: 1; height: 14px; border-radius: 7px; background: #fff; font-size: 8.5px; color: var(--suave);
-  display: flex; align-items: center; padding-left: 8px; }
-.navbar { height: 32px; background: #0d5a96; display: flex; align-items: center; gap: 9px; padding: 0 10px; color: #fff; }
-.navbar .burger { width: 14px; height: 10px; border-top: 2px solid #fff; border-bottom: 2px solid #fff; position: relative; }
-.navbar .burger::after { content: ""; position: absolute; left: 0; right: 0; top: 2px; border-top: 2px solid #fff; }
-.navbar .perfil { margin-left: 6px; height: 20px; border-radius: 4px; background: #fff; color: #333; font-size: 8.5px; display: flex;
-  align-items: center; padding: 0 8px; font-weight: 600; }
-.navbar .sp { flex: 1; }
-.navbar .dot { width: 14px; height: 14px; border-radius: 50%; background: rgba(255,255,255,.35); }
 .conteudo { position: absolute; top: 56px; left: 0; right: 0; bottom: 0; padding: 12px 12px 0; }
 .conteudo h1 { font-size: 16px; font-weight: 700; color: #2b2b2b; margin-bottom: 10px; }
 .barra { height: 28px; display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
@@ -149,28 +98,6 @@ body { font-family: 'IBM Plex Sans', sans-serif; color: var(--ink); position: re
 .acao--texto { border-color: transparent; background: transparent; color: var(--azul); }
 .acao--primaria { border-color: var(--azul); background: var(--azul); color: #fff; }
 
-/* ── Cursor e clique ── */
-.cursor { position: absolute; left: 0; top: 0; width: 22px; height: 22px; z-index: 50; opacity: 0;
-  filter: drop-shadow(0 2px 3px rgba(0,0,0,.3)); }
-.ripple { position: absolute; width: 34px; height: 34px; margin: -17px 0 0 -17px; border-radius: 50%; border: 3px solid var(--pink);
-  z-index: 49; opacity: 0; }
-
-/* ── Cartão final ── */
-.final { position: absolute; inset: 0; background: var(--paper); opacity: 0; display: flex; flex-direction: column; align-items: center;
-  padding: 150px 96px 0 33px; z-index: 60; overflow: hidden; }
-.final .blob--a { top: auto; bottom: -140px; left: -120px; }
-.final .blob--b { bottom: auto; top: -100px; right: -130px; }
-.final__logo { width: 150px; height: 150px; position: relative; }
-.final__nome { position: relative; margin-top: 12px; font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 29px; line-height: 1.05;
-  text-align: center; }
-.final__lista { position: relative; margin-top: 16px; display: flex; flex-direction: column; gap: 7px; }
-.final__lista div { display: flex; align-items: center; gap: 10px; font-size: 16px; font-weight: 500; }
-.final__lista i { width: 22px; height: 22px; border-radius: 50%; background: var(--pink); display: grid; place-items: center; flex: none; }
-.final__lista i::after { content: ""; width: 9px; height: 5px; border-left: 2.4px solid #fff; border-bottom: 2.4px solid #fff;
-  transform: translateY(-1px) rotate(-45deg); }
-.final__cta { position: relative; margin-top: 22px; padding: 10px 22px; border-radius: 999px; background: var(--ink); color: #fff;
-  font-weight: 600; font-size: 17px; }
-.final__url { position: relative; margin-top: 8px; font-family: 'Baloo 2', sans-serif; font-weight: 700; font-size: 22px; color: var(--pink); }
 </style>
 </head>
 <body>
@@ -233,36 +160,8 @@ body { font-family: 'IBM Plex Sans', sans-serif; color: var(--ink); position: re
   </div>
 </div>
 
-<div class="ripple" id="ripple"></div>
-<svg class="cursor" id="cursor" viewBox="0 0 24 24"><path d="M5 2.5v17.2l4.3-4.1 2.9 6.6 3-1.3-2.9-6.5h6z" fill="#fff" stroke="#1d2433" stroke-width="1.6" stroke-linejoin="round"/></svg>
-
-<div class="final" id="final">
-  <div class="blob blob--a"></div>
-  <div class="blob blob--b"></div>
-  <img class="final__logo" src="../../assets/eploc-logo-master-1000.png" alt="eploc">
-  <div class="final__nome">Filtro por número<br>no Relatório Geral</div>
-  <div class="final__lista">
-    <div><i></i>Qualquer posição do número</div>
-    <div><i></i>Ano, tribunal e comarca</div>
-    <div><i></i>Várias regras juntas</div>
-    <div><i></i>Guardado por perfil</div>
-  </div>
-  <div class="final__cta">Grátis para Chrome e Edge</div>
-  <div class="final__url">eploc.com.br</div>
-</div>
-
+<script src="../base/reel.js"></script>
 <script>
-// ── Utilidades de tempo ──────────────────────────────────────
-const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
-const prog = (t, t0, t1) => clamp((t - t0) / (t1 - t0));
-const easeInOut = (x) => (x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2);
-const easeOut = (x) => 1 - Math.pow(1 - x, 3);
-const backOut = (x) => { const c = 1.6; return 1 + (c + 1) * Math.pow(x - 1, 3) + c * Math.pow(x - 1, 2); };
-const lerp = (a, b, x) => a + (b - a) * x;
-const $ = (id) => document.getElementById(id);
-function set(el, prop, val) { if (el.style[prop] !== val) el.style[prop] = val; }
-function html(el, v) { if (el.innerHTML !== v) el.innerHTML = v; }
-function cls(el, c, on) { el.classList.toggle(c, on); }
 
 // ── Dados fictícios: 100 processos, 23 casam com 5NNNN[0-2] ──
 let semente = 7;
@@ -371,8 +270,6 @@ const LEGENDAS = [
   { t0: 15.7, t1: 19.8, kicker: 'Pronto', titulo: 'Só os processos da <em>sua divisão</em>', sub: 'O selo mostra o filtro e quantos aparecem.' },
   { t0: 20.0, t1: 23.2, kicker: 'Ações em bloco', titulo: '“Marcar todos” pega <em>só os que aparecem</em>', sub: 'Os ocultos nunca ficam marcados.' },
 ];
-$('legenda').innerHTML = LEGENDAS.map((l, i) =>
-  `<div class="cap" id="cap${i}"><span class="cap__kicker">${l.kicker}</span><div class="cap__titulo">${l.titulo}</div>${l.sub ? `<div class="cap__sub">${l.sub}</div>` : ''}</div>`).join('');
 
 // Caminho do cursor: alvos (elementos ou pontos) com o instante de chegada.
 const CURSOR = [
@@ -392,21 +289,7 @@ const CURSOR = [
 ];
 const CLIQUES = [T.abrir, T.pos0, T.dig5, T.pos5, T.dig0, T.dig1, T.dig2, T.aplicar, T.todos];
 
-function centro(alvo) {
-  if (alvo.p) return alvo.p;
-  const r = alvo.el().getBoundingClientRect();
-  return [r.left + r.width / 2 + (alvo.dx || 0), r.top + r.height / 2 + (alvo.dy || 0)];
-}
-
-function renderFrame(t) {
-  // Legendas
-  LEGENDAS.forEach((l, i) => {
-    const el = $('cap' + i);
-    const a = easeOut(prog(t, l.t0, l.t0 + 0.4)) * (1 - prog(t, l.t1 - 0.25, l.t1));
-    set(el, 'opacity', String(a));
-    set(el, 'transform', `translateY(${(1 - easeOut(prog(t, l.t0, l.t0 + 0.4))) * 18}px)`);
-  });
-
+function desenhar(t) {
   // Gancho
   const gIn = easeOut(prog(t, 0.2, 0.8));
   const gOut = easeInOut(prog(t, 4.2, 4.8));
@@ -502,59 +385,19 @@ function renderFrame(t) {
     cls(ln.querySelector('.ck'), 'ck--on', on);
   });
 
-  // Cursor
-  const cur = $('cursor');
-  let pos = centro(CURSOR[0]);
-  for (let i = 0; i < CURSOR.length - 1; i++) {
-    const a = CURSOR[i], b = CURSOR[i + 1];
-    if (t >= a.t && t < b.t) {
-      const ini = Math.max(a.t, b.t - Math.min(1.1, (b.t - a.t)));
-      const x = easeInOut(prog(t, ini, b.t));
-      const pa = centro(a), pb = centro(b);
-      pos = [lerp(pa[0], pb[0], x), lerp(pa[1], pb[1], x)];
-      break;
-    }
-    if (t >= b.t) pos = centro(b);
-  }
-  const curVis = clamp(prog(t, 4.9, 5.3)) * (1 - prog(t, 22.4, 22.8));
-  const apertando = CLIQUES.some((c) => t >= c && t < c + 0.12);
-  set(cur, 'opacity', String(curVis));
-  set(cur, 'transform', `translate(${pos[0] - 4}px, ${pos[1] - 2}px) scale(${apertando ? 0.85 : 1})`);
-  const ultimo = CLIQUES.filter((c) => t >= c).pop();
-  const rp = $('ripple');
-  if (ultimo !== undefined && t - ultimo < 0.45) {
-    const x = (t - ultimo) / 0.45;
-    set(rp, 'opacity', String((1 - x) * 0.9));
-    set(rp, 'left', `${pos[0]}px`); set(rp, 'top', `${pos[1]}px`);
-    set(rp, 'transform', `scale(${0.3 + easeOut(x) * 1.1})`);
-  } else set(rp, 'opacity', '0');
-
-  // Cartão final
-  const f = easeOut(prog(t, T.final, T.final + 0.5));
-  set($('final'), 'opacity', String(f));
-  const logo = $('final').querySelector('.final__logo');
-  set(logo, 'transform', `scale(${lerp(0.6, 1, backOut(prog(t, T.final + 0.1, T.final + 0.7)))})`);
-  [...$('final').querySelectorAll('.final__nome, .final__lista > div, .final__cta, .final__url')].forEach((el, i) => {
-    const x = easeOut(prog(t, T.final + 0.4 + i * 0.15, T.final + 0.8 + i * 0.15));
-    set(el, 'opacity', String(x));
-    set(el, 'transform', `translateY(${(1 - x) * 16}px)`);
-  });
 }
 
-if (location.search.includes('zonas')) document.body.insertAdjacentHTML('beforeend', '<div class="zona"></div>');
-
-window.DURACAO = DURACAO;
-window.renderFrame = renderFrame;
-window.pronto = document.fonts.ready.then(() => Promise.all([...document.images].map((i) => i.decode().catch(() => {}))));
-
-// Aberta no navegador (sem ?render): toca em loop.
-if (!location.search.includes('render')) {
-  window.pronto.then(() => {
-    const inicio = performance.now();
-    const tick = () => { renderFrame(((performance.now() - inicio) / 1000) % (DURACAO + 1)); requestAnimationFrame(tick); };
-    tick();
-  });
-}
+iniciarReel({
+  duracao: DURACAO,
+  legendas: LEGENDAS,
+  cursor: { caminho: CURSOR, cliques: CLIQUES, visivel: [4.9, 22.4] },
+  final: {
+    t: T.final,
+    nome: 'Filtro por número<br>no Relatório Geral',
+    itens: ['Qualquer posição do número', 'Ano, tribunal e comarca', 'Várias regras juntas', 'Guardado por perfil'],
+  },
+  desenhar,
+});
 </script>
 </body>
 </html>
