@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<!-- Funcionalidade demonstrada: o manual mostra este reel na página manual-src/funcionalidades/<id>.md -->
+<meta name="eploc-script" content="eproc-link-referencia-evento">
+<title>Reel: Link para evento</title>
+<!--
+  Reel vertical (1080x1920) do "Link para referência de evento".
+  Usa a base comum (../base/reel.css e reel.js); gerado por reels/render.mjs.
+  Estilos copiados de eproc-link-referencia-evento.ts: link #0056b3 sublinhado (em negrito nos
+  eventos), linha de destino com fundo #fff3cd e contorno #ffc107 por 2 s, painel do PDF com a
+  pílula "N menções a eventos". Processo e textos fictícios.
+-->
+<link rel="stylesheet" href="../base/reel.css">
+<style>
+/* ── Página do processo ── */
+.janela { position: absolute; left: 24px; width: 500px; top: 296px; height: 640px; border-radius: 14px; overflow: hidden;
+  background: #fff; box-shadow: 0 2px 4px rgba(34,24,39,.06), 0 24px 60px -20px rgba(34,24,39,.45); }
+.nav-browser b { width: 14px; height: 14px; display: grid; place-items: center; color: #6b6875; border-radius: 4px; }
+.nav-browser b svg { width: 12px; height: 12px; }
+.nav-browser b.voltar--on { background: #d9d6e0; color: var(--tinta); }
+.conteudo { position: absolute; top: 56px; left: 0; right: 0; bottom: 0; padding: 10px 12px 0; }
+.titulo-eventos { display: flex; align-items: baseline; gap: 8px; margin-bottom: 6px; }
+.titulo-eventos h1 { font-size: 15px; font-weight: 700; color: #2b2b2b; }
+.titulo-eventos span { font-size: 10px; color: var(--suave); }
+.tabela { position: absolute; left: 12px; right: 12px; top: 40px; bottom: 0; overflow: hidden; border-top: 1px solid #d7dce3; }
+/* Corpo da tabela rola sob o cabeçalho. */
+.recorte { position: absolute; left: 0; right: 0; top: 25px; bottom: 0; overflow: hidden; }
+.linha { display: grid; grid-template-columns: 30px 70px 1fr 54px; align-items: center; min-height: 34px; font-size: 10.5px; color: #2f2f2f;
+  border-bottom: 1px solid #e6e9ee; outline-offset: -1px; }
+.linha > div { padding: 3px 4px; }
+.linha--cab { min-height: 24px; background: #e8edf4; font-weight: 700; color: #3a3a3a; }
+.rolagem .linha:nth-child(even) { background: #f7f8fa; }
+.ev { font-weight: 700; text-align: center; }
+.data { color: #555; font-size: 9.5px; line-height: 1.25; }
+.docs { color: #0b57b5; font-size: 9.5px; }
+.desc { line-height: 1.3; }
+.ref { transition: none; }
+.ref--link { color: #0056b3; text-decoration: underline; font-weight: 700; }
+
+/* Tooltip do eploc (utils.ts) */
+.tooltip { position: absolute; z-index: 45; padding: 5px 9px; border-radius: 4px; border-left: 3px solid #80b3e6; background: #2242a1;
+  color: #fff; font-size: 11px; line-height: 1.4; box-shadow: 0 4px 12px rgba(0,0,0,.2); opacity: 0; white-space: nowrap;
+  display: flex; align-items: center; gap: 4px; }
+.tooltip img { width: 13px; height: 13px; }
+
+/* ── Documento HTML aberto a partir do processo ── */
+.doc { position: absolute; left: 40px; width: 396px; top: 318px; height: 300px; border-radius: 12px; overflow: hidden; background: #fff;
+  box-shadow: 0 2px 4px rgba(34,24,39,.08), 0 28px 60px -18px rgba(34,24,39,.55); opacity: 0; z-index: 20; }
+.doc__pagina { padding: 18px 24px; font-family: 'DejaVu Serif', Georgia, serif; font-size: 11.5px; line-height: 1.6; color: #222; }
+.doc__pagina h2 { text-align: center; font-size: 12px; letter-spacing: 1px; margin-bottom: 2px; }
+.doc__pagina h3 { text-align: center; font-size: 11px; font-weight: 400; color: #555; margin-bottom: 12px; }
+.doc__pagina p { text-indent: 24px; margin-bottom: 8px; text-align: justify; }
+.doc a { color: #0056b3; text-decoration: underline; }
+
+/* Janelinha do DEC1 aberto */
+.dec { position: absolute; left: 196px; width: 240px; top: 470px; height: 148px; border-radius: 10px; overflow: hidden; background: #fff;
+  box-shadow: 0 2px 4px rgba(34,24,39,.08), 0 22px 50px -16px rgba(34,24,39,.55); opacity: 0; z-index: 22; }
+.dec__corpo { padding: 12px 16px; font-family: 'DejaVu Serif', Georgia, serif; font-size: 10px; color: #222; }
+.dec__corpo b { display: block; text-align: center; margin-bottom: 8px; font-size: 10.5px; letter-spacing: .8px; }
+.barra-txt { height: 6px; border-radius: 3px; background: #e3e1e8; margin-bottom: 6px; }
+
+/* ── Documento PDF com o painel de menções ── */
+.pdf { position: absolute; left: 33px; width: 411px; top: 300px; height: 322px; border-radius: 12px; overflow: hidden; background: #525659;
+  box-shadow: 0 2px 4px rgba(34,24,39,.08), 0 28px 60px -18px rgba(34,24,39,.6); opacity: 0; z-index: 30; }
+.pdf__barra { height: 28px; background: #323639; color: #f1f1f1; font-size: 10px; display: flex; align-items: center; gap: 10px; padding: 0 12px; }
+.pdf__barra span:first-child { flex: 1; }
+.pdf__pagina { position: absolute; left: 70px; right: 70px; top: 40px; bottom: -20px; background: #fff; padding: 22px 20px; }
+.pdf__pagina .barra-txt { height: 5px; margin-bottom: 7px; }
+/* Painel (eproc-link-referencia-evento.ts): canto inferior esquerdo da janela do documento. */
+.mpdf { position: absolute; left: 12px; bottom: 12px; z-index: 2; font-size: 11px; line-height: 1.4; color: var(--tinta); }
+.mpdf__pilula { display: inline-flex; align-items: center; gap: 6px; padding: 5px 11px 5px 7px; border: 1px solid var(--borda); border-radius: 999px;
+  background: #fff; box-shadow: 0 1px 3px rgba(29,36,51,.12); font-weight: 500; }
+.mpdf__pilula img, .mpdf__cab img { width: 15px; height: 15px; }
+.mpdf__corpo { position: absolute; left: 0; bottom: 0; width: 300px; background: #fff; border: 1px solid var(--borda); border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(29,36,51,.12), 0 16px 40px rgba(29,36,51,.16); opacity: 0; transform-origin: left bottom; }
+.mpdf__cab { display: flex; align-items: center; gap: 7px; padding: 7px 8px 7px 10px; border-bottom: 1px solid var(--borda); font-weight: 600; }
+.mpdf__cab span { flex: 1; }
+.mpdf__cab svg { width: 15px; height: 15px; color: var(--suave); }
+.mpdf ul { list-style: none; padding: 4px; }
+.mpdf__item { display: flex; flex-direction: column; gap: 1px; padding: 5px 7px; border-radius: 6px; }
+.mpdf__item--hover { background: var(--azul-bg); }
+.mpdf__linha { display: flex; align-items: baseline; gap: 8px; }
+.mpdf__alvo { flex: 1; color: var(--azul); font-weight: 600; }
+.mpdf__pag { color: var(--suave); font-size: 9.5px; }
+.mpdf__trecho { color: var(--suave); font-size: 10px; }
+.mpdf__trecho strong { color: var(--tinta); }
+</style>
+</head>
+<body>
+<div class="blob blob--a"></div>
+<div class="blob blob--b"></div>
+
+<div class="legenda" id="legenda"></div>
+
+<div class="janela" id="janela">
+  <div class="nav-browser">
+    <b id="btVoltar"><svg viewBox="0 -960 960 960" fill="currentColor"><path d="m313-440 196 196q12 12 11.5 28T508-188q-12 11-28 11.5T452-188L188-452q-6-6-8.5-13t-2.5-15q0-8 2.5-15t8.5-13l264-264q11-11 27.5-11t28.5 11q12 12 12 28.5T508-715L313-520h447q17 0 28.5 11.5T800-480q0 17-11.5 28.5T760-440H313Z"/></svg></b>
+    <b><svg viewBox="0 -960 960 960" fill="currentColor" style="transform:scaleX(-1)"><path d="m313-440 196 196q12 12 11.5 28T508-188q-12 11-28 11.5T452-188L188-452q-6-6-8.5-13t-2.5-15q0-8 2.5-15t8.5-13l264-264q11-11 27.5-11t28.5 11q12 12 12 28.5T508-715L313-520h447q17 0 28.5 11.5T800-480q0 17-11.5 28.5T760-440H313Z"/></svg></b>
+    <span>eproc · Processo 5004321-55.2025.8.13.0024</span>
+  </div>
+  <div class="navbar"><div class="burger"></div><div class="dot"></div><div class="perfil">SECRETARIA · DIRETOR(A)</div><div class="sp"></div><div class="dot"></div><div class="dot"></div></div>
+  <div class="conteudo">
+    <div class="titulo-eventos"><h1>Eventos</h1><span>47 eventos</span></div>
+    <div class="tabela">
+      <div class="linha linha--cab"><div class="ev">Ev.</div><div>Data/Hora</div><div>Descrição</div><div>Docs.</div></div>
+      <div class="recorte"><div class="rolagem" id="rolagem"></div></div>
+    </div>
+  </div>
+</div>
+<div class="tooltip" id="tooltip"><img src="../../icon32.png" alt="">Ir para o evento 12</div>
+
+<div class="doc" id="doc">
+  <div class="nav-browser"><i></i><i></i><i></i><span>Documento · Evento 45 · DESPADEC1</span></div>
+  <div class="doc__pagina">
+    <h2>DECISÃO</h2>
+    <h3>Embargos de declaração</h3>
+    <p>Trata-se de embargos de declaração opostos pela parte ré (<a>evento 38</a>), que aponta omissão na decisão anterior.</p>
+    <p>Mantenho a decisão do <a id="linkDoc">evento 31, DEC1</a>, por seus próprios fundamentos, pois não há omissão a sanar.</p>
+    <p>Intimem-se.</p>
+  </div>
+</div>
+
+<div class="dec" id="dec">
+  <div class="nav-browser"><i></i><i></i><i></i><span>Evento 31 · DEC1</span></div>
+  <div class="dec__corpo"><b>DECISÃO</b><div class="barra-txt"></div><div class="barra-txt" style="width:92%"></div><div class="barra-txt" style="width:96%"></div><div class="barra-txt" style="width:70%"></div></div>
+</div>
+
+<div class="pdf" id="pdf">
+  <div class="pdf__barra"><span>sentenca.pdf</span><span>1 / 3</span><span>−  100%  +</span></div>
+  <div class="pdf__pagina">
+    <div class="barra-txt" style="width:40%;margin:0 auto 12px"></div>
+    <div class="barra-txt"></div><div class="barra-txt" style="width:94%"></div><div class="barra-txt" style="width:97%"></div><div class="barra-txt" style="width:60%"></div>
+    <div class="barra-txt" style="margin-top:12px"></div><div class="barra-txt" style="width:91%"></div><div class="barra-txt" style="width:95%"></div><div class="barra-txt" style="width:80%"></div>
+    <div class="barra-txt" style="margin-top:12px"></div><div class="barra-txt" style="width:93%"></div><div class="barra-txt" style="width:66%"></div>
+  </div>
+  <div class="mpdf">
+    <span class="mpdf__pilula" id="pilula"><img src="../../icon32.png" alt="">3 menções a eventos</span>
+    <div class="mpdf__corpo" id="corpoPdf">
+      <div class="mpdf__cab"><img src="../../icon32.png" alt=""><span>Eventos citados (3)</span><svg viewBox="0 -960 960 960" fill="currentColor"><path d="M480-424 284-228q-11 11-28 11t-28-11q-11-11-11-28t11-28l196-196-196-196q-11-11-11-28t11-28q11-11 28-11t28 11l196 196 196-196q11-11 28-11t28 11q11 11 11 28t-11 28L536-480l196 196q11 11 11 28t-11 28q-11 11-28 11t-28-11L480-424Z"/></svg></div>
+      <ul>
+        <li class="mpdf__item" id="itemPdf"><span class="mpdf__linha"><span class="mpdf__alvo">Evento 12</span><span class="mpdf__pag">pág. 1</span></span><span class="mpdf__trecho">…conforme a contestação do <strong>evento 12</strong>, a ré…</span></li>
+        <li class="mpdf__item"><span class="mpdf__linha"><span class="mpdf__alvo">Evento 31, DEC1</span><span class="mpdf__pag">págs. 1, 2</span></span><span class="mpdf__trecho">…a tutela deferida no <strong>evento 31, DEC1</strong>…</span></li>
+        <li class="mpdf__item"><span class="mpdf__linha"><span class="mpdf__alvo">Evento 40, LAUDO1</span><span class="mpdf__pag">pág. 2</span></span><span class="mpdf__trecho">…o laudo do <strong>evento 40, LAUDO1</strong>, concluiu…</span></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<script src="../base/reel.js"></script>
+<script>
+// ── Eventos fictícios: 47 a 1, do mais novo para o mais antigo ──
+const DESCRICOES = {
+  47: 'PETIÇÃO - <span class="ref" id="ref47">Refer. ao Evento 12</span>',
+  46: 'CONCLUSOS PARA DECISÃO', 45: 'DECISÃO INTERLOCUTÓRIA', 44: 'JUNTADA DE PETIÇÃO', 43: 'EXPEDIDA/CERTIFICADA A INTIMAÇÃO ELETRÔNICA',
+  42: 'ATO ORDINATÓRIO PRATICADO', 41: 'JUNTADA DE AR - CUMPRIDO', 40: 'LAUDO PERICIAL', 39: 'DESPACHO', 38: 'EMBARGOS DE DECLARAÇÃO',
+  37: 'DECORRIDO PRAZO', 36: 'PETIÇÃO', 35: 'CONCLUSOS PARA DESPACHO', 34: 'JUNTADA DE PETIÇÃO', 33: 'INTIMAÇÃO ELETRÔNICA - EXPEDIDA',
+  32: 'REMETIDOS OS AUTOS À CONTADORIA', 31: 'DECISÃO INTERLOCUTÓRIA - TUTELA DEFERIDA', 30: 'CONCLUSOS PARA DECISÃO', 29: 'PETIÇÃO',
+  28: 'JUNTADA DE PETIÇÃO', 27: 'DESPACHO', 26: 'ATO ORDINATÓRIO PRATICADO', 25: 'DECORRIDO PRAZO', 24: 'REPLICA', 23: 'INTIMAÇÃO ELETRÔNICA - EXPEDIDA',
+  22: 'DESPACHO', 21: 'JUNTADA DE PETIÇÃO', 20: 'AUDIÊNCIA DE CONCILIAÇÃO REALIZADA', 19: 'ATO ORDINATÓRIO PRATICADO', 18: 'JUNTADA DE AR - CUMPRIDO',
+  17: 'CITAÇÃO ELETRÔNICA - EXPEDIDA', 16: 'DESPACHO', 15: 'CONCLUSOS PARA DESPACHO', 14: 'PETIÇÃO', 13: 'DECORRIDO PRAZO',
+  12: 'CONTESTAÇÃO', 11: 'JUNTADA DE PROCURAÇÃO', 10: 'INTIMAÇÃO ELETRÔNICA - EXPEDIDA', 9: 'DESPACHO', 8: 'CONCLUSOS PARA DESPACHO',
+  7: 'EMENDA À INICIAL', 6: 'DESPACHO', 5: 'CONCLUSOS PARA DESPACHO', 4: 'CUSTAS INICIAIS RECOLHIDAS', 3: 'DISTRIBUÍDO POR SORTEIO',
+  2: 'JUNTADA DE DOCUMENTOS', 1: 'PETIÇÃO INICIAL',
+};
+const DOCS = { 47: 'PET1', 45: 'DESPADEC1', 40: 'LAUDO1', 38: 'EMBDECL1', 31: 'DEC1', 12: 'CONT1', 1: 'INIC1' };
+let dia = 23;
+$('rolagem').innerHTML = Object.keys(DESCRICOES).map(Number).sort((a, b) => b - a).map((n) => {
+  dia = Math.max(1, dia - (n % 3 === 0 ? 1 : 0));
+  const mes = n > 30 ? '10' : n > 15 ? '09' : '08';
+  return `<div class="linha" id="ev${n}"><div class="ev">${n}</div><div class="data">${String(dia).padStart(2, '0')}/${mes}/2026<br>${String(9 + (n % 8)).padStart(2, '0')}:${String((n * 7) % 60).padStart(2, '0')}</div><div class="desc">${DESCRICOES[n]}</div><div class="docs">${DOCS[n] || ''}</div></div>`;
+}).join('');
+const ROLAGEM = $('rolagem');
+// Deslocamento que deixa a linha do evento n logo abaixo do topo da tabela.
+const ROLAR_ATE = (n) => $('ev' + n).offsetTop - ROLAGEM.offsetTop - 6;
+
+// ── Linha do tempo ───────────────────────────────────────────
+const DURACAO = 28;
+const T = { link: 4.9, clique: 6.6, voltar: 11.4, doc: 13.0, cliqueDoc: 15.6, pdf: 19.6, pilula: 20.9, item: 22.6, final: 23.8 };
+const LEGENDAS = [
+  { t0: 0.2, t1: 4.5, kicker: 'Página do processo', titulo: '“Refer. ao Evento 12.” E <em>onde</em> fica o evento 12?', sub: 'É rolar a tabela e procurar.' },
+  { t0: 4.7, t1: 10.4, kicker: 'Com o eploc', titulo: 'A menção vira <em>link</em>', sub: 'Um clique e a tabela vai direto ao evento, em destaque.' },
+  { t0: 10.6, t1: 12.8, kicker: 'Sem se perder', titulo: 'O <em>Voltar</em> te traz de volta', sub: 'Ao ponto em que você estava.' },
+  { t0: 13.0, t1: 19.3, kicker: 'Nos documentos', titulo: '“Evento 31, DEC1” <em>também</em> vira link', sub: 'O processo vem para a frente, no evento, e o DEC1 abre.' },
+  { t0: 19.5, t1: 23.8, kicker: 'Novo', titulo: 'Até nos <em>PDFs</em>', sub: 'Um painel lista as menções, com página e trecho.' },
+];
+const CURSOR = [
+  { t: 4.8, p: [470, 990] },
+  { t: 6.4, el: () => $('ref47'), dx: 22, dy: 2 },
+  { t: 9.6, el: () => $('ref47'), dx: 60, dy: 120 },
+  { t: 11.2, el: () => $('btVoltar') },
+  { t: 12.6, el: () => $('btVoltar'), dx: 120, dy: 150 },
+  { t: 15.4, el: () => $('linkDoc'), dx: 10 },
+  { t: 18.8, p: [300, 560] },
+  { t: 20.7, el: () => $('pilula'), dx: 10 },
+  { t: 22.4, el: () => $('itemPdf'), dx: 30 },
+];
+const CLIQUES = [T.clique, T.voltar, T.cliqueDoc, T.pilula, T.item];
+
+// Rolagem da tabela ao longo do tempo (px).
+function rolagem(t) {
+  const y12 = ROLAR_ATE(12), y31 = ROLAR_ATE(31);
+  const trechos = [
+    // gancho: rola procurando e volta
+    [1.4, 2.5, 0, 560], [2.5, 3.0, 560, 640], [3.1, 4.2, 640, 0],
+    // clique: vai ao evento 12
+    [T.clique + 0.15, T.clique + 1.05, 0, y12],
+    // Voltar
+    [T.voltar + 0.15, T.voltar + 1.0, y12, 0],
+    // documento: vai ao evento 31
+    [T.cliqueDoc + 0.7, T.cliqueDoc + 1.5, 0, y31],
+  ];
+  let y = 0;
+  for (const [a, b, de, para] of trechos) {
+    if (t >= a) y = lerp(de, para, easeInOut(prog(t, a, b)));
+  }
+  return y;
+}
+
+// Destaque amarelo do eproc-link-referencia-evento.ts: 2 s, depois some em 0,4 s.
+function destaque(linha, inicio, t) {
+  const on = t >= inicio && t < inicio + 2.4;
+  const sai = prog(t, inicio + 2.0, inicio + 2.4);
+  set(linha, 'background', on ? `rgba(255, 243, 205, ${1 - sai})` : '');
+  set(linha, 'outline', on ? `2px solid rgba(255, 193, 7, ${1 - sai})` : '');
+}
+
+function desenhar(t) {
+  // Janela do processo
+  const jIn = easeOut(prog(t, 0.2, 0.8));
+  set($('janela'), 'opacity', String(jIn));
+  set($('janela'), 'transform', `translateY(${(1 - jIn) * 40}px)`);
+  set(ROLAGEM, 'transform', `translateY(${-rolagem(t)}px)`);
+
+  // A menção vira link (pulso rápido ao aparecer)
+  const ref = $('ref47');
+  cls(ref, 'ref--link', t >= T.link);
+  const pulso = Math.sin(clamp(prog(t, T.link, T.link + 0.5)) * Math.PI);
+  set(ref, 'display', 'inline-block');
+  set(ref, 'transform', `scale(${1 + pulso * 0.12})`);
+  // Gancho: marca-texto rosa (só editorial) até a menção virar link.
+  const marca = clamp(prog(t, 0.6, 0.9)) * (1 - prog(t, T.link - 0.2, T.link));
+  set(ref, 'background', marca ? `rgba(251, 217, 230, ${marca})` : '');
+  set(ref, 'box-shadow', marca ? `0 0 0 2px rgba(251, 217, 230, ${marca})` : '');
+
+  // Tooltip ao passar o mouse
+  const r = ref.getBoundingClientRect();
+  const tip = $('tooltip');
+  set(tip, 'left', `${r.left}px`); set(tip, 'top', `${r.top - 30}px`);
+  set(tip, 'opacity', String(clamp(prog(t, 6.0, 6.2)) * (1 - prog(t, T.clique + 0.1, T.clique + 0.25))));
+
+  destaque($('ev12'), T.clique + 1.05, t);
+  destaque($('ev31'), T.cliqueDoc + 1.5, t);
+  cls($('btVoltar'), 'voltar--on', t >= T.voltar && t < T.voltar + 0.3);
+
+  // Documento HTML por cima; ao clicar, o processo vem para a frente.
+  const dIn = easeOut(prog(t, T.doc, T.doc + 0.5));
+  const dOut = easeInOut(prog(t, T.cliqueDoc + 0.15, T.cliqueDoc + 0.6));
+  set($('doc'), 'opacity', String(dIn * (1 - dOut)));
+  set($('doc'), 'transform', `translate(${(1 - dIn) * 40 + dOut * 30}px, ${dOut * 30}px) scale(${1 - dOut * 0.06})`);
+  set($('linkDoc'), 'background', t >= T.cliqueDoc && t < T.cliqueDoc + 0.3 ? 'rgba(31,95,209,.12)' : '');
+
+  // DEC1 abre
+  const decIn = backOut(prog(t, T.cliqueDoc + 2.0, T.cliqueDoc + 2.4));
+  const decOut = easeInOut(prog(t, T.pdf - 0.4, T.pdf));
+  set($('dec'), 'opacity', String(clamp(prog(t, T.cliqueDoc + 2.0, T.cliqueDoc + 2.2)) * (1 - decOut)));
+  set($('dec'), 'transform', `scale(${lerp(0.85, 1, decIn)})`);
+
+  // PDF com o painel de menções
+  const pIn = easeOut(prog(t, T.pdf, T.pdf + 0.5));
+  set($('pdf'), 'opacity', String(pIn));
+  set($('pdf'), 'transform', `translateY(${(1 - pIn) * 40}px)`);
+  const aberto = backOut(prog(t, T.pilula + 0.1, T.pilula + 0.4));
+  set($('pilula'), 'opacity', t >= T.pilula + 0.1 ? '0' : '1');
+  set($('corpoPdf'), 'opacity', String(clamp(prog(t, T.pilula + 0.1, T.pilula + 0.25))));
+  set($('corpoPdf'), 'transform', `scale(${lerp(0.8, 1, aberto)})`);
+  cls($('itemPdf'), 'mpdf__item--hover', t >= 22.0);
+  // Ao clicar no item, a janela do PDF sai e o processo mostra o evento 12 (cena encerrada pelo cartão final).
+  set($('janela'), 'filter', t >= T.pdf ? `blur(${pIn * 1.5}px)` : '');
+}
+
+iniciarReel({
+  duracao: DURACAO,
+  legendas: LEGENDAS,
+  cursor: { caminho: CURSOR, cliques: CLIQUES, visivel: [4.8, 23.2] },
+  final: {
+    t: T.final,
+    nome: 'Eventos que<br>viram links',
+    itens: ['Nos eventos e lembretes', 'Nos documentos, com o DEC1 aberto', 'Nos PDFs, com página e trecho', 'O Voltar retorna ao ponto'],
+  },
+  desenhar,
+});
+</script>
+</body>
+</html>

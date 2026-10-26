@@ -1,0 +1,405 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<!-- Funcionalidade demonstrada: o manual mostra este reel na página manual-src/funcionalidades/<id>.md -->
+<meta name="eploc-script" content="eproc-filtro-numero-relatorio">
+<title>Reel: Filtro por número</title>
+<!--
+  Reel vertical (1080x1920) do "Filtro por número no Relatório Geral".
+  Usa a base comum (../base/reel.css e reel.js); gerado por reels/render.mjs.
+  Números de processo fictícios.
+-->
+<link rel="stylesheet" href="../base/reel.css">
+<style>
+/* ── Gancho: o número em caixas ── */
+.gancho { position: absolute; left: 33px; right: 96px; top: 340px; display: flex; flex-direction: column; align-items: center; }
+.gancho__num { display: flex; gap: 3px; padding: 14px 12px; border-radius: 16px; background: #fff;
+  box-shadow: 0 1px 2px rgba(34,24,39,.05), 0 18px 40px -18px rgba(34,24,39,.35); }
+.gc { width: 14px; height: 30px; display: grid; place-items: center; border-radius: 5px; font-family: var(--mono);
+  font-weight: 600; font-size: 13.5px; color: var(--tinta); border: 1.5px solid transparent; }
+.gc--sep { width: 6px; color: var(--fraco); }
+.gc--cyan { background: var(--cyan-soft); border-color: var(--cyan); color: #0b6f8c; }
+.gc--pink { background: var(--pink-soft); border-color: var(--pink); color: #a8073f; }
+.gancho__notas { position: relative; width: 411px; height: 150px; margin-top: 8px; }
+.nota { position: absolute; font-weight: 600; font-size: 15px; line-height: 1.25; opacity: 0; }
+.nota svg { display: block; }
+.nota--cyan { color: #0b6f8c; }
+.nota--pink { color: var(--pink); }
+
+/* ── Janela do navegador com o eproc ── */
+.janela { position: absolute; left: 24px; width: 500px; top: 296px; height: 640px; border-radius: 14px; overflow: hidden;
+  background: #fff; box-shadow: 0 2px 4px rgba(34,24,39,.06), 0 24px 60px -20px rgba(34,24,39,.45); }
+.conteudo { position: absolute; top: 56px; left: 0; right: 0; bottom: 0; padding: 12px 12px 0; }
+.conteudo h1 { font-size: 16px; font-weight: 700; color: #2b2b2b; margin-bottom: 10px; }
+.barra { height: 28px; display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+.barra__titulo { font-size: 13px; font-weight: 700; color: #2b2b2b; }
+.selo { position: relative; height: 24px; display: inline-flex; align-items: center; gap: 4px; padding: 0 10px; border-radius: 999px;
+  border: 1px solid rgba(0,0,0,.15); font-size: 11.5px; color: #2b2b2b; white-space: nowrap; }
+.selo svg { width: 13px; height: 13px; }
+.selo--ativo { border-color: var(--azul); background: var(--azul-bg); color: var(--azul); }
+.selo__rotulo--mono { font-family: var(--mono); font-size: 10.5px; }
+.selo__contagem { font-weight: 600; }
+.selo__x { display: none; margin-left: 2px; }
+.selo--ativo .selo__x { display: inline-flex; }
+.barra__eploc { margin-left: auto; height: 24px; display: inline-flex; align-items: center; gap: 4px; padding: 0 9px; border-radius: 4px;
+  border: 1px solid #c9ced6; font-size: 10.5px; color: #333; background: #fff; }
+.barra__eploc img { width: 12px; height: 12px; }
+
+.tabela { position: absolute; left: 12px; right: 12px; top: 92px; bottom: 0; overflow: hidden; border-top: 1px solid #d7dce3; }
+.linha { display: grid; grid-template-columns: 26px 152px 1fr 108px; align-items: center; font-size: 10px; color: #2f2f2f;
+  border-bottom: 1px solid #e6e9ee; overflow: hidden; }
+.linha > div { padding: 0 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.linha--cab { height: 26px; background: #e8edf4; font-weight: 700; color: #3a3a3a; }
+.corpo-tab .linha { height: 27px; }
+.corpo-tab .linha:nth-child(even) { background: #f7f8fa; }
+.linha .num { color: #0b57b5; font-variant-numeric: tabular-nums; font-weight: 500; font-size: 10.5px; }
+.ck { width: 12px; height: 12px; border: 1px solid #8a93a0; border-radius: 2px; background: #fff; display: grid; place-items: center; }
+.ck--on { background: #0d6efd; border-color: #0d6efd; }
+.ck--on::after { content: ""; width: 6px; height: 3px; border-left: 1.6px solid #fff; border-bottom: 1.6px solid #fff; transform: translateY(-1px) rotate(-45deg); }
+.linha--marcada { background: #e3edff !important; }
+
+/* ── Painel do eploc (proporções do eproc-filtro-numero-relatorio.ts) ── */
+.veu { position: absolute; top: 56px; left: 0; right: 0; bottom: 0; background: rgba(29,36,51,.45); opacity: 0; }
+.dialogo { position: absolute; left: 9px; width: 411px; top: 24px; border-radius: 10px; background: #fff; overflow: hidden;
+  box-shadow: 0 4px 12px rgba(29,36,51,.12), 0 16px 40px rgba(29,36,51,.16); color: var(--tinta); opacity: 0; }
+.d-topo { display: flex; align-items: center; gap: 7px; padding: 8px 12px; border-bottom: 1px solid var(--borda); }
+.d-topo img { width: 16px; height: 16px; }
+.d-topo h2 { flex: 1; font-size: 13.5px; font-weight: 600; }
+.d-topo svg { width: 16px; height: 16px; color: var(--suave); }
+.d-corpo { padding: 10px 12px; }
+.d-abas { display: flex; gap: 6px; align-items: center; margin-bottom: 8px; }
+.aba { border: 1px solid var(--azul); background: var(--azul-bg); color: var(--azul); border-radius: 999px; padding: 3px 10px; font-size: 10.5px; }
+.aba-mais { border: 1px dashed var(--borda-forte); color: var(--azul); border-radius: 999px; padding: 3px 10px; font-size: 10.5px; }
+.d-numero { display: flex; justify-content: center; align-items: flex-start; gap: 2px; padding: 8px 4px 6px; border-radius: 8px;
+  background: var(--azul-bg); margin-bottom: 8px; }
+.grupo { display: flex; flex-direction: column; align-items: center; gap: 3px; }
+.caixas { display: flex; gap: 2px; }
+.rot-grupo { color: var(--suave); font-size: 8.5px; }
+.sep { padding: 5px 1px 0; color: var(--fraco); font-family: var(--mono); font-size: 13px; }
+.pos { min-width: 16px; height: 28px; padding: 0 1px; display: grid; place-items: center; border: 1px solid var(--borda); border-radius: 5px;
+  background: #fff; color: var(--fraco); font-family: var(--mono); font-size: 10.5px; white-space: nowrap; }
+.pos--larga { min-width: 30px; padding: 0 4px; }
+.pos--restrita { border-color: var(--azul-borda); color: var(--azul); font-weight: 600; }
+.pos--sel { border-color: var(--azul); box-shadow: 0 0 0 2px var(--azul-borda); color: var(--tinta); }
+.pos--restrita.pos--sel { color: var(--azul); }
+.d-editor { border: 1px solid var(--borda); border-radius: 8px; padding: 8px 10px; }
+.ed-titulo { display: block; font-weight: 600; font-size: 12px; margin-bottom: 1px; }
+.ed-dica { display: block; color: var(--suave); font-size: 10px; margin-bottom: 6px; }
+.ed-linha { display: flex; flex-wrap: wrap; gap: 5px; }
+.dig, .atalho { height: 26px; display: inline-flex; align-items: center; justify-content: center; border: 1px solid var(--borda);
+  border-radius: 6px; background: #fff; color: var(--tinta); font-size: 12px; font-weight: 500; }
+.dig { min-width: 30px; }
+.atalho { padding: 0 9px; font-size: 9.5px; text-transform: uppercase; letter-spacing: .3px; color: var(--suave); }
+.dig--on, .atalho--on { border-color: var(--azul); background: var(--azul); color: #fff; }
+.d-rodape { display: flex; align-items: center; gap: 5px; padding: 8px 10px; border-top: 1px solid var(--borda); background: var(--bg); }
+.contagem { flex: 1; color: var(--suave); font-size: 10px; }
+.contagem strong { color: var(--tinta); }
+.acao { height: 28px; padding: 0 9px; display: inline-flex; align-items: center; border: 1px solid var(--borda); border-radius: 6px;
+  background: #fff; font-size: 11px; font-weight: 500; }
+.acao--texto { border-color: transparent; background: transparent; color: var(--azul); }
+.acao--primaria { border-color: var(--azul); background: var(--azul); color: #fff; }
+
+</style>
+</head>
+<body>
+<div class="blob blob--a"></div>
+<div class="blob blob--b"></div>
+
+<div class="legenda" id="legenda"></div>
+
+<div class="gancho" id="gancho">
+  <div class="gancho__num" id="ganchoNum"></div>
+  <div class="gancho__notas">
+    <div class="nota nota--cyan" id="notaCyan"></div>
+    <div class="nota nota--pink" id="notaPink"></div>
+  </div>
+</div>
+
+<div class="janela" id="janela">
+  <div class="nav-browser"><i></i><i></i><i></i><span>eproc · Relatório Geral</span></div>
+  <div class="navbar"><div class="burger"></div><div class="dot"></div><div class="perfil">SECRETARIA · DIRETOR(A)</div><div class="sp"></div><div class="dot"></div><div class="dot"></div></div>
+  <div class="conteudo">
+    <h1>Relatório Geral de Processos</h1>
+    <div class="barra">
+      <span class="barra__titulo">Processos (100)</span>
+      <span class="selo" id="selo">
+        <svg viewBox="0 -960 960 960" fill="currentColor"><path d="M440-160q-17 0-28.5-11.5T400-200v-240L168-736q-15-20-4.5-42t36.5-22h560q26 0 36.5 22t-4.5 42L560-440v240q0 17-11.5 28.5T520-160h-80Z"/></svg>
+        <span class="selo__rotulo" id="seloRotulo">Filtrar nº</span>
+        <span class="selo__contagem" id="seloContagem"></span>
+        <span class="selo__x"><svg viewBox="0 -960 960 960" fill="currentColor"><path d="M480-424 284-228q-11 11-28 11t-28-11q-11-11-11-28t11-28l196-196-196-196q-11-11-11-28t11-28q11-11 28-11t28 11l196 196 196-196q11-11 28-11t28 11q11 11 11 28t-11 28L536-480l196 196q11 11 11 28t-11 28q-11 11-28 11t-28-11L480-424Z"/></svg></span>
+      </span>
+      <span class="barra__eploc"><img src="../../icon32.png" alt="">eploc ▾</span>
+    </div>
+    <div class="tabela">
+      <div class="linha linha--cab"><div><span class="ck" id="ckTodos"></span></div><div>Processo</div><div>Classe</div><div>Localizador</div></div>
+      <div class="corpo-tab" id="corpoTab"></div>
+    </div>
+  </div>
+
+  <div class="veu" id="veu"></div>
+  <div class="dialogo" id="dialogo">
+    <div class="d-topo">
+      <img src="../../icon32.png" alt="">
+      <h2>Filtrar por nº do processo</h2>
+      <svg viewBox="0 -960 960 960" fill="currentColor"><path d="M480-424 284-228q-11 11-28 11t-28-11q-11-11-11-28t11-28l196-196-196-196q-11-11-11-28t11-28q11-11 28-11t28 11l196 196 196-196q11-11 28-11t28 11q11 11 11 28t-11 28L536-480l196 196q11 11 11 28t-11 28q-11 11-28 11t-28-11L480-424Z"/></svg>
+    </div>
+    <div class="d-corpo">
+      <div class="d-abas"><span class="aba" id="aba">Regra 1: vazia</span><span class="aba-mais">+ Outra regra</span></div>
+      <div class="d-numero" id="dNumero"></div>
+      <div class="d-editor">
+        <span class="ed-titulo" id="edTitulo"></span>
+        <span class="ed-dica" id="edDica"></span>
+        <div class="ed-linha" id="edLinha"></div>
+      </div>
+    </div>
+    <div class="d-rodape">
+      <span class="contagem" id="contagem"></span>
+      <span class="acao acao--texto">Limpar</span>
+      <span class="acao">Cancelar</span>
+      <span class="acao acao--primaria" id="btAplicar">Aplicar</span>
+    </div>
+  </div>
+</div>
+
+<script src="../base/reel.js"></script>
+<script>
+
+// ── Dados fictícios: 100 processos, 23 casam com 5NNNN[0-2] ──
+let semente = 7;
+const rnd = () => ((semente = (semente * 16807) % 2147483647) / 2147483647);
+const pick = (a) => a[Math.floor(rnd() * a.length)];
+const CLASSES = ['Procedimento Comum Cível', 'Execução Fiscal', 'Cumprimento de Sentença', 'Procedimento do Juizado Especial Cível',
+  'Execução de Título Extrajudicial', 'Inventário', 'Mandado de Segurança Cível', 'Busca e Apreensão'];
+const LOCS = ['Concluso p/ despacho', 'Aguardando prazo', 'Expedir intimação', 'Cumprir decisão', 'Analisar petição', 'Aguardando AR'];
+const ORIGENS = ['0024', '0024', '0079', '0145', '0210', '0702'];
+function verificador(n7, ano, origem) {
+  const base = BigInt(n7 + ano + '813' + origem + '00');
+  return String(98n - (base % 97n)).padStart(2, '0');
+}
+function gerarNumero(casa) {
+  let d = '';
+  if (casa) {
+    d = '5' + String(Math.floor(rnd() * 10000)).padStart(4, '0') + pick(['0', '1', '2']) + Math.floor(rnd() * 10);
+  } else if (rnd() < 0.45) {
+    // Migrados do PJe começam com 0 ou 1.
+    d = pick(['0', '1']) + String(Math.floor(rnd() * 1e6)).padStart(6, '0');
+  } else {
+    d = '5' + String(Math.floor(rnd() * 10000)).padStart(4, '0') + pick(['3', '4', '5', '6', '7', '8', '9']) + Math.floor(rnd() * 10);
+  }
+  const ano = String(2019 + Math.floor(rnd() * 8));
+  const origem = pick(ORIGENS);
+  return `${d}-${verificador(d, ano, origem)}.${ano}.8.13.${origem}`;
+}
+const CASAM_NO_TOPO = new Set([1, 4, 8, 10]);
+const casa = Array.from({ length: 100 }, (_, i) => (i < 13 ? CASAM_NO_TOPO.has(i) : false));
+// Completa 23 casos espalhados no resto da página.
+for (let i = 13, falta = 19; falta > 0; i += 4) { casa[i] = true; falta--; }
+const PROCESSOS = casa.map((c) => ({ num: gerarNumero(c), classe: pick(CLASSES), loc: pick(LOCS) }));
+const corpo = $('corpoTab');
+corpo.innerHTML = PROCESSOS.map((p) =>
+  `<div class="linha"><div><span class="ck"></span></div><div class="num">${p.num}</div><div>${p.classe}</div><div>${p.loc}</div></div>`).join('');
+const LINHAS = [...corpo.children];
+
+// ── Gancho ───────────────────────────────────────────────────
+const EXEMPLO = '5001231-10.2024.8.13.0242';
+$('ganchoNum').innerHTML = [...EXEMPLO].map((ch) =>
+  /\d/.test(ch) ? `<span class="gc">${ch}</span>` : `<span class="gc gc--sep">${ch}</span>`).join('');
+const GC = [...$('ganchoNum').children].filter((e) => !e.classList.contains('gc--sep'));
+// Índice da caixa (0-19) → posição no texto; o 7º dígito (índice 6) é o último antes do traço.
+$('notaCyan').innerHTML = `<svg width="40" height="34" viewBox="0 0 40 34"><path d="M6 32 C 8 16, 18 8, 30 4" fill="none" stroke="#2fb4d9" stroke-width="2.6" stroke-linecap="round"/><path d="M22 2 L31 3.5 L27 12" fill="none" stroke="#2fb4d9" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>O eproc já filtra<br>pelo último dígito`;
+$('notaPink').innerHTML = `E pelos outros?<br><span style="color:var(--ink);font-weight:500">Aí entra o eploc.</span>`;
+
+// ── Painel ───────────────────────────────────────────────────
+const LETRAS = 'NNNNNNNDD';
+const GRUPOS = [
+  { nome: 'Número', pos: [0, 1, 2, 3, 4, 5, 6], sep: '' },
+  { nome: 'Verificador', pos: [7, 8], sep: '-' },
+  { nome: 'Ano', larga: 'AAAA', pos: [9], sep: '.' },
+  { nome: 'J', larga: 'J', pos: [13], sep: '.' },
+  { nome: 'TR', larga: 'TR', pos: [14], sep: '.' },
+  { nome: 'Origem', larga: 'OOOO', pos: [16], sep: '.' },
+];
+$('dNumero').innerHTML = GRUPOS.map((g) => {
+  const sep = g.sep ? `<span class="sep">${g.sep}</span>` : '';
+  const caixas = g.larga
+    ? `<span class="pos pos--larga" data-pos="${g.pos[0]}">${g.larga}</span>`
+    : g.pos.map((p) => `<span class="pos" data-pos="${p}">${LETRAS[p]}</span>`).join('');
+  return `${sep}<span class="grupo"><span class="caixas">${caixas}</span><span class="rot-grupo">${g.nome}</span></span>`;
+}).join('');
+const POS = Object.fromEntries([...document.querySelectorAll('.pos')].map((e) => [e.dataset.pos, e]));
+$('edLinha').innerHTML = [...'0123456789'].map((d) => `<span class="dig" data-d="${d}">${d}</span>`).join('') +
+  `<span class="atalho" data-a="pares">Pares</span><span class="atalho" data-a="impares">Ímpares</span><span class="atalho" data-a="qualquer">Qualquer</span>`;
+const DIG = Object.fromEntries([...document.querySelectorAll('.dig')].map((e) => [e.dataset.d, e]));
+const QUALQUER = document.querySelector('[data-a="qualquer"]');
+
+function textoDaPosicao(set) {
+  const d = [...set].map(Number).sort((a, b) => a - b);
+  if (d.length === 0 || d.length === 10) return 'N';
+  if (d.length === 1) return String(d[0]);
+  const partes = [];
+  for (let i = 0; i < d.length;) {
+    let j = i;
+    while (j + 1 < d.length && d[j + 1] === d[j] + 1) j++;
+    if (j - i >= 2) partes.push(`${d[i]}-${d[j]}`); else for (let k = i; k <= j; k++) partes.push(String(d[k]));
+    i = j + 1;
+  }
+  return `[${partes.join('')}]`;
+}
+function textoDaRegra(r) {
+  let ultima = -1;
+  r.forEach((s, i) => { if (s.size) ultima = i; });
+  return r.slice(0, ultima + 1).map(textoDaPosicao).join('');
+}
+const casaRegra = (num, r) => r.every((s, i) => !s.size || s.has(num[i]));
+
+function tituloDaPosicao(p) {
+  const extra = p === 0 ? ' (o primeiro)' : p === 5 ? ' (o penúltimo)' : p === 6 ? ' (o último, antes do traço)' : '';
+  return { titulo: `${p + 1}º dígito do número${extra}`, dica: `Em ${EXEMPLO}, é o ${EXEMPLO[p]}.` };
+}
+
+// ── Linha do tempo ───────────────────────────────────────────
+const DURACAO = 28;
+const T = {
+  abrir: 6.9, pos0: 8.6, dig5: 9.5, pos5: 10.6, dig0: 11.3, dig1: 11.85, dig2: 12.4,
+  aplicar: 15.3, todos: 20.6, final: 23.2,
+};
+const LEGENDAS = [
+  { t0: 0.2, t1: 4.5, kicker: 'Relatório Geral do eproc', titulo: 'Divide o acervo pelo <em>número</em> do processo?' },
+  { t0: 4.7, t1: 7.3, kicker: 'Com o eploc', titulo: 'Clique em <em>“Filtrar nº”</em>', sub: 'O selo fica ao lado do título “Processos”.' },
+  { t0: 7.5, t1: 13.7, kicker: 'Qualquer posição', titulo: 'Escolha a posição e os <em>dígitos</em> aceitos', sub: 'Ex.: começa com <b>5</b> e o <b>6º dígito</b> é <b>0, 1 ou 2</b>.' },
+  { t0: 13.9, t1: 15.5, kicker: 'Prévia', titulo: 'Veja quantos passam <em>antes</em> de aplicar' },
+  { t0: 15.7, t1: 19.8, kicker: 'Pronto', titulo: 'Só os processos da <em>sua divisão</em>', sub: 'O selo mostra o filtro e quantos aparecem.' },
+  { t0: 20.0, t1: 23.2, kicker: 'Ações em bloco', titulo: '“Marcar todos” pega <em>só os que aparecem</em>', sub: 'Os ocultos nunca ficam marcados.' },
+];
+
+// Caminho do cursor: alvos (elementos ou pontos) com o instante de chegada.
+const CURSOR = [
+  { t: 4.9, p: [470, 990] },
+  { t: 6.6, el: () => $('selo'), dx: 6, dy: 4 },
+  { t: 8.4, el: () => POS[0] },
+  { t: 9.3, el: () => DIG['5'] },
+  { t: 10.4, el: () => POS[5] },
+  { t: 11.15, el: () => DIG['0'] },
+  { t: 11.7, el: () => DIG['1'] },
+  { t: 12.25, el: () => DIG['2'] },
+  { t: 13.4, el: () => DIG['2'], dx: 30, dy: 70 },
+  { t: 15.0, el: () => $('btAplicar') },
+  { t: 17.0, el: () => $('btAplicar'), dx: 60, dy: 160 },
+  { t: 20.4, el: () => $('ckTodos'), dx: 2, dy: 2 },
+  { t: 22.2, el: () => $('ckTodos'), dx: 90, dy: 140 },
+];
+const CLIQUES = [T.abrir, T.pos0, T.dig5, T.pos5, T.dig0, T.dig1, T.dig2, T.aplicar, T.todos];
+
+function desenhar(t) {
+  // Gancho
+  const gIn = easeOut(prog(t, 0.2, 0.8));
+  const gOut = easeInOut(prog(t, 4.2, 4.8));
+  set($('gancho'), 'opacity', String(gIn * (1 - gOut)));
+  set($('gancho'), 'transform', `translateY(${(1 - gIn) * 30 - gOut * 40}px) scale(${1 - gOut * 0.08})`);
+  GC.forEach((c, i) => {
+    cls(c, 'gc--cyan', i === 6 && t >= 1.0);
+    const tp = 2.3 + [0, 1, 2, 3, 4, 5, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19].indexOf(i) * 0.06;
+    cls(c, 'gc--pink', i !== 6 && t >= tp);
+  });
+  // Notas apontando para o 7º dígito (ciano) e para o resto (rosa).
+  const c6 = GC[6].getBoundingClientRect(), base = $('gancho').querySelector('.gancho__notas').getBoundingClientRect();
+  const nc = $('notaCyan');
+  set(nc, 'left', `${c6.left - base.left - 8}px`); set(nc, 'top', '4px');
+  set(nc, 'opacity', String(easeOut(prog(t, 1.1, 1.5))));
+  const np = $('notaPink');
+  set(np, 'left', '40px'); set(np, 'top', '86px'); set(np, 'font-size', '22px');
+  set(np, 'opacity', String(easeOut(prog(t, 2.6, 3.0))));
+  set(np, 'transform', `scale(${lerp(0.85, 1, backOut(prog(t, 2.6, 3.0)))})`);
+
+  // Janela
+  const jIn = easeOut(prog(t, 4.4, 5.1));
+  set($('janela'), 'opacity', String(jIn));
+  set($('janela'), 'transform', `translateY(${(1 - jIn) * 60}px)`);
+
+  // Painel
+  const abre = backOut(prog(t, T.abrir + 0.1, T.abrir + 0.45));
+  const fecha = easeInOut(prog(t, T.aplicar + 0.1, T.aplicar + 0.35));
+  const vis = clamp(prog(t, T.abrir + 0.1, T.abrir + 0.3)) * (1 - fecha);
+  set($('veu'), 'opacity', String(vis));
+  set($('dialogo'), 'opacity', String(vis));
+  set($('dialogo'), 'transform', `scale(${lerp(0.92, 1, abre) - fecha * 0.04})`);
+
+  const regra = Array.from({ length: 20 }, () => new Set());
+  if (t >= T.dig5) regra[0].add('5');
+  if (t >= T.dig0) regra[5].add('0');
+  if (t >= T.dig1) regra[5].add('1');
+  if (t >= T.dig2) regra[5].add('2');
+  const sel = t < T.pos0 ? 6 : t < T.pos5 ? 0 : 5;
+  for (const [p, el] of Object.entries(POS)) {
+    const n = Number(p);
+    if (n > 8) continue;
+    const s = regra[n];
+    const txt = s.size ? textoDaPosicao(s) : LETRAS[n];
+    if (el.textContent !== txt) el.textContent = txt;
+    cls(el, 'pos--restrita', s.size > 0);
+    cls(el, 'pos--sel', n === sel);
+  }
+  const mascara = textoDaRegra(regra);
+  html($('aba'), `Regra 1: ${mascara || 'vazia'}`);
+  const { titulo, dica } = tituloDaPosicao(sel);
+  html($('edTitulo'), titulo); html($('edDica'), dica);
+  for (const [d, el] of Object.entries(DIG)) cls(el, 'dig--on', regra[sel].has(d));
+  cls(QUALQUER, 'atalho--on', regra[sel].size === 0);
+  const passam = PROCESSOS.filter((p) => casaRegra(p.num, regra)).length;
+  html($('contagem'), mascara
+    ? `<strong>${passam}</strong> de 100 processos desta página.`
+    : 'Sem filtro: todos os <strong>100</strong> processos desta página aparecem.');
+  // Destaque da prévia
+  const pulso = Math.sin(clamp(prog(t, 13.9, 14.9)) * Math.PI);
+  set($('contagem'), 'transform', `scale(${1 + pulso * 0.12})`);
+  set($('contagem'), 'transform-origin', 'left center');
+  set($('contagem'), 'color', pulso > 0.05 ? '#e8195f' : '');
+
+  // Aplicado: selo e linhas
+  const aplicado = t >= T.aplicar + 0.25;
+  cls($('selo'), 'selo--ativo', aplicado);
+  cls($('seloRotulo'), 'selo__rotulo--mono', aplicado);
+  html($('seloRotulo'), aplicado ? '5NNNN[0-2]' : 'Filtrar nº');
+  html($('seloContagem'), aplicado ? '· 23 de 100' : '');
+  const seloPop = backOut(prog(t, T.aplicar + 0.25, T.aplicar + 0.6));
+  set($('selo'), 'transform', aplicado ? `scale(${lerp(1.25, 1, seloPop)})` : '');
+  let k = 0;
+  LINHAS.forEach((ln, i) => {
+    if (casa[i]) {
+      set(ln, 'height', ''); set(ln, 'opacity', '');
+    } else {
+      const x = easeInOut(prog(t, T.aplicar + 0.5 + Math.min(k, 12) * 0.08, T.aplicar + 0.95 + Math.min(k, 12) * 0.08));
+      k++;
+      set(ln, 'height', `${27 * (1 - x)}px`);
+      set(ln, 'opacity', String(1 - x));
+      set(ln, 'border-bottom-width', x >= 1 ? '0' : '');
+    }
+  });
+  // Marcar todos
+  const marcado = t >= T.todos + 0.1;
+  cls($('ckTodos'), 'ck--on', marcado);
+  let v = 0;
+  LINHAS.forEach((ln, i) => {
+    const on = casa[i] && t >= T.todos + 0.15 + v * 0.05;
+    if (casa[i]) v++;
+    cls(ln, 'linha--marcada', on);
+    cls(ln.querySelector('.ck'), 'ck--on', on);
+  });
+
+}
+
+iniciarReel({
+  duracao: DURACAO,
+  legendas: LEGENDAS,
+  cursor: { caminho: CURSOR, cliques: CLIQUES, visivel: [4.9, 22.4] },
+  final: {
+    t: T.final,
+    nome: 'Filtro por número<br>no Relatório Geral',
+    itens: ['Qualquer posição do número', 'Ano, tribunal e comarca', 'Várias regras juntas', 'Guardado por perfil'],
+  },
+  desenhar,
+});
+</script>
+</body>
+</html>
