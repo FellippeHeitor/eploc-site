@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<!-- Funcionalidade demonstrada: o manual mostra este reel na página manual-src/funcionalidades/<id>.md -->
+<meta name="eploc-script" content="eproc-historico-emails">
+<title>Reel: Histórico de e-mails</title>
+<!--
+  Reel vertical (1080x1920) do "Histórico de e-mails avançado".
+  Usa a base comum (../base/reel.css e reel.js); gerado por reels/render.mjs.
+  Estilos copiados de eproc-historico-emails.ts: chips do campo "Para:" com a cor do endereço
+  (matiz pelo hash FNV-1a de lib/email-parsing-utils.ts), lista do autocompletar com o trecho
+  buscado em negrito e o selo de usos, sugestões de quem costuma ir junto abaixo do campo.
+  Nomes e endereços fictícios.
+-->
+<link rel="stylesheet" href="../base/reel.css">
+<style>
+/* ── Gancho: texto copiado de um ofício ── */
+.gancho { position: absolute; left: 33px; width: 411px; top: 350px; }
+.copiado { border-radius: 14px; background: #fff; padding: 16px 18px 18px;
+  box-shadow: 0 1px 2px rgba(34,24,39,.05), 0 18px 40px -18px rgba(34,24,39,.35); }
+.copiado__topo { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; font-size: 11px; font-weight: 600; color: var(--suave);
+  text-transform: uppercase; letter-spacing: .5px; }
+.copiado__topo kbd, .tecla { font-family: var(--mono); font-size: 11px; font-weight: 600; padding: 2px 6px; border-radius: 5px; border: 1px solid var(--borda);
+  border-bottom-width: 2px; background: var(--bg); color: var(--tinta); text-transform: none; letter-spacing: 0; }
+.copiado p { font-family: 'DejaVu Serif', Georgia, serif; font-size: 15px; line-height: 1.6; color: #333; }
+.em { border-radius: 3px; }
+
+/* ── Tela de envio de e-mail do eproc ── */
+.janela { position: absolute; left: 24px; width: 500px; top: 296px; height: 640px; border-radius: 14px; overflow: hidden;
+  background: #fff; box-shadow: 0 2px 4px rgba(34,24,39,.06), 0 24px 60px -20px rgba(34,24,39,.45); opacity: 0; }
+.conteudo { position: absolute; top: 56px; left: 0; right: 0; bottom: 0; padding: 12px; }
+.conteudo h1 { font-size: 15px; font-weight: 700; color: #2b2b2b; margin-bottom: 12px; }
+.campo { display: grid; grid-template-columns: 62px 1fr; align-items: start; gap: 6px; margin-bottom: 10px; width: 410px; }
+.campo > label { font-size: 13px; font-weight: 600; color: #333; padding-top: 8px; text-align: right; }
+.input { min-height: 30px; border: 1px solid #ccc; border-radius: 4px; padding: 6px 8px; font-size: 12px; color: #333; }
+.texto { min-height: 120px; color: #555; line-height: 1.5; }
+
+/* Campo "Para:" em chips (eploc-eh-fieldbox) */
+.fieldbox { position: relative; display: flex; flex-wrap: wrap; align-items: center; gap: 4px; min-height: 30px; padding: 3px 24px 3px 5px;
+  border: 1px solid #ccc; border-radius: 4px; background: #fff; font-size: 13px; }
+.fieldbox--foco { border-color: #4a90d9; box-shadow: 0 0 0 1px #4a90d9; }
+.fieldbox__logo { position: absolute; top: 50%; right: 6px; width: 14px; height: 14px; margin-top: -7px; opacity: .5; }
+.fchip { display: inline-flex; align-items: center; gap: 4px; padding: 2px 4px 2px 10px; border: 1px solid; border-radius: 14px; font-size: 14px;
+  line-height: 1.3; white-space: nowrap; max-width: 100%; }
+.fchip__x { width: 18px; height: 18px; display: grid; place-items: center; font-size: 15px; line-height: 1; color: #6b7280; }
+.digitado { flex: 1 1 60px; min-width: 60px; padding: 3px 2px; font-size: 14px; color: #1a202c; white-space: pre; }
+.caret { display: inline-block; width: 1px; height: 16px; background: #1a202c; vertical-align: -2px; }
+
+/* Sugestões de quem costuma ir junto (eploc-eh-chip) */
+.collab { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 6px; }
+.cchip { display: inline-flex; align-items: center; padding: 4px 11px; border: 1px solid; border-radius: 14px; font-size: 14px; font-weight: 500;
+  line-height: 1.2; white-space: nowrap; }
+
+/* Lista do autocompletar (eploc-eh-dropdown) */
+.dropdown { position: absolute; z-index: 5; width: 340px; background: #fff; border: 1px solid #ccc; border-radius: 4px;
+  box-shadow: 0 4px 12px rgba(0,0,0,.15); font-size: 13px; opacity: 0; }
+.item { display: flex; align-items: center; gap: 8px; padding: 7px 12px; border-bottom: 1px solid #f0f0f0; line-height: 1.3; }
+.item:last-child { border-bottom: 0; }
+.item--ativo { background: #cddcf7; box-shadow: inset 3px 0 0 #1f5fd1; }
+.item__nome { font-weight: 600; color: #1a202c; white-space: nowrap; font-size: 14px; }
+.item__email { flex: 1; color: #6b7280; font-size: 12.5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.item b { font-weight: 800; color: inherit; }
+.item__badge { font-size: 11px; background: #e5e7eb; color: #374151; border-radius: 10px; padding: 1px 6px; }
+
+/* Ctrl+V junto do cursor */
+.atalho { position: absolute; z-index: 51; opacity: 0; display: flex; gap: 3px; }
+.atalho .tecla { font-size: 13px; padding: 3px 8px; box-shadow: 0 6px 14px -6px rgba(0,0,0,.35); background: #fff; }
+</style>
+</head>
+<body>
+<div class="blob blob--a"></div>
+<div class="blob blob--b"></div>
+
+<div class="legenda" id="legenda"></div>
+
+<div class="gancho" id="gancho">
+  <div class="copiado">
+    <div class="copiado__topo"><span>Texto copiado de um ofício</span><kbd>Ctrl+C</kbd></div>
+    <p>Encaminho para ciência:<br>
+    Maria Souza &lt;<span class="em">maria.souza@exemplo.com.br</span>&gt;; <span class="em">cartorio.2vara@exemplo.com.br</span><br>
+    Dr. Carlos Lima – OAB 12.345 – <span class="em">carlos.lima@adv.exemplo.com.br</span> – (31) 3333-0000</p>
+  </div>
+</div>
+
+<div class="janela" id="janela">
+  <div class="nav-browser"><i></i><i></i><i></i><span>eproc · Enviar e-mail · Processo 5004321-55.2025.8.13.0024</span></div>
+  <div class="navbar"><div class="burger"></div><div class="dot"></div><div class="perfil">SECRETARIA · DIRETOR(A)</div><div class="sp"></div><div class="dot"></div><div class="dot"></div></div>
+  <div class="conteudo">
+    <h1>Enviar e-mail</h1>
+    <div class="campo"><label>Para:</label>
+      <div>
+        <div class="fieldbox" id="fieldbox"><span class="digitado" id="digitado"></span><img class="fieldbox__logo" src="../../icon32.png" alt=""></div>
+        <div class="collab" id="collab"></div>
+      </div>
+    </div>
+    <div class="campo"><label>Assunto:</label><div class="input">Processo 5004321-55.2025.8.13.0024</div></div>
+    <div class="campo"><label>Mensagem:</label><div class="input texto">Prezados,<br><br>encaminho, para ciência, a decisão do evento 45.<br><br>Atenciosamente,</div></div>
+  </div>
+  <div class="dropdown" id="dropdown"></div>
+</div>
+<div class="atalho" id="atalho"><span class="tecla">Ctrl</span><span class="tecla">V</span></div>
+
+<script src="../base/reel.js"></script>
+<script>
+// Mesmo hash da extensão (matizPorTexto): cada endereço tem sua cor.
+function matiz(texto) {
+  const s = texto.trim().toLowerCase();
+  let h = 0x811c9dc5;
+  for (let i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 0x01000193) >>> 0; }
+  return h % 360;
+}
+const cor = (email) => {
+  const m = matiz(email);
+  return `background:hsl(${m} 65% 93%);border-color:hsl(${m} 45% 74%);color:hsl(${m} 60% 24%)`;
+};
+
+// ── Linha do tempo ───────────────────────────────────────────
+const DURACAO = 25;
+const T = { campo: 6.0, colar: 6.8, digita: 10.8, item: 13.2, sugestao: 17.0, final: 20.4 };
+// Chips do "Para:" e o instante em que entram.
+const CHIPS = [
+  { t: T.colar + 0.2, rotulo: 'Maria Souza', email: 'maria.souza@exemplo.com.br' },
+  { t: T.colar + 0.45, rotulo: 'cartorio.2vara@exemplo.com.br', email: 'cartorio.2vara@exemplo.com.br' },
+  { t: T.colar + 0.7, rotulo: 'Carlos Lima', email: 'carlos.lima@adv.exemplo.com.br' },
+  { t: T.item, rotulo: 'João Pereira', email: 'joao.pereira@exemplo.com.br' },
+  { t: T.sugestao, rotulo: 'Ana Ribeiro', email: 'ana.ribeiro@exemplo.com.br' },
+];
+const SUGESTOES = [
+  { rotulo: 'Ana Ribeiro', email: 'ana.ribeiro@exemplo.com.br', id: 'sugAna' },
+  { rotulo: 'Secretaria da 2ª Vara', email: 'secretaria.2vara@exemplo.com.br' },
+  { rotulo: 'Paulo Mendes', email: 'paulo.mendes@adv.exemplo.com.br' },
+];
+const DIGITADO = 'jo per';
+const LEGENDAS = [
+  { t0: 0.2, t1: 4.4, kicker: 'E-mail pelo eproc', titulo: 'Os endereços estão <em>no meio do texto</em>?', sub: 'Copie tudo, do jeito que está.' },
+  { t0: 4.6, t1: 10.0, kicker: 'Com o eploc', titulo: 'Cole no “Para:” e eles viram <em>chips</em>', sub: 'Só os e-mails entram, com o nome quando ele é conhecido.' },
+  { t0: 10.2, t1: 14.6, kicker: 'Autocompletar', titulo: 'Digite <em>parte do nome</em>', sub: 'A busca aceita abreviações e pequenos erros.' },
+  { t0: 14.8, t1: 20.2, kicker: 'Frequentes', titulo: 'Quem costuma ir junto <em>aparece embaixo</em>', sub: 'Um clique e entra. Cada destinatário com a sua cor.' },
+];
+const CURSOR = [
+  { t: 4.6, p: [470, 990] },
+  { t: 5.8, el: () => $('fieldbox'), dx: -120 },
+  { t: 9.6, el: () => $('fieldbox'), dx: -120 },
+  { t: 13.0, el: () => $('item0'), dx: -60 },
+  { t: 14.6, el: () => $('item0'), dx: 40, dy: 110 },
+  { t: 16.8, el: () => $('sugAna') },
+  { t: 19.0, el: () => $('sugAna'), dx: 110, dy: 120 },
+];
+const CLIQUES = [T.campo, T.item, T.sugestao];
+
+// Monta os chips do campo e as sugestões uma vez; a linha do tempo só mostra/esconde.
+$('fieldbox').insertAdjacentHTML('afterbegin', CHIPS.map((c, i) =>
+  `<span class="fchip" id="chip${i}" style="${cor(c.email)}"><span>${c.rotulo}</span><span class="fchip__x">×</span></span>`).join(''));
+$('collab').innerHTML = SUGESTOES.map((s, i) =>
+  `<span class="cchip" id="${s.id || 'sug' + i}" style="${cor(s.email)}">${s.rotulo}</span>`).join('');
+$('dropdown').innerHTML = `
+  <div class="item item--ativo" id="item0"><span class="item__nome"><b>Jo</b>ão <b>Per</b>eira</span><span class="item__email"><b>jo</b>ao.<b>per</b>eira@exemplo.com.br</span><span class="item__badge">12×</span></div>
+  <div class="item"><span class="item__nome"><b>Jo</b>ana <b>Per</b>es</span><span class="item__email"><b>jo</b>ana.<b>per</b>es@adv.exemplo.com.br</span><span class="item__badge">3×</span></div>`;
+
+function desenhar(t) {
+  // Gancho
+  const gIn = easeOut(prog(t, 0.2, 0.8));
+  const gOut = easeInOut(prog(t, 4.1, 4.6));
+  set($('gancho'), 'opacity', String(gIn * (1 - gOut)));
+  set($('gancho'), 'transform', `translateY(${(1 - gIn) * 30 + gOut * 60}px) scale(${1 - gOut * 0.1})`);
+  [...document.querySelectorAll('.em')].forEach((el, i) => {
+    const x = clamp(prog(t, 1.2 + i * 0.35, 1.5 + i * 0.35));
+    set(el, 'background', x ? `rgba(251, 217, 230, ${x})` : '');
+    set(el, 'box-shadow', x ? `0 0 0 2px rgba(251, 217, 230, ${x})` : '');
+    set(el, 'color', x > 0.5 ? '#a8073f' : '');
+  });
+
+  // Janela
+  const jIn = easeOut(prog(t, 4.4, 5.0));
+  set($('janela'), 'opacity', String(jIn));
+  set($('janela'), 'transform', `translateY(${(1 - jIn) * 50}px)`);
+  cls($('fieldbox'), 'fieldbox--foco', t >= T.campo);
+
+  // Chips: entram com um pequeno salto; Ana sai das sugestões quando entra no campo.
+  CHIPS.forEach((c, i) => {
+    const el = $('chip' + i);
+    set(el, 'display', t >= c.t ? '' : 'none');
+    set(el, 'transform', `scale(${lerp(0.6, 1, backOut(prog(t, c.t, c.t + 0.3)))})`);
+  });
+  const sugVis = clamp(prog(t, T.colar + 1.0, T.colar + 1.4));
+  set($('collab'), 'opacity', String(sugVis));
+  // Sai das sugestões sem perder a posição (o cursor parte dela depois do clique).
+  set($('sugAna'), 'visibility', t >= T.sugestao ? 'hidden' : '');
+  set($('sugAna'), 'position', t >= T.sugestao ? 'absolute' : '');
+  // Destaque das sugestões na cena "Frequentes"
+  const pulso = Math.sin(clamp(prog(t, 15.2, 16.0)) * Math.PI);
+  set($('collab'), 'transform', `scale(${1 + pulso * 0.06})`);
+  set($('collab'), 'transform-origin', 'left top');
+
+  // Digitação e autocompletar
+  const n = Math.floor(clamp(prog(t, T.digita, T.digita + 0.8)) * DIGITADO.length);
+  const digitando = t >= T.digita && t < T.item;
+  const caret = t >= T.campo && Math.floor(t * 2) % 2 === 0;
+  html($('digitado'), (digitando ? DIGITADO.slice(0, n) : '') + (caret ? '<span class="caret"></span>' : ''));
+  const dd = $('dropdown');
+  const ddVis = clamp(prog(t, T.digita + 0.85, T.digita + 1.05)) * (t < T.item + 0.1 ? 1 : 0);
+  set(dd, 'opacity', String(ddVis));
+  const fb = $('fieldbox').getBoundingClientRect(), jr = $('janela').getBoundingClientRect();
+  set(dd, 'left', `${fb.left - jr.left}px`);
+  set(dd, 'top', `${fb.bottom - jr.top + 2}px`);
+
+  // Ctrl+V junto do cursor
+  const at = $('atalho');
+  const aVis = clamp(prog(t, T.colar - 0.3, T.colar - 0.1)) * (1 - prog(t, T.colar + 0.5, T.colar + 0.7));
+  set(at, 'opacity', String(aVis));
+  set(at, 'left', `${fb.left + 90}px`); set(at, 'top', `${fb.top - 40}px`);
+  set(at, 'transform', `scale(${t >= T.colar && t < T.colar + 0.15 ? 0.9 : 1})`);
+}
+
+iniciarReel({
+  duracao: DURACAO,
+  legendas: LEGENDAS,
+  cursor: { caminho: CURSOR, cliques: CLIQUES, visivel: [4.6, 19.6] },
+  final: {
+    t: T.final,
+    nome: 'Histórico de<br>e-mails avançado',
+    itens: ['Cole um texto, ganhe os chips', 'Autocompletar por nome', 'Quem costuma ir junto', 'Uma cor por destinatário'],
+  },
+  desenhar,
+});
+</script>
+</body>
+</html>
