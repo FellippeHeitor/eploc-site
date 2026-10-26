@@ -3,3 +3,6 @@ _site/
 .jekyll-cache/
 reels/**/*.mp4
 reels/**/*.png
+manual-src/public/demos/
+manual-src/public/assets/
+manual-src/public/icon32.png

@@ -4,7 +4,9 @@
   "type": "module",
   "description": "Manual oficial do eploc (VitePress). Publicado em https://eploc.com.br/manual.",
   "scripts": {
+    "predev": "node scripts/copiar-reels.mjs",
     "dev": "vitepress dev",
+    "prebuild": "node scripts/copiar-reels.mjs",
     "build": "vitepress build",
     "preview": "vitepress preview",
     "pdf": "node scripts/gerar-pdf.mjs"

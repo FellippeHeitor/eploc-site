@@ -5,7 +5,7 @@ name: Manual
 on:
   push:
     branches: [main]
-    paths: [manual-src/**, .github/workflows/manual.yml]
+    paths: [manual-src/**, reels/**, .github/workflows/manual.yml]
   workflow_dispatch:
 
 permissions:

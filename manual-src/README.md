@@ -55,6 +55,10 @@ padrao: ligado           # ligado | desligado numa instalação nova
 Seções, nesta ordem: `## O que faz` (2–3 frases), `## Onde aparece`, `## Passo a passo`,
 `## Configurações e opções`, `## Observações`. O selo de plano (Gratuito/Pro) e o
 "Disponível desde" aparecem sozinhos, a partir do front matter. Marque o lugar da demonstração
-animada com `<!-- DEMO: <id> -->`.
+animada com `<!-- DEMO: <id> -->`: quando há um reel em `../reels/` com
+`<meta name="eploc-script" content="<id>">`, o marcador vira a animação do reel (plugin em
+`.vitepress/reels.mjs`); sem reel, não aparece nada. `scripts/copiar-reels.mjs` copia os reels e os
+arquivos de que precisam para `public/` (não versionado) antes de `npm run dev` e `npm run build`.
+A animação fica fora do PDF.
 
 Exemplos usam sempre dados fictícios (processos, partes, CPFs).

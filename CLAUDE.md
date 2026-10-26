@@ -68,6 +68,11 @@ PNG da capa). Tudo o que precisa ser lido fica em x 33–444, y 144–624 da pá
 no vídeo), a zona segura mais conservadora entre Reels, Shorts e TikTok; a capa fica centrada no
 recorte 4:5 do perfil do Instagram. O MP4 e os PNGs não são versionados. Depois de publicar o
 vídeo, preencha a URL em `videos.json`.
+O manual também mostra o reel, como animação HTML (não o MP4), na página da funcionalidade: o
+`reel.html` declara `<meta name="eploc-script" content="<id do script>">` e o marcador
+`<!-- DEMO: <id> -->` da página `manual-src/funcionalidades/<id>.md` vira um `<iframe>` do reel. Reel
+novo precisa dessa `<meta>`; se ele pedir outro arquivo de `assets/`, inclua-o em
+`manual-src/scripts/copiar-reels.mjs`.
 
 ## Manual (`/manual`)
 

@@ -116,8 +116,8 @@ try {
         const doc = document.querySelector(".vp-doc > div");
         if (!doc) return "";
         const copia = doc.cloneNode(true);
-        // Âncoras de título ("#") e outros controles do site não vão para o PDF.
-        copia.querySelectorAll(".header-anchor, .copy, button").forEach((el) => el.remove());
+        // Âncoras de título ("#"), demonstrações animadas e outros controles do site não vão para o PDF.
+        copia.querySelectorAll(".header-anchor, .copy, button, .demo").forEach((el) => el.remove());
         copia.querySelectorAll("[id]").forEach((el) => (el.id = `${slug}--${el.id}`));
         copia.querySelectorAll("a[href]").forEach((a) => {
           const destino = new URL(a.href, location.href);

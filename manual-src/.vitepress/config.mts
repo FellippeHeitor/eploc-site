@@ -2,6 +2,7 @@ import { readdirSync, readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { defineConfig, type DefaultTheme } from "vitepress";
 import { ORDEM_GRUPOS, rotuloGrupo } from "./grupos";
+import { pluginReels } from "./reels.mjs";
 
 const raiz = fileURLToPath(new URL("..", import.meta.url));
 
@@ -65,6 +66,10 @@ export default defineConfig({
   cleanUrls: true,
   lastUpdated: false,
   srcExclude: ["README.md"],
+  markdown: {
+    // <!-- DEMO: <id> --> vira a animação do reel do script (reels/), quando existe.
+    config: (md) => pluginReels(md, "/manual/"),
+  },
   head: [
     ["link", { rel: "icon", href: "/manual/favicon.ico" }],
     ["meta", { name: "theme-color", content: "#e8195f" }],

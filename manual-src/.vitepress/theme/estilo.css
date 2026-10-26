@@ -53,3 +53,34 @@
 .vp-doc .selos + div h1 {
   margin-top: 4px;
 }
+
+/* Demonstração animada: reel de reels/ (página fixa de 540x960) reduzido no iframe. */
+.demo {
+  margin: 24px 0;
+  text-align: center;
+}
+.demo__tela {
+  display: inline-block;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid var(--vp-c-divider);
+  line-height: 0;
+}
+.demo iframe {
+  width: 540px;
+  height: 960px;
+  border: 0;
+  zoom: 0.6;
+  pointer-events: none;
+}
+@media (max-width: 420px) {
+  .demo iframe { zoom: 0.5; }
+}
+.demo figcaption {
+  margin-top: 6px;
+  font-size: 13px;
+  color: var(--vp-c-text-2);
+}
+@media print {
+  .demo { display: none; }
+}
