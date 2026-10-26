@@ -12,6 +12,9 @@ defaults:
     values: { sitemap: false }
   - scope: { path: video.html }
     values: { sitemap: false }
+  # O manual (VitePress) tem sitemap próprio em /manual/sitemap.xml, com URLs limpas
+  - scope: { path: manual }
+    values: { sitemap: false }
 
 # Arquivos do repo que não fazem parte do site publicado
 exclude:

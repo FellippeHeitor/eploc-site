@@ -66,6 +66,19 @@ export default defineConfig({
   cleanUrls: true,
   lastUpdated: false,
   srcExclude: ["README.md"],
+  // Sitemap próprio do manual, só com URLs limpas (o do Jekyll exclui /manual).
+  sitemap: { hostname: "https://eploc.com.br/manual/" },
+  // Canônica explícita na forma sem .html, a mesma usada nos links internos.
+  transformPageData(pageData) {
+    const caminho = pageData.relativePath
+      .replace(/(^|\/)index\.md$/, "$1")
+      .replace(/\.md$/, "");
+    pageData.frontmatter.head ??= [];
+    pageData.frontmatter.head.push([
+      "link",
+      { rel: "canonical", href: `https://eploc.com.br/manual/${caminho}` },
+    ]);
+  },
   markdown: {
     // <!-- DEMO: <id> --> vira a animação do reel do script (reels/), quando existe.
     config: (md) => pluginReels(md, "/manual/"),
