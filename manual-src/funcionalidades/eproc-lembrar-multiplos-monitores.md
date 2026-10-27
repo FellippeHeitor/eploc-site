@@ -42,8 +42,10 @@ Não há opções além de ligar e desligar.
 
 ## Observações
 
-- A configuração fica guardada só neste computador, porque depende dos monitores ligados a ele. Ela
-  não vai para outros computadores nem para o backup.
+- A configuração entra no backup e na sincronização, guardada pelo tamanho e pela escala das telas.
+  Depois de reinstalar a extensão ou restaurar um backup, ela volta sozinha no computador com as
+  mesmas telas. Computadores com telas iguais aproveitam a mesma configuração.
+- Mudar a resolução ou a escala do Windows conta como uma tela nova: configure a posição de novo.
 - O navegador só deixa abrir janelas a partir de um clique. Por isso a posição da janela é
   restaurada pelo botão, e não automaticamente.
 - Se a restauração sem sair da página não funcionar, o eploc avisa. Clique de novo em "Restaurar
