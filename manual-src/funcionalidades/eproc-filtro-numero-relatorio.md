@@ -1,5 +1,5 @@
 ---
-title: "Filtro por número no Relatório Geral"
+title: "Filtro por número nas listas de processos"
 id: eproc-filtro-numero-relatorio
 plataforma: eproc
 grupo: "Relatórios"
@@ -8,22 +8,29 @@ desde: "1.10.0"
 padrao: ligado
 ---
 
-# Filtro por número no Relatório Geral
+# Filtro por número nas listas de processos
 
 ## O que faz
 
-Mostra no Relatório Geral só os processos com certos dígitos no número, por exemplo os que começam
-com 5 e terminam em 0, 1 ou 2. É útil para quem divide o acervo pelos dígitos do número.
+Mostra no Relatório Geral e na lista de processos por localizador só os processos com certos dígitos
+no número, por exemplo os que começam com 5 e terminam em 0, 1 ou 2. É útil para quem divide o
+acervo pelos dígitos do número, inclusive dentro de cada localizador.
 
 ## Onde aparece
 
-**eproc**, Relatório Geral de Processos, na barra acima da tabela de resultados: o selo
-**Filtrar nº**, logo depois do título "Processos". Com o filtro ativo, o selo fica azul e mostra o
-filtro e quantos processos da página aparecem, por exemplo "5NNNNN[012] · 27 de 100".
+**eproc**, em duas telas:
+
+- **Relatório Geral de Processos**: o selo **Filtrar nº** fica na barra acima da tabela de
+  resultados, logo depois do título "Processos".
+- **Lista de Processos por Localizador**: o selo fica logo acima da tabela de processos.
+
+Com o filtro ativo, o selo fica azul e mostra o filtro e quantos processos da página aparecem, por
+exemplo "5NNNNN[012] · 27 de 100". A tabela ganha uma borda azul e, quando há processos ocultos, uma
+faixa logo abaixo dela repete a contagem e traz o botão **Limpar**.
 
 ## Passo a passo
 
-1. Gere o Relatório Geral normalmente e clique em **Filtrar nº**.
+1. Gere o Relatório Geral (ou abra um localizador) normalmente e clique em **Filtrar nº**.
 2. O painel mostra o número do processo como uma fileira de caixas, agrupadas em Número,
    Verificador, Ano, J, TR e Origem. Clique na caixa da posição que quer filtrar, por exemplo o
    último dígito do número, antes do traço.
@@ -35,8 +42,8 @@ filtro e quantos processos da página aparecem, por exemplo "5NNNNN[012] · 27 d
    usando traço: por exemplo **2022-2025, 2019** para o ano ou **0242, 0133** para duas comarcas.
    Para o ano, há também atalhos com os últimos anos, que marcam e desmarcam cada um.
 5. O rodapé mostra quantos processos da página passam no filtro. Clique em **Aplicar**.
-6. Para ver tudo de novo, clique no "x" do selo, ou em **Limpar** dentro do painel e depois
-   em **Aplicar**.
+6. Para ver tudo de novo, clique no "x" do selo ou em **Limpar** na faixa abaixo da tabela (ou em
+   **Limpar** dentro do painel e depois em **Aplicar**).
 
 Pelo teclado: com uma caixa selecionada, as teclas de 0 a 9 marcam os dígitos, as setas trocam de
 posição e Esc fecha o painel sem aplicar.
@@ -60,7 +67,7 @@ fica `5NNNNN[012], 0NNNN[012]N`.
 ## Configurações e opções
 
 Não há opções além de ligar e desligar. O filtro fica guardado e volta na próxima vez que você abrir
-o relatório.
+o relatório ou um localizador. É o mesmo filtro nas duas telas: mudar numa muda na outra.
 
 ## Observações
 
@@ -69,7 +76,8 @@ o relatório.
   **Mostrar 100 por página**, para o filtro alcançar mais processos de uma vez.
 - O filtro é guardado separadamente para cada perfil/unidade do eproc.
 - Os processos ocultos pelo filtro nunca ficam marcados: se você usar o "marcar todos" do cabeçalho
-  da tabela, só os processos visíveis continuam marcados. Assim, as ações em bloco do eproc e as do
-  eploc (como "Monitorar todos os processos desta página") só agem sobre o que aparece.
+  da tabela, só os processos visíveis continuam marcados. Assim, as ações em bloco do eproc (como
+  "Alterar Localizador" e "Citação em Bloco") e as do eploc (como "Monitorar todos os processos
+  desta página") só agem sobre o que aparece.
 
 <!-- DEMO: eproc-filtro-numero-relatorio -->
