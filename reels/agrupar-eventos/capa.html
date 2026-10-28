@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Capa: Agrupar eventos</title>
+<!--
+  Capa do reel (1080x1920), com o conteúdo centrado no recorte 4:5 do perfil do Instagram.
+  Gerada por: node reels/render.mjs agrupar-eventos capa.png --capa
+-->
+<link rel="stylesheet" href="../base/reel.css">
+<style>
+.blob--a { width: 420px; height: 420px; left: -160px; top: 60px; opacity: .6; }
+.blob--b { width: 380px; height: 380px; right: -160px; top: 520px; bottom: auto; opacity: .6; }
+.conteudo { position: absolute; left: 40px; right: 40px; top: 236px; display: flex; flex-direction: column; align-items: center; text-align: center; }
+.kicker { padding: 4px 12px; border-radius: 999px; background: var(--pink); color: #fff; font-weight: 600; font-size: 14px; }
+h1 { margin-top: 14px; font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 48px; line-height: .98; letter-spacing: -.5px; }
+h1 em { font-style: normal; color: var(--pink); }
+.sub { margin-top: 12px; font-size: 17px; color: var(--ink-muted); }
+.antes-depois { margin-top: 24px; display: flex; align-items: center; gap: 10px; }
+.cartao { width: 196px; border-radius: 12px; background: #fff; overflow: hidden; text-align: left; font-size: 9px; color: #2f2f2f;
+  box-shadow: 0 1px 2px rgba(34,24,39,.05), 0 18px 40px -18px rgba(34,24,39,.35); }
+.cartao b.t { display: block; padding: 6px 8px; font-size: 10px; background: #e8edf4; }
+.l { display: flex; gap: 6px; padding: 5px 8px; border-bottom: 1px solid #e6e9ee; line-height: 1.3; }
+.l span:first-child { width: 44px; flex: none; font-weight: 700; text-align: center; white-space: nowrap; }
+.resumo { background: #f0f6ff; }
+.resumo span:first-child { color: #0056b3; }
+.conf { background: #fff8ec; }
+.conf span:first-child { color: #b8860b; }
+.seta { font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 30px; color: var(--pink); }
+.marca { margin-top: 28px; display: flex; align-items: center; gap: 12px; }
+.marca img { width: 64px; height: 64px; }
+.marca div { text-align: left; font-weight: 600; font-size: 16px; line-height: 1.3; }
+.marca span { display: block; font-family: 'Baloo 2', sans-serif; font-weight: 700; font-size: 20px; color: var(--pink); }
+</style>
+</head>
+<body>
+<div class="blob blob--a"></div>
+<div class="blob blob--b"></div>
+<div class="conteudo">
+  <span class="kicker">Tabela de eventos do eproc</span>
+  <h1>Uma tabela de eventos<br>que <em>dá para ler</em></h1>
+  <p class="sub">Intimações em lote e confirmações numa linha só.</p>
+  <div class="antes-depois">
+    <div class="cartao"><b class="t">Antes · 7 linhas</b>
+      <div class="l"><span>55</span><span>CONFIRMADA A INTIMAÇÃO</span></div>
+      <div class="l"><span>54</span><span>INTIMAÇÃO ELETRÔNICA</span></div>
+      <div class="l"><span>53</span><span>JUNTADA DE PETIÇÃO</span></div>
+      <div class="l"><span>51</span><span>INTIMAÇÃO · PERITO</span></div>
+      <div class="l"><span>50</span><span>INTIMAÇÃO · RÉU</span></div>
+      <div class="l"><span>49</span><span>INTIMAÇÃO · AUTOR</span></div>
+      <div class="l"><span>47</span><span>DECISÃO INTERLOCUTÓRIA</span></div>
+    </div>
+    <span class="seta">→</span>
+    <div class="cartao"><b class="t">Com o eploc · 4 linhas</b>
+      <div class="l conf"><span>› 54–55</span><span>INTIMAÇÃO ELETRÔNICA<br>✓ Confirmada (Evento 55)</span></div>
+      <div class="l"><span>53</span><span>JUNTADA DE PETIÇÃO</span></div>
+      <div class="l resumo"><span>› 49–51</span><span>INTIMAÇÃO ELETRÔNICA<br>3 registros agrupados</span></div>
+      <div class="l"><span>47</span><span>DECISÃO INTERLOCUTÓRIA</span></div>
+    </div>
+  </div>
+  <div class="marca">
+    <img src="../../assets/eploc-logo-sem-texto-1000.png" alt="">
+    <div>eploc · grátis para Chrome e Edge<span>eploc.com.br</span></div>
+  </div>
+</div>
+<script>window.pronto = document.fonts.ready.then(() => Promise.all([...document.images].map((i) => i.decode().catch(() => {}))));</script>
+</body>
+</html>

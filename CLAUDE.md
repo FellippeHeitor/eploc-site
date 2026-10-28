@@ -64,9 +64,12 @@ que monta legendas, cursor e cartão final e expõe `renderFrame(t)`, determiní
 navegador, o reel toca em loop). O reel só escreve a própria cena em `desenhar(t)`.
 `node reels/render.mjs <nome> saida.mp4` grava o MP4 1080x1920 com Playwright + ffmpeg
 (`--quadros 3,9.5` salva só PNGs desses instantes; `--zonas` desenha a zona segura; `--capa` gera o
-PNG da capa). Tudo o que precisa ser lido fica em x 33–444, y 144–624 da página (65–888 × 288–1248
-no vídeo), a zona segura mais conservadora entre Reels, Shorts e TikTok; a capa fica centrada no
-recorte 4:5 do perfil do Instagram. O MP4 e os PNGs não são versionados. Depois de publicar o
+PNG da capa). Todo texto visível fica em x 33–444, y 144–624 da página (65–888 × 288–1248 no
+vídeo), a zona segura mais conservadora entre Reels, Shorts e TikTok — inclusive linhas de exemplo
+e animações de entrada. Por isso a janela do eproc ocupa x 28–448, y 296–624 e entra com zoom a
+partir do topo, e cursores não descem abaixo dela. Confira com `node reels/verificar.mjs <nome>`,
+que varre a linha do tempo e lista o texto fora da zona. A capa fica centrada no recorte 4:5 do
+perfil do Instagram. O MP4 e os PNGs não são versionados. Depois de publicar o
 vídeo, preencha a URL em `videos.json`.
 O manual também mostra o reel, como animação HTML (não o MP4), na página da funcionalidade: o
 `reel.html` declara `<meta name="eploc-script" content="<id do script>">` e o marcador
