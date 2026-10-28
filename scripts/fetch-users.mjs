@@ -22,16 +22,29 @@ const res = await fetch(storeUrl, { headers: { 'User-Agent': 'Mozilla/5.0', 'Acc
 if (!res.ok) throw new Error(`Web Store respondeu ${res.status}`);
 const html = await res.text();
 
-// Procura primeiro o texto visível, em inglês ("1,000 users") ou português
-// ("1.000 usuários"), já que o Google pode ignorar o hl=en conforme a origem.
-// Se não achar, tenta os dados embutidos da página (bloco ds:0), em que o
-// número aparece cru logo após a categoria: ["productivity/tools",null,5],1,null,1000,
+// A página também lista extensões recomendadas, cada uma com seu número de
+// usuários — por isso a busca fica presa ao ID do eploc. Primeiro os dados
+// embutidos (bloco ds:0), em que o número aparece cru logo após a categoria,
+// depois do ID: "fkpk...",...["productivity/tools",null,5],1,null,1000,
+// O trecho termina no ID da próxima extensão, para não pegar o número dela.
+// Se não achar, aceita o texto visível ("1,000 users" / "1.000 usuários"),
+// mas só se ele aparecer uma única vez na página.
+const extId = 'fkpkkenjcfpplmhlfdbabhcdhmhiojhj';
 function findUsers(html) {
-    const text = html.match(/>\s*(\d{1,3}(?:[.,\s ]\d{3})*)\+?\s+(?:users?|usuários?)\s*</i);
-    if (text) return text[1];
     const ds0 = html.indexOf("key: 'ds:0'");
-    if (ds0 < 0) return null;
-    return html.slice(ds0).match(/\["[\w/]+",null,\d+\],\d+,null,(\d+),/)?.[1] ?? null;
+    if (ds0 >= 0) {
+        const block = html.slice(ds0);
+        const start = block.indexOf(`"${extId}"`);
+        if (start >= 0) {
+            const rest = block.slice(start + extId.length + 2);
+            const next = rest.search(/"[a-p]{32}"/);
+            const own = next < 0 ? rest : rest.slice(0, next);
+            const n = own.match(/\["[\w/]+",null,\d+\],\d+,null,(\d+),/)?.[1];
+            if (n) return n;
+        }
+    }
+    const texts = [...html.matchAll(/>\s*(\d{1,3}(?:[.,\s ]\d{3})*)\+?\s+(?:users?|usuários?)\s*</gi)];
+    return texts.length === 1 ? texts[0][1] : null;
 }
 
 const found = findUsers(html);
