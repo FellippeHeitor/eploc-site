@@ -22,7 +22,8 @@ O arquivo inclui:
 
 - os interruptores e opções de todas as funcionalidades e os ajustes gerais;
 - os dados salvos: histórico de e-mails, modelos de mensagem, destaques de trecho e paleta de cores,
-  processos monitorados e colunas excluídas do monitoramento, pastas das listas de preferências;
+  processos monitorados e colunas excluídas do monitoramento, pastas das listas de preferências, leis
+  de regência das RPVs por devedor;
 - preferências lembradas pelas funcionalidades (ações favoritas e ocultas, perfil favorito do login,
   seções do Painel do Servidor, preferências e colunas fixadas, avisos rotineiros e ocultos, dicas já
   fechadas, opções favoritas dos campos de seleção, rótulos aprendidos do CPHA etc.).
@@ -30,7 +31,8 @@ O arquivo inclui:
 ## Exportar só algumas bases
 
 1. No card **Exportar bases de dados**, marque o que quer exportar: **E-mails**, **Modelos de
-   mensagem**, **Destaques** e/ou **Processos monitorados**.
+   mensagem**, **Destaques**, **Processos monitorados**, **Pastas das listas de preferências do
+   processo** e/ou **Leis de regência das RPVs por devedor**.
 2. Clique em **Exportar selecionadas**.
 
 Útil para passar seus modelos ou contatos a outra pessoa sem levar junto as suas preferências.
