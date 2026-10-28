@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<!-- Funcionalidade demonstrada: o manual mostra este reel na página manual-src/funcionalidades/<id>.md -->
+<meta name="eploc-script" content="eproc-agrupar-eventos-relacionados">
+<title>Reel: Agrupar eventos</title>
+<!--
+  Reel vertical (1080x1920) do "Agrupar eventos relacionados".
+  Usa a base comum (../base/reel.css e reel.js); gerado por reels/render.mjs.
+  Estilos e textos de eproc-agrupar-eventos-relacionados.ts: linha-resumo azul (#f0f6ff) com o
+  intervalo "49–51" em negrito #0056b3 e a seta, "N registros agrupados:" com destinatário e prazo
+  de cada evento; par expedição/confirmação em dourado (#fff8ec, #b8860b) com "✓ CONFIRMADA A
+  INTIMAÇÃO ELETRÔNICA em … (Evento N)"; ao expandir, as linhas originais com fundo azulado e
+  barra à esquerda. Processo e nomes fictícios.
+-->
+<link rel="stylesheet" href="../base/reel.css">
+<style>
+/* Janela termina no fim da zona segura (y 624): nada legível fica sob a legenda do post. */
+.janela { position: absolute; left: 28px; width: 420px; top: 296px; height: 328px; transform-origin: 50% 0; border-radius: 14px; overflow: hidden;
+  background: #fff; box-shadow: 0 2px 4px rgba(34,24,39,.06), 0 24px 60px -20px rgba(34,24,39,.45); opacity: 0; }
+.conteudo { position: absolute; top: 56px; left: 0; right: 0; bottom: 0; padding: 10px 12px 0; }
+.titulo-eventos { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; height: 22px; }
+.titulo-eventos h1 { font-size: 15px; font-weight: 700; color: #2b2b2b; }
+.contador { font-size: 11px; font-weight: 700; padding: 2px 9px; border-radius: 999px; background: var(--pink-soft); color: #a8073f; }
+.tabela { position: absolute; left: 12px; right: 12px; top: 40px; bottom: 0; overflow: hidden; border-top: 1px solid #d7dce3; }
+.cab, .linha { display: grid; grid-template-columns: 54px 66px 1fr 40px; font-size: 12px; color: #2f2f2f; }
+.cab { height: 24px; align-items: center; background: #e8edf4; font-weight: 700; color: #3a3a3a; }
+.cab > div, .linha > div { padding: 4px; }
+.recorte { position: absolute; left: 0; right: 0; top: 25px; bottom: 0; overflow: hidden; }
+.linha { border-bottom: 1px solid #e6e9ee; overflow: hidden; align-items: start; }
+.linha--par { background: #f7f8fa; }
+.ev { font-weight: 700; text-align: center; padding-top: 6px !important; }
+.data { color: #555; font-size: 10px; line-height: 1.3; }
+.desc { line-height: 1.35; }
+.docs { color: #0b57b5; font-size: 10px; overflow: hidden; text-overflow: ellipsis; }
+
+/* Linha-resumo do eploc */
+.resumo { background: #f0f6ff; }
+.resumo--expandido { background: #e6f0ff; }
+.resumo--confirmacao { background: #fff8ec; }
+.toggle { display: inline-flex; align-items: center; gap: 2px; white-space: nowrap; }
+.seta { display: inline-flex; color: #0056b3; }
+.seta svg { width: 16px; height: 16px; }
+.intervalo { font-weight: 700; color: #0056b3; }
+.resumo--confirmacao .intervalo, .resumo--confirmacao .seta { color: #b8860b; }
+.nota { color: #6c757d; font-size: .88em; font-style: italic; }
+.nota svg { width: 12px; height: 12px; color: #1e7e34; vertical-align: -2px; margin-right: 2px; }
+.destinatarios { margin: 2px 0 0; padding-left: 16px; font-size: .9em; }
+.destinatarios strong { color: #0056b3; }
+/* Linhas originais reveladas ao expandir */
+.filho { background: rgba(0, 86, 179, 0.045); }
+.filho > div:first-child { box-shadow: inset 3px 0 0 0 rgba(0, 86, 179, 0.45); }
+.foco { position: absolute; left: 0; right: 0; border-radius: 4px; box-shadow: 0 0 0 3px var(--pink); opacity: 0; pointer-events: none; z-index: 3; }
+</style>
+</head>
+<body>
+<div class="blob blob--a"></div>
+<div class="blob blob--b"></div>
+
+<div class="legenda" id="legenda"></div>
+
+<div class="janela" id="janela">
+  <div class="nav-browser"><i></i><i></i><i></i><span>eproc · Processo 5004321-55.2025.8.13.0024</span></div>
+  <div class="navbar"><div class="burger"></div><div class="dot"></div><div class="perfil">SECRETARIA · DIRETOR(A)</div><div class="sp"></div><div class="dot"></div><div class="dot"></div></div>
+  <div class="conteudo">
+    <div class="titulo-eventos"><h1>Eventos</h1><span class="contador" id="contador"></span></div>
+    <div class="tabela">
+      <div class="cab"><div style="text-align:center">Evento</div><div>Data/Hora</div><div>Descrição</div><div>Docs.</div></div>
+      <div class="recorte"><div class="rolagem" id="rolagem"></div><div class="foco" id="foco"></div></div>
+    </div>
+  </div>
+</div>
+
+<script src="../base/reel.js"></script>
+<script>
+const SETA = '<svg viewBox="0 -960 960 960" fill="currentColor"><path d="M504-480 348-636q-11-11-11-28t11-28q11-11 28-11t28 11l184 184q6 6 8.5 13t2.5 15q0 8-2.5 15t-8.5 13L404-268q-11 11-28 11t-28-11q-11-11-11-28t11-28l156-156Z"/></svg>';
+const CHECK = '<svg viewBox="0 -960 960 960" fill="currentColor"><path d="m382-354 339-339q12-12 28-12t28 12q12 12 12 28.5T777-636L410-268q-12 12-28 12t-28-12L182-440q-12-12-11.5-28.5T183-497q12-12 28.5-12t28.5 12l142 143Z"/></svg>';
+const INT = 'INTIMAÇÃO ELETRÔNICA - EXPEDIDA/CERTIFICADA';
+const CIT = 'CITAÇÃO ELETRÔNICA - EXPEDIDA/CERTIFICADA';
+
+// Eventos fictícios, do mais novo para o mais antigo. g = grupo do eploc.
+const EVENTOS = [
+  { n: 56, data: '21/10/2026<br>16:40:12', desc: 'CONCLUSOS PARA DECISÃO' },
+  { n: 55, data: '21/10/2026<br>14:02:11', desc: 'CONFIRMADA A INTIMAÇÃO ELETRÔNICA - Refer. ao Evento 54', g: 'conf' },
+  { n: 54, data: '18/10/2026<br>10:15:40', desc: `${INT}<br>Refer. ao Evento 53<br>Prazo: 30 dias`, g: 'conf' },
+  { n: 53, data: '17/10/2026<br>09:31:05', desc: 'JUNTADA DE PETIÇÃO', docs: 'PET1' },
+  { n: 52, data: '16/10/2026<br>00:00:01', desc: 'DECORRIDO PRAZO - Refer. ao Evento 49' },
+  { n: 51, data: '25/09/2026<br>15:20:09', desc: `${INT}<br>Refer. ao Evento 47<br><b>PERITO:</b> JOÃO SOUZA<br>Prazo: 5 dias`, g: 'lote' },
+  { n: 50, data: '25/09/2026<br>15:20:07', desc: `${INT}<br>Refer. ao Evento 47<br><b>RÉU:</b> BANCO EXEMPLO S.A.<br>Prazo: 15 dias`, g: 'lote' },
+  { n: 49, data: '25/09/2026<br>15:20:05', desc: `${INT}<br>Refer. ao Evento 47<br><b>AUTOR:</b> MARIA DA SILVA<br>Prazo: 15 dias`, g: 'lote' },
+  { n: 47, data: '24/09/2026<br>18:02:33', desc: 'DECISÃO INTERLOCUTÓRIA', docs: 'DEC1' },
+  { n: 46, data: '20/09/2026<br>11:10:02', desc: 'CONCLUSOS PARA DECISÃO' },
+  { n: 45, data: '12/09/2026<br>13:44:21', desc: `${CIT}<br>Refer. ao Evento 42<br><b>RÉU:</b> CARLOS PEREIRA<br>Prazo: 15 dias`, g: 'cit' },
+  { n: 44, data: '12/09/2026<br>13:44:19', desc: `${CIT}<br>Refer. ao Evento 42<br><b>RÉU:</b> BANCO EXEMPLO S.A.<br>Prazo: 15 dias`, g: 'cit' },
+  { n: 43, data: '10/09/2026<br>09:05:47', desc: 'EMENDA À INICIAL', docs: 'EMENDAINIC1' },
+  { n: 42, data: '02/09/2026<br>17:30:00', desc: 'DESPACHO', docs: 'DESP1' },
+];
+// Linhas-resumo, inseridas antes do evento mais recente de cada grupo.
+const RESUMOS = {
+  conf: { antes: 55, cls: 'resumo resumo--confirmacao', intervalo: '54–55', data: '18/10/2026 10:15:40<br>–<br>21/10/2026 14:02:11',
+    desc: `${INT}<br>Refer. ao Evento 53<br>Prazo: 30 dias<br><span class="nota">${CHECK}CONFIRMADA A INTIMAÇÃO ELETRÔNICA em 21/10/2026 14:02:11 (Evento 55)</span>` },
+  lote: { antes: 51, cls: 'resumo', intervalo: '49–51', data: '25/09/2026<br>15:20:05 – 15:20:09',
+    desc: `${INT}<br>Refer. ao Evento 47<br><span class="nota">3 registros agrupados:</span><ul class="destinatarios">
+      <li><strong>AUTOR: </strong>MARIA DA SILVA – <strong>Prazo: </strong>15 dias</li>
+      <li><strong>RÉU: </strong>BANCO EXEMPLO S.A. – <strong>Prazo: </strong>15 dias</li>
+      <li><strong>PERITO: </strong>JOÃO SOUZA – <strong>Prazo: </strong>5 dias</li></ul>` },
+  cit: { antes: 45, cls: 'resumo', intervalo: '44–45', data: '12/09/2026<br>13:44:19 – 13:44:21',
+    desc: `${CIT}<br>Refer. ao Evento 42<br>Prazo: 15 dias<br><span class="nota">2 registros agrupados:</span><ul class="destinatarios">
+      <li><strong>RÉU: </strong>BANCO EXEMPLO S.A.</li><li><strong>RÉU: </strong>CARLOS PEREIRA</li></ul>` },
+};
+$('rolagem').innerHTML = EVENTOS.map((e, i) => {
+  const r = Object.entries(RESUMOS).find(([, r]) => r.antes === e.n);
+  const resumo = r ? `<div class="linha ${r[1].cls}" id="res-${r[0]}"><div class="ev"><span class="toggle" id="tg-${r[0]}"><span class="seta">${SETA}</span><span class="intervalo">${r[1].intervalo}</span></span></div><div class="data">${r[1].data}</div><div class="desc">${r[1].desc}</div><div class="docs"></div></div>` : '';
+  return resumo + `<div class="linha${i % 2 ? ' linha--par' : ''}" id="ev${e.n}" data-g="${e.g || ''}"><div class="ev">${e.n}</div><div class="data">${e.data}</div><div class="desc">${e.desc}</div><div class="docs">${e.docs || ''}</div></div>`;
+}).join('');
+// Altura natural de cada linha, medida uma vez; a linha do tempo anima a partir dela.
+const LINHAS = [...$('rolagem').children];
+const ALTURA = new Map(LINHAS.map((l) => [l, l.offsetHeight]));
+const ROLAGEM = $('rolagem');
+
+// ── Linha do tempo ───────────────────────────────────────────
+const DURACAO = 28;
+const T = { agrupa: 6.2, foco: 10.6, clique: 16.0, confirma: 20.3, final: 24.2 };
+const LEGENDAS = [
+  { t0: 0.2, t1: 4.5, kicker: 'Tabela de eventos', titulo: 'Uma intimação <em>por parte</em>, uma linha para cada', sub: 'E a tabela não acaba.' },
+  { t0: 4.7, t1: 10.3, kicker: 'Com o eploc', titulo: 'O que é uma coisa só <em>vira uma linha</em>', sub: 'Intimações em lote, confirmações e repetições.' },
+  { t0: 10.5, t1: 15.6, kicker: 'Intimações em lote', titulo: 'Cada destinatário e prazo <em>no resumo</em>', sub: 'Sem abrir evento por evento.' },
+  { t0: 15.8, t1: 20.0, kicker: 'Nada some', titulo: 'Um clique mostra os <em>originais</em>', sub: 'As linhas do eproc continuam lá.' },
+  { t0: 20.2, t1: 24.0, kicker: 'Confirmações', titulo: 'Expediu e confirmou? <em>Fica junto</em>', sub: 'Com a data da confirmação.' },
+];
+const CURSOR = [
+  { t: 4.8, p: [470, 990] },
+  { t: 12.4, el: () => $('tg-lote'), dx: 30, dy: 60 },
+  { t: 15.8, el: () => $('tg-lote') },
+  { t: 18.4, el: () => $('tg-lote'), dx: 120, dy: 90 },
+  { t: 21.6, el: () => $('tg-conf') },
+];
+const CLIQUES = [T.clique];
+
+// Altura de cada linha no instante t (0 = recolhida).
+function fracao(l, t) {
+  const g = l.dataset.g;
+  const recolhe = easeInOut(prog(t, T.agrupa, T.agrupa + 0.9));
+  if (l.id.startsWith('res-')) return recolhe;
+  if (!g) return 1;
+  // O lote 49–51 volta a aparecer, como filhos, ao clicar.
+  if (g === 'lote') return Math.max(1 - recolhe, easeOut(prog(t, T.clique + 0.1, T.clique + 0.5)));
+  return 1 - recolhe;
+}
+function rolagem(t) {
+  const alvo = (id) => $(id).offsetTop;
+  let y = lerp(0, 230, easeInOut(prog(t, 1.4, 3.6))) * (1 - easeInOut(prog(t, 3.8, 4.5)));
+  if (t >= T.foco) y = lerp(0, alvo('res-lote') - 8, easeInOut(prog(t, T.foco, T.foco + 0.8)));
+  if (t >= T.confirma) y = lerp(alvo('res-lote') - 8, 0, easeInOut(prog(t, T.confirma, T.confirma + 0.7)));
+  return y;
+}
+
+function desenhar(t) {
+  const jIn = easeOut(prog(t, 0.2, 0.8));
+  set($('janela'), 'opacity', String(jIn));
+  // Entra com zoom a partir do topo: nunca passa do fim da zona segura.
+  set($('janela'), 'transform', `scale(${0.96 + 0.04 * jIn})`);
+
+  LINHAS.forEach((l) => {
+    const f = fracao(l, t);
+    set(l, 'height', `${ALTURA.get(l) * f}px`);
+    set(l, 'opacity', String(clamp(f * 1.4 - 0.2)));
+    set(l, 'border-bottom-width', f < 0.02 ? '0' : '');
+    cls(l, 'filho', l.dataset.g === 'lote' && t >= T.clique);
+  });
+  set(ROLAGEM, 'transform', `translateY(${-rolagem(t)}px)`);
+
+  // Contador editorial: linhas na tela antes e depois.
+  html($('contador'), `${t < T.agrupa + 0.5 ? 14 : 10} linhas`);
+  const pulso = Math.sin(clamp(prog(t, T.agrupa + 0.5, T.agrupa + 1.1)) * Math.PI);
+  set($('contador'), 'transform', `scale(${1 + pulso * 0.25})`);
+  set($('contador'), 'opacity', String(clamp(prog(t, 0.8, 1.2))));
+
+  // Seta gira ao expandir
+  cls($('res-lote'), 'resumo--expandido', t >= T.clique);
+  set($('tg-lote').querySelector('.seta'), 'transform', `rotate(${90 * easeOut(prog(t, T.clique, T.clique + 0.15))}deg)`);
+
+  // Contorno rosa (editorial) na linha em foco
+  const foco = $('foco');
+  const alvo = t < T.confirma ? $('res-lote') : $('res-conf');
+  const on = (t >= T.foco + 0.8 && t < T.clique - 0.2) || (t >= T.confirma + 0.7 && t < T.final);
+  set(foco, 'top', `${alvo.offsetTop - rolagem(t)}px`);
+  set(foco, 'height', `${alvo.offsetHeight}px`);
+  set(foco, 'opacity', on ? '1' : '0');
+}
+
+iniciarReel({
+  duracao: DURACAO,
+  legendas: LEGENDAS,
+  cursor: { caminho: CURSOR, cliques: CLIQUES, visivel: [4.8, 23.4] },
+  final: {
+    t: T.final,
+    nome: 'Agrupar eventos<br>relacionados',
+    itens: ['Intimações em lote numa linha', 'Destinatário e prazo de cada uma', 'Expedição e confirmação juntas', 'Um clique mostra os originais'],
+  },
+  desenhar,
+});
+</script>
+</body>
+</html>

@@ -28,7 +28,8 @@
 .nota--pink { color: var(--pink); }
 
 /* ── Janela do navegador com o eproc ── */
-.janela { position: absolute; left: 24px; width: 500px; top: 296px; height: 640px; border-radius: 14px; overflow: hidden;
+/* Janela dentro da zona segura (x 28–448, y 296–624): nada legível sob os botões nem sob a legenda do post. */
+.janela { position: absolute; left: 28px; width: 420px; top: 296px; height: 328px; transform-origin: 50% 0; border-radius: 14px; overflow: hidden;
   background: #fff; box-shadow: 0 2px 4px rgba(34,24,39,.06), 0 24px 60px -20px rgba(34,24,39,.45); }
 .conteudo { position: absolute; top: 56px; left: 0; right: 0; bottom: 0; padding: 12px 12px 0; }
 .conteudo h1 { font-size: 16px; font-weight: 700; color: #2b2b2b; margin-bottom: 10px; }
@@ -47,7 +48,7 @@
 .barra__eploc img { width: 12px; height: 12px; }
 
 .tabela { position: absolute; left: 12px; right: 12px; top: 92px; bottom: 0; overflow: hidden; border-top: 1px solid #d7dce3; }
-.linha { display: grid; grid-template-columns: 26px 152px 1fr 108px; align-items: center; font-size: 10px; color: #2f2f2f;
+.linha { display: grid; grid-template-columns: 26px 152px 1fr; align-items: center; font-size: 10px; color: #2f2f2f;
   border-bottom: 1px solid #e6e9ee; overflow: hidden; }
 .linha > div { padding: 0 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .linha--cab { height: 26px; background: #e8edf4; font-weight: 700; color: #3a3a3a; }
@@ -61,7 +62,7 @@
 
 /* ── Painel do eploc (proporções do eproc-filtro-numero-relatorio.ts) ── */
 .veu { position: absolute; top: 56px; left: 0; right: 0; bottom: 0; background: rgba(29,36,51,.45); opacity: 0; }
-.dialogo { position: absolute; left: 9px; width: 411px; top: 24px; border-radius: 10px; background: #fff; overflow: hidden;
+.dialogo { position: absolute; left: 5px; width: 411px; top: 24px; border-radius: 10px; background: #fff; overflow: hidden;
   box-shadow: 0 4px 12px rgba(29,36,51,.12), 0 16px 40px rgba(29,36,51,.16); color: var(--tinta); opacity: 0; }
 .d-topo { display: flex; align-items: center; gap: 7px; padding: 8px 12px; border-bottom: 1px solid var(--borda); }
 .d-topo img { width: 16px; height: 16px; }
@@ -132,7 +133,7 @@
       <span class="barra__eploc"><img src="../../icon32.png" alt="">eploc ▾</span>
     </div>
     <div class="tabela">
-      <div class="linha linha--cab"><div><span class="ck" id="ckTodos"></span></div><div>Processo</div><div>Classe</div><div>Localizador</div></div>
+      <div class="linha linha--cab"><div><span class="ck" id="ckTodos"></span></div><div>Processo</div><div>Classe</div></div>
       <div class="corpo-tab" id="corpoTab"></div>
     </div>
   </div>
@@ -198,7 +199,7 @@ for (let i = 13, falta = 19; falta > 0; i += 4) { casa[i] = true; falta--; }
 const PROCESSOS = casa.map((c) => ({ num: gerarNumero(c), classe: pick(CLASSES), loc: pick(LOCS) }));
 const corpo = $('corpoTab');
 corpo.innerHTML = PROCESSOS.map((p) =>
-  `<div class="linha"><div><span class="ck"></span></div><div class="num">${p.num}</div><div>${p.classe}</div><div>${p.loc}</div></div>`).join('');
+  `<div class="linha"><div><span class="ck"></span></div><div class="num">${p.num}</div><div>${p.classe}</div></div>`).join('');
 const LINHAS = [...corpo.children];
 
 // ── Gancho ───────────────────────────────────────────────────
@@ -283,11 +284,11 @@ const CURSOR = [
   { t: 11.15, el: () => DIG['0'] },
   { t: 11.7, el: () => DIG['1'] },
   { t: 12.25, el: () => DIG['2'] },
-  { t: 13.4, el: () => DIG['2'], dx: 30, dy: 70 },
+  { t: 13.4, el: () => DIG['2'], dx: 30, dy: 40 },
   { t: 15.0, el: () => $('btAplicar') },
-  { t: 17.0, el: () => $('btAplicar'), dx: 60, dy: 160 },
+  { t: 17.0, el: () => $('btAplicar'), dx: 30, dy: 40 },
   { t: 20.4, el: () => $('ckTodos'), dx: 2, dy: 2 },
-  { t: 22.2, el: () => $('ckTodos'), dx: 90, dy: 140 },
+  { t: 22.2, el: () => $('ckTodos'), dx: 90, dy: 90 },
 ];
 const CLIQUES = [T.abrir, T.pos0, T.dig5, T.pos5, T.dig0, T.dig1, T.dig2, T.aplicar, T.todos];
 
@@ -315,7 +316,8 @@ function desenhar(t) {
   // Janela
   const jIn = easeOut(prog(t, 4.4, 5.1));
   set($('janela'), 'opacity', String(jIn));
-  set($('janela'), 'transform', `translateY(${(1 - jIn) * 60}px)`);
+  // Entra com zoom a partir do topo: nunca passa do fim da zona segura.
+  set($('janela'), 'transform', `scale(${0.96 + 0.04 * jIn})`);
 
   // Painel
   const abre = backOut(prog(t, T.abrir + 0.1, T.abrir + 0.45));
