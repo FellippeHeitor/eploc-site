@@ -14,6 +14,7 @@ rápido para ligar e desligar funcionalidades da página em que você está.
 | Ícone em cinza | A extensão está desativada. |
 | Ponto verde | Há funcionalidades do eploc ativas na aba atual. |
 | "!" laranja | O backup no Google Drive precisa ser reconectado. |
+| "novo" | Há novidades da versão instalada que você ainda não viu. Somem ao abrir a aba "Novidades". |
 
 ## O que o popup mostra
 
@@ -28,6 +29,8 @@ rápido para ligar e desligar funcionalidades da página em que você está.
   monitorados**, que abrem o gerenciador correspondente nas configurações.
 - **Configurações**: abre a página de configurações.
 - Botão de tema: alterna entre seguir o sistema, claro e escuro.
+- Aviso de novidades, enquanto houver novidades da versão que você ainda não viu, com o botão
+  **Ver**, que abre a aba "Novidades" das configurações.
 - Aviso de reconexão, quando a sincronização com o Google Drive para porque a conexão expirou, com o
   botão **Reconectar**.
 

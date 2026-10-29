@@ -22,7 +22,7 @@ A barra lateral traz:
 | Ajustes gerais e Backup | [Aparência e efeitos visuais](./aparencia), [backup em arquivo](./backup-arquivo) e [backup no Google Drive](./backup-google-drive). |
 | eproc | Funcionalidades do eproc, agrupadas por tema (Menu superior, Painel do processo, Eventos, Árvore e minuta, Pesquisa e filtros, Relatórios, Destaques e lembretes, E-mail, Monitoramento, Migração PJe). |
 | RUPE, SEI, TJMG | Funcionalidades de cada sistema. |
-| Novidades | O que mudou em cada versão, com busca e filtro por sistema. As versões que você ainda não viu aparecem destacadas e abertas. O nome de cada funcionalidade leva ao card dela. |
+| Novidades | O que mudou em cada versão, com busca e filtro por sistema. As versões que você ainda não viu aparecem destacadas e abertas. O nome de cada funcionalidade leva ao card dela. Ao atualizar para uma versão com novas funcionalidades, o eploc abre esta aba em segundo plano (dá para desligar na aba Ajustes gerais e Backup). |
 | Sobre | Versão instalada, termos de uso, links para o site e o suporte. |
 
 ## O card de cada funcionalidade
