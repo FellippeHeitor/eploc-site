@@ -56,8 +56,12 @@
     "group": "Painéis e relatórios"
   },
   "eproc-filtro-numero-relatorio": {
-    "name": "Filtro por número no Relatório Geral",
+    "name": "Filtro por número nas listas de processos",
     "group": "Painéis e relatórios"
+  },
+  "eproc-atalho-dispositivo": {
+    "name": "Atalho para o dispositivo",
+    "group": "Eventos"
   },
   "eproc-agrupar-eventos-relacionados": {
     "name": "Agrupar eventos relacionados",

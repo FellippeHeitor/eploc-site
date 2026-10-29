@@ -40,7 +40,8 @@ salvos"), e também pode ser aberto pelo popup.
    pergunta se você quer enviar mesmo assim.
 
 No gerenciador de contatos (configurações do eploc), você pode buscar, editar e excluir contatos e
-confirmar várias edições de uma vez com **Salvar todos**.
+confirmar várias edições de uma vez com **Salvar todos**. Ao adicionar um contato, dá para colar
+"Nome e Sobrenome <email@provedor.com>" no campo: o nome e o e-mail vão cada um para o seu lugar.
 
 ## Configurações e opções
 
