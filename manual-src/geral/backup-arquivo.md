@@ -41,11 +41,15 @@ O arquivo inclui:
 
 1. Clique em **Importar JSON** e escolha o arquivo. Também é possível arrastar o arquivo para
    qualquer lugar da página de configurações ou para o [popup](./popup).
-2. Na revisão da importação, escolha o que importar. Para cada base, você pode **mesclar** com o que
-   já existe (padrão, nunca apaga nada) ou **substituir** pelo conteúdo do arquivo.
-3. Quando um item existe dos dois lados com conteúdo diferente, escolha entre **Manter o que está
+2. Na revisão da importação, desmarque o checkbox à esquerda de cada item que não quer importar.
+   Para cada base, você pode **mesclar** com o que já existe (padrão, nunca apaga nada) ou
+   **substituir** pelo conteúdo do arquivo.
+3. Nas funcionalidades (e em **Extensão ativada**), o interruptor à direita mostra se ela vem ligada
+   ou desligada no arquivo. Mude-o para importar as configurações já no estado que preferir. Quando
+   o estado escolhido é diferente do atual, a linha mostra, por exemplo, "hoje: desligado".
+4. Quando um item existe dos dois lados com conteúdo diferente, escolha entre **Manter o que está
    salvo (recomendado)** e **Usar a versão do backup**.
-4. Clique em **Importar selecionados**.
+5. Clique em **Importar selecionados**.
 
 Se o arquivo for idêntico ao que já está salvo, o eploc avisa e não há nada a importar.
 

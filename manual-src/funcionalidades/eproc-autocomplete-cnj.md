@@ -52,8 +52,12 @@ válidos digitados no campo também são formatados automaticamente.
 
 ## Observações
 
-- O ano é deduzido pelo dígito verificador para processos de 2009 em diante. Se nenhum ano combinar,
-  o número não é completado e você precisa digitar o ano.
+- O ano é deduzido pelo dígito verificador entre os últimos 96 anos e o ano que vem, o que inclui
+  processos antigos renumerados para o padrão CNJ (ex.: `0000123-12.2003.8.13.0242`). Como cada
+  dígito verificador combina com um ano dessa faixa, um dígito digitado errado completa com um ano
+  errado: confira o número antes de pesquisar.
+- Na forma "número/ano" com dois dígitos, o ano vale 20AA até o ano que vem e 19AA acima disso
+  (`123/03` é 2003; `123/95`, 1995).
 - Na forma "número/ano", o eploc sempre calcula um dígito verificador. Por isso ele só sugere o
   número e espera sua confirmação: um ano digitado errado levaria a um processo errado.
 - O sufixo é um só. Quem pesquisa processos de várias comarcas precisa digitar o número completo dos
