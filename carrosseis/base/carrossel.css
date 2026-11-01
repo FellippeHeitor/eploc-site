@@ -1,0 +1,45 @@
+/* Base dos carrosséis (carrosseis/<nome>/carrossel.html). Carrega depois de
+   ../../reels/base/reel.css, que traz fontes, cores, blobs e a moldura do navegador.
+   Cada slide tem 540x675 (4:5) e vira um PNG de 1080x1350 (deviceScaleFactor 2).
+   Margem de 32px: o perfil do Instagram mostra a capa recortada em 3:4 (corta ~17px de cada lado). */
+html, body { width: 540px; height: auto; overflow: visible; background: #ddd; }
+body { display: flex; flex-direction: column; gap: 20px; padding: 0; }
+.slide { position: relative; width: 540px; height: 675px; overflow: hidden; background: var(--paper);
+  display: flex; flex-direction: column; padding: 36px 32px 0; }
+.slide::before { content: ""; position: absolute; width: 360px; height: 360px; border-radius: 50%; background: var(--pink-soft);
+  filter: blur(40px); opacity: .5; left: -160px; top: -150px; }
+.slide::after { content: ""; position: absolute; width: 320px; height: 320px; border-radius: 50%; background: var(--cyan-soft);
+  filter: blur(40px); opacity: .5; right: -150px; bottom: -120px; }
+.slide > * { position: relative; z-index: 1; }
+
+/* Slide de recurso: número, onde aparece, título, miniatura, texto e rodapé */
+.topo { display: flex; align-items: center; gap: 10px; }
+.num { padding: 3px 10px; border-radius: 999px; background: var(--pink); color: #fff; font-weight: 700; font-size: 13px; }
+.onde { font-size: 13px; font-weight: 600; color: var(--ink-muted); }
+.tjmg, .capa__lista i { font-style: normal; font-size: 11px; font-weight: 700; padding: 1px 6px; border-radius: 4px; background: var(--ink); color: #fff; }
+.slide h2 { margin-top: 12px; font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 33px; line-height: 1.02; letter-spacing: -.3px; }
+.slide h2 em, .capa h1 em { font-style: normal; color: var(--pink); }
+.mock { flex: 1; display: flex; flex-direction: column; justify-content: center; margin-top: 12px; zoom: 1.08; }
+.texto { margin: 14px 0 64px; font-size: 17px; line-height: 1.45; color: var(--ink); }
+.rodape { position: absolute; left: 32px; bottom: 22px; display: flex; align-items: center; gap: 6px; font-family: 'Baloo 2', sans-serif;
+  font-weight: 700; font-size: 15px; color: var(--pink); }
+.rodape img { width: 18px; height: 18px; }
+
+/* Capa */
+.slide--capa, .slide--final { justify-content: center; }
+.capa { text-align: center; display: flex; flex-direction: column; align-items: center; }
+.kicker { padding: 4px 12px; border-radius: 999px; background: var(--pink); color: #fff; font-weight: 600; font-size: 14px; }
+.capa h1 { margin-top: 14px; font-family: 'Baloo 2', sans-serif; font-weight: 800; font-size: 50px; line-height: .98; letter-spacing: -.5px; }
+.sub { margin-top: 12px; font-size: 16px; line-height: 1.4; color: var(--ink-muted); }
+.capa__lista { margin-top: 18px; display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; max-width: 440px; }
+.capa__lista span { padding: 6px 12px; border-radius: 999px; background: #fff; border: 1px solid #ebe1e6; font-size: 14px; font-weight: 600;
+  box-shadow: 0 6px 16px -10px rgba(34,24,39,.35); }
+.arraste { margin-top: 18px; font-family: 'Baloo 2', sans-serif; font-weight: 700; font-size: 18px; color: var(--pink); }
+
+/* Final */
+.final-c { text-align: center; display: flex; flex-direction: column; align-items: center; }
+.final-c .logo { width: 130px; height: 130px; }
+.final-c h2 { margin-top: 8px; }
+.cta { margin-top: 22px; padding: 11px 24px; border-radius: 999px; background: var(--ink); color: #fff; font-weight: 600; font-size: 18px; }
+.url { margin-top: 10px; font-family: 'Baloo 2', sans-serif; font-weight: 700; font-size: 24px; color: var(--pink); }
+.peq { font-size: 13.5px; }

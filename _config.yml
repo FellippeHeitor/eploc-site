@@ -22,6 +22,7 @@ exclude:
   - scripts/
   - manual-src/
   - reels/
+  - carrosseis/
   - Gemfile
   - Gemfile.lock
   - vendor/
