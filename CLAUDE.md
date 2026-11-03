@@ -49,7 +49,7 @@ as páginas com front matter. Páginas `noindex` ficam fora via `defaults` (`sit
 `_config.yml` — inclua ali qualquer página nova que não deva ser indexada. Páginas cuja URL
 canônica é sem `.html` (`privacidade`, `migracao-pje`) declaram `permalink: /<nome>` no front
 matter, para o sitemap listar a mesma URL do `canonical`.
-Arquivos do repo que não são do site (este `CLAUDE.md`, `scripts/`, `manual-src/`, `reels/`, `Gemfile`) ficam no `exclude` de
+Arquivos do repo que não são do site (este `CLAUDE.md`, `scripts/`, `manual-src/`, `reels/`, `carrosseis/`, `Gemfile`) ficam no `exclude` de
 `_config.yml` — o Pages processa Liquid até em `.md` sem front matter, e um `{% ... %}` solto
 nele quebra o build.
 
@@ -76,6 +76,16 @@ O manual também mostra o reel, como animação HTML (não o MP4), na página da
 `<!-- DEMO: <id> -->` da página `manual-src/funcionalidades/<id>.md` vira um `<iframe>` do reel. Reel
 novo precisa dessa `<meta>`; se ele pedir outro arquivo de `assets/`, inclua-o em
 `manual-src/scripts/copiar-reels.mjs`.
+
+## Carrosséis (`carrosseis/`)
+
+Carrosséis do Instagram, fora do Jekyll pelo `exclude`. Cada um é uma pasta `carrosseis/<nome>/`
+com `carrossel.html`, em que cada `<section class="slide">` (540x675, formato 4:5) vira um PNG de
+1080x1350. Usa as fontes e cores de `reels/base/reel.css` mais `carrosseis/base/carrossel.css`
+(número, onde aparece, título, miniatura, texto, rodapé; capa e slide final). As miniaturas copiam
+cores, textos e ícones (Material Symbols, os mesmos de `src/lib/icones.ts` da extensão) do script, com
+dados fictícios. `node carrosseis/render.mjs <nome> [pasta]` gera os PNGs (padrão: `<nome>/png/`,
+não versionada) e avisa quando um texto passa da margem de 32px — o perfil mostra a capa recortada em 3:4.
 
 ## Manual (`/manual`)
 
