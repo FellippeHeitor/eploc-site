@@ -12,13 +12,13 @@ padrao: ligado
 
 ## O que faz
 
-O campo de pesquisa rápida do menu lateral do eproc só aceita número de processo. Com este recurso,
+O campo de pesquisa rápida da barra superior do eproc só aceita número de processo. Com este recurso,
 ele também aceita o nome da parte ou o CPF/CNPJ: o eploc leva a pesquisa para a consulta processual
 e já a executa.
 
 ## Onde aparece
 
-**eproc**, campo de pesquisa rápida do menu lateral.
+**eproc**, campo de pesquisa rápida no canto direito da barra azul superior.
 
 ## Passo a passo
 

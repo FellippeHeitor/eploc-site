@@ -8,34 +8,34 @@
 <!--
   Reel vertical (1080x1920) da "Pesquisa rápida por nome ou CPF/CNPJ".
   Usa a base comum (../base/reel.css e reel.js); gerado por reels/render.mjs.
-  Comportamento de eproc-pesquisa-rapida-avancada.ts: o campo de pesquisa rápida do menu lateral
+  Comportamento de eproc-pesquisa-rapida-avancada.ts: o campo de pesquisa rápida da barra superior
   ganha o placeholder "processo, nome ou documento" com a logo do eploc; um nome ou CPF/CNPJ leva à
   consulta processual, que já vem com o tipo de pesquisa escolhido, o campo preenchido (CPF/CNPJ
   formatado) e a consulta feita. Nomes, documentos e processos fictícios.
 -->
 <link rel="stylesheet" href="../base/reel.css">
 <style>
-/* Janela dentro da zona segura (x 28–448, y 296–624): nada legível sob os botões nem sob a legenda do post. */
-/* Termina em x 444: no zoom, o texto da página chega à borda direita da janela. */
-.janela { position: absolute; left: 28px; width: 416px; top: 296px; height: 328px; transform-origin: 50% 0; border-radius: 14px; overflow: hidden;
+/* Janela exatamente na zona segura (x 33–444, y 296–624): no zoom, o texto da página chega às bordas da janela. */
+.janela { position: absolute; left: 33px; width: 411px; top: 296px; height: 328px; transform-origin: 50% 0; border-radius: 14px; overflow: hidden;
   background: #fff; box-shadow: 0 2px 4px rgba(34,24,39,.06), 0 24px 60px -20px rgba(34,24,39,.45); opacity: 0; }
-.area { position: absolute; top: 56px; left: 0; right: 0; bottom: 0; display: flex; transform-origin: 0 0; }
-/* Menu lateral do eproc */
-.lateral { width: 150px; flex: none; background: #2f3338; padding: 10px 8px; color: #e9ecef; font-size: 10.5px; }
-.busca { position: relative; height: 30px; border-radius: 4px; background: #fff; display: flex; align-items: center; padding: 0 30px 0 8px;
+.zoom { position: absolute; top: 24px; left: 0; right: 0; bottom: 0; transform-origin: 100% 0; }
+/* Barra azul superior do eproc, com a pesquisa rápida no extremo direito */
+.barra { height: 40px; background: #0d5a96; display: flex; align-items: center; gap: 9px; padding: 0 8px 0 10px; color: #fff; }
+.barra .burger { width: 14px; height: 10px; border-top: 2px solid #fff; border-bottom: 2px solid #fff; position: relative; flex: none; }
+.barra .burger::after { content: ""; position: absolute; left: 0; right: 0; top: 2px; border-top: 2px solid #fff; }
+.barra .perfil { height: 20px; border-radius: 4px; background: #fff; color: #333; font-size: 8.5px; display: flex; align-items: center; padding: 0 8px;
+  font-weight: 600; white-space: nowrap; }
+.barra .sp { flex: 1; }
+.area { position: absolute; top: 40px; left: 0; right: 0; bottom: 0; display: flex; }
+/* Largo o bastante para o texto caber inteiro: a digitação corre da esquerda para a direita. */
+.busca { position: relative; width: 214px; flex: none; height: 28px; border-radius: 4px; background: #fff; display: flex; align-items: center; padding: 0 30px 0 8px;
   font-size: 11.5px; color: #1d2433; white-space: nowrap; overflow: hidden; }
 .busca--logo { padding-left: 28px; background: #fff url('../../icon32.png') no-repeat 8px center / 14px 14px; }
 .busca .ph { color: #8b929c; }
-/* O texto digitado mostra o fim, como num campo de verdade; o placeholder mostra o começo. */
-#buscaTexto { flex: 1; min-width: 0; display: flex; overflow: hidden; white-space: nowrap; }
-#buscaTexto.digitado { justify-content: flex-end; }
 .busca--foco { box-shadow: 0 0 0 2px #4a90d9; }
 .lupa { position: absolute; right: 0; top: 0; bottom: 0; width: 28px; display: grid; place-items: center; background: #e9ecef; color: #333; }
 .lupa svg { width: 15px; height: 15px; }
 .caret { display: inline-block; width: 1px; height: 13px; background: #1d2433; vertical-align: -2px; margin-left: 1px; }
-.menu { margin-top: 10px; }
-.menu div { padding: 6px 4px; border-bottom: 1px solid rgba(255,255,255,.08); }
-/* Conteúdo à direita */
 .pagina { position: relative; flex: 1; padding: 12px; overflow: hidden; }
 .tela { position: absolute; inset: 12px; }
 .tela h1 { font-size: 15px; font-weight: 700; color: #2b2b2b; margin-bottom: 10px; }
@@ -69,12 +69,11 @@
 
 <div class="janela" id="janela">
   <div class="nav-browser"><i></i><i></i><i></i><span id="url">eproc · Painel</span></div>
-  <div class="navbar"><div class="burger"></div><div class="dot"></div><div class="perfil">SECRETARIA · DIRETOR(A)</div><div class="sp"></div><div class="dot"></div><div class="dot"></div></div>
-  <div class="area" id="area">
-    <div class="lateral">
+  <div class="zoom" id="zoom">
+  <div class="barra"><div class="burger"></div><div class="perfil">SECRETARIA · DIRETOR(A)</div><div class="sp"></div>
       <div class="busca" id="busca"><span id="buscaTexto"></span><span class="lupa"><svg viewBox="0 -960 960 960" fill="currentColor"><path d="M380-320q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l224 224q11 11 11 28t-11 28q-11 11-28 11t-28-11L532-372q-30 24-69 38t-83 14Zm0-80q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z"/></svg></span></div>
-      <div class="menu"><div>Consulta Processual</div><div>Relatório Geral</div><div>Minutas</div><div>Localizadores</div><div>Audiência</div><div>Intimações</div></div>
-    </div>
+  </div>
+  <div class="area">
     <div class="pagina">
       <div class="tela" id="telaPainel"><h1>Painel do Servidor</h1><div class="placeholder-linhas"><div></div><div style="width:80%"></div><div style="width:90%"></div><div style="width:60%"></div><div></div><div style="width:75%"></div></div></div>
       <div class="tela" id="telaConsulta" style="opacity:0">
@@ -87,6 +86,7 @@
         <div class="resultado" id="resultado"></div>
       </div>
     </div>
+  </div>
   </div>
 </div>
 <div class="tecla-enter" id="enter">Enter ↵</div>
@@ -109,7 +109,7 @@ const marcos = (p) => ({ abre: p.enter + 0.3, tipo: p.enter + 1.1, preenche: p.e
 const T = { logo: 4.9, campo: 5.6, final: 23.0 };
 const LEGENDAS = [
   { t0: 0.2, t1: 4.5, kicker: 'Pesquisa rápida do eproc', titulo: 'Só aceita <em>número</em> de processo?', sub: 'E quando você só tem o nome da parte…' },
-  { t0: 4.7, t1: 9.4, kicker: 'Com o eploc', titulo: 'Digite o <em>nome</em> da parte', sub: 'No mesmo campo do menu lateral.' },
+  { t0: 4.7, t1: 9.4, kicker: 'Com o eploc', titulo: 'Digite o <em>nome</em> da parte', sub: 'No campo de pesquisa rápida da barra superior.' },
   { t0: 9.6, t1: 15.0, kicker: 'Pesquisa feita', titulo: 'Ele abre a consulta e <em>já pesquisa</em>', sub: 'Escolhe o tipo, preenche o campo e clica em Consultar.' },
   { t0: 15.2, t1: 22.8, kicker: 'CPF ou CNPJ', titulo: 'Com ou <em>sem pontuação</em>', sub: 'O documento é formatado e pesquisado.' },
 ];
@@ -133,10 +133,10 @@ function desenhar(t) {
   // Entra com zoom a partir do topo: nunca passa do fim da zona segura.
   set($('janela'), 'transform', `scale(${0.96 + 0.04 * jIn})`);
 
-  // Câmera: zoom no menu lateral enquanto se digita no campo de pesquisa rápida.
+  // Câmera: zoom no canto direito da barra superior enquanto se digita na pesquisa rápida.
   const zoom = (a, b) => clamp(prog(t, a, a + 0.5)) * (1 - clamp(prog(t, b, b + 0.5)));
   const z = Math.max(zoom(0.6, PESQ[0].enter + 0.1), zoom(PESQ[1].digita - 0.9, PESQ[1].enter + 0.1));
-  set($('area'), 'transform', `scale(${1 + 0.55 * easeInOut(z)})`);
+  set($('zoom'), 'transform', `scale(${1 + 0.4 * easeInOut(z)})`);
 
   // Campo de pesquisa rápida: logo e placeholder do eploc a partir de T.logo.
   const busca = $('busca');
@@ -150,14 +150,14 @@ function desenhar(t) {
   }
   const caret = t >= T.campo && Math.floor(t * 2) % 2 === 0 ? '<span class="caret"></span>' : '';
   const ph = t < T.logo ? '' : 'processo, nome ou documento';
-  html($('buscaTexto'), texto ? `<span>${texto}</span>${caret}` : `${caret}<span class="ph">${ph}</span>`);
-  cls($('buscaTexto'), 'digitado', Boolean(texto));
+  html($('buscaTexto'), texto ? texto + caret : `${caret}<span class="ph">${ph}</span>`);
   const pulsoLogo = Math.sin(clamp(prog(t, T.logo, T.logo + 0.5)) * Math.PI);
   set(busca, 'transform', `scale(${1 + pulsoLogo * 0.06})`);
 
   // Tooltip do eploc ao passar o mouse no campo
   const tip = $('tooltip');
-  set(tip, 'left', `${br0().left}px`); set(tip, 'top', `${br0().bottom + 6}px`);
+  // Alinhado à direita do campo, que fica no canto da barra.
+  set(tip, 'left', `${br0().right - tip.offsetWidth}px`); set(tip, 'top', `${br0().bottom + 6}px`);
   set(tip, 'opacity', String(clamp(prog(t, 5.0, 5.2)) * (1 - prog(t, 6.6, 6.8))));
 
   // Tecla Enter junto do campo
@@ -200,7 +200,7 @@ iniciarReel({
   final: {
     t: T.final,
     nome: 'Pesquisa rápida por<br>nome ou CPF/CNPJ',
-    itens: ['No campo do menu lateral', 'Nome da parte ou documento', 'Abre a consulta e já pesquisa', 'CPF/CNPJ com ou sem pontuação'],
+    itens: ['No campo da barra superior', 'Nome da parte ou documento', 'Abre a consulta e já pesquisa', 'CPF/CNPJ com ou sem pontuação'],
   },
   desenhar,
 });
