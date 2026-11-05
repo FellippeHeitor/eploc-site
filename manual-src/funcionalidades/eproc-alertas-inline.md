@@ -5,7 +5,7 @@ plataforma: eproc
 grupo: "Geral do eproc"
 plano: free
 desde: "1.2.0"
-padrao: desligado
+padrao: ligado
 ---
 
 # Alertas menos intrusivos
@@ -23,7 +23,7 @@ confirmação, um ícone com contador no menu superior.
 
 ## Passo a passo
 
-1. Ligue o recurso nas configurações do eploc (ele vem desligado).
+1. O recurso vem ligado. Se você o desligou antes, ligue-o de novo nas configurações do eploc.
 2. Quando o eproc emitir um alerta, ele aparece como aviso no topo. Clique em **OK** para fechá-lo, ou
    aguarde: uma barra mostra o tempo restante, que pausa enquanto o mouse está sobre o aviso ou a aba
    está em segundo plano.
