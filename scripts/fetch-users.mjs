@@ -30,6 +30,9 @@ const html = await res.text();
 // Se não achar, aceita o texto visível ("1,000 users" / "1.000 usuários"),
 // mas só se ele aparecer uma única vez na página.
 const extId = 'fkpkkenjcfpplmhlfdbabhcdhmhiojhj';
+// A Web Store às vezes deixa de publicar o número de um item (o campo vem
+// null, e o texto "N users" some da página) — aconteceu em nov/2026.
+const HIDDEN = Symbol('oculto');
 function findUsers(html) {
     const ds0 = html.indexOf("key: 'ds:0'");
     if (ds0 >= 0) {
@@ -39,7 +42,8 @@ function findUsers(html) {
             const rest = block.slice(start + extId.length + 2);
             const next = rest.search(/"[a-p]{32}"/);
             const own = next < 0 ? rest : rest.slice(0, next);
-            const n = own.match(/\["[\w/]+",null,\d+\],\d+,null,(\d+),/)?.[1];
+            const n = own.match(/\["[\w/]+",null,\d+\],\d+,null,(\d+|null),/)?.[1];
+            if (n === 'null') return HIDDEN;
             if (n) return n;
         }
     }
@@ -48,6 +52,12 @@ function findUsers(html) {
 }
 
 const found = findUsers(html);
+// Número oculto pela própria Web Store: não é falha do script. Mantém o último
+// valor e avisa no log do Actions, sem marcar o job como falho todo dia.
+if (found === HIDDEN) {
+    console.log('::warning::A Web Store não está mostrando o número de usuários do eploc. _data/webstore.json não foi alterado.');
+    process.exit(0);
+}
 // A Web Store manda para /detail/empty-title/ quando o item não está disponível
 // na região de quem pede (o runner do Actions fica nos EUA); o gl=BR acima tenta
 // contornar isso.
