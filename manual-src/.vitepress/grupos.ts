@@ -11,6 +11,7 @@ export const ORDEM_GRUPOS: [plataforma: string, grupo: string][] = [
   ["eproc", "Destaques e lembretes"],
   ["eproc", "E-mail"],
   ["eproc", "Monitoramento"],
+  ["eproc", "Mandados"],
   ["eproc", "Migração PJe (TJMG)"],
   ["eproc", "Geral do eproc"],
   ["RUPE", "RUPE"],
