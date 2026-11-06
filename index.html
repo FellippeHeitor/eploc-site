@@ -208,9 +208,9 @@
             <div class="wrap">
                 <div class="section-head">
                     <span class="eyebrow">Tudo o que o eploc faz</span>
-                    <h2>Mais de 60 melhorias que somam horas no fim do mês</h2>
+                    <h2>Mais de 75 melhorias que somam horas no fim do mês</h2>
                     <p class="lede">Organizadas pelo que você está tentando fazer. Abra um grupo para ver os detalhes.</p>
-                    <p class="whats-new"><span class="whats-new-label">Novo</span> <a href="#atalho-dispositivo">Atalho para o dispositivo</a> <a href="#filtro-numero">Filtro por número também por localizador</a> <a href="#rpv-lei-devedor">RPV com escrivão e magistrado já escolhidos</a></p>
+                    <p class="whats-new"><span class="whats-new-label">Novo</span> <a href="#marca-texto">Marca-texto nos documentos</a> <a href="#documentos-citados-minuta">Documentos citados na minuta</a> <a href="#cores-mandado">Resultado do mandado em cores</a></p>
                 </div>
                 <div class="detail-groups">
                     <details class="detail-group" id="encontrar" open>
@@ -267,6 +267,8 @@
                             <li><span><strong>Anexo esquecido? Você fica sabendo.</strong> Ao enviar um e-mail que menciona anexo, o eploc avisa se nenhum documento foi marcado na tabela de anexos.</span></li>
                             <li data-video="eproc-indicador-audiencia-futura"><span><strong>Audiência sem registro não passa batido.</strong> A capa do processo mostra as audiências designadas com data futura, com link até o evento, e alerta para audiência já passada sem registro de realização.</span></li>
                             <li data-video="eproc-alertas-inline"><span><strong>Alertas que não travam a tela — nem se perdem.</strong> Alertas do eproc que bloqueiam a navegação viram um banner flutuante, sem impedir o clique em outros elementos. Os dos últimos 7 dias ficam num histórico, com contador na barra superior para os que fecharam sem serem lidos.</span></li>
+                            <li data-video="eproc-marca-texto-documentos" id="marca-texto"><span><strong>Nenhuma ordem passa batida.</strong> Nas decisões, despachos e sentenças, as ordens ("intime-se", "expeça-se", "defiro"...) já aparecem realçadas. Marque outros trechos em quatro cores com o botão direito, dê cada item como cumprido e vá de um pendente ao próximo pela barra no topo do documento.</span></li>
+                            <li data-video="eproc-cores-resultado-mandado" id="cores-mandado"><span><strong>Resultado do mandado sem engano.</strong> Na certificação de mandados, o campo "Resultado" fica verde em "Cumprido" e vermelho em "Cumprido Negativo".</span></li>
                             <li data-video="eproc-lembretes-acoes-em-lote"><span><strong>Lembretes em lote.</strong> Selecione vários lembretes do processo e desative-os de uma vez, com opção de alinhar o texto deles à esquerda.</span></li>
                         </ul>
                     </details>
@@ -274,10 +276,12 @@
                         <summary><h3>Minutas e e-mails</h3></summary>
                         <ul class="detail-list">
                             <li data-video="eproc-resumo-minuta-flutuante"><span><strong>Confira a minuta sem rolar a tela.</strong> Ao editar uma minuta, um painel flutuante lista localizadores, intimação/citação, destinatário, remessa, audiência e assinante.</span></li>
+                            <li data-video="eproc-abrir-link-documento-minuta" id="documentos-citados-minuta"><span><strong>O documento citado, a um clique da minuta.</strong> No editor, passe o mouse sobre um link para documento do processo ("evento 1, INIC1") e um botão o abre direto. O painel da minuta lista os documentos citados e avisa quando o link aponta para outro processo.</span></li>
                             <li data-video="eproc-atalho-arvore-minuta"><span><strong>Da minuta à árvore de documentos.</strong> O item "Árvore" no menu flutuante da minuta abre a árvore de documentos em nova aba, e menções a "Evento N" no texto viram links que já abrem o evento/documento destacado.</span></li>
                             <li data-video="eproc-historico-emails"><span><strong>Cole um texto, ganhe os destinatários.</strong> Destinatários viram chips removíveis, com autocompleção, sugestão de contatos frequentes e colagem que já extrai os e-mails de um texto.</span></li>
                             <li data-video="eproc-modelos-mensagem"><span><strong>Respostas prontas.</strong> Modelos de mensagem para responder rápido por e-mail, com um modelo padrão.</span></li>
                             <li data-video="eproc-email-evento-primeiro"><span><strong>Anexo achado pelo evento.</strong> Na lista de documentos para anexar ao e-mail, a coluna Evento vem antes da coluna Documento.</span></li>
+                            <li data-video="eproc-links-documentos-email" id="links-documentos-email"><span><strong>Confira antes de anexar.</strong> Na lista de documentos para anexar ao e-mail, o nome de cada documento vira um link que o abre em nova aba.</span></li>
                             <li data-video="eproc-memo-destinatarios-email"><span><strong>Para quem foi o e-mail, no próprio evento.</strong> Depois de enviar um e-mail pelo processo, o documento EMAIL do novo evento recebe como memo a linha "Para:", quando ainda não tem memo.</span></li>
                             <li data-video="eproc-auto-manter-agendamento"><span><strong>"Manter Agendamento" sem clicar.</strong> Se você preferir ativar, o eploc clica na opção da minuta sozinho (opcional).</span></li>
                         </ul>
@@ -290,6 +294,8 @@
                             <li data-video="eproc-persistir-preferencias-processo"><span><strong>Painéis que não resetam.</strong> Os painéis de Preferências do processo (Minutas, Movimentação, Intimação, Automatizações) e as caixas "Manter Aberto" voltam ao estado que você deixou quando o eproc os reseta sozinho.</span></li>
                             <li data-video="eproc-persistir-colunas-relatorio"><span><strong>Colunas do jeito que você deixou.</strong> As colunas visíveis do Relatório Geral também são memorizadas e restauradas.</span></li>
                             <li data-video="eproc-icones-secoes-colapsadas-painel"><span><strong>Painel do Servidor organizado.</strong> Seções podem ser recolhidas ou fixadas com destaque (cores configuráveis) e reordenadas por setas — tudo lembrado separadamente por perfil/unidade.</span></li>
+                            <li data-video="eproc-painel-tabelas-compactas"><span><strong>O número junto do item.</strong> Nas seções do Painel do Servidor, a quantidade vem antes da descrição, numa coluna estreita.</span></li>
+                            <li data-video="eproc-esmaecer-itens-zerados"><span><strong>O que tem processo salta aos olhos.</strong> No Painel do Servidor e nas listagens de localizadores, as linhas com quantidade 0 ficam esmaecidas.</span></li>
                             <li data-video="eproc-lembrar-multiplos-monitores"><span><strong>Vários monitores sem rearrumar.</strong> O eploc memoriza a quantidade de monitores e a posição da janela de documentos e as restaura quando o eproc as perde, com atalho no menu do usuário para restaurar na hora. A configuração entra no backup e volta sozinha depois de reinstalar a extensão.</span></li>
                             <li data-video="eproc-perfil-completo-navbar"><span><strong>O nome do perfil inteiro.</strong> O seletor de perfil na barra superior se ajusta ao nome selecionado, sem cortar, com opção de simplificar nomes de perfil (remove "USUÁRIO" repetido).</span></li>
                             <li data-video="eproc-lembrar-dicas-fechadas"><span><strong>Dica fechada fica fechada.</strong> As dicas nativas do eproc já fechadas não reaparecem, e o botão de ajuda ("?") reúne todas elas num painel, agrupadas por assunto.</span></li>

@@ -39,7 +39,7 @@ A faixa de confiança traz a credencial e números ("Mais de 1.000 usuários"). 
 (centenas abaixo de 10.000, milhares acima). Roda todo dia no GitHub Actions
 (`.github/workflows/users.yml`), que commita quando o valor muda — dê `git pull` antes de commitar. `#depoimentos` só traz
 depoimentos reais, com autorização (nome e sobrenome, cidade, sem cargo) — nunca invente. O título de `#detalhes` diz "Mais de
-60 melhorias": recontar os `<li>` (acordeões + `#migracao`) ao mudar a lista.
+75 melhorias": recontar os `<li>` (acordeões + `#migracao`) ao mudar a lista.
 Não há mais seção de galeria: animações e capturas de `assets/screenshots/` ficam junto do
 recurso que demonstram, via `data-clip="<arquivo> [<arquivo>...]"` num card ou `<li>` —
 `script.js` acrescenta um botão "Ver animação" (`.webm`/`.mp4`) ou "Ver imagem" que abre o
