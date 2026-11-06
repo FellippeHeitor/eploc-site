@@ -29,11 +29,22 @@ existente.
    A posição e as preferências são lembradas.
 4. Para fechar, use o botão "Fechar resumo". Para reabrir, use "Mostrar resumo da minuta".
 
+### Documentos citados
+
+Quando a minuta tem links para documentos do processo (como "evento 1, INIC1"), o painel ganha a
+seção **Documentos citados**, com um item por documento:
+
+- clique no nome para rolar a minuta até o trecho que o cita. Se ele aparece mais de uma vez, cada
+  clique leva à próxima menção;
+- clique no botão de abrir, ao lado, para abrir o documento;
+- um ícone de alerta aparece quando o link aponta para um documento de outro processo, o que costuma
+  acontecer quando o texto foi copiado de outra minuta.
+
 ## Configurações e opções
 
 | Opção | Padrão | Efeito |
 |---|---|---|
-| Ao abrir a edição sem dados de resumo, abrir e fechar "Alterar Dados da Minuta" em segundo plano para preencher o painel | ligada | Permite montar o resumo de minutas já existentes. Pode causar um breve piscar na tela. |
+| Ao abrir a edição sem dados de resumo, carregar "Alterar Dados da Minuta" em segundo plano para preencher o painel | ligada | Permite montar o resumo de minutas já existentes, sem abrir nada na tela. |
 
 ## Observações
 
