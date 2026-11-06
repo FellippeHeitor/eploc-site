@@ -69,7 +69,8 @@ vídeo), a zona segura mais conservadora entre Reels, Shorts e TikTok — inclus
 e animações de entrada. Por isso a janela do eproc ocupa x 28–448, y 296–624 e entra com zoom a
 partir do topo, e cursores não descem abaixo dela. Confira com `node reels/verificar.mjs <nome>`,
 que varre a linha do tempo e lista o texto fora da zona. A capa fica centrada no recorte 4:5 do
-perfil do Instagram. O MP4 e os PNGs não são versionados. Depois de publicar o
+perfil do Instagram. O texto das publicações (Instagram, YouTube Shorts, TikTok) fica em `copy.md`, na
+pasta do reel. O MP4 e os PNGs não são versionados. Depois de publicar o
 vídeo, preencha a URL em `videos.json`.
 O manual também mostra o reel, como animação HTML (não o MP4), na página da funcionalidade: o
 `reel.html` declara `<meta name="eploc-script" content="<id do script>">` e o marcador
