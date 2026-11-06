@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<!-- Funcionalidade demonstrada: o manual mostra este reel na página manual-src/funcionalidades/<id>.md -->
+<meta name="eploc-script" content="eproc-pesquisa-rapida-avancada">
+<title>Reel: Pesquisa rápida</title>
+<!--
+  Reel vertical (1080x1920) da "Pesquisa rápida por nome ou CPF/CNPJ".
+  Usa a base comum (../base/reel.css e reel.js); gerado por reels/render.mjs.
+  Comportamento de eproc-pesquisa-rapida-avancada.ts: o campo de pesquisa rápida da barra superior
+  ganha o placeholder "processo, nome ou documento" com a logo do eploc; um nome ou CPF/CNPJ leva à
+  consulta processual, que já vem com o tipo de pesquisa escolhido, o campo preenchido (CPF/CNPJ
+  formatado) e a consulta feita. Nomes, documentos e processos fictícios.
+-->
+<link rel="stylesheet" href="../base/reel.css">
+<style>
+/* Janela exatamente na zona segura (x 33–444, y 296–624): no zoom, o texto da página chega às bordas da janela. */
+.janela { position: absolute; left: 33px; width: 411px; top: 296px; height: 328px; transform-origin: 50% 0; border-radius: 14px; overflow: hidden;
+  background: #fff; box-shadow: 0 2px 4px rgba(34,24,39,.06), 0 24px 60px -20px rgba(34,24,39,.45); opacity: 0; }
+.zoom { position: absolute; top: 24px; left: 0; right: 0; bottom: 0; transform-origin: 100% 0; }
+/* Barra azul superior do eproc, com a pesquisa rápida no extremo direito */
+.barra { height: 40px; background: #0d5a96; display: flex; align-items: center; gap: 9px; padding: 0 8px 0 10px; color: #fff; }
+.barra .burger { width: 14px; height: 10px; border-top: 2px solid #fff; border-bottom: 2px solid #fff; position: relative; flex: none; }
+.barra .burger::after { content: ""; position: absolute; left: 0; right: 0; top: 2px; border-top: 2px solid #fff; }
+.barra .perfil { height: 20px; border-radius: 4px; background: #fff; color: #333; font-size: 8.5px; display: flex; align-items: center; padding: 0 8px;
+  font-weight: 600; white-space: nowrap; }
+.barra .sp { flex: 1; }
+.area { position: absolute; top: 40px; left: 0; right: 0; bottom: 0; display: flex; }
+/* Largo o bastante para o texto caber inteiro: a digitação corre da esquerda para a direita. */
+.busca { position: relative; width: 214px; flex: none; height: 28px; border-radius: 4px; background: #fff; display: flex; align-items: center; padding: 0 30px 0 8px;
+  font-size: 11.5px; color: #1d2433; white-space: nowrap; overflow: hidden; }
+.busca--logo { padding-left: 28px; background: #fff url('../../icon32.png') no-repeat 8px center / 14px 14px; }
+.busca .ph { color: #8b929c; }
+.busca--foco { box-shadow: 0 0 0 2px #4a90d9; }
+.lupa { position: absolute; right: 0; top: 0; bottom: 0; width: 28px; display: grid; place-items: center; background: #e9ecef; color: #333; }
+.lupa svg { width: 15px; height: 15px; }
+.caret { display: inline-block; width: 1px; height: 13px; background: #1d2433; vertical-align: -2px; margin-left: 1px; }
+.pagina { position: relative; flex: 1; padding: 12px; overflow: hidden; }
+.tela { position: absolute; inset: 12px; }
+.tela h1 { font-size: 15px; font-weight: 700; color: #2b2b2b; margin-bottom: 10px; }
+.placeholder-linhas div { height: 8px; border-radius: 4px; background: #eceaf0; margin-bottom: 9px; }
+.form { display: grid; grid-template-columns: 70px 1fr; gap: 7px 8px; align-items: center; font-size: 12.5px; }
+.form label { text-align: right; font-weight: 600; color: #333; }
+.sel, .inp { height: 30px; border: 1px solid #c8c8c8; border-radius: 3px; display: flex; align-items: center; padding: 0 7px; background: #fff; color: #222;
+  white-space: nowrap; overflow: hidden; }
+.sel::after { content: "▾"; margin-left: auto; color: #666; }
+.realce { background: #eaf1fd; outline: 1px solid #9db9ec; }
+.consultar { grid-column: 2; justify-self: start; height: 30px; padding: 0 14px; display: flex; align-items: center; border-radius: 3px;
+  background: #0d5a96; color: #fff; font-weight: 600; }
+.consultar--on { background: #08406c; transform: scale(.95); }
+.resultado { margin-top: 10px; font-size: 11.5px; border-top: 1px solid #d7dce3; }
+.resultado .lin { display: flex; flex-direction: column; gap: 1px; padding: 5px 2px; border-bottom: 1px solid #e6e9ee; line-height: 1.3; }
+.resultado .cab { background: #e8edf4; font-weight: 700; padding-left: 4px; }
+.resultado .num { color: #0b57b5; font-weight: 500; }
+.resultado b { font-weight: 700; }
+.tooltip { position: absolute; z-index: 45; max-width: 300px; padding: 6px 10px; border-radius: 4px; border-left: 3px solid #80b3e6;
+  background: #2242a1; color: #fff; font-size: 12px; line-height: 1.4; box-shadow: 0 4px 12px rgba(0,0,0,.2); opacity: 0; }
+.tooltip img { width: 13px; height: 13px; vertical-align: -2px; margin-right: 4px; }
+.tecla-enter { position: absolute; z-index: 51; opacity: 0; font-family: var(--mono); font-size: 13px; font-weight: 600; padding: 4px 10px; border-radius: 6px;
+  border: 1px solid var(--borda); border-bottom-width: 3px; background: #fff; color: var(--tinta); box-shadow: 0 6px 14px -6px rgba(0,0,0,.35); }
+</style>
+</head>
+<body>
+<div class="blob blob--a"></div>
+<div class="blob blob--b"></div>
+
+<div class="legenda" id="legenda"></div>
+
+<div class="janela" id="janela">
+  <div class="nav-browser"><i></i><i></i><i></i><span id="url">eproc · Painel</span></div>
+  <div class="zoom" id="zoom">
+  <div class="barra"><div class="burger"></div><div class="perfil">SECRETARIA · DIRETOR(A)</div><div class="sp"></div>
+      <div class="busca" id="busca"><span id="buscaTexto"></span><span class="lupa"><svg viewBox="0 -960 960 960" fill="currentColor"><path d="M380-320q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l224 224q11 11 11 28t-11 28q-11 11-28 11t-28-11L532-372q-30 24-69 38t-83 14Zm0-80q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z"/></svg></span></div>
+  </div>
+  <div class="area">
+    <div class="pagina">
+      <div class="tela" id="telaPainel"><h1>Painel do Servidor</h1><div class="placeholder-linhas"><div></div><div style="width:80%"></div><div style="width:90%"></div><div style="width:60%"></div><div></div><div style="width:75%"></div></div></div>
+      <div class="tela" id="telaConsulta" style="opacity:0">
+        <h1>Consulta Processual</h1>
+        <div class="form">
+          <label>Pesquisar por</label><div class="sel" id="sel"></div>
+          <label id="rotCampo"></label><div class="inp" id="inp"></div>
+          <span class="consultar" id="consultar">Consultar</span>
+        </div>
+        <div class="resultado" id="resultado"></div>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>
+<div class="tecla-enter" id="enter">Enter ↵</div>
+<div class="tooltip" id="tooltip"><img src="../../icon32.png" alt="">Pesquisar por número do processo, nome da parte ou CPF/CNPJ</div>
+
+<script src="../base/reel.js"></script>
+<script>
+// ── Linha do tempo ───────────────────────────────────────────
+const DURACAO = 27.5;
+// Duas pesquisas: por nome e por CPF. Cada uma: digita, Enter, abre a consulta, escolhe o tipo,
+// preenche, consulta e mostra o resultado.
+const PESQ = [
+  { digita: 6.0, texto: 'Maria da Silva', enter: 7.4, tipo: 'Nome da Parte', rotulo: 'Nome', valor: 'Maria da Silva',
+    resultados: [['5004321-55.2025.8.13.0024', 'MARIA DA SILVA × BANCO EXEMPLO S.A.'], ['5011876-02.2024.8.13.0024', 'MARIA DA SILVA × MUNICÍPIO DE EXEMPLO'], ['1002233-41.2023.8.13.0145', 'JOÃO SOUZA × MARIA DA SILVA']] },
+  { digita: 16.2, texto: '12345678909', enter: 17.6, tipo: 'CPF/CNPJ da Parte', rotulo: 'CPF/CNPJ', valor: '123.456.789-09',
+    resultados: [['5007788-13.2025.8.13.0024', 'JOSÉ CARLOS PEREIRA × ESTADO DE EXEMPLO'], ['5002101-77.2024.8.13.0702', 'CONDOMÍNIO EXEMPLO × JOSÉ CARLOS PEREIRA']] },
+];
+// Marcos de cada pesquisa, a partir do Enter.
+const marcos = (p) => ({ abre: p.enter + 0.3, tipo: p.enter + 1.1, preenche: p.enter + 1.5, consulta: p.enter + 2.1, resultado: p.enter + 2.6 });
+const T = { logo: 4.9, campo: 5.6, final: 23.0 };
+const LEGENDAS = [
+  { t0: 0.2, t1: 4.5, kicker: 'Pesquisa rápida do eproc', titulo: 'Só aceita <em>número</em> de processo?', sub: 'E quando você só tem o nome da parte…' },
+  { t0: 4.7, t1: 9.4, kicker: 'Com o eploc', titulo: 'Digite o <em>nome</em> da parte', sub: 'No campo de pesquisa rápida da barra superior.' },
+  { t0: 9.6, t1: 15.0, kicker: 'Pesquisa feita', titulo: 'Ele abre a consulta e <em>já pesquisa</em>', sub: 'Escolhe o tipo, preenche o campo e clica em Consultar.' },
+  { t0: 15.2, t1: 22.8, kicker: 'CPF ou CNPJ', titulo: 'Com ou <em>sem pontuação</em>', sub: 'O documento é formatado e pesquisado.' },
+];
+const CURSOR = [
+  { t: 4.8, p: [300, 640] },
+  { t: 4.95, el: () => $('busca'), dx: -10 },
+  { t: 5.4, el: () => $('busca'), dx: -10 },
+  { t: 7.0, el: () => $('busca'), dx: 30, dy: 60 },
+];
+const CLIQUES = [T.campo];
+
+const br0 = () => $('busca').getBoundingClientRect();
+function pesquisaAtual(t) {
+  for (let i = PESQ.length - 1; i >= 0; i--) if (t >= PESQ[i].digita - 0.4) return PESQ[i];
+  return null;
+}
+
+function desenhar(t) {
+  const jIn = easeOut(prog(t, 0.2, 0.8));
+  set($('janela'), 'opacity', String(jIn));
+  // Entra com zoom a partir do topo: nunca passa do fim da zona segura.
+  set($('janela'), 'transform', `scale(${0.96 + 0.04 * jIn})`);
+
+  // Câmera: zoom no canto direito da barra superior enquanto se digita na pesquisa rápida.
+  const zoom = (a, b) => clamp(prog(t, a, a + 0.5)) * (1 - clamp(prog(t, b, b + 0.5)));
+  const z = Math.max(zoom(0.6, PESQ[0].enter + 0.1), zoom(PESQ[1].digita - 0.9, PESQ[1].enter + 0.1));
+  set($('zoom'), 'transform', `scale(${1 + 0.4 * easeInOut(z)})`);
+
+  // Campo de pesquisa rápida: logo e placeholder do eploc a partir de T.logo.
+  const busca = $('busca');
+  cls(busca, 'busca--logo', t >= T.logo);
+  cls(busca, 'busca--foco', t >= T.campo);
+  const p = pesquisaAtual(t);
+  let texto = '';
+  if (p && t >= p.digita && t < p.enter + 0.3) {
+    const n = Math.floor(clamp(prog(t, p.digita, p.digita + 1.0)) * p.texto.length);
+    texto = p.texto.slice(0, n);
+  }
+  const caret = t >= T.campo && Math.floor(t * 2) % 2 === 0 ? '<span class="caret"></span>' : '';
+  const ph = t < T.logo ? '' : 'processo, nome ou documento';
+  html($('buscaTexto'), texto ? texto + caret : `${caret}<span class="ph">${ph}</span>`);
+  const pulsoLogo = Math.sin(clamp(prog(t, T.logo, T.logo + 0.5)) * Math.PI);
+  set(busca, 'transform', `scale(${1 + pulsoLogo * 0.06})`);
+
+  // Tooltip do eploc ao passar o mouse no campo
+  const tip = $('tooltip');
+  // Alinhado à direita do campo, que fica no canto da barra.
+  set(tip, 'left', `${br0().right - tip.offsetWidth}px`); set(tip, 'top', `${br0().bottom + 6}px`);
+  set(tip, 'opacity', String(clamp(prog(t, 5.0, 5.2)) * (1 - prog(t, 6.6, 6.8))));
+
+  // Tecla Enter junto do campo
+  const en = $('enter');
+  const ativo = PESQ.find((q) => t >= q.enter - 0.3 && t < q.enter + 0.4);
+  const br = busca.getBoundingClientRect();
+  set(en, 'left', `${br.left + 40}px`); set(en, 'top', `${br.bottom + 8}px`);
+  set(en, 'opacity', ativo ? String(clamp(prog(t, ativo.enter - 0.3, ativo.enter - 0.15)) * (1 - prog(t, ativo.enter + 0.25, ativo.enter + 0.4))) : '0');
+  set(en, 'transform', ativo && t >= ativo.enter && t < ativo.enter + 0.12 ? 'scale(.9)' : '');
+
+  // Telas: painel até a primeira pesquisa; depois a consulta processual (recarrega na segunda).
+  const p0 = marcos(PESQ[0]);
+  const naConsulta = t >= p0.abre;
+  set($('telaPainel'), 'opacity', String(1 - clamp(prog(t, p0.abre, p0.abre + 0.3))));
+  const pc = p && t >= marcos(p).abre ? p : PESQ[0];
+  const m = marcos(pc);
+  // Na segunda pesquisa, a consulta some e volta (nova página).
+  const recarga = pc === PESQ[1] ? clamp(prog(t, m.abre, m.abre + 0.3)) : 1;
+  const saindo = PESQ[1] && t >= PESQ[1].enter && t < marcos(PESQ[1]).abre ? 1 - clamp(prog(t, PESQ[1].enter, PESQ[1].enter + 0.25)) : 1;
+  set($('telaConsulta'), 'opacity', naConsulta ? String(clamp(prog(t, p0.abre, p0.abre + 0.3)) * recarga * saindo) : '0');
+  html($('url'), naConsulta ? 'eproc · Consulta Processual' : 'eproc · Painel');
+
+  const tipoOk = t >= m.tipo, cheio = t >= m.preenche;
+  html($('sel'), tipoOk ? pc.tipo : 'Número do Processo');
+  cls($('sel'), 'realce', tipoOk && t < m.resultado + 1.2);
+  html($('rotCampo'), tipoOk ? pc.rotulo : 'Número');
+  html($('inp'), cheio ? pc.valor : '');
+  cls($('inp'), 'realce', cheio && t < m.resultado + 1.2);
+  cls($('consultar'), 'consultar--on', t >= m.consulta && t < m.consulta + 0.25);
+  const res = t >= m.resultado;
+  html($('resultado'), res ? `<div class="lin cab"><span>Processo e partes</span></div>` +
+    pc.resultados.slice(0, 2).map(([n, partes]) => `<div class="lin"><span class="num">${n}</span><span>${partes}</span></div>`).join('') : '');
+  set($('resultado'), 'opacity', String(clamp(prog(t, m.resultado, m.resultado + 0.3))));
+}
+
+iniciarReel({
+  duracao: DURACAO,
+  legendas: LEGENDAS,
+  cursor: { caminho: CURSOR, cliques: CLIQUES, visivel: [4.8, 7.2] },
+  final: {
+    t: T.final,
+    nome: 'Pesquisa rápida por<br>nome ou CPF/CNPJ',
+    itens: ['No campo da barra superior', 'Nome da parte ou documento', 'Abre a consulta e já pesquisa', 'CPF/CNPJ com ou sem pontuação'],
+  },
+  desenhar,
+});
+</script>
+</body>
+</html>
