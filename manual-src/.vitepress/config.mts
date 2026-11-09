@@ -73,11 +73,12 @@ export default defineConfig({
     const caminho = pageData.relativePath
       .replace(/(^|\/)index\.md$/, "$1")
       .replace(/\.md$/, "");
+    const canonica = `https://eploc.com.br/manual/${caminho}`;
     pageData.frontmatter.head ??= [];
-    pageData.frontmatter.head.push([
-      "link",
-      { rel: "canonical", href: `https://eploc.com.br/manual/${caminho}` },
-    ]);
+    pageData.frontmatter.head.push(
+      ["link", { rel: "canonical", href: canonica }],
+      ["meta", { property: "og:url", content: canonica }]
+    );
   },
   markdown: {
     // <!-- DEMO: <id> --> vira a animação do reel do script (reels/), quando existe.
