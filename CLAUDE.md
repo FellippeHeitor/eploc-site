@@ -7,8 +7,10 @@ o endereço antigo `fellippeheitor.github.io/eploc-site/` redireciona para ele).
 O GitHub Pages publica com Jekyll (build "legacy" do branch `main`). O menu (`<nav>` + menu
 mobile) e o rodapé ficam em `_includes/nav.html` e `_includes/footer.html`, compartilhados pelas
 páginas via `{% include ... %}` (por isso as páginas começam com front matter `---` vazio). Links
-para seções do index usam `{{ home }}#secao`, que fica vazio no próprio index e vira `index.html`
-nas demais páginas. Abrir o `.html` direto no navegador mostra o `{% include %}` cru; para ver o
+para seções do index usam `{{ home }}#secao`, que fica vazio no próprio index e vira `/`
+nas demais páginas. Links internos e URLs canônicas não usam `.html` (`termos`, não `termos.html`;
+o Pages serve o arquivo do mesmo jeito) — assim o Google não indexa a mesma página em dois
+endereços. Diretórios levam barra final (`manual/`). Abrir o `.html` direto no navegador mostra o `{% include %}` cru; para ver o
 resultado local, use `bundle install` (uma vez) e `bundle exec jekyll serve` — o `Gemfile` fixa as versões do GitHub Pages. Páginas novas devem ter o front matter e os dois includes.
 A política de privacidade fica em `privacidade.html`, publicada em https://eploc.com.br/privacidade
 (o Pages serve `.html` sem extensão; é a URL informada na Chrome Web Store e na tela de

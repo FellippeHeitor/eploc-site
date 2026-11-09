@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Os termos ficavam numa aba de #docs (index.html#terms); links antigos,
     // inclusive os da extensão, seguem para a página própria
     if (location.hash === '#terms' && document.getElementById('docs')) {
-        location.replace('termos.html');
+        location.replace('termos');
         return;
     }
 
