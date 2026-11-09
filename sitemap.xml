@@ -1,0 +1,22 @@
+---
+layout: null
+sitemap: false
+---
+{%- comment -%}
+Sitemap único do domínio, no lugar do gerado pelo jekyll-sitemap (que não vê as URLs limpas do
+manual). Lista as páginas do site (menos as com sitemap: false, ver _config.yml) e as páginas
+publicadas do manual (VitePress, em manual/), sempre sem ".html" e com barra final nos diretórios.
+{%- endcomment -%}
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+{%- for p in site.html_pages %}
+  {%- if p.sitemap == false %}{% continue %}{% endif %}
+  <url><loc>{{ site.url }}{{ p.url | remove: "index.html" | remove: ".html" }}</loc></url>
+{%- endfor %}
+{%- assign manual = site.static_files | where: "extname", ".html" %}
+{%- for f in manual %}
+  {%- unless f.path contains "/manual/" %}{% continue %}{% endunless %}
+  {%- if f.path contains "/manual/demos/" or f.name == "404.html" %}{% continue %}{% endif %}
+  <url><loc>{{ site.url }}{{ f.path | remove: "index.html" | remove: ".html" }}</loc></url>
+{%- endfor %}
+</urlset>
