@@ -7,9 +7,17 @@ grupo: "Migração PJe (TJMG)"
 plano: free
 desde: "1.2.0"
 padrao: ligado
+tituloBusca: "Tela de importação do PJe no eproc (TJMG) | eploc"
+description: "Recurso do eploc para a tela de importação de processos do PJe no eproc do TJMG: regras recolhidas, gráfico de progresso e o processo aberto ao concluir."
 ---
 
 # Migração de processos PJe → eproc (TJMG)
+
+::: tip Guia completo da migração PJe → eproc
+Esta página trata só dos atalhos do eploc na tela de importação. O que muda nos processos migrados
+(sigilo nível 3, eventos fora de ordem, rótulos "PETIÇÃO") e o passo a passo estão no
+**[Guia completo da migração PJe → eproc](https://eploc.com.br/migracao-pje)**.
+:::
 
 ## O que faz
 

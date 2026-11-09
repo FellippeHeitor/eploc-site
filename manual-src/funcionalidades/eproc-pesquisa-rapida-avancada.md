@@ -6,6 +6,7 @@ grupo: "Pesquisa e filtros"
 plano: free
 desde: "1.1.0"
 padrao: ligado
+description: "Pesquise processos por nome da parte ou CPF/CNPJ direto na barra do eproc, que só aceita número: o eploc leva a busca à consulta processual e a executa."
 ---
 
 # Pesquisa rápida por nome ou CPF/CNPJ
