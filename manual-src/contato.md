@@ -7,7 +7,7 @@ title: "Contato"
 | Canal | Para quê |
 |---|---|
 | E-mail: [fellippe@eploc.com.br](mailto:fellippe@eploc.com.br) | Tribunais, pedidos sobre privacidade e assuntos institucionais. |
-| [Fale com o eploc](https://eploc.com.br/reportar-problema.html) | Relatar um problema, sugerir uma melhoria ou tirar uma dúvida, pelo formulário do site. |
+| [Fale com o eploc](https://eploc.com.br/reportar-problema) | Relatar um problema, sugerir uma melhoria ou tirar uma dúvida, pelo formulário do site. |
 | [Grupo de suporte no WhatsApp](https://chat.whatsapp.com/KW8aEPxUKRK3kcJ5yKpCju) | Dúvidas rápidas e novidades. |
 | [eploc.com.br](https://eploc.com.br/) | Site, vídeos e novidades. |
 | Instagram [@eploc.extensao](https://www.instagram.com/eploc.extensao) e TikTok [@eploc.extensao](https://www.tiktok.com/@eploc.extensao) | Vídeos curtos e novidades. |
@@ -23,7 +23,7 @@ Antes de abrir um chamado no suporte do tribunal sobre uma falha no eproc, no SE
    acima), e não com o suporte do tribunal.
 
 O suporte dos tribunais cuida dos sistemas oficiais, não do eploc. Dúvidas e problemas da extensão
-são atendidos pelo [formulário do site](https://eploc.com.br/reportar-problema.html), pelo grupo no
+são atendidos pelo [formulário do site](https://eploc.com.br/reportar-problema), pelo grupo no
 WhatsApp ou por e-mail.
 
 Se precisar enviar capturas de tela ao suporte do tribunal, prefira tirá-las com o eploc desativado.

@@ -6,9 +6,22 @@ grupo: "Eventos"
 plano: free
 desde: "1.10.0"
 padrao: ligado
+tituloBusca: "Níveis de sigilo no eproc: como alterar (nível 2, 3) | eploc"
+description: "Veja o nível de sigilo de cada documento no eproc (segredo de justiça, nível 2, nível 3…) e altere com um clique ou em bloco, com a extensão eploc."
 ---
 
-# Mostrar nível de sigilo dos documentos
+# Níveis de sigilo dos documentos no eproc: ver e alterar
+
+No eproc, cada documento tem um nível de sigilo, de 0 (sem sigilo) a 5. O nível 1 é o segredo de
+justiça; no nível 3, que a migração do PJe aplicou aos documentos sigilosos, as partes não veem a
+peça. Esta página mostra como o eploc exibe o nível de cada documento (nível 1, nível 2, nível 3…)
+e como alterá-lo: com um clique no selo, documento por documento, ou
+[em bloco](./eproc-sigilo-documentos-lote).
+
+<!-- TODO(Fellippe): incluir aqui uma tabela com o nome oficial de cada nível de sigilo do eproc
+(0 a 5) e quem vê o documento em cada um. O site só documenta o nível 1 ("Segredo de Justiça") e
+o nível 3 ("Interno Nível 3", partes não veem); os nomes e o alcance dos níveis 2, 4 e 5 não
+estão escritos em lugar nenhum, por isso não foram inventados. -->
 
 ## O que faz
 

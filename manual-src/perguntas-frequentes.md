@@ -44,7 +44,7 @@ Antes de abrir um chamado no suporte do tribunal sobre uma falha no eproc, no SE
    [Contato](./contato)), e não com o suporte do tribunal.
 
 O suporte dos tribunais cuida dos sistemas oficiais, não do eploc. Dúvidas e problemas da extensão
-são atendidos pelo [formulário do site](https://eploc.com.br/reportar-problema.html), pelo grupo no
+são atendidos pelo [formulário do site](https://eploc.com.br/reportar-problema), pelo grupo no
 WhatsApp ou por e-mail.
 
 Se precisar enviar capturas de tela ao suporte do tribunal, prefira tirá-las com o eploc desativado.

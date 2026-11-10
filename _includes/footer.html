@@ -1,4 +1,4 @@
-{%- capture home %}{% if page.url != "/" %}index.html{% endif %}{% endcapture -%}
+{%- capture home %}{% if page.url != "/" %}/{% endif %}{% endcapture -%}
     <footer>
         <div class="wrap">
             <div class="footer-grid">
@@ -24,8 +24,8 @@
                         <li><a href="manual/">Manual</a></li>
                         <li><a href="{{ home }}#faq">Perguntas frequentes</a></li>
                         <li><a href="privacidade">Política de privacidade</a></li>
-                        <li><a href="termos.html">Termos de uso</a></li>
-                        <li><a href="reportar-problema.html">Fale com o eploc</a></li>
+                        <li><a href="termos">Termos de uso</a></li>
+                        <li><a href="reportar-problema">Fale com o eploc</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">

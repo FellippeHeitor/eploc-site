@@ -6,4 +6,3 @@ User-agent: *
 Allow: /
 
 Sitemap: {{ site.url }}/sitemap.xml
-Sitemap: {{ site.url }}/manual/sitemap.xml

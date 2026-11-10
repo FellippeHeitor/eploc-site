@@ -804,6 +804,8 @@ section { padding: 4.5rem 0; scroll-margin-top: 4.5rem; }
     padding: 2.2rem clamp(1.4rem, 4vw, 2.4rem) 2.4rem;
 }
 .band .docs-shell { background: var(--paper); }
+.docs-shell > h2 { font-size: 1.35rem; margin-bottom: 1.3rem; }
+.steps-note { margin-top: 1.5rem; color: var(--ink-muted); font-size: .92rem; }
 
 .steps { list-style: none; display: flex; flex-direction: column; gap: 1.1rem; counter-reset: step; }
 .steps li { display: flex; gap: 1rem; align-items: flex-start; font-size: 1.02rem; }

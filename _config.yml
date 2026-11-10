@@ -1,4 +1,4 @@
-# URL pública, usada pelo jekyll-sitemap para montar /sitemap.xml (e o robots.txt que o aponta)
+# URL pública, usada em sitemap.xml e robots.txt
 url: https://eploc.com.br
 
 plugins:
@@ -12,7 +12,7 @@ defaults:
     values: { sitemap: false }
   - scope: { path: video.html }
     values: { sitemap: false }
-  # O manual (VitePress) tem sitemap próprio em /manual/sitemap.xml, com URLs limpas
+  # As páginas do manual entram em sitemap.xml por uma regra própria, com URLs limpas
   - scope: { path: manual }
     values: { sitemap: false }
 

@@ -1,4 +1,4 @@
-{%- capture home %}{% if page.url != "/" %}index.html{% endif %}{% endcapture -%}
+{%- capture home %}{% if page.url != "/" %}/{% endif %}{% endcapture -%}
     <nav class="nav">
         <div class="wrap">
             <a href="{{ home }}#" class="nav-brand">

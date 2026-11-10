@@ -69,15 +69,27 @@ export default defineConfig({
   // Sitemap próprio do manual, só com URLs limpas (o do Jekyll exclui /manual).
   sitemap: { hostname: "https://eploc.com.br/manual/" },
   // Canônica explícita na forma sem .html, a mesma usada nos links internos.
-  transformPageData(pageData) {
+  // "tituloBusca" no front matter troca o <title> (sem o sufixo "| Manual do eploc") sem mudar
+  // o nome da funcionalidade no menu e no H1; "description" vira a meta description.
+  transformPageData(pageData, { siteConfig }) {
     const caminho = pageData.relativePath
       .replace(/(^|\/)index\.md$/, "$1")
       .replace(/\.md$/, "");
+    const canonica = `https://eploc.com.br/manual/${caminho}`;
+    const tituloBusca = pageData.frontmatter.tituloBusca;
+    if (tituloBusca) {
+      pageData.title = tituloBusca;
+      pageData.titleTemplate = false;
+    }
+    const titulo = tituloBusca || `${pageData.title} | ${siteConfig.site.title}`;
+    const descricao = pageData.description || siteConfig.site.description;
     pageData.frontmatter.head ??= [];
-    pageData.frontmatter.head.push([
-      "link",
-      { rel: "canonical", href: `https://eploc.com.br/manual/${caminho}` },
-    ]);
+    pageData.frontmatter.head.push(
+      ["link", { rel: "canonical", href: canonica }],
+      ["meta", { property: "og:url", content: canonica }],
+      ["meta", { property: "og:title", content: titulo }],
+      ["meta", { property: "og:description", content: descricao }]
+    );
   },
   markdown: {
     // <!-- DEMO: <id> --> vira a animação do reel do script (reels/), quando existe.
