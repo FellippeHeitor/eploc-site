@@ -38,7 +38,9 @@ uma barra no topo do documento mostra quantas faltam e leva de uma a outra.
 
 O eploc reconhece verbos de comando com "-se", no singular e no plural: intime-se, cite-se,
 expeça-se, oficie-se, cumpra-se, certifique-se, aguarde-se, dê-se, remetam-se, arquivem-se e outros.
-Também reconhece as ordens na primeira pessoa que começam por **Determino** ou **Defiro**.
+Também reconhece as ordens na primeira pessoa que começam por **Determino**, **Defiro** ou **Designo**,
+e as dirigidas à serventia, como "À Secretaria para..." ou "Ao Cartório para...", no início da frase
+ou depois de uma vírgula ("Sem prejuízo dos comandos supra, à Secretaria para...").
 O fecho solto no fim da decisão, num parágrafo só dele (como "Intimem-se. Cumpra-se.", "P.R.I." ou
 "Expeçam-se / diligencie-se o necessário."), não é realçado nem entra na conta.
 
