@@ -44,6 +44,8 @@ Não há opções além de ligar e desligar.
   salvar.
 - O item só funciona com a página do processo aberta, na janela que abriu o documento: é dela que a
   extensão tira o caminho para o memo. Se ela foi fechada ou recarregada noutro processo, o item
-  aparece desativado.
+  aparece desativado. Na pré-visualização do documento, dentro da própria página do processo, ele
+  funciona normalmente; na aba aberta pelo botão "Abrir documento em nova aba" da pré-visualização,
+  não, porque o eproc a abre sem ligação com a página do processo.
 - Shift + botão direito abre o menu normal do navegador.
 - Em documentos em PDF a seleção acontece no visualizador do navegador, onde a extensão não chega.

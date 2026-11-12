@@ -19,7 +19,8 @@ uma barra no topo do documento mostra quantas faltam e leva de uma a outra.
 
 ## Onde aparece
 
-**eproc**, na janela de um documento aberto pela tabela de eventos do processo:
+**eproc**, num documento aberto pela tabela de eventos do processo, seja na janela própria, na
+pré-visualização da página do processo ou na aba aberta por ela ("Abrir documento em nova aba"):
 
 - as ordens são realçadas em decisões, despachos e sentenças (siglas como DESP, DEC, DESPADEC e
   SENT);
