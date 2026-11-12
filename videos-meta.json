@@ -286,5 +286,37 @@
   "sei-mais-descritivo-horizontal": {
     "name": "SEI mais descritivo e horizontal",
     "group": "SEI"
+  },
+  "eproc-memo-trecho-documento": {
+    "name": "Inserir trecho do documento no memo",
+    "group": "Eventos"
+  },
+  "eproc-marcar-endereco-editado": {
+    "name": "Marcar o endereço editado na minuta",
+    "group": "Árvore e minuta"
+  },
+  "eproc-marca-texto-documentos": {
+    "name": "Marca-texto nos documentos",
+    "group": "Eventos"
+  },
+  "eproc-links-documentos-email": {
+    "name": "Links dos documentos na tela de e-mail",
+    "group": "E-mail"
+  },
+  "eproc-cores-resultado-mandado": {
+    "name": "Cores no resultado do cumprimento de mandados",
+    "group": "Interface do eproc"
+  },
+  "eproc-abrir-link-documento-minuta": {
+    "name": "Abrir documentos citados no editor de minutas",
+    "group": "Árvore e minuta"
+  },
+  "eproc-painel-tabelas-compactas": {
+    "name": "Tabelas compactas no Painel do Servidor",
+    "group": "Painéis e relatórios"
+  },
+  "eproc-esmaecer-itens-zerados": {
+    "name": "Esmaecer itens zerados",
+    "group": "Painéis e relatórios"
   }
 }

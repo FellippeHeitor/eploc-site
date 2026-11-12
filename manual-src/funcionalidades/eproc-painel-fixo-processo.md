@@ -18,8 +18,8 @@ ser copiado com um clique, e o painel se atualiza sozinho quando a página muda.
 
 ## Onde aparece
 
-**eproc**, página do processo, cadastro de minuta e página de intimação. Por padrão, o painel fica
-preso junto ao menu lateral, sob o título "Resumo do Processo".
+**eproc**, página do processo, cadastro de minuta, página de intimação e consulta de evento. Por
+padrão, o painel fica preso junto ao menu lateral, sob o título "Resumo do Processo".
 
 ## Passo a passo
 
@@ -39,6 +39,8 @@ Outros sinais do painel:
 - Os assuntos ganham um selo de validado ou não validado. O selo de não validado abre a retificação
   de assuntos.
 - As partes ativas no Domicílio Judicial Eletrônico exibem o selo do DJE, com os prazos no balão.
+- Quando o eproc mostra só a primeira parte de um polo, o "e outros" do painel carrega as demais
+  com um clique (na página do processo, a lista da capa também se abre).
 - O painel segue o tema claro ou escuro escolhido nas configurações do eploc.
 
 ## Configurações e opções
@@ -55,6 +57,8 @@ Para ocultar o número do processo no painel quando ele já aparece no menu supe
 - Preso ao menu lateral, o painel se oculta quando o menu é recolhido ou quando você usa a busca do
   menu. O botão circular o reexibe até o menu voltar a abrir ou a página recarregar.
 - Campos de Informações Adicionais sem valor exibível não oferecem o botão **+i**.
+- No cadastro de minuta, na intimação e na consulta de evento, o painel mostra os dados guardados
+  da última vez que o mesmo processo foi aberto nesta aba.
 - A posição e o tamanho do painel solto ficam guardados no navegador, para cada endereço do eproc,
   e não entram no backup.
 
