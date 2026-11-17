@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<!-- Funcionalidade demonstrada: o manual mostra este reel na página manual-src/funcionalidades/<id>.md -->
+<meta name="eploc-script" content="eproc-destaques-trecho">
+<title>Reel: Destaques de trecho</title>
+<!--
+  Reel vertical (1080x1920) do "Destaques de trecho".
+  Usa a base comum (../base/reel.css e reel.js); gerado por reels/render.mjs.
+  Estilos e textos de eproc-destaques-trecho.ts: barra flutuante com os ícones ink_highlighter e
+  sticky_note_2; paleta "Adicionar destaque" com "Cor do texto", "Cor de fundo" (#fff59d por padrão),
+  "Destacar em todos os processos", "Combinações usadas:" ("Aa") e Cancelar/Aplicar; prévia com borda
+  tracejada #6366f1. Processos e textos fictícios.
+-->
+<link rel="stylesheet" href="../base/reel.css">
+<style>
+/* Janela dentro da zona segura (x 28–448, y 296–624): nada legível sob os botões nem sob a legenda do post. */
+.janela { position: absolute; left: 28px; width: 420px; top: 296px; height: 328px; transform-origin: 50% 0; border-radius: 14px; overflow: hidden;
+  background: #fff; box-shadow: 0 2px 4px rgba(34,24,39,.06), 0 24px 60px -20px rgba(34,24,39,.45); opacity: 0; }
+.conteudo { position: absolute; top: 56px; left: 0; right: 0; bottom: 0; padding: 10px 12px 0; }
+.conteudo h1 { font-size: 15px; font-weight: 700; color: #2b2b2b; margin-bottom: 6px; }
+.tabela { position: absolute; left: 12px; right: 12px; top: 38px; bottom: 0; overflow: hidden; border-top: 1px solid #d7dce3; }
+.linha { display: grid; grid-template-columns: 34px 1fr; gap: 6px; padding: 7px 4px; border-bottom: 1px solid #e6e9ee; font-size: 12px;
+  line-height: 1.4; color: #2f2f2f; }
+.linha:nth-child(even) { background: #f7f8fa; }
+.ev { font-weight: 700; text-align: center; }
+.data { display: block; color: #6b7280; font-size: 10.5px; }
+.rolagem { position: relative; }
+/* Seleção do navegador, que cresce com o arrasto do mouse */
+.alvo { border-radius: 2px; }
+.destaque { border-radius: 2px; }
+.preview { outline: 1px dashed #6366f1; outline-offset: 1px; }
+
+/* Barra flutuante (eploc-dt-toolbar) */
+.toolbar { position: absolute; z-index: 40; display: flex; gap: 2px; background: #fff; border: 1px solid #ccc; border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.2); padding: 2px; opacity: 0; }
+.toolbar span { width: 24px; height: 24px; display: grid; place-items: center; border-radius: 4px; color: #646b7a; }
+.toolbar span.on { background: #eaf1fd; color: #1d2433; }
+.toolbar svg { width: 17px; height: 17px; fill: currentColor; }
+
+/* Paleta "Adicionar destaque" (eploc-dt-paleta) */
+/* À esquerda e estreita: o trecho selecionado, à direita da linha, continua à vista. */
+.paleta { position: absolute; z-index: 42; left: 33px; top: 330px; width: 238px; background: #fff; color: #1f2937; border-radius: 10px;
+  box-shadow: 0 12px 32px rgba(0,0,0,.3); padding: 12px 14px; font-size: 12.5px; opacity: 0; }
+.p-titulo { display: flex; align-items: center; gap: 6px; font-weight: 600; font-size: 14px; margin-bottom: 10px; }
+.p-titulo img { width: 16px; height: 16px; }
+.p-linha { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+.p-linha span { flex: 1; }
+.ck { width: 15px; height: 15px; border: 1px solid #8a93a0; border-radius: 3px; display: grid; place-items: center; flex: none; background: #fff; }
+.ck.on { background: #2563eb; border-color: #2563eb; }
+.ck.on::after { content: ""; width: 7px; height: 4px; border-left: 2px solid #fff; border-bottom: 2px solid #fff; transform: translateY(-1px) rotate(-45deg); }
+.cor { width: 40px; height: 24px; border: 1px solid #d1d5db; border-radius: 4px; padding: 2px; }
+.cor i { display: block; width: 100%; height: 100%; border-radius: 2px; }
+.cor--off { opacity: .4; }
+.p-global { padding-top: 8px; border-top: 1px solid #e5e7eb; font-size: 12px; }
+.p-sub { margin: 4px 0 8px; padding-top: 10px; border-top: 1px solid #e5e7eb; color: #6b7280; font-size: 12px; }
+.swatches { display: flex; gap: 8px; }
+.sw { width: 30px; height: 24px; border-radius: 6px; border: 1px solid #d1d5db; display: grid; place-items: center; font-size: 11px; font-weight: 600; }
+.sw.on { box-shadow: 0 0 0 2px #2563eb; }
+.p-acoes { display: flex; align-items: center; justify-content: flex-end; gap: 8px; margin-top: 12px; padding-top: 12px; border-top: 1px solid #e5e7eb; }
+.p-acoes svg { width: 18px; height: 18px; fill: #646b7a; opacity: .6; margin-right: auto; }
+.bt { border: 1px solid #2563eb; background: #2563eb; color: #fff; border-radius: 6px; padding: 5px 13px; font-size: 12.5px; }
+.bt--sec { background: #fff; color: #374151; border-color: #d1d5db; }
+.bt.press { transform: scale(.93); }
+</style>
+</head>
+<body>
+<div class="blob blob--a"></div>
+<div class="blob blob--b"></div>
+
+<div class="legenda" id="legenda"></div>
+
+<div class="janela" id="janela">
+  <div class="nav-browser"><i></i><i></i><i></i><span id="url"></span></div>
+  <div class="navbar"><div class="burger"></div><div class="dot"></div><div class="perfil">SECRETARIA · DIRETOR(A)</div><div class="sp"></div><div class="dot"></div><div class="dot"></div></div>
+  <div class="conteudo" id="conteudo">
+    <h1>Eventos</h1>
+    <div class="tabela"><div class="rolagem" id="rolagem"></div></div>
+  </div>
+</div>
+
+<div class="toolbar" id="toolbar">
+  <span id="btMarca"><svg viewBox="0 -960 960 960"><path d="M554-407 439-522 217-300l115 115 222-222Zm-72-158 115 115 213-213-115-115-213 213Zm-64-21 200 200-234 234q-19 19-52.5 19T279-152l-11-11-25 25q-8 8-19.5 13t-23.5 5h-94q-10 0-13.5-9.5T96-146l94-94-4-4q-22-22-21.5-55.5T187-355l231-231Zm0 0 237-237q17-17 43-17t43 17l112 112q17 17 16.5 45.5T852-620L618-386 418-586Z"/></svg></span>
+  <span><svg viewBox="0 -960 960 960"><path d="M180-180h400v-170q0-12.75 8.63-21.38Q597.25-380 610-380h170v-400H180v600Zm0 60q-24.75 0-42.37-17.630Q120-155.25 120-180v-600q0-24.750 17.63-42.38Q155.25-840 180-840h600q24.75 0 42.38 17.62Q840-804.75 840-780v395q0 12.44-5 23.72T822-342L618-138q-8 8-19.28 13-11.28 5-23.72 5H180Zm260-300H330q-12.75 0-21.37-8.68-8.63-8.67-8.63-21.5 0-12.82 8.63-21.32 8.62-8.5 21.37-8.5h110q12.75 0 21.38 8.68 8.62 8.67 8.62 21.5 0 12.82-8.62 21.32-8.63 8.5-21.38 8.5Zm190-160H330q-12.75 0-21.37-8.68-8.63-8.67-8.63-21.5 0-12.82 8.63-21.32 8.62-8.5 21.37-8.5h300q12.75 0 21.38 8.68 8.62 8.67 8.62 21.5 0 12.82-8.62 21.32-8.63 8.5-21.38 8.5ZM180-180v-600 600Z"/></svg></span>
+</div>
+
+<div class="paleta" id="paleta">
+  <div class="p-titulo"><img src="../../icon32.png" alt="">Adicionar destaque</div>
+  <div class="p-linha"><i class="ck" id="ckTexto"></i><span>Cor do texto</span><span class="cor" id="corTexto" style="flex:none"><i></i></span></div>
+  <div class="p-linha"><i class="ck on" id="ckFundo"></i><span>Cor de fundo</span><span class="cor" id="corFundo" style="flex:none"><i></i></span></div>
+  <div class="p-linha p-global"><i class="ck" id="ckGlobal"></i><span>Destacar em todos os processos</span></div>
+  <div class="p-sub">Combinações usadas:</div>
+  <div class="swatches" id="swatches"></div>
+  <div class="p-acoes"><svg viewBox="0 -960 960 960"><path d="M421-80q-14 0-25-9t-13-23l-15-94q-19-7-40-19t-37-25l-86 40q-14 6-28 1.5T155-226L97-330q-8-13-4.5-27t15.5-23l80-59q-2-9-2.5-20.5T185-480q0-9 .5-20.5T188-521l-80-59q-12-9-15.5-23t4.5-27l58-104q8-13 22-17.5t28 1.5l86 40q16-13 37-25t40-18l15-95q2-14 13-23t25-9h118q14 0 25 9t13 23l15 94q19 7 40.5 18.5T669-710l86-40q14-6 27.5-1.5T804-734l59 104q8 13 4.5 27.5T852-580l-80 57q2 10 2.5 21.5t.5 21.5q0 10-.5 21t-2.5 21l80 58q12 8 15.5 22.5T863-330l-58 104q-8 13-22 17.5t-28-1.5l-86-40q-16 13-36.5 25.5T592-206l-15 94q-2 14-13 23t-25 9H421Zm15-60h88l14-112q33-8 62.5-25t53.5-41l106 46 40-72-94-69q4-17 6.5-33.5T715-480q0-17-2-33.5t-7-33.5l94-69-40-72-106 46q-23-26-52-43.5T538-708l-14-112h-88l-14 112q-34 7-63.5 24T306-642l-106-46-40 72 94 69q-4 17-6.5 33.5T245-480q0 17 2.5 33.5T254-413l-94 69 40 72 106-46q24 24 53.5 41t62.5 25l14 112Zm44-210q54 0 92-38t38-92q0-54-38-92t-92-38q-54 0-92 38t-38 92q0 54 38 92t92 38Zm0-130Z"/></svg>
+    <span class="bt bt--sec">Cancelar</span><span class="bt" id="btAplicar">Aplicar</span></div>
+</div>
+
+<script src="../base/reel.js"></script>
+<script>
+// Combinações de cores (texto, fundo): a primeira é o padrão do marca-texto.
+const AMARELO = { fore: null, back: '#fff59d' };
+const VERMELHO = { fore: '#b91c1c', back: '#fee2e2' };
+const AZUL = { fore: '#1d4ed8', back: '#dbeafe' };
+$('swatches').innerHTML = [AMARELO, VERMELHO, AZUL].map((c, i) =>
+  `<span class="sw" id="sw${i}" style="color:${c.fore || 'inherit'};background:${c.back}">Aa</span>`).join('');
+
+// Dois processos fictícios. O termo "tutela de urgência" aparece nos dois.
+const TU = '<span class="tu">tutela de urgência</span>';
+const PROCESSOS = {
+  a: { num: '5004321-55.2025.8.13.0024', eventos: [
+    [52, '05/11/2026', 'CONCLUSOS PARA DESPACHO'],
+    [51, '03/11/2026', 'JUNTADA DE PETIÇÃO - Manifestação sobre o laudo pericial'],
+    [50, '28/10/2026', 'AUDIÊNCIA DE CONCILIAÇÃO DESIGNADA - <span class="alvo" id="alvo1">10/12/2026 14:00</span> - Sala 2 - CEJUSC'],
+    [49, '20/10/2026', 'LAUDO PERICIAL JUNTADO'],
+    [48, '02/10/2026', `PETIÇÃO - Autora reitera o pedido de <span class="alvo" id="alvo2">${TU}</span>`],
+    [47, '25/09/2026', `DECISÃO INTERLOCUTÓRIA - Pedido de ${TU} indeferido`],
+    [46, '20/09/2026', 'CONCLUSOS PARA DECISÃO'],
+    [45, '12/09/2026', 'CITAÇÃO ELETRÔNICA - EXPEDIDA/CERTIFICADA'],
+  ] },
+  b: { num: '5011876-02.2024.8.13.0024', eventos: [
+    [31, '04/11/2026', 'CONCLUSOS PARA DECISÃO'],
+    [30, '30/10/2026', `PETIÇÃO - Reitera pedido de ${TU}`],
+    [29, '22/10/2026', 'JUNTADA DE PETIÇÃO - Documentos'],
+    [28, '15/10/2026', `DECISÃO INTERLOCUTÓRIA - Pedido de ${TU} deferido em parte`],
+    [27, '09/10/2026', 'CONCLUSOS PARA DECISÃO'],
+    [26, '01/10/2026', 'CONTESTAÇÃO'],
+  ] },
+};
+function montar(p) {
+  $('rolagem').innerHTML = PROCESSOS[p].eventos.map(([n, d, desc]) =>
+    `<div class="linha" id="ev${n}"><span class="ev">${n}</span><span><span class="data">${d}</span>${desc}</span></div>`).join('');
+  $('rolagem').dataset.p = p;
+}
+montar('a');
+
+// ── Linha do tempo ───────────────────────────────────────────
+const DURACAO = 26.5;
+const T = {
+  sel1: 5.4, barra1: 6.5, marca1: 7.5, aplica1: 9.6, recarrega: 11.0,
+  sel2: 15.4, barra2: 16.1, marca2: 16.7, swatch: 17.5, global: 18.1, aplica2: 18.8, outro: 19.8, final: 22.0,
+};
+const LEGENDAS = [
+  { t0: 0.2, t1: 4.4, kicker: 'Tabela de eventos', titulo: 'Leu algo importante e <em>perdeu</em> de novo?', sub: 'Data de audiência, pedido, decisão…' },
+  { t0: 4.6, t1: 10.0, kicker: 'Com o eploc', titulo: 'Destaque como um <em>marca-texto</em>', sub: 'Selecione o trecho e escolha a cor.' },
+  { t0: 10.2, t1: 14.6, kicker: 'Fica salvo', titulo: 'Reaparece <em>toda vez</em> que você abre o processo' },
+  { t0: 14.8, t1: 21.8, kicker: 'Destaque global', titulo: 'Um termo destacado em <em>todos os processos</em>', sub: 'Marque “Destacar em todos os processos”.' },
+];
+// O trecho do processo A some ao trocar de processo; o caminho já percorrido usa a janela no lugar.
+const alvoOu = (id) => $(id) || $('janela');
+const CURSOR = [
+  { t: 4.8, p: [470, 640] },
+  { t: 5.3, el: () => alvoOu('alvo1'), dx: () => -alvoOu('alvo1').offsetWidth / 2, dy: 2 },
+  { t: 6.4, el: () => alvoOu('alvo1'), dx: () => alvoOu('alvo1').offsetWidth / 2, dy: 2 },
+  { t: 7.3, el: () => $('btMarca') },
+  { t: 9.4, el: () => $('btAplicar') },
+  { t: 10.6, el: () => $('btAplicar'), dx: 30, dy: 20 },
+  { t: 15.3, el: () => alvoOu('alvo2'), dx: () => -alvoOu('alvo2').offsetWidth / 2, dy: 2 },
+  { t: 16.0, el: () => alvoOu('alvo2'), dx: () => alvoOu('alvo2').offsetWidth / 2, dy: 2 },
+  { t: 16.5, el: () => $('btMarca') },
+  { t: 17.3, el: () => $('sw1') },
+  { t: 17.9, el: () => $('ckGlobal') },
+  { t: 18.6, el: () => $('btAplicar') },
+  { t: 19.6, el: () => $('btAplicar'), dx: 30, dy: 20 },
+];
+const CLIQUES = [T.marca1, T.aplica1, T.marca2, T.swatch, T.global, T.aplica2];
+
+const fundo = (c) => `background:${c.back};${c.fore ? `color:${c.fore};` : ''}`;
+// Seleção: a cor de seleção cresce da esquerda para a direita durante o arrasto.
+const selecao = (x) => `linear-gradient(90deg, #b4d5fe ${x * 100}%, transparent ${x * 100}%)`;
+
+function desenhar(t) {
+  const jIn = easeOut(prog(t, 0.2, 0.8));
+  set($('janela'), 'opacity', String(jIn));
+  // Entra com zoom a partir do topo: nunca passa do fim da zona segura.
+  set($('janela'), 'transform', `scale(${0.96 + 0.04 * jIn})`);
+
+  // Recarregar e trocar de processo: a página pisca e volta.
+  const pisca = (a) => (t >= a && t < a + 0.5 ? Math.sin(prog(t, a, a + 0.5) * Math.PI) : 0);
+  set($('conteudo'), 'opacity', String(1 - 0.85 * Math.max(pisca(T.recarrega), pisca(T.outro))));
+  const p = t >= T.outro + 0.25 ? 'b' : 'a';
+  if ($('rolagem').dataset.p !== p) montar(p);
+  html($('url'), `eproc · Processo ${PROCESSOS[p].num}`);
+
+  // Rolagem do gancho, procurando.
+  let y = lerp(0, 120, easeInOut(prog(t, 1.4, 2.6))) * (1 - easeInOut(prog(t, 3.0, 4.0)));
+  // Destaque global: a linha 48 sobe para onde estava a 50.
+  if (p === 'a' && t >= 14.8) y = ($('ev48').offsetTop - $('ev50').offsetTop) * easeInOut(prog(t, 14.8, 15.3));
+  set($('rolagem'), 'transform', `translateY(${-y}px)`);
+
+  // Destaque 1: data da audiência (amarelo)
+  const a1 = $('alvo1');
+  if (a1) {
+    const aplicado1 = t >= T.aplica1 + 0.1;
+    const aberto1 = t >= T.marca1 + 0.1 && !aplicado1;
+    if (aplicado1 || aberto1) set(a1, 'background', AMARELO.back);
+    else set(a1, 'background', t >= T.sel1 ? selecao(easeInOut(prog(t, T.sel1, T.sel1 + 1.0))) : '');
+    cls(a1, 'preview', aberto1);
+  }
+  // Destaque 2: termo global (vermelho), em todas as ocorrências depois de aplicar
+  const aplicado2 = t >= T.aplica2 + 0.1;
+  const aberto2 = t >= T.marca2 + 0.1 && !aplicado2;
+  const combo2 = t >= T.swatch ? VERMELHO : AMARELO;
+  document.querySelectorAll('.tu').forEach((el) => {
+    const ehAlvo = el.parentElement.id === 'alvo2';
+    let estilo = '';
+    if (aplicado2) estilo = fundo(VERMELHO);
+    else if (ehAlvo && aberto2) estilo = fundo(combo2);
+    if (el.getAttribute('style') !== estilo) el.setAttribute('style', estilo);
+  });
+  const a2 = $('alvo2');
+  if (a2) {
+    set(a2, 'background', !aberto2 && !aplicado2 && t >= T.sel2 ? selecao(easeInOut(prog(t, T.sel2, T.sel2 + 0.6))) : '');
+    cls(a2, 'preview', aberto2);
+  }
+
+  // Barra flutuante acima do fim da seleção
+  const tb = $('toolbar');
+  const alvoTb = t < T.sel2 - 0.2 ? a1 : a2;
+  const ini = t < T.sel2 - 0.2 ? T.barra1 : T.barra2, fim = t < T.sel2 - 0.2 ? T.marca1 : T.marca2;
+  const tbVis = clamp(prog(t, ini, ini + 0.15)) * (1 - clamp(prog(t, fim + 0.05, fim + 0.15)));
+  set(tb, 'opacity', String(tbVis));
+  if (alvoTb) {
+    const r = alvoTb.getBoundingClientRect();
+    set(tb, 'left', `${Math.min(r.right - 20, 444 - 56)}px`); set(tb, 'top', `${r.top - 34}px`);
+  }
+  cls($('btMarca'), 'on', tbVis > 0 && t >= fim - 0.5);
+
+  // Paleta
+  const pal = $('paleta');
+  const abre = (a) => clamp(prog(t, a + 0.1, a + 0.3));
+  const fecha = (a) => clamp(prog(t, a + 0.05, a + 0.2));
+  const palVis = Math.max(abre(T.marca1) * (1 - fecha(T.aplica1)), abre(T.marca2) * (1 - fecha(T.aplica2)));
+  set(pal, 'opacity', String(palVis));
+  set(pal, 'transform', `scale(${0.95 + 0.05 * palVis})`);
+  const segunda = t >= T.sel2;
+  const combo = segunda ? combo2 : AMARELO;
+  cls($('ckTexto'), 'on', Boolean(combo.fore));
+  cls($('corTexto'), 'cor--off', !combo.fore);
+  set($('corTexto').firstElementChild, 'background', combo.fore || '#000000');
+  set($('corFundo').firstElementChild, 'background', combo.back);
+  cls($('ckGlobal'), 'on', segunda && t >= T.global);
+  cls($('sw1'), 'on', segunda && t >= T.swatch);
+  cls($('btAplicar'), 'press', CLIQUES.some((c) => (c === T.aplica1 || c === T.aplica2) && t >= c && t < c + 0.15));
+}
+
+iniciarReel({
+  duracao: DURACAO,
+  legendas: LEGENDAS,
+  cursor: { caminho: CURSOR, cliques: CLIQUES, visivel: [4.8, 20.4] },
+  final: {
+    t: T.final,
+    nome: 'Destaques<br>de trecho',
+    itens: ['Selecione e destaque', 'Escolha as cores', 'Fica salvo no processo', 'Ou vale em todos os processos'],
+  },
+  desenhar,
+});
+</script>
+</body>
+</html>
