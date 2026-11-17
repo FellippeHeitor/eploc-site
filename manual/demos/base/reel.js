@@ -19,7 +19,7 @@ function cls(el, c, on) { el.classList.toggle(c, on); }
  * @param {object} o
  * @param {number} o.duracao — segundos
  * @param {{t0, t1, kicker, titulo, sub?}[]} o.legendas — vão no #legenda da página
- * @param {{caminho: ({t, p: [x, y]} | {t, el: () => Element, dx?, dy?})[], cliques: number[], visivel: [number, number]}} o.cursor
+ * @param {{caminho: ({t, p: [x, y]} | {t, el: () => Element, dx?, dy?})[] (dx/dy: número ou função), cliques: number[], visivel: [number, number]}} o.cursor
  *   caminho: alvos com o instante de chegada; visivel: [aparece, some]
  * @param {{t: number, nome: string, itens: string[]}} o.final — cartão final (nome em HTML)
  * @param {(t: number) => void} o.desenhar — pinta a cena no instante t
@@ -46,7 +46,9 @@ function iniciarReel(o) {
   const centro = (alvo) => {
     if (alvo.p) return alvo.p;
     const r = alvo.el().getBoundingClientRect();
-    return [r.left + r.width / 2 + (alvo.dx || 0), r.top + r.height / 2 + (alvo.dy || 0)];
+    // dx/dy podem ser funções, para deslocamentos que dependem do layout (ex.: fim de uma seleção).
+    const v = (x) => (typeof x === 'function' ? x() : x || 0);
+    return [r.left + r.width / 2 + v(alvo.dx), r.top + r.height / 2 + v(alvo.dy)];
   };
 
   function renderFrame(t) {
