@@ -775,6 +775,7 @@ section { padding: 4.5rem 0; scroll-margin-top: 4.5rem; }
     cursor: default;
 }
 .img-modal-content[hidden] { display: none; }
+.img-modal-content.is-qr { background: #fff; padding: 16px; image-rendering: pixelated; }
 .img-modal-close,
 .video-modal-close {
     position: absolute;
@@ -869,6 +870,33 @@ section { padding: 4.5rem 0; scroll-margin-top: 4.5rem; }
 .maker-sign { margin-top: .8rem; font-family: 'Baloo 2', sans-serif; font-weight: 700; color: var(--ink); }
 .maker-cta { justify-content: center; }
 .maker-note { margin-top: 1.6rem; font-size: .85rem; color: var(--ink-muted); }
+
+/* Apoio via Pix (QR + copia e cola) e pedido de avaliação na Web Store */
+.pix-apoio {
+    margin: 2rem auto 0;
+    max-width: 520px;
+    display: flex;
+    align-items: center;
+    gap: 1.3rem;
+    text-align: left;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-l);
+    box-shadow: var(--shadow);
+    padding: 1.1rem 1.3rem;
+}
+.pix-qr { flex-shrink: 0; padding: 0; border: 0; background: none; cursor: zoom-in; border-radius: var(--radius-s); line-height: 0; }
+.pix-qr:hover img { box-shadow: 0 0 0 2px var(--pink); }
+.pix-apoio img { width: 120px; height: 120px; object-fit: contain; flex-shrink: 0; border-radius: var(--radius-s); background: #fff; padding: 4px; }
+.pix-apoio-texto { display: flex; flex-direction: column; align-items: flex-start; gap: .6rem; }
+.pix-apoio-texto strong { color: var(--ink); }
+.pix-copiar { background: none; border-top: 0; border-left: 0; border-right: 0; cursor: pointer; font-family: inherit; }
+.pix-avaliar { font-size: .85rem; color: var(--ink-muted); }
+.pix-avaliar a { color: var(--pink); font-weight: 600; text-underline-offset: 3px; }
+@media (max-width: 560px) {
+    .pix-apoio { flex-direction: column; text-align: center; }
+    .pix-apoio-texto { align-items: center; }
+}
 
 /* Depoimentos */
 .testimonials { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 380px)); justify-content: center; gap: 1.3rem; }

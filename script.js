@@ -139,8 +139,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const VIDEO_TYPES = { webm: 'video/webm', mp4: 'video/mp4' };
     const videoType = (src) => VIDEO_TYPES[src.split('.').pop().toLowerCase()];
 
-    function showModalImage(src, alt) {
+    function showModalImage(src, alt, qr = false) {
         lastFocusedElement = document.activeElement;
+        imgModalContent.classList.toggle('is-qr', qr);
         imgModalVideo.pause();
         imgModalVideo.removeAttribute('src');
         imgModalVideo.innerHTML = '';
@@ -188,7 +189,15 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    if ((galleryVideoCards.length || clipHosts.length) && imgModal) {
+    // QR Code Pix: a miniatura é pequena demais para escanear; abre em tamanho real
+    const pixQr = document.querySelector('.pix-qr');
+
+    if ((galleryVideoCards.length || clipHosts.length || pixQr) && imgModal) {
+        if (pixQr) {
+            const qrImg = pixQr.querySelector('img');
+            pixQr.addEventListener('click', () => showModalImage(qrImg.src, qrImg.alt, true));
+        }
+
         galleryVideoCards.forEach(video => {
             video.addEventListener('click', () => openVideoModal(video));
             video.addEventListener('keydown', (e) => {
@@ -426,6 +435,20 @@ document.addEventListener('DOMContentLoaded', () => {
         buildVideoFilters([...new Set(items.map(item => item.group))], cards);
         document.querySelectorAll('[data-needs-videos]').forEach(el => { el.hidden = false; });
     }
+
+    // Botão "Copiar chave Pix" (seção #sobre)
+    document.querySelectorAll('.pix-copiar').forEach(botao => {
+        const rotulo = botao.textContent;
+        botao.addEventListener('click', async () => {
+            try {
+                await navigator.clipboard.writeText(botao.dataset.pix);
+                botao.textContent = 'Chave copiada!';
+            } catch {
+                botao.textContent = 'Não foi possível copiar';
+            }
+            setTimeout(() => { botao.textContent = rotulo; }, 2000);
+        });
+    });
 
     // Páginas sem a galeria #tutoriais (ex.: migracao-pje.html) só usam os botões "Ver vídeo"
     if (videoModal) {
