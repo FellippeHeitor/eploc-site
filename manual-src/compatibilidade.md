@@ -33,6 +33,7 @@ por uma janela de autorização própria, e não pela conta conectada ao navegad
 | TJRJ | `eproc1g.tjrj.jus.br`, `eproc2g.tjrj.jus.br` |
 | TJSP | `eproc1g.tjsp.jus.br`, `eproc2g.tjsp.jus.br` |
 | TJMG | `eproc1g.tjmg.jus.br`, `eproc2g.tjmg.jus.br` |
+| TJPR | `eproc1g.tjpr.jus.br`, `eproc2g.tjpr.jus.br` |
 
 Outros tribunais que adotam o eproc ainda não estão habilitados: cada novo endereço faz o navegador
 pedir as permissões de novo, então eles são incluídos conforme a procura. Se você usa o eproc de um

@@ -27,7 +27,7 @@ inclui um novo tribunal.
 
 | Permissão | Para que o eploc usa |
 |---|---|
-| Acesso aos sites do eproc, SEI, RUPE e TJMG | Mostrar as melhorias nessas páginas. Endereços atendidos: eproc da JFRJ, JFES, TRF2, TRF4, JFRS, JFSC, JFPR, TRF6 (1º e 2º grau), TJRS, TJSC, TJTO, TJRJ, TJSP e TJMG (1º e 2º grau); `rupe.tjmg.jus.br`; o SEI em endereços `jus.br`; a consulta de dativos e o Meu Gabinete do TJMG (com o quadro de login `sso.cloud.pje.jus.br`). Veja [Compatibilidade](./compatibilidade). |
+| Acesso aos sites do eproc, SEI, RUPE e TJMG | Mostrar as melhorias nessas páginas. Endereços atendidos: eproc da JFRJ, JFES, TRF2, TRF4, JFRS, JFSC, JFPR, TRF6 (1º e 2º grau), TJRS, TJSC, TJTO, TJRJ, TJSP, TJMG e TJPR (1º e 2º grau); `rupe.tjmg.jus.br`; o SEI em endereços `jus.br`; a consulta de dativos e o Meu Gabinete do TJMG (com o quadro de login `sso.cloud.pje.jus.br`). Veja [Compatibilidade](./compatibilidade). |
 | Acesso a `midias.pje.jus.br` | Conferir se há gravações de audiência para o [Atalho PJe Mídias](./funcionalidades/eproc-midias-link). |
 | Armazenamento (`storage`) | Guardar suas configurações e dados (contatos, modelos, destaques etc.) no próprio navegador. |
 | Leitura da área de transferência (`clipboardRead`) | O botão "Preencher com dados copiados" do [Preenchimento automático de CPHA](./funcionalidades/rupe-cpha-preenchimento). |
