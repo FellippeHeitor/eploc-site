@@ -121,15 +121,14 @@ autônomo, sem front matter nem includes: o Jekyll a copia sem processar Liquid 
 three.js (ES module do jsDelivr, versão fixa). O cursor clica no centro do aro e recua na diagonal
 enquanto a bola de chiclete enche (perfil em gota com bico apertado, não um tubo de balão). A ponta
 recua na mesma medida em que a bola cresce, então a bola enche parada no centro do aro. Na primeira
-vez, o anel azul se desenha. A bola estoura, e parte das lascas gruda na tela (manchas presas à
-câmera, fora da área do texto), escorre um pouco e some. Depois o cursor volta ao centro e sopra a
-próxima bola. O "e" não é fonte: é um contorno vetorial (`CONTORNO_E`) extraído de
+vez, o anel azul se desenha. A bola estoura e o cursor volta ao centro para soprar a próxima. O "e" não é fonte: é um contorno vetorial (`CONTORNO_E`) extraído de
 `assets/eploc-logo-sem-texto-1000.png` e desenhado com curvas quadráticas. Se a logo mudar,
 refaça a extração em vez de trocar por uma fonte parecida.
 Parâmetros: `?inicio=19:30` (contagem regressiva; ao zerar dispara o final), `?fundo=transparente`
 (sobreposição no OBS), `?dicas=0` (sem as dicas "Você sabia?", que vêm da descrição da Web Store) e
-`?t=20` (pula para um ponto da animação, para testes). Teclas: Enter dispara o final ("Começando!")
-e P estoura a bola na hora.
+`?t=20` (pula para um ponto da animação, para testes). Teclas: Enter dispara o final (o título vira
+"Começando!" e a bola estoura com mais força, mas o ciclo segue e uma nova bola é soprada) e P estoura
+a bola na hora.
 
 ## Recursos consumidos pela extensão
 
