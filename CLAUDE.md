@@ -100,6 +100,22 @@ resultado; dê `git pull` antes do próximo commit e não edite `manual/` à mã
 tem uma página `manual-src/funcionalidades/<id do script>.md`; a ajuda contextual da extensão linka
 para esse caminho, então não renomeie os arquivos. Detalhes (molde das páginas, front matter, comandos) em `manual-src/README.md`.
 
+## Tela de espera da live (`live/em-instantes.html`)
+
+Página "Em instantes..." para a abertura das lives, publicada em
+https://eploc.com.br/live/em-instantes.html (use como Fonte de Navegador no OBS, 1920x1080). É HTML
+autônomo, sem front matter nem includes: o Jekyll a copia sem processar Liquid e ela fica fora do
+`sitemap.xml`; a `<meta name="robots" content="noindex">` a mantém fora do Google. A cena é
+three.js (ES module do jsDelivr, versão fixa): o cursor clica, a bola de chiclete enche a partir da
+ponta (perfil em gota com bico apertado, não um tubo de balão), o anel azul se desenha e a bola
+estoura em loop. O "e" não é fonte: é um contorno vetorial (`CONTORNO_E`) extraído de
+`assets/eploc-logo-sem-texto-1000.png` e desenhado com curvas quadráticas. Se a logo mudar,
+refaça a extração em vez de trocar por uma fonte parecida.
+Parâmetros: `?inicio=19:30` (contagem regressiva; ao zerar dispara o final), `?fundo=transparente`
+(sobreposição no OBS), `?dicas=0` (sem as dicas "Você sabia?", que vêm da descrição da Web Store) e
+`?t=20` (pula para um ponto da animação, para testes). Teclas: Enter dispara o final ("Começando!")
+e P estoura a bola na hora.
+
 ## Recursos consumidos pela extensão
 
 - `video.html` — casca https para embeds do YouTube. A extensão eploc (repo irmão) embute o

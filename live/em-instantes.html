@@ -1,0 +1,662 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>eploc Em Instantes</title>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;800&family=Nunito:wght@500;700;800&display=swap">
+<style>
+  /* Layout: cena 3D em tela cheia; texto à direita no 16:9 e embaixo em telas estreitas. */
+  :root {
+    --fundo-1: #170c26;
+    --fundo-2: #0b1432;
+    --rosa: #ff6fa8;
+    --rosa-claro: #ffc2da;
+    --azul: #8cc6f2;
+    --texto: #fff5fa;
+    --texto-suave: #c9b9d6;
+    --chip: rgba(255, 255, 255, 0.07);
+    --chip-borda: rgba(255, 255, 255, 0.14);
+    --f-titulo: "Baloo 2", "Nunito", system-ui, sans-serif;
+    --f-texto: "Nunito", system-ui, sans-serif;
+    color-scheme: dark;
+  }
+  [hidden] { display: none !important; }
+  html, body { height: 100%; }
+  body {
+    margin: 0;
+    overflow: hidden;
+    background:
+      radial-gradient(60% 70% at 30% 45%, rgba(210, 58, 113, 0.28), transparent 70%),
+      radial-gradient(50% 60% at 80% 80%, rgba(31, 95, 209, 0.25), transparent 70%),
+      linear-gradient(160deg, var(--fundo-1), var(--fundo-2));
+    color: var(--texto);
+    font-family: var(--f-texto);
+  }
+  body.transparente { background: transparent; }
+  canvas#cena { position: fixed; inset: 0; width: 100%; height: 100%; display: block; }
+
+  .palco {
+    position: fixed; inset: 0;
+    display: grid;
+    grid-template-columns: 52% 1fr;
+    align-items: center;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: env(safe-area-inset-top, 0px) env(safe-area-inset-bottom, 0px);
+    pointer-events: none;
+  }
+  .texto { grid-column: 2; display: flex; flex-direction: column; gap: 1.2vmin; max-width: 44rem; min-width: 0; }
+  .selo {
+    align-self: flex-start;
+    display: inline-flex; align-items: center; gap: .7em;
+    font: 800 clamp(11px, 1.35vmin, 18px)/1 var(--f-texto);
+    letter-spacing: .16em; text-transform: uppercase;
+    color: var(--rosa-claro);
+    padding: .75em 1.1em; border-radius: 999px;
+    background: var(--chip); border: 1px solid var(--chip-borda);
+  }
+  .selo i { width: .7em; height: .7em; border-radius: 50%; background: var(--rosa); box-shadow: 0 0 0 0 var(--rosa); animation: pulso 1.8s ease-out infinite; }
+  @keyframes pulso { 0% { box-shadow: 0 0 0 0 rgba(255,111,168,.7);} 100% { box-shadow: 0 0 0 1.1em rgba(255,111,168,0);} }
+
+  h1 {
+    margin: 1vmin 0 0;
+    font: 800 clamp(44px, 11vmin, 168px)/.95 var(--f-titulo);
+    letter-spacing: -.01em;
+    text-wrap: balance;
+  }
+  h1 .pontos span { display: inline-block; color: var(--rosa); animation: quica 1.4s ease-in-out infinite; }
+  h1 .pontos span:nth-child(2) { animation-delay: .15s; }
+  h1 .pontos span:nth-child(3) { animation-delay: .3s; }
+  @keyframes quica { 0%, 60%, 100% { transform: translateY(0);} 30% { transform: translateY(-.18em);} }
+
+  .sub { margin: 0; font: 700 clamp(16px, 3vmin, 40px)/1.25 var(--f-texto); color: var(--texto-suave); text-wrap: balance; }
+  .sub b { color: var(--texto); font-weight: 800; }
+  .sub .marca { color: var(--rosa); }
+
+  .contagem {
+    align-self: flex-start;
+    margin-top: 1.4vmin;
+    display: inline-flex; align-items: baseline; gap: .6em;
+    font: 700 clamp(14px, 2.2vmin, 30px)/1 var(--f-texto); color: var(--texto-suave);
+    padding: .6em 1em; border-radius: .7em; background: var(--chip); border: 1px solid var(--chip-borda);
+  }
+  .contagem strong { font: 800 1.6em/1 var(--f-titulo); color: var(--azul); font-variant-numeric: tabular-nums; }
+
+  .dica {
+    margin-top: 4vmin;
+    display: grid; gap: .5em;
+    border-left: 3px solid var(--azul);
+    padding-left: 1.1em;
+    min-height: 6.5em;
+  }
+  .dica small { font: 800 clamp(10px, 1.3vmin, 17px)/1 var(--f-texto); letter-spacing: .16em; text-transform: uppercase; color: var(--azul); }
+  .dica p { margin: 0; font: 600 clamp(15px, 2.5vmin, 34px)/1.35 var(--f-texto); color: var(--texto); max-width: 30ch; transition: opacity .6s, transform .6s; }
+  .dica p.saindo { opacity: 0; transform: translateY(.4em); }
+
+  .rodape {
+    position: fixed; left: 0; right: 0; bottom: 0;
+    display: flex; justify-content: space-between; gap: 1em; flex-wrap: wrap;
+    padding: 0 max(3vmin, env(safe-area-inset-right, 0px)) max(2.6vmin, env(safe-area-inset-bottom, 0px)) max(3vmin, env(safe-area-inset-left, 0px));
+    font: 700 clamp(11px, 1.6vmin, 22px)/1 var(--f-texto); color: var(--texto-suave);
+    pointer-events: none;
+  }
+  .rodape .marca { font: 800 1.5em/1 var(--f-titulo); color: var(--azul); letter-spacing: -.01em; }
+
+  .entra { animation: entra .9s cubic-bezier(.2,.8,.2,1) both; }
+  @keyframes entra { from { opacity: 0; transform: translateY(1.2em); } }
+
+  @media (max-aspect-ratio: 5/4) {
+    .palco { grid-template-columns: 1fr; align-items: end; padding-block-end: max(12vh, env(safe-area-inset-bottom, 0px)); }
+    .texto { grid-column: 1; align-items: center; text-align: center; margin-inline: auto; }
+    .selo, .contagem { align-self: center; }
+    .dica { border-left: 0; padding-left: 0; justify-items: center; margin-top: 2vmin; }
+    .dica p { max-width: 34ch; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .selo i, h1 .pontos span, .entra { animation: none; }
+  }
+</style>
+</head>
+<body>
+
+<canvas id="cena" aria-hidden="true"></canvas>
+
+<main class="palco">
+  <div class="texto">
+    <span class="selo entra" style="animation-delay:.2s"><i></i>Ao vivo em breve</span>
+    <h1 class="entra" id="titulo" style="animation-delay:.35s">Em instantes<span class="pontos"><span>.</span><span>.</span><span>.</span></span></h1>
+    <p class="sub entra" style="animation-delay:.5s">A live do <b class="marca">eploc</b> já vai começar. <b>Pegue um café</b> e fique por aqui.</p>
+    <div class="contagem entra" id="contagem" style="animation-delay:.65s" hidden>começa em <strong id="relogio">--:--</strong></div>
+    <div class="dica entra" style="animation-delay:.8s">
+      <small>Você sabia?</small>
+      <p id="dica">Mais de 75 melhorias para o eproc, o SEI e o RUPE, cada uma ligada ou desligada com um clique.</p>
+    </div>
+  </div>
+</main>
+
+<footer class="rodape">
+  <span class="marca">eploc</span>
+  <span>eploc.com.br</span>
+</footer>
+
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.165.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.165.0/examples/jsm/"
+} }
+</script>
+<script type="module">
+import * as THREE from "three";
+import { RoomEnvironment } from "three/addons/environments/RoomEnvironment.js";
+
+/* ---------- Parâmetros (?inicio=19:30, ?fundo=transparente, ?dicas=0) ou #inicio-1930 ---------- */
+const qs = new URLSearchParams(location.search);
+const hashInicio = /inicio-(\d{1,2})(\d{2})/.exec(location.hash);
+const inicioTxt = qs.get("inicio") || (hashInicio ? `${hashInicio[1]}:${hashInicio[2]}` : null);
+const transparente = qs.get("fundo") === "transparente";
+const semDicas = qs.get("dicas") === "0";
+const reduzido = matchMedia("(prefers-reduced-motion: reduce)").matches;
+if (transparente) document.body.classList.add("transparente");
+
+/* ---------- Renderizador, câmera, ambiente ---------- */
+const canvas = document.getElementById("cena");
+const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+renderer.toneMapping = THREE.NeutralToneMapping;
+renderer.toneMappingExposure = 1.05;
+renderer.setClearColor(0x000000, 0);
+
+const cena = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(30, 1, 0.1, 100);
+camera.position.set(0, 0, 15);
+
+const pmrem = new THREE.PMREMGenerator(renderer);
+cena.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
+
+const luzChave = new THREE.DirectionalLight(0xffffff, 1.6);
+luzChave.position.set(-4, 6, 8);
+cena.add(luzChave);
+const luzRosa = new THREE.PointLight(0xff5c9e, 30, 30);
+luzRosa.position.set(4, -3, 4);
+cena.add(luzRosa);
+cena.add(new THREE.AmbientLight(0x9a7cc0, 0.35));
+
+/* ---------- Grupo da logo ---------- */
+const logo = new THREE.Group();
+cena.add(logo);
+
+const R_MAX = 1.6, L_MAX = 0.08 + 0.7 * R_MAX;  // ponta do cursor a ~1,75 raio do centro, como na logo
+const DIR = new THREE.Vector2(1, 1).normalize();      // direção do pescoço: ponta do cursor -> bola
+const CENTRO = new THREE.Vector3(0.35, 0.35, 0);        // centro final da bola (no grupo)
+const PONTA = new THREE.Vector3(CENTRO.x - DIR.x * (R_MAX + L_MAX), CENTRO.y - DIR.y * (R_MAX + L_MAX), 0);
+
+/* Material do chiclete */
+const matChiclete = new THREE.MeshPhysicalMaterial({
+  color: 0xf4639d, emissive: 0x4a0620, emissiveIntensity: 0.55,
+  roughness: 0.2, metalness: 0, clearcoat: 1, clearcoatRoughness: 0.06,
+  sheen: 0.7, sheenColor: new THREE.Color(0xffc6dc), sheenRoughness: 0.45,
+  iridescence: 0.25, iridescenceIOR: 1.3,
+});
+
+/* ---------- Bola de chiclete: torno (lathe) refeito a cada quadro ---------- */
+const LINHAS = 96, SEG = 72;
+const geoBola = new THREE.BufferGeometry();
+const posBola = new Float32Array(LINHAS * (SEG + 1) * 3);
+geoBola.setAttribute("position", new THREE.BufferAttribute(posBola, 3).setUsage(THREE.DynamicDrawUsage));
+{
+  const idx = [];
+  for (let i = 0; i < LINHAS - 1; i++) for (let j = 0; j < SEG; j++) {
+    const a = i * (SEG + 1) + j, b = a + SEG + 1, c = b + 1, d = a + 1;
+    idx.push(a, d, b, b, d, c);
+  }
+  geoBola.setIndex(idx);
+}
+const bola = new THREE.Mesh(geoBola, matChiclete);
+const suporteBola = new THREE.Group();          // origem na ponta do cursor, +Y aponta para a bola
+suporteBola.position.copy(PONTA);
+suporteBola.rotation.z = Math.atan2(DIR.y, DIR.x) - Math.PI / 2;
+suporteBola.add(bola);
+logo.add(suporteBola);
+
+const smooth = (a, b, x) => { const t = Math.min(Math.max((x - a) / (b - a), 0), 1); return t * t * (3 - 2 * t); };
+
+// Perfil em gota: uma Bézier sai do bico apertado (no cursor) e chega tangente à esfera,
+// formando os flancos côncavos da logo. Linhas: polo do bico + pescoço + calota da esfera.
+const N_PESCOCO = 42, N_ESFERA = LINHAS - 1 - N_PESCOCO;
+const perfilY = new Float32Array(LINHAS), perfilR = new Float32Array(LINHAS), perfilPesc = new Float32Array(LINHAS);
+function moldarBola(R, L, tempo, oscila, curva) {
+  const h = L + R, rBico = 0.03 + 0.012 * Math.min(R / R_MAX, 1);
+  const th0 = 1.05;                                   // ângulo (a partir do polo de baixo) onde o pescoço toca a esfera
+  const y1 = h - R * Math.cos(th0), r1 = R * Math.sin(th0);
+  const ty = Math.sin(th0), tr = Math.cos(th0);
+  const P0y = 0, P0r = rBico;
+  const P1y = 0.5 * y1, P1r = rBico + 0.5 * y1 * 0.05;
+  const P2y = y1 - 0.42 * R * ty, P2r = r1 - 0.42 * R * tr;
+  // polo do bico
+  perfilY[0] = -0.01; perfilR[0] = 0; perfilPesc[0] = 1;
+  for (let k = 0; k < N_PESCOCO; k++) {
+    const u = Math.pow(k / N_PESCOCO, 1.35), v = 1 - u;
+    const a = v * v * v, b = 3 * v * v * u, c = 3 * v * u * u, d = u * u * u;
+    perfilY[1 + k] = a * P0y + b * P1y + c * P2y + d * y1;
+    perfilR[1 + k] = a * P0r + b * P1r + c * P2r + d * r1
+      + 0.02 * Math.exp(-Math.pow(perfilY[1 + k] / 0.05, 2));   // beiço discreto onde a goma sai
+    perfilPesc[1 + k] = 1 - u;
+  }
+  for (let k = 0; k < N_ESFERA; k++) {
+    const th = th0 + (Math.PI - th0) * (k / (N_ESFERA - 1));
+    perfilY[1 + N_PESCOCO + k] = h - R * Math.cos(th);
+    perfilR[1 + N_PESCOCO + k] = k === N_ESFERA - 1 ? 0 : R * Math.sin(th);
+    perfilPesc[1 + N_PESCOCO + k] = 0;
+  }
+  let p = 0;
+  for (let i = 0; i < LINHAS; i++) {
+    const y = perfilY[i], r = perfilR[i], pesc = perfilPesc[i];
+    const desvio = curva * Math.sin(Math.PI * pesc) * pesc;   // leve curva no bico
+    const pesoOnda = 1 - pesc;
+    // vincos da goma esticada, que convergem para o bico
+    const pesoVinco = 0.22 * Math.pow(pesc, 1.4) * smooth(0, 0.06, y);
+    for (let j = 0; j <= SEG; j++) {
+      const phi = Math.PI + (j / SEG) * Math.PI * 2;
+      const onda = 1 + oscila * pesoOnda * (
+        0.55 * Math.sin(3 * phi + tempo * 2.3 + y * 1.7) +
+        0.45 * Math.sin(2 * phi - tempo * 1.6 + y * 2.9))
+        + pesoVinco * (0.65 * Math.sin(5 * phi + pesc * 1.8) + 0.35 * Math.sin(3 * phi - pesc * 2.6 + 1.3));
+      const rr = r * onda;
+      posBola[p++] = rr * Math.sin(phi) + desvio;
+      posBola[p++] = y;
+      posBola[p++] = rr * Math.cos(phi);
+    }
+  }
+  geoBola.attributes.position.needsUpdate = true;
+  geoBola.computeVertexNormals();
+  geoBola.computeBoundingSphere();
+}
+
+/* ---------- O "e" (sprite com textura de canvas) ---------- */
+// Contorno do "e" extraído da logo em alta resolução (assets/eploc-logo-sem-texto-1000.png), em caixa de 0 a 1000.
+// Inclui o olho; o desenho usa a regra par-ímpar para vazá-lo.
+const CONTORNO_E = {"w":1000,"h":989,"p":[[[597.2,987.9],[556.2,988.7],[528.4,986.5],[473.1,979.2],[445.1,972.6],[399.9,956.8],[361.9,940.0],[348.3,932.0],[304.0,902.5],[268.5,869.9],[257.8,859.2],[224.6,818.8],[212.4,800.3],[185.7,749.5],[177.8,733.2],[161.4,682.3],[151.8,646.3],[149.2,640.3],[145.7,634.6],[138.6,627.4],[127.3,620.0],[118.6,616.5],[86.5,606.0],[57.8,594.6],[46.7,589.5],[31.0,580.4],[24.0,574.6],[15.6,565.9],[9.6,559.1],[6.3,554.0],[2.6,545.8],[0.9,540.0],[0.0,534.0],[0.0,527.8],[1.2,518.3],[2.7,511.7],[6.2,501.8],[9.4,495.5],[15.2,487.1],[21.7,479.5],[26.8,475.2],[35.3,470.3],[41.2,468.1],[47.4,466.7],[53.6,466.1],[60.0,466.3],[69.4,468.3],[88.2,474.6],[94.6,476.2],[101.4,477.1],[108.3,476.9],[118.4,474.7],[124.6,472.0],[130.0,468.3],[134.5,463.8],[139.6,456.2],[143.7,444.8],[153.6,390.8],[165.8,340.7],[188.2,283.2],[193.4,272.2],[203.6,253.6],[217.5,230.3],[232.3,207.4],[248.2,185.0],[261.6,168.5],[274.1,155.4],[287.3,143.2],[348.5,90.8],[362.6,79.7],[377.6,69.4],[393.5,60.1],[412.8,50.2],[432.2,40.9],[451.8,32.5],[497.5,16.2],[512.5,12.3],[534.1,8.2],[588.3,0.8],[603.5,0.0],[646.3,0.2],[679.4,3.3],[723.6,12.6],[735.1,16.3],[780.7,34.1],[789.0,38.1],[816.0,53.1],[829.0,61.1],[849.9,78.4],[865.3,93.6],[873.5,102.7],[889.5,124.5],[900.7,146.5],[910.6,173.3],[916.3,194.4],[918.7,206.7],[920.3,219.3],[920.9,228.7],[920.7,269.4],[917.9,284.8],[910.4,315.5],[907.6,324.5],[893.6,359.5],[879.4,383.9],[869.2,399.5],[863.6,406.9],[832.8,441.2],[821.6,451.7],[776.5,488.7],[720.0,525.2],[706.3,532.2],[641.3,561.9],[561.0,591.0],[546.2,595.1],[468.0,614.3],[406.9,623.2],[400.6,625.2],[394.9,628.6],[392.7,631.0],[391.0,633.7],[390.1,636.7],[389.7,639.8],[390.5,646.0],[394.5,658.0],[407.3,690.1],[435.2,737.4],[443.5,750.1],[449.6,757.1],[474.0,781.2],[483.8,789.5],[494.2,797.3],[516.1,810.9],[527.2,817.1],[538.4,821.8],[569.5,833.4],[581.3,836.9],[596.4,840.3],[611.9,842.3],[627.3,843.5],[672.4,843.2],[726.6,834.0],[738.9,830.6],[760.4,823.4],[802.5,804.3],[838.7,782.3],[868.3,759.3],[877.4,750.7],[903.6,723.6],[933.3,688.9],[942.7,681.2],[948.0,677.9],[953.6,675.2],[963.2,672.9],[969.9,672.9],[973.1,673.5],[979.4,675.8],[985.0,679.2],[987.4,681.2],[993.2,688.5],[997.3,696.8],[999.5,706.1],[1000.0,715.6],[999.1,722.0],[997.4,728.3],[994.9,734.3],[990.3,742.8],[966.8,778.5],[941.8,811.4],[890.7,865.4],[854.7,893.7],[835.1,908.4],[803.9,928.4],[793.1,934.4],[762.4,948.8],[729.6,961.6],[681.5,975.5],[666.4,979.2],[627.3,985.4]],[[391.0,528.3],[405.3,525.6],[432.7,519.0],[487.1,500.7],[530.1,480.8],[568.9,459.5],[577.1,454.5],[587.7,446.9],[605.7,432.8],[627.8,414.6],[638.7,403.1],[655.2,383.6],[660.9,376.0],[679.2,346.5],[700.0,301.2],[704.1,288.8],[708.1,272.5],[709.8,259.6],[711.2,243.5],[710.8,224.8],[709.7,212.3],[704.7,187.6],[701.8,178.6],[693.6,161.7],[688.8,153.6],[684.9,148.7],[676.1,139.3],[666.4,130.9],[649.8,121.1],[641.2,117.0],[632.4,114.6],[611.3,111.0],[602.3,110.7],[578.3,112.2],[563.2,114.7],[551.3,117.8],[539.6,122.6],[525.3,129.6],[508.7,139.8],[498.5,147.3],[479.8,163.4],[473.3,169.8],[457.9,188.7],[450.6,198.5],[428.3,231.6],[413.3,261.6],[407.0,275.5],[389.2,324.7],[377.6,375.7],[370.0,433.8],[367.5,478.9],[367.4,491.0],[370.5,512.6],[372.2,518.5],[373.6,521.1],[375.4,523.3],[380.4,526.6],[383.1,527.6]]]};
+function caminhoE() {
+  const p = new Path2D();
+  // curvas quadráticas passando pelos pontos médios: contorno liso, sem quinas
+  for (const poli of CONTORNO_E.p) {
+    const n = poli.length, meio = (i, j) => [(poli[i][0] + poli[j][0]) / 2, (poli[i][1] + poli[j][1]) / 2];
+    p.moveTo(...meio(n - 1, 0));
+    for (let i = 0; i < n; i++) p.quadraticCurveTo(poli[i][0], poli[i][1], ...meio(i, (i + 1) % n));
+    p.closePath();
+  }
+  return p;
+}
+function texturaE() {
+  const c = document.createElement("canvas"); c.width = c.height = 512;
+  const g = c.getContext("2d");
+  const esc = 400 / 1000, ox = (512 - CONTORNO_E.w * esc) / 2, oy = (512 - CONTORNO_E.h * esc) / 2;
+  const caminho = caminhoE();
+  g.save(); g.translate(ox + 10, oy + 12); g.scale(esc, esc);
+  g.filter = "blur(10px)"; g.fillStyle = "rgba(150, 20, 70, .35)"; g.fill(caminho, "evenodd");
+  g.restore();
+  g.save(); g.translate(ox, oy); g.scale(esc, esc);
+  const grad = g.createLinearGradient(0, 0, 0, CONTORNO_E.h);
+  // miolo leitoso e translúcido, como o vidro do "e" na logo
+  grad.addColorStop(0, "rgba(255, 250, 252, .92)"); grad.addColorStop(.55, "rgba(255, 236, 244, .8)"); grad.addColorStop(1, "rgba(255, 214, 230, .78)");
+  g.fillStyle = grad; g.fill(caminho, "evenodd");
+  // borda interna mais clara (o brilho na beira do traço)
+  g.clip(caminho, "evenodd");
+  g.lineWidth = 30; g.strokeStyle = "rgba(255, 255, 255, .75)"; g.stroke(caminho);
+  g.lineWidth = 70; g.strokeStyle = "rgba(255, 255, 255, .18)"; g.stroke(caminho);
+  g.restore();
+  const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 4;
+  return t;
+}
+const matE = new THREE.SpriteMaterial({ map: texturaE(), transparent: true, depthWrite: false, depthTest: false, toneMapped: false });
+const spriteE = new THREE.Sprite(matE);
+spriteE.renderOrder = 2;
+logo.add(spriteE);
+
+/* Brilho suave atrás da bola */
+function texturaBrilho(cor) {
+  const c = document.createElement("canvas"); c.width = c.height = 256;
+  const g = c.getContext("2d");
+  const gr = g.createRadialGradient(128, 128, 0, 128, 128, 128);
+  gr.addColorStop(0, cor); gr.addColorStop(1, "rgba(0,0,0,0)");
+  g.fillStyle = gr; g.fillRect(0, 0, 256, 256);
+  const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; return t;
+}
+const brilho = new THREE.Sprite(new THREE.SpriteMaterial({ map: texturaBrilho("rgba(255,90,160,0.55)"), blending: THREE.AdditiveBlending, depthWrite: false, transparent: true }));
+brilho.position.set(CENTRO.x, CENTRO.y, -1.2);
+logo.add(brilho);
+
+/* ---------- Anel azul ---------- */
+const R_ANEL = 1.9;
+const matAnel = new THREE.MeshPhysicalMaterial({ color: 0x86c3ef, emissive: 0x1c4f80, emissiveIntensity: .45, roughness: .25, clearcoat: 1, clearcoatRoughness: .1 });
+const anel = new THREE.Mesh(new THREE.BufferGeometry(), matAnel);
+const suporteAnel = new THREE.Group();
+suporteAnel.position.copy(CENTRO);
+suporteAnel.position.z = -0.4;   // atrás do bico, como na logo
+suporteAnel.add(anel);
+logo.add(suporteAnel);
+let arcoAtual = -1;
+function desenharAnel(frac) {
+  const arco = Math.max(0.0001, Math.min(frac, 1)) * Math.PI * 2;
+  if (Math.abs(arco - arcoAtual) < 1e-4) return;
+  arcoAtual = arco;
+  anel.geometry.dispose();
+  anel.geometry = new THREE.TorusGeometry(R_ANEL, 0.058, 20, Math.max(8, Math.round(160 * frac)), arco);
+  anel.rotation.z = Math.PI * 1.25 - arco;  // começa atrás do pescoço e fecha no sentido horário
+}
+
+/* ---------- Cursor (seta do mouse) ---------- */
+function formaCursor(escala) {
+  const pts = [[0,0],[0,16],[4,12.2],[7,18.6],[9.6,17.5],[6.7,11.3],[12,11.3]];
+  const s = new THREE.Shape();
+  pts.forEach(([x, y], i) => i ? s.lineTo(x * escala, -y * escala) : s.moveTo(x * escala, -y * escala));
+  s.closePath();
+  return s;
+}
+const cursor = new THREE.Group();
+{
+  const esc = 0.044;
+  const geoMiolo = new THREE.ExtrudeGeometry(formaCursor(esc), { depth: 0.08, bevelEnabled: true, bevelThickness: .03, bevelSize: .01, bevelSegments: 3 });
+  const geoContorno = new THREE.ExtrudeGeometry(formaCursor(esc), { depth: 0.06, bevelEnabled: true, bevelThickness: .03, bevelSize: .075, bevelSegments: 3 });
+  const miolo = new THREE.Mesh(geoMiolo, new THREE.MeshPhysicalMaterial({ color: 0xffd3e5, emissive: 0x5a1030, emissiveIntensity: .15, roughness: .3, clearcoat: 1 }));
+  const contorno = new THREE.Mesh(geoContorno, new THREE.MeshPhysicalMaterial({ color: 0xd42a6c, emissive: 0x4a0520, emissiveIntensity: .5, roughness: .3, clearcoat: 1 }));
+  miolo.position.z = 0.04; contorno.position.z = -0.04;
+  const seta = new THREE.Group(); seta.add(contorno, miolo);
+  // gira para a cauda ficar oposta à bola (ponta encostada no pescoço)
+  const eixo = Math.atan2(-14.5, 6.5);
+  seta.rotation.z = Math.atan2(-DIR.y, -DIR.x) - eixo;
+  seta.position.set(DIR.x * 0.06, DIR.y * 0.06, -0.02);  // ponta enfiada sob o bico
+  cursor.add(seta);
+}
+logo.add(cursor);
+
+/* Onda do clique */
+const onda = new THREE.Mesh(new THREE.TorusGeometry(1, 0.025, 8, 64), new THREE.MeshBasicMaterial({ color: 0xffb3d1, transparent: true, opacity: 0, blending: THREE.AdditiveBlending, depthWrite: false }));
+onda.position.copy(PONTA); onda.position.z = 0.1;
+logo.add(onda);
+
+/* ---------- Estouro: lascas de chiclete ---------- */
+const N_LASCAS = 180;
+const lascas = new THREE.InstancedMesh(new THREE.IcosahedronGeometry(1, 1), matChiclete, N_LASCAS);
+lascas.instanceMatrix.setUsage(THREE.DynamicDrawUsage);
+lascas.frustumCulled = false;
+logo.add(lascas);
+const dadosLascas = Array.from({ length: N_LASCAS }, () => ({ p: new THREE.Vector3(), v: new THREE.Vector3(), q: new THREE.Quaternion(), w: new THREE.Vector3(), s: 0, vida: 0 }));
+const choque = new THREE.Mesh(new THREE.RingGeometry(0.96, 1, 96), new THREE.MeshBasicMaterial({ color: 0xffd0e2, transparent: true, opacity: 0, blending: THREE.AdditiveBlending, depthWrite: false, side: THREE.DoubleSide }));
+logo.add(choque);
+const _m = new THREE.Matrix4(), _q = new THREE.Quaternion(), _s = new THREE.Vector3(), _e = new THREE.Euler();
+let lascasVivas = false;
+function estourar(centro, R, forca = 1) {
+  for (const d of dadosLascas) {
+    const dirx = new THREE.Vector3().randomDirection();
+    d.p.copy(centro).addScaledVector(dirx, R * (0.85 + Math.random() * .15));
+    d.v.copy(dirx).multiplyScalar((3 + Math.random() * 4.5) * forca);
+    d.v.z *= 0.5;
+    d.q.setFromEuler(_e.set(Math.random() * 6, Math.random() * 6, Math.random() * 6));
+    d.w.set(Math.random() - .5, Math.random() - .5, Math.random() - .5).multiplyScalar(12);
+    d.s = (0.05 + Math.random() * 0.13) * Math.sqrt(R / R_MAX + .2);
+    d.vida = 1;
+  }
+  lascasVivas = true;
+  choque.position.set(centro.x, centro.y, centro.z + .2);
+  choque.userData.t = 0; choque.userData.R = R;
+  empurrarBolhas(centro, 4 * forca);
+}
+function atualizarLascas(dt) {
+  if (!lascasVivas) { lascas.count = 0; return; }
+  let vivas = 0;
+  for (let i = 0; i < N_LASCAS; i++) {
+    const d = dadosLascas[i];
+    if (d.vida > 0) {
+      d.vida -= dt * 0.7;
+      d.v.y -= 6.5 * dt; d.v.multiplyScalar(1 - 1.4 * dt);
+      d.p.addScaledVector(d.v, dt);
+      _q.setFromEuler(_e.set(d.w.x * dt, d.w.y * dt, d.w.z * dt)); d.q.multiply(_q);
+      const k = Math.max(d.vida, 0);
+      _s.set(d.s * k, d.s * k, d.s * k * 0.35);
+      _m.compose(d.p, d.q, _s);
+      lascas.setMatrixAt(vivas++, _m);
+    }
+  }
+  lascas.count = vivas;
+  lascas.instanceMatrix.needsUpdate = true;
+  if (!vivas) lascasVivas = false;
+  if (choque.userData.t !== undefined && choque.userData.t < 1) {
+    choque.userData.t += dt * 2.2;
+    const t = choque.userData.t;
+    choque.scale.setScalar(choque.userData.R * (1 + t * 1.6));
+    choque.material.opacity = Math.max(0, 0.8 * (1 - t));
+  }
+}
+
+/* ---------- Bolhas de fundo ---------- */
+const N_BOLHAS = 46;
+const matBolhas = new THREE.MeshPhysicalMaterial({ color: 0xffffff, roughness: .15, clearcoat: 1, transparent: true, opacity: .34, iridescence: .8, depthWrite: false });
+const bolhas = new THREE.InstancedMesh(new THREE.SphereGeometry(1, 24, 16), matBolhas, N_BOLHAS);
+bolhas.instanceMatrix.setUsage(THREE.DynamicDrawUsage);
+bolhas.frustumCulled = false;
+const paleta = [0xff7fb2, 0xff9cc4, 0x8cc6f2, 0xb8dcf7, 0xffffff];
+const dadosBolhas = Array.from({ length: N_BOLHAS }, (_, i) => {
+  bolhas.setColorAt(i, new THREE.Color(paleta[i % paleta.length]));
+  return { x: (Math.random() - .5) * 26, y: (Math.random() - .5) * 16, z: -3 - Math.random() * 12, r: .08 + Math.random() * .32, vel: .25 + Math.random() * .45, fase: Math.random() * 6.28, ex: 0, ey: 0 };
+});
+cena.add(bolhas);
+function empurrarBolhas(centro, forca) {
+  const c = centro.clone(); logo.localToWorld(c);
+  for (const b of dadosBolhas) {
+    const dx = b.x - c.x, dy = b.y - c.y, dist = Math.hypot(dx, dy) + 1;
+    b.ex += dx / dist * forca / dist * 3; b.ey += dy / dist * forca / dist * 3;
+  }
+}
+function atualizarBolhas(t, dt) {
+  for (let i = 0; i < N_BOLHAS; i++) {
+    const b = dadosBolhas[i];
+    b.y += b.vel * dt * (reduzido ? .3 : 1);
+    b.x += b.ex * dt; b.y += b.ey * dt;
+    b.ex *= 1 - 1.6 * dt; b.ey *= 1 - 1.6 * dt;
+    if (b.y > 9) { b.y = -9; b.x = (Math.random() - .5) * 26; }
+    _m.compose(_s.set(b.x + Math.sin(t * .6 + b.fase) * .4, b.y, b.z), _q.identity(), new THREE.Vector3(b.r, b.r, b.r));
+    bolhas.setMatrixAt(i, _m);
+  }
+  bolhas.instanceMatrix.needsUpdate = true;
+}
+
+/* ---------- Linha do tempo ---------- */
+// Introdução: cursor entra (0-1.6s). Depois um ciclo de 22s: clique, encher, ficar, inchar demais, estourar.
+const T_INTRO = 1.6, CICLO = 22;
+const F = { clique: 0, encherFim: 2.6, incharIni: 18.2, estouro: 19.1, fim: CICLO };
+const easeOutBack = x => { const c1 = 1.5, c3 = c1 + 1; return 1 + c3 * Math.pow(x - 1, 3) + c1 * Math.pow(x - 1, 2); };
+const easeOutElastic = x => x === 0 ? 0 : x === 1 ? 1 : Math.pow(2, -9 * x) * Math.sin((x * 8 - .75) * (2 * Math.PI) / 3) + 1;
+const easeInOut = x => x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
+
+let cicloAtual = -1, estourouNoCiclo = false, anelPronto = false;
+let finalAtivo = false, tFinal = 0;
+let inicioOffset = 0;
+
+const centroAtual = new THREE.Vector3();
+function cenaNoTempo(t, dt) {
+  // cursor entrando
+  const kIn = easeInOut(Math.min(t / T_INTRO, 1));
+  const desde = new THREE.Vector3(PONTA.x - 6, PONTA.y - 4, 2);
+  cursor.position.lerpVectors(desde, PONTA, kIn);
+  cursor.position.x += Math.sin(kIn * Math.PI) * 1.2;
+
+  if (t < T_INTRO) { bola.visible = false; spriteE.visible = false; desenharAnel(0); anel.visible = false; return; }
+
+  let tc = t - T_INTRO;
+  let ciclo = Math.floor(tc / CICLO);
+  tc -= ciclo * CICLO;
+  if (ciclo !== cicloAtual) { cicloAtual = ciclo; estourouNoCiclo = false; }
+
+  // clique
+  const kClique = tc < 0.35 ? Math.sin(tc / 0.35 * Math.PI) : 0;
+  cursor.scale.setScalar(1 - kClique * 0.14);
+  cursor.position.z = -kClique * .25;
+  onda.material.opacity = tc < 0.9 ? 0.9 * (1 - tc / 0.9) : 0;
+  onda.scale.setScalar(0.1 + tc * 1.2);
+
+  // enchimento
+  let encher = smooth(0.15, F.encherFim, tc);
+  encher = encher > 0 ? easeOutElastic(Math.min((tc - 0.15) / (F.encherFim - 0.15), 1)) : 0;
+  if (reduzido) encher = smooth(0.15, F.encherFim, tc);
+  const respira = 1 + Math.sin(t * 1.7) * 0.018;
+  let inchar = 0;
+  if (tc > F.incharIni && tc < F.estouro) inchar = Math.pow((tc - F.incharIni) / (F.estouro - F.incharIni), 2);
+  const visivel = tc < F.estouro;
+
+  const crescimento = Math.max(encher, 0);
+  let R = Math.max(0.02, R_MAX * crescimento * respira * (1 + inchar * 0.22));
+  const L = 0.08 + 0.7 * R_MAX * Math.min(crescimento, 1.05);
+  const tremor = inchar > 0 ? Math.sin(t * 60) * inchar * 0.015 : 0;
+  const oscila = (reduzido ? .006 : .014) + (1 - Math.min(tc / 3.2, 1)) * 0.06 + inchar * 0.05;
+  moldarBola(R * (1 + tremor), L, t, oscila, 0.07 + Math.sin(t * .9) * .025);
+  bola.visible = visivel && crescimento > 0.001;
+
+  // centro da bola no grupo
+  const h = L + R;
+  centroAtual.set(PONTA.x + DIR.x * h, PONTA.y + DIR.y * h, 0);
+
+  // "e"
+  const kE = smooth(0.45, 0.85, crescimento);
+  spriteE.visible = bola.visible && kE > 0;
+  spriteE.position.set(centroAtual.x - R * .06, centroAtual.y - R * .02, R * 1.02);
+  spriteE.scale.setScalar(R * 1.55 * (0.6 + 0.4 * kE));
+  matE.opacity = kE;
+  matE.rotation = Math.sin(t * 1.3) * 0.04;
+
+  brilho.position.set(centroAtual.x, centroAtual.y, -1.2);
+  brilho.scale.setScalar(R * 4.2 + 0.3);
+  brilho.material.opacity = visivel ? 0.9 : Math.max(0, 0.9 - (tc - F.estouro) * 2);
+
+  // anel: desenha uma vez na primeira bola
+  if (!anelPronto) {
+    const kA = smooth(0.9, 2.4, tc);
+    anel.visible = kA > 0;
+    desenharAnel(easeInOut(kA));
+    if (kA >= 1) anelPronto = true;
+  }
+  const pulsoAnel = tc > F.estouro ? Math.exp(-(tc - F.estouro) * 4) * Math.sin((tc - F.estouro) * 30) * 0.05 : 0;
+  suporteAnel.scale.setScalar(1 + pulsoAnel + inchar * 0.03);
+  suporteAnel.rotation.x = Math.sin(t * .45) * .2;
+  suporteAnel.rotation.y = Math.cos(t * .37) * .18;
+
+  if (!estourouNoCiclo && tc >= F.estouro && !reduzido) {
+    estourouNoCiclo = true;
+    estourar(centroAtual, R);
+  }
+  if (reduzido && tc >= F.estouro) bola.visible = false;
+}
+
+/* ---------- Final (Enter ou fim da contagem): estouro grande e título muda ---------- */
+function disparaFinal() {
+  if (finalAtivo) return;
+  finalAtivo = true;
+  estourar(centroAtual, R_MAX * 1.2, 1.8);
+  bola.visible = false; spriteE.visible = false;
+  const h1 = document.getElementById("titulo");
+  h1.innerHTML = 'Começando!';
+  h1.classList.remove("entra"); void h1.offsetWidth; h1.classList.add("entra");
+  document.querySelector(".selo").lastChild.textContent = "Ao vivo";
+}
+
+/* ---------- Layout responsivo da cena ---------- */
+function ajustar() {
+  const w = innerWidth, h = innerHeight;
+  renderer.setSize(w, h, false);
+  camera.aspect = w / h; camera.updateProjectionMatrix();
+  const altVis = 2 * Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)) * camera.position.z;
+  const largVis = altVis * camera.aspect;
+  const largo = w / h > 1.25;
+  const escala = largo ? Math.min(altVis / 6.4, largVis * 0.5 / 5.6) : Math.min(largVis / 6.2, altVis * 0.52 / 5.8);
+  logo.scale.setScalar(escala);
+  if (largo) logo.position.set(-largVis * 0.25 + 0.3, 0.1, 0);
+  else logo.position.set(0, altVis * 0.21, 0);
+}
+addEventListener("resize", ajustar);
+ajustar();
+
+/* ---------- Laço ---------- */
+const relogio = new THREE.Clock();
+let t = Number(qs.get("t")) || 0;   // ?t=20 pula para um ponto da animação (útil para testar)
+function quadro() {
+  const dt = Math.min(relogio.getDelta(), 1 / 20);
+  t += dt;
+  if (!finalAtivo) cenaNoTempo(t - inicioOffset, dt);
+  else {
+    tFinal += dt;
+    cursor.position.lerp(new THREE.Vector3(PONTA.x - 1.2, PONTA.y - 1.2, 0), 1 - Math.exp(-dt * 2));
+    brilho.material.opacity = Math.max(0, brilho.material.opacity - dt * 2);
+    suporteAnel.scale.setScalar(1 + Math.exp(-tFinal * 3) * Math.sin(tFinal * 25) * .08);
+    suporteAnel.rotation.x = Math.sin(t * .45) * .35;
+    suporteAnel.rotation.y = Math.cos(t * .37) * .3;
+  }
+  atualizarLascas(dt);
+  atualizarBolhas(t, dt);
+  // leve deriva da câmera para dar profundidade
+  camera.position.x = Math.sin(t * .17) * .6;
+  camera.position.y = Math.cos(t * .13) * .35;
+  camera.lookAt(0, 0, 0);
+  logo.rotation.y = Math.sin(t * .25) * .12;
+  logo.rotation.x = Math.cos(t * .21) * .06;
+  renderer.render(cena, camera);
+  requestAnimationFrame(quadro);
+}
+requestAnimationFrame(quadro);
+
+/* ---------- Teclas: P estoura agora, Enter dispara o final ---------- */
+addEventListener("keydown", e => {
+  if (e.key === "Enter") disparaFinal();
+  if ((e.key === "p" || e.key === "P") && !finalAtivo && bola.visible) {
+    // adianta o ciclo até o início do "inchar demais"
+    const tl = t - inicioOffset - T_INTRO;
+    const tc = ((tl % CICLO) + CICLO) % CICLO;
+    if (tc > F.encherFim && tc < F.incharIni) inicioOffset -= F.incharIni - tc;
+  }
+});
+
+/* ---------- Contagem regressiva ---------- */
+if (inicioTxt) {
+  const [hh, mm] = inicioTxt.split(":").map(Number);
+  const alvo = new Date(); alvo.setHours(hh, mm || 0, 0, 0);
+  const caixa = document.getElementById("contagem"), rel = document.getElementById("relogio");
+  caixa.hidden = false;
+  const tick = () => {
+    const falta = Math.round((alvo - Date.now()) / 1000);
+    if (falta <= 0) { rel.textContent = "00:00"; disparaFinal(); caixa.hidden = true; return; }
+    const m = Math.floor(falta / 60), s = falta % 60;
+    rel.textContent = m >= 60 ? `${Math.floor(m / 60)}h${String(m % 60).padStart(2, "0")}` : `${String(m).padStart(2, "0")}:${String(s).padStart(2, "0")}`;
+    setTimeout(tick, 250);
+  };
+  tick();
+}
+
+/* ---------- Dicas rotativas ---------- */
+const dicas = [
+  "Mais de 75 melhorias para o eproc, o SEI e o RUPE, cada uma ligada ou desligada com um clique.",
+  "“Evento 31, DEC1” no texto? Um clique e você está no documento certo.",
+  "Número do processo: “1000713/26” basta. Nada de digitar os 20 dígitos do CNJ.",
+  "Alertas do eproc viram um aviso discreto no topo, com histórico.",
+  "“Intime-se”, “expeça-se” e “defiro” já aparecem realçados nas decisões.",
+  "Um painel flutuante resume classe, partes, CPF/CNPJ, OAB e assuntos do processo.",
+  "E-mails com destinatários em chips e modelos que já trazem o número do processo.",
+  "Prevenção pesquisada em segundo plano e “Manter Agendamento” clicado sozinho.",
+  "Backup automático no seu Google Drive, com até 20 versões.",
+  "Tudo roda no seu navegador. Nenhum dado de processo sai do seu computador.",
+];
+if (semDicas) document.querySelector(".dica").hidden = true;
+else {
+  const p = document.getElementById("dica");
+  let i = 0;
+  setInterval(() => {
+    p.classList.add("saindo");
+    setTimeout(() => { i = (i + 1) % dicas.length; p.textContent = dicas[i]; p.classList.remove("saindo"); }, 650);
+  }, 9000);
+}
+</script>
+</body>
+</html>
