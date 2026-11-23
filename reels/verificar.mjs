@@ -1,5 +1,6 @@
 // Confere a zona segura de um reel: varre a linha do tempo a cada 0,25 s e aponta todo texto
-// visível (descontados opacidade e recortes) fora de x 33–444, y 144–624 da página.
+// visível (descontados opacidade e recortes) fora de x 33–444, y 144–624 da página (zona dos reels).
+// A página pode declarar outra zona em window.ZONA = { l, t, r, b } (ex.: stories, live-amanha).
 // Uso: node reels/verificar.mjs <pasta>
 import { createRequire } from "node:module";
 import { fileURLToPath, pathToFileURL } from "node:url";
@@ -7,15 +8,16 @@ import path from "node:path";
 const { chromium } = createRequire(import.meta.url)("playwright");
 const pasta = path.join(path.dirname(fileURLToPath(import.meta.url)), path.basename(process.argv[2] || ""));
 
-const b = await chromium.launch();
+const b = await chromium.launch({ args: ["--enable-unsafe-swiftshader"] });  // WebGL por software, se não houver GPU
 const p = await b.newPage({ viewport: { width: 540, height: 960 } });
 await p.goto(pathToFileURL(path.join(pasta, "reel.html")).href + "?render");
 await p.evaluate(() => window.pronto);
 const dur = await p.evaluate(() => window.DURACAO);
+const z = await p.evaluate(() => window.ZONA || { l: 33, t: 144, r: 444, b: 624 });
 const fora = new Map();
 for (let t = 0; t <= dur; t += 0.25) {
   await p.evaluate((t) => renderFrame(t), t);
-  const r = await p.evaluate(() => {
+  const r = await p.evaluate((z) => {
     const out = [];
     const w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
     let n;
@@ -45,12 +47,12 @@ for (let t = 0; t <= dur; t += 0.25) {
         }
         if (v.r - v.l < 1 || v.b - v.t < 3 || v.b <= 0 || v.t >= 960) continue;
         q = { left: v.l, top: v.t, right: v.r, bottom: v.b };
-        if (q.left < 32.5 || q.right > 444.5 || q.top < 143.5 || q.bottom > 624.5)
+        if (q.left < z.l - 0.5 || q.right > z.r + 0.5 || q.top < z.t - 0.5 || q.bottom > z.b + 0.5)
           out.push(`${n.textContent.trim().slice(0, 40)} [${Math.round(q.left)},${Math.round(q.top)}–${Math.round(q.right)},${Math.round(q.bottom)}]`);
       }
     }
     return out;
-  });
+  }, z);
   for (const x of r) { const k = x.replace(/ \[.*/, ""); if (!fora.has(k)) fora.set(k, `${t}s ${x}`); }
 }
 for (const v of fora.values()) console.log("FORA", v);

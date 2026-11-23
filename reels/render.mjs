@@ -28,7 +28,7 @@ if (!pasta || !fs.existsSync(path.join(pasta, "reel.html"))) {
 const saida = path.resolve(saidaArg || path.join(pasta, `${path.basename(pasta)}.mp4`));
 const FPS = 30;
 
-const browser = await chromium.launch();
+const browser = await chromium.launch({ args: ["--enable-unsafe-swiftshader"] });  // WebGL por software, se não houver GPU (live-amanha)
 const page = await browser.newPage({ viewport: { width: 540, height: 960 }, deviceScaleFactor: 2 });
 
 if (args.includes("--capa")) {
