@@ -82,7 +82,11 @@ e y 128–784, porque o Instagram cobre o topo e o campo de resposta. Esse story
 vazia para o sticker de link do grupo do WhatsApp (abra com `?guia` para vê-la). Ele usa three.js
 e simula a física em passos fixos, com sorteio de semente fixa, para que `renderFrame(t)` seja
 determinístico. Por isso `render.mjs` e `verificar.mjs` abrem o Chromium com WebGL por software
-(`--enable-unsafe-swiftshader`), caso não haja GPU.
+(`--enable-unsafe-swiftshader`), caso não haja GPU. Aceita `--params "dia=hoje"` ("Hoje," no lugar de
+"Amanhã,") e `formato=quadrado` (540x540, para o grupo do WhatsApp; a página declara o tamanho em
+`window.TAMANHO`, que o `render.mjs` usa como viewport). Com `--gif`, o `render.mjs` grava o trecho
+`window.LOOP = { ini, dur, fade }` como GIF em loop: os primeiros quadros se dissolvem nos últimos,
+contados em quadros inteiros, para o loop não ter emenda. Os comandos estão no `copy.md` da pasta.
 O manual também mostra o reel, como animação HTML (não o MP4), na página da funcionalidade: o
 `reel.html` declara `<meta name="eploc-script" content="<id do script>">` e o marcador
 `<!-- DEMO: <id> -->` da página `manual-src/funcionalidades/<id>.md` vira um `<iframe>` do reel. Reel
