@@ -392,108 +392,15 @@ logo.add(choque);
 const _m = new THREE.Matrix4(), _q = new THREE.Quaternion(), _s = new THREE.Vector3(), _e = new THREE.Euler();
 let lascasVivas = false;
 
-/* Chiclete grudado na tela: parte das lascas "bate no vidro", fica parada na tela
-   (o grupo vai preso à câmera), escorre um pouco e some. */
-const N_GRUDE = 48, D_VIDRO = 6;
-// mancha de chiclete achatada: cúpula baixa com borda irregular, voltada para a câmera
-function geometriaGrude() {
-  const ANEIS = 14, SEGS = 64, pos = [], idx = [];
-  const borda = a => 1 + 0.1 * Math.sin(a * 3 + 1.3) + 0.06 * Math.sin(a * 5 + 0.4) + 0.03 * Math.sin(a * 9 + 2.1);
-  pos.push(0, 0, 1);
-  for (let i = 1; i <= ANEIS; i++) {
-    const r = i / ANEIS;
-    for (let j = 0; j < SEGS; j++) {
-      const a = j / SEGS * Math.PI * 2, b = borda(a) * r;
-      pos.push(Math.cos(a) * b, Math.sin(a) * b, Math.pow(Math.max(1 - r * r, 0), 0.55));
-    }
-  }
-  for (let j = 0; j < SEGS; j++) idx.push(0, 1 + j, 1 + (j + 1) % SEGS);
-  for (let i = 1; i < ANEIS; i++) for (let j = 0; j < SEGS; j++) {
-    const a = 1 + (i - 1) * SEGS + j, b = 1 + (i - 1) * SEGS + (j + 1) % SEGS, c = a + SEGS, d = b + SEGS;
-    idx.push(a, c, b, b, c, d);
-  }
-  const g = new THREE.BufferGeometry();
-  g.setAttribute("position", new THREE.Float32BufferAttribute(pos, 3));
-  g.setIndex(idx); g.computeVertexNormals();
-  return g;
-}
-const geoGrude = geometriaGrude();
-const matGrude = matChiclete.clone();
-matGrude.transparent = true; matGrude.depthWrite = false;
-matGrude.onBeforeCompile = sh => {
-  sh.vertexShader = sh.vertexShader
-    .replace("#include <common>", "#include <common>\nattribute float aAlfa;\nvarying float vAlfa;")
-    .replace("#include <begin_vertex>", "#include <begin_vertex>\nvAlfa = aAlfa;");
-  sh.fragmentShader = sh.fragmentShader
-    .replace("#include <common>", "#include <common>\nvarying float vAlfa;")
-    .replace("#include <dithering_fragment>", "#include <dithering_fragment>\ngl_FragColor.a *= vAlfa;");
-};
-const grudes = new THREE.InstancedMesh(geoGrude, matGrude, N_GRUDE);
-const alfaGrude = new THREE.InstancedBufferAttribute(new Float32Array(N_GRUDE), 1);
-alfaGrude.setUsage(THREE.DynamicDrawUsage);
-grudes.geometry.setAttribute("aAlfa", alfaGrude);
-grudes.instanceMatrix.setUsage(THREE.DynamicDrawUsage);
-grudes.frustumCulled = false; grudes.count = 0; grudes.renderOrder = 5;
-camera.add(grudes);
-cena.add(camera);
-const dadosGrude = [];
-const _w = new THREE.Vector3();
-function grudarNaTela(d, k) {
-  if (dadosGrude.length >= N_GRUDE) return false;
-  _w.copy(d.p); logo.localToWorld(_w);
-  const dist = camera.position.distanceTo(_w);
-  _w.project(camera);
-  if (Math.abs(_w.x) > 0.97 || Math.abs(_w.y) > 0.95) return false;
-  // não gruda por cima do texto
-  const px = (_w.x + 1) / 2 * innerWidth, py = (1 - _w.y) / 2 * innerHeight;
-  const caixa = document.querySelector(".texto").getBoundingClientRect();
-  if (px > caixa.left - 40 && px < caixa.right + 40 && py > caixa.top - 40 && py < caixa.bottom + 40) return false;
-  const meiaAlt = Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)) * D_VIDRO;
-  dadosGrude.push({
-    x: _w.x * meiaAlt * camera.aspect, y: _w.y * meiaAlt, rot: Math.random() * 6.28,
-    s: d.s * Math.max(k, .6) * logo.scale.x * (D_VIDRO / dist) * (1.5 + Math.random() * 0.7),
-    sx: 0.85 + Math.random() * 0.4, idade: 0,
-    fica: 2.4 + Math.random() * 2.2, escorre: 0.01 + Math.random() * 0.035,
-  });
-  return true;
-}
-function atualizarGrudes(dt) {
-  let n = 0;
-  for (let i = dadosGrude.length - 1; i >= 0; i--) {
-    const g = dadosGrude[i];
-    g.idade += dt;
-    if (g.idade > g.fica + 1) dadosGrude.splice(i, 1);
-  }
-  for (const g of dadosGrude) {
-    // achata ao bater (pequeno repique) e escorre devagar
-    const impacto = Math.min(g.idade / 0.16, 1);
-    const esmaga = easeOutBack(impacto);
-    const yEsc = g.y - g.escorre * Math.max(g.idade - 0.3, 0) * Math.min(g.idade, 2);
-    _s.set(g.s * g.sx * esmaga, g.s * (2 - esmaga * 0.95) * 0.55 + g.s * 0.45 * esmaga, g.s * 0.22);
-    _m.compose(_w.set(g.x, yEsc, -D_VIDRO), _q.setFromEuler(_e.set(0, 0, g.rot)), _s);
-    grudes.setMatrixAt(n, _m);
-    alfaGrude.setX(n, g.idade < g.fica ? 1 : Math.max(0, 1 - (g.idade - g.fica)));
-    n++;
-  }
-  grudes.count = n;
-  grudes.instanceMatrix.needsUpdate = true;
-  alfaGrude.needsUpdate = true;
-}
-
 function estourar(centro, R, forca = 1) {
-  const quantasGrudam = Math.round(8 + Math.random() * 6);
-  let iLasca = 0;
   for (const d of dadosLascas) {
-    d.gruda = iLasca++ < quantasGrudam;
-    d.idade = 0;
-    d.tGruda = 0.12 + Math.random() * 0.3;
     const dirx = new THREE.Vector3().randomDirection();
     d.p.copy(centro).addScaledVector(dirx, R * (0.85 + Math.random() * .15));
     d.v.copy(dirx).multiplyScalar((3 + Math.random() * 4.5) * forca);
     d.v.z *= 0.5;
     d.q.setFromEuler(_e.set(Math.random() * 6, Math.random() * 6, Math.random() * 6));
     d.w.set(Math.random() - .5, Math.random() - .5, Math.random() - .5).multiplyScalar(12);
-    d.s = (d.gruda ? 0.08 + Math.random() * 0.06 : 0.05 + Math.random() * 0.13) * Math.sqrt(R / R_MAX + .2);
+    d.s = (0.05 + Math.random() * 0.13) * Math.sqrt(R / R_MAX + .2);
     d.vida = 1;
   }
   lascasVivas = true;
@@ -507,11 +414,6 @@ function atualizarLascas(dt) {
   for (let i = 0; i < N_LASCAS; i++) {
     const d = dadosLascas[i];
     if (d.vida > 0) {
-      d.idade += dt;
-      if (d.gruda && d.idade >= d.tGruda) {
-        d.gruda = false;
-        if (grudarNaTela(d, Math.max(d.vida, 0))) { d.vida = 0; continue; }
-      }
       d.vida -= dt * 0.7;
       d.v.y -= 6.5 * dt; d.v.multiplyScalar(1 - 1.4 * dt);
       d.p.addScaledVector(d.v, dt);
@@ -568,7 +470,7 @@ function atualizarBolhas(t, dt) {
 /* ---------- Linha do tempo ---------- */
 // Introdução: cursor entra até o centro do aro (0-1.6s). Depois um ciclo de 22s: clique no centro,
 // encher (o cursor recua na diagonal puxando o bico, e a bola cresce parada no centro do aro),
-// ficar, inchar demais, estourar (lascas grudam na tela), cursor volta ao centro e sopra de novo.
+// ficar, inchar demais, estourar, cursor volta ao centro e sopra de novo.
 const T_INTRO = 1.6, CICLO = 22;
 const F = { clique: 0, encherIni: 0.3, encherFim: 2.3, incharIni: 18.2, estouro: 19.1, voltaIni: 20.2, voltaFim: 21.5, fim: CICLO };
 const H_MIN = 0.08;                                         // distância ponta-centro com a bola vazia
@@ -579,7 +481,7 @@ const easeOutBack = x => { const c1 = 1.5, c3 = c1 + 1; return 1 + c3 * Math.pow
 const easeInOut = x => x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
 
 let cicloAtual = -1, estourouNoCiclo = false, anelPronto = false;
-let finalAtivo = false, tFinal = 0;
+let finalAtivo = false, estouroGrande = false;
 let inicioOffset = 0;
 
 const centroAtual = new THREE.Vector3();
@@ -672,21 +574,27 @@ function cenaNoTempo(t, dt) {
 
   if (!estourouNoCiclo && tc >= F.estouro && !reduzido) {
     estourouNoCiclo = true;
-    estourar(centroAtual, R);
+    estourar(centroAtual, estouroGrande ? R * 1.1 : R, estouroGrande ? 1.8 : 1);
+    estouroGrande = false;
   }
   if (reduzido && tc >= F.estouro) bola.visible = false;
 }
 
 /* ---------- Final (Enter ou fim da contagem): estouro grande e título muda ---------- */
+// O título muda uma vez. A bola, se estiver no ar, estoura na hora com mais força: o ciclo é
+// adiantado até o estouro e segue normalmente (o cursor volta ao centro e sopra outra).
 function disparaFinal() {
-  if (finalAtivo) return;
-  finalAtivo = true;
-  estourar(centroAtual, R_MAX * 1.2, 1.8);
-  bola.visible = false; spriteE.visible = false;
-  const h1 = document.getElementById("titulo");
-  h1.innerHTML = 'Começando!';
-  h1.classList.remove("entra"); void h1.offsetWidth; h1.classList.add("entra");
-  document.querySelector(".selo").lastChild.textContent = "Ao vivo";
+  if (!finalAtivo) {
+    finalAtivo = true;
+    const h1 = document.getElementById("titulo");
+    h1.innerHTML = 'Começando!';
+    h1.classList.remove("entra"); void h1.offsetWidth; h1.classList.add("entra");
+    document.querySelector(".selo").lastChild.textContent = "Ao vivo";
+  }
+  const tl = t - inicioOffset - T_INTRO;
+  if (tl < 0 || !bola.visible) return;
+  const tc = ((tl % CICLO) + CICLO) % CICLO;
+  if (tc < F.estouro) { inicioOffset -= F.estouro - tc; estouroGrande = true; }
 }
 
 /* ---------- Layout responsivo da cena ---------- */
@@ -711,17 +619,8 @@ let t = Number(qs.get("t")) || 0;   // ?t=20 pula para um ponto da animação (�
 function quadro() {
   const dt = Math.min(relogio.getDelta(), 1 / 20);
   t += dt;
-  if (!finalAtivo) cenaNoTempo(t - inicioOffset, dt);
-  else {
-    tFinal += dt;
-    cursor.position.lerp(new THREE.Vector3(PONTA.x - 1.2, PONTA.y - 1.2, 0), 1 - Math.exp(-dt * 2));
-    brilho.material.opacity = Math.max(0, brilho.material.opacity - dt * 2);
-    suporteAnel.scale.setScalar(1 + Math.exp(-tFinal * 3) * Math.sin(tFinal * 25) * .08);
-    suporteAnel.rotation.x = Math.sin(t * .45) * .35;
-    suporteAnel.rotation.y = Math.cos(t * .37) * .3;
-  }
+  cenaNoTempo(t - inicioOffset, dt);
   atualizarLascas(dt);
-  atualizarGrudes(dt);
   atualizarBolhas(t, dt);
   // leve deriva da câmera para dar profundidade
   camera.position.x = Math.sin(t * .17) * .6;
@@ -737,7 +636,7 @@ requestAnimationFrame(quadro);
 /* ---------- Teclas: P estoura agora, Enter dispara o final ---------- */
 addEventListener("keydown", e => {
   if (e.key === "Enter") disparaFinal();
-  if ((e.key === "p" || e.key === "P") && !finalAtivo && bola.visible) {
+  if ((e.key === "p" || e.key === "P") && bola.visible) {
     // adianta o ciclo até o início do "inchar demais"
     const tl = t - inicioOffset - T_INTRO;
     const tc = ((tl % CICLO) + CICLO) % CICLO;
