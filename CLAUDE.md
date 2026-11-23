@@ -106,9 +106,12 @@ Página "Em instantes..." para a abertura das lives, publicada em
 https://eploc.com.br/live/em-instantes.html (use como Fonte de Navegador no OBS, 1920x1080). É HTML
 autônomo, sem front matter nem includes: o Jekyll a copia sem processar Liquid e ela fica fora do
 `sitemap.xml`; a `<meta name="robots" content="noindex">` a mantém fora do Google. A cena é
-three.js (ES module do jsDelivr, versão fixa): o cursor clica, a bola de chiclete enche a partir da
-ponta (perfil em gota com bico apertado, não um tubo de balão), o anel azul se desenha e a bola
-estoura em loop. O "e" não é fonte: é um contorno vetorial (`CONTORNO_E`) extraído de
+three.js (ES module do jsDelivr, versão fixa). O cursor clica no centro do aro e recua na diagonal
+enquanto a bola de chiclete enche (perfil em gota com bico apertado, não um tubo de balão). A ponta
+recua na mesma medida em que a bola cresce, então a bola enche parada no centro do aro. Na primeira
+vez, o anel azul se desenha. A bola estoura, e parte das lascas gruda na tela (manchas presas à
+câmera, fora da área do texto), escorre um pouco e some. Depois o cursor volta ao centro e sopra a
+próxima bola. O "e" não é fonte: é um contorno vetorial (`CONTORNO_E`) extraído de
 `assets/eploc-logo-sem-texto-1000.png` e desenhado com curvas quadráticas. Se a logo mudar,
 refaça a extração em vez de trocar por uma fonte parecida.
 Parâmetros: `?inicio=19:30` (contagem regressiva; ao zerar dispara o final), `?fundo=transparente`
