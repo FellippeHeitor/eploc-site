@@ -60,6 +60,14 @@ Clique com o botão direito sobre uma ordem ou uma marcação e escolha **Marcar
 Para desfazer, use **Desmarcar como cumprida** no mesmo menu. Nas marcações, o menu também tem
 **Remover marcação**.
 
+### Ocultar o marca-texto
+
+Para ler o documento sem os realces, clique no botão de ocultar (o olho riscado) no canto direito da barra.
+Os realces somem e a barra vira um ícone de marca-texto no canto superior direito da janela. Passe o
+mouse sobre ele para ver quantos itens faltam cumprir, e clique para mostrar tudo de novo. Nada é
+apagado: ao reabrir o documento, os realces voltam. Marcar um trecho com o marca-texto oculto
+também o mostra de novo.
+
 ## Configurações e opções
 
 - **Realçar automaticamente as ordens nas decisões, despachos e sentenças** (ligada por padrão):
@@ -72,6 +80,6 @@ Para desfazer, use **Desmarcar como cumprida** no mesmo menu. Nas marcações, o
 - As marcações valem para aquele documento. Se a decisão for retificada e juntada como um novo
   documento, as marcações não passam para ele.
 - As marcações entram no backup e na sincronização com o Google Drive.
-- A barra não sai na impressão do documento.
+- A barra e o ícone do marca-texto oculto não saem na impressão do documento.
 
 <!-- DEMO: eproc-marca-texto-documentos -->
