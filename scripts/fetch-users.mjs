@@ -1,5 +1,5 @@
-// Lê o número de usuários da página pública do eploc na Chrome Web Store e
-// grava em _data/webstore.json, já arredondado para baixo (centenas abaixo de
+// Lê o número de usuários (e a nota média e o número de avaliações) da página
+// pública do eploc na Chrome Web Store e grava em _data/webstore.json, já arredondado para baixo (centenas abaixo de
 // 10.000, milhares acima). A faixa de confiança do index mostra esse valor
 // ("Mais de 1.000 usuários") via {{ site.data.webstore.usuarios }}.
 //
@@ -51,6 +51,26 @@ function findUsers(html) {
     return texts.length === 1 ? texts[0][1] : null;
 }
 
+// Nota média e número de avaliações vêm logo após o ID, o ícone e o nome:
+// "fkpk...","https://...","eploc",5,14,  — usados na faixa de confiança, em
+// #depoimentos e no aggregateRating do JSON-LD. Se não achar, mantém os anteriores.
+function findRating(html) {
+    const ds0 = html.indexOf("key: 'ds:0'");
+    if (ds0 < 0) return null;
+    const block = html.slice(ds0);
+    const start = block.indexOf(`"${extId}"`);
+    if (start < 0) return null;
+    const m = block.slice(start + extId.length + 2).match(/^,"[^"]*","[^"]*",([\d.]+),(\d+),/);
+    if (!m) return null;
+    const valor = Math.round(Number(m[1]) * 10) / 10;
+    const avaliacoes = Number(m[2]);
+    if (!(valor > 0 && valor <= 5) || !(avaliacoes > 0)) return null;
+    return { nota_valor: valor, nota: valor.toLocaleString('pt-BR', { minimumFractionDigits: 1, maximumFractionDigits: 1 }), avaliacoes };
+}
+
+const rating = findRating(html);
+if (!rating) console.log('::warning::Nota/avaliações do eploc não encontradas na Web Store; mantidas as anteriores.');
+
 const found = findUsers(html);
 // Número oculto pela própria Web Store: não é falha do script. Mantém o último
 // valor e avisa no log do Actions, sem marcar o job como falho todo dia.
@@ -90,12 +110,15 @@ if (previous?.total && rounded < previous.total / 2) {
 const data = {
     total: rounded,
     usuarios: rounded.toLocaleString('pt-BR'),
+    nota_valor: rating?.nota_valor ?? previous?.nota_valor,
+    nota: rating?.nota ?? previous?.nota,
+    avaliacoes: rating?.avaliacoes ?? previous?.avaliacoes,
 };
 
-if (previous?.total === data.total) {
-    console.log(`Sem mudança: ${data.usuarios} (Web Store: ${total}).`);
+if (JSON.stringify(previous) === JSON.stringify(data)) {
+    console.log(`Sem mudança: ${data.usuarios}, nota ${data.nota} (${data.avaliacoes}) (Web Store: ${total}).`);
 } else {
     await mkdir(path.dirname(dataFile), { recursive: true });
     await writeFile(dataFile, JSON.stringify(data, null, 2) + '\n');
-    console.log(`Atualizado: ${previous?.usuarios ?? '—'} → ${data.usuarios} (Web Store: ${total}).`);
+    console.log(`Atualizado: ${previous?.usuarios ?? '—'} → ${data.usuarios}, nota ${previous?.nota ?? '—'} (${previous?.avaliacoes ?? '—'}) → ${data.nota} (${data.avaliacoes}) (Web Store: ${total}).`);
 }

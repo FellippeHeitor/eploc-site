@@ -41,7 +41,13 @@
         "inLanguage": "pt-BR",
         "isAccessibleForFree": true,
         "downloadUrl": "https://chromewebstore.google.com/detail/eploc/fkpkkenjcfpplmhlfdbabhcdhmhiojhj",
-        "offers": {
+        {% if site.data.webstore.avaliacoes %}"aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "{{ site.data.webstore.nota_valor }}",
+            "ratingCount": "{{ site.data.webstore.avaliacoes }}",
+            "bestRating": "5"
+        },
+        {% endif %}"offers": {
             "@type": "Offer",
             "price": "0",
             "priceCurrency": "BRL"
@@ -83,6 +89,7 @@
     <div class="trust-strip">
         <ul class="wrap">
             <li>Mais de {{ site.data.webstore.usuarios | default: "1.000" }} usuários</li>
+            {% if site.data.webstore.nota %}<li>Nota {{ site.data.webstore.nota }} na Chrome Web Store</li>{% endif %}
             <li>Criado por um servidor do TJMG com <span data-anos-desde="2008">{{ site.time | date: "%Y" | minus: 2008 }}</span> anos de casa</li>
             <li>Registrado no INPI</li>
             <li>Roda só no seu navegador</li>
@@ -181,7 +188,20 @@
                         <blockquote><p>Gostaria de enaltecer o seu trabalho. O eploc veio como uma ajuda e um acalento para as pessoas que têm um pouco mais de dificuldade com os sistemas. Ajuda muito até mesmo em coisas que podem parecer pequenas, como, por exemplo, abrir o processo quando finaliza a migração. Você é um orgulho para a nossa Comarca.</p></blockquote>
                         <figcaption><strong>Janaíne Knupp, Espera Feliz/MG</strong></figcaption>
                     </figure>
+                    <figure class="testimonial">
+                        <blockquote><p>A ferramenta auxilia bastante nas tarefas diárias e potencializa o uso do Eproc. As atualizações são constantes e sempre voltadas para as reais necessidades do trabalho.</p></blockquote>
+                        <figcaption><strong>Henrique Gomes Silva</strong>Avaliação na Chrome Web Store</figcaption>
+                    </figure>
+                    <figure class="testimonial">
+                        <blockquote><p>Excelente ferramenta! Muito bem pensada e desenhada. Inúmeras funções muito úteis. Todo dia, uma novidade bacana.</p></blockquote>
+                        <figcaption><strong>Bernardo Vieira</strong>Avaliação na Chrome Web Store</figcaption>
+                    </figure>
+                    <figure class="testimonial">
+                        <blockquote><p>Excelente ferramenta! Parabéns ao criador pela criação da ferramenta e pela atualização constante!</p></blockquote>
+                        <figcaption><strong>Teodoro Waner Martins Estrela</strong>Avaliação na Chrome Web Store</figcaption>
+                    </figure>
                 </div>
+                {% if site.data.webstore.nota %}<p class="reviews-link"><a href="https://chromewebstore.google.com/detail/eploc/fkpkkenjcfpplmhlfdbabhcdhmhiojhj/reviews" target="_blank" rel="noopener">Nota {{ site.data.webstore.nota }} em {{ site.data.webstore.avaliacoes }} avaliações na Chrome Web Store — ver todas</a></p>{% endif %}
             </div>
         </section>
 
