@@ -83,7 +83,8 @@ vazia para o sticker de link do grupo do WhatsApp (abra com `?guia` para vê-la)
 e simula a física em passos fixos, com sorteio de semente fixa, para que `renderFrame(t)` seja
 determinístico. Por isso `render.mjs` e `verificar.mjs` abrem o Chromium com WebGL por software
 (`--enable-unsafe-swiftshader`), caso não haja GPU. Aceita `--params "dia=hoje"` ("Hoje," no lugar de
-"Amanhã,") e `formato=quadrado` (540x540, para o grupo do WhatsApp; a página declara o tamanho em
+"Amanhã,"), `formato=quadrado` (540x540, para o grupo do WhatsApp) e `convite` (no quadrado, convida a
+entrar no grupo de suporte pelo link da mensagem, para divulgar em outros grupos; a página declara o tamanho em
 `window.TAMANHO`, que o `render.mjs` usa como viewport). Com `--gif`, o `render.mjs` grava o trecho
 `window.LOOP = { ini, dur, fade }` como GIF em loop: os primeiros quadros se dissolvem nos últimos,
 contados em quadros inteiros, para o loop não ter emenda. Os comandos estão no `copy.md` da pasta.

@@ -101,14 +101,17 @@ html.quadrado .zona { left: 20px; top: 20px; width: 500px; height: 500px; }
 </div>
 
 <script>
-  // Variações: ?dia=hoje ("Hoje," em vez de "Amanhã,") e ?formato=quadrado (540x540, para o grupo
+  // Variações: ?dia=hoje ("Hoje," em vez de "Amanhã,"), ?convite (no quadrado: convida a entrar no
+  // grupo de suporte pelo link da mensagem, para divulgar em outros grupos) e ?formato=quadrado (540x540, para o grupo
   // do WhatsApp; sem a vaga do sticker). render.mjs lê TAMANHO, DURACAO e, no GIF, LOOP.
   const params = new URLSearchParams(location.search);
   const QUADRADO = params.get("formato") === "quadrado";
   if (params.get("dia") === "hoje") document.getElementById("l1").textContent = "Hoje,";
   if (QUADRADO) {
     document.documentElement.classList.add("quadrado");
-    document.querySelector("#grupo p").innerHTML = 'O link da live sai aqui no grupo.';
+    document.querySelector("#grupo p").innerHTML = params.has("convite")
+      ? 'O link da live sai no <b>grupo de suporte do eploc</b>.<br>Entre pelo link abaixo.'
+      : 'O link da live sai aqui no grupo.';
   }
   window.TAMANHO = QUADRADO ? { w: 540, h: 540 } : { w: 540, h: 960 };
   // Zona segura do story (verificar.mjs); no quadrado, só uma margem.

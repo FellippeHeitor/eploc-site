@@ -23,10 +23,15 @@ troque os textos de `#l1`, `#l2` e `#data` em `reel.html`.
 - `--params "formato=quadrado"` com `--gif`: GIF quadrado em loop (540x540, 7,5 s) para o grupo
   do WhatsApp, sem a vaga do sticker ("O link da live sai aqui no grupo."). Some
   `&dia=hoje` para a versão do dia.
+- `--params "formato=quadrado&convite"` com `--gif`: o mesmo GIF para divulgar em outros grupos.
+  Em vez de "O link da live sai aqui no grupo.", diz "O link da live sai no grupo de suporte do
+  eploc. Entre pelo link abaixo." O link do grupo de suporte vai no texto da mensagem, junto com
+  o GIF.
 
 ```bash
 node reels/render.mjs live-amanha story-amanha.mp4
 node reels/render.mjs live-amanha story-hoje.mp4 --params "dia=hoje"
 node reels/render.mjs live-amanha whatsapp-amanha.gif --gif --params "formato=quadrado"
 node reels/render.mjs live-amanha whatsapp-hoje.gif --gif --params "formato=quadrado&dia=hoje"
+node reels/render.mjs live-amanha whatsapp-convite.gif --gif --params "formato=quadrado&convite"
 ```
