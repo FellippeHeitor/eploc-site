@@ -24,9 +24,10 @@ complementam o anterior. Também sinaliza quando o mesmo documento aparece em ev
 
 Não é preciso fazer nada: a tabela já aparece agrupada. O que muda:
 
-- **Eventos repetidos de um mesmo comando** (por exemplo, uma intimação para cada destinatário)
-  viram uma linha-resumo expansível, com o intervalo de eventos, a data e o usuário. Clique na linha
-  para ver cada evento, com o destinatário e o prazo de cada um.
+- **Eventos repetidos de um mesmo comando** (por exemplo, uma intimação para cada destinatário, ou a
+  juntada de vários mandados) viram uma linha-resumo expansível, com o intervalo de eventos, a data
+  e o usuário. A linha-resumo lista o destinatário e o prazo de cada um; clique nela para ver os
+  eventos originais.
 - **Eventos seguidos com o mesmo documento** viram uma linha só, com as descrições em lista e um
   único link para o documento.
 - **Eventos que se confirmam ou se complementam** (por exemplo, "Expedida/certificada a intimação
