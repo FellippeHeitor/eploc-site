@@ -39,6 +39,7 @@ Outros sinais do painel:
 - Os assuntos ganham um selo de validado ou não validado. O selo de não validado abre a retificação
   de assuntos.
 - As partes ativas no Domicílio Judicial Eletrônico exibem o selo do DJE, com os prazos no balão.
+- As partes com Justiça Gratuita exibem o selo verde "JG", como na capa do processo.
 - Quando o eproc mostra só a primeira parte de um polo, o "e outros" do painel carrega as demais
   com um clique (na página do processo, a lista da capa também se abre).
 - O painel segue o tema claro ou escuro escolhido nas configurações do eploc.
