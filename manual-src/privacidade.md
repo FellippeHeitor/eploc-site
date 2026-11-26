@@ -54,6 +54,7 @@ Você pode apagar tudo a qualquer momento removendo a extensão.
 |---|---|---|
 | [Backup no Google Drive](./geral/backup-google-drive) (opcional, desligado por padrão) | Cópia das configurações e dados do eploc (o mesmo conteúdo do [backup em arquivo](./geral/backup-arquivo)) | Pasta de dados do aplicativo na **sua** conta Google, direto do navegador para o Google. |
 | [Atalho PJe Mídias](./funcionalidades/eproc-midias-link) (ligado por padrão) | O número do processo aberto, numa consulta como a que você faria à mão | `midias.pje.jus.br`, usando a sua sessão. |
+| [Abrir processo migrado no PJe](./funcionalidades/eproc-abrir-processo-pje) (só ao clicar) | O número do processo aberto, pesquisado na consulta processual como você faria à mão | `pje.tjmg.jus.br`, numa aba aberta com a sua sessão. |
 | Sincronização do navegador (se ligada no seu Chrome/Edge) | Configurações guardadas no armazenamento sincronizado | Conta do navegador (Google ou Microsoft). |
 | [Backup em arquivo](./geral/backup-arquivo) | O arquivo que você mesmo baixa | Seu computador. |
 
