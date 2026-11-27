@@ -28,8 +28,8 @@ abertos a partir do processo, menções como "evento 31, DEC1" também viram lin
 
 1. Na página do processo, clique numa menção sublinhada a um evento. A tabela rola até o evento e o
    destaca. O botão Voltar do navegador retorna ao ponto anterior.
-2. Num documento aberto a partir do processo, clique em "evento 15", "evento 31, DEC1" ou "eventos 3
-   e 5". A página do processo vem para a frente, no evento citado. Quando um documento específico é
+2. Num documento aberto a partir do processo, clique em "evento 15", "evento nº 15", "evento 31, DEC1"
+   ou "eventos 3 e 5". A página do processo vem para a frente, no evento citado. Quando um documento específico é
    citado, ele também é aberto.
 3. Em processos migrados do PJe, menções a IDs do PJe nos documentos (como "Id. 10000000001") levam
    ao evento com aquele ID e abrem o documento correspondente. Um número escrito sem o "Id." (como
