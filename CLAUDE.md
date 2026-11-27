@@ -46,7 +46,7 @@ nome e sobrenome) e a legenda "Avaliação na Chrome Web Store", no lugar da cid
 fica centralizado sozinho (2 colunas em flex). A nota média e o número de avaliações (`nota`, `nota_valor`, `avaliacoes` em
 `_data/webstore.json`) vêm do mesmo `fetch-users.mjs` e aparecem na faixa de confiança, no link abaixo
 dos depoimentos e no `aggregateRating` do JSON-LD. O título de `#detalhes` diz "Mais de
-75 melhorias": recontar os `<li>` (acordeões + `#migracao`) ao mudar a lista.
+85 melhorias": recontar os `<li>` (acordeões + `#migracao`) ao mudar a lista.
 Não há mais seção de galeria: animações e capturas de `assets/screenshots/` ficam junto do
 recurso que demonstram, via `data-clip="<arquivo> [<arquivo>...]"` num card ou `<li>` —
 `script.js` acrescenta um botão "Ver animação" (`.webm`/`.mp4`) ou "Ver imagem" que abre o

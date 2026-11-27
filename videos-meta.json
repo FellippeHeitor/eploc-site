@@ -318,5 +318,33 @@
   "eproc-esmaecer-itens-zerados": {
     "name": "Esmaecer itens zerados",
     "group": "Painéis e relatórios"
+  },
+  "eproc-redimensionar-colunas-listas": {
+    "name": "Redimensionar colunas das listas",
+    "group": "Painéis e relatórios"
+  },
+  "eproc-atualizar-paineis-mandados": {
+    "name": "Atualizar painéis da Central de Mandados ao abrir",
+    "group": "Painéis e relatórios"
+  },
+  "eproc-atualizar-localizadores-capa": {
+    "name": "Atualizar localizadores da capa após novo evento",
+    "group": "Painel do processo"
+  },
+  "eproc-qualificacao-parte-intimacao": {
+    "name": "Qualificação da parte na intimação",
+    "group": "Árvore e minuta"
+  },
+  "eproc-destacar-opcoes-minuta": {
+    "name": "Destacar agendamento e documentos no cadastro da minuta",
+    "group": "Árvore e minuta"
+  },
+  "eproc-recarregar-documento-nao-encontrado": {
+    "name": "Tentar de novo documento não encontrado",
+    "group": "Interface do eproc"
+  },
+  "eproc-abrir-processo-pje": {
+    "name": "Abrir processo migrado no PJe (TJMG)",
+    "group": "Migração PJe (TJMG)"
   }
 }

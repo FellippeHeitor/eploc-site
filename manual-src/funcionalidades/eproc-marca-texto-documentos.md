@@ -42,6 +42,8 @@ expeça-se, oficie-se, cumpra-se, certifique-se, aguarde-se, dê-se, remetam-se,
 Também reconhece as ordens na primeira pessoa que começam por **Determino**, **Defiro** ou **Designo**,
 e as dirigidas à serventia, como "À Secretaria para..." ou "Ao Cartório para...", no início da frase
 ou depois de uma vírgula ("Sem prejuízo dos comandos supra, à Secretaria para...").
+Ordens com verbo no infinitivo também são realçadas quando abrem um item de lista, como
+"a) determinar a reserva...", "b) consignar a vedação..." ou "II - expedir ofício...".
 O fecho solto no fim da decisão, num parágrafo só dele (como "Intimem-se. Cumpra-se.", "P.R.I." ou
 "Expeçam-se / diligencie-se o necessário."), não é realçado nem entra na conta.
 
