@@ -23,9 +23,10 @@ vez de um por um.
 
 1. Passe o mouse sobre um lembrete. Aparece uma caixa de seleção ("Selecionar lembrete").
 2. Marque os lembretes que quer desativar. Cada lembrete marcado ganha um contorno azul em destaque.
-   Uma barra acima da lista oferece **Selecionar todos** e **Desativar selecionados**.
-3. Clique em **Desativar selecionados** e confirme. O eploc desativa os lembretes um a um, usando o
-   próprio botão de lixeira do eproc.
+   Para marcar vários seguidos, marque o primeiro e use **Shift+clique** no último: todo o intervalo
+   fica marcado (ou desmarcado). A barra acima da lista também oferece **Selecionar todos**.
+3. Clique em **Desativar** na barra e confirme. O eploc desativa os lembretes um a um, usando o
+   próprio botão de lixeira do eproc. O **×** ao lado limpa a seleção.
 
 ## Configurações e opções
 
@@ -33,7 +34,7 @@ Não há opções além de ligar e desligar.
 
 ## Observações
 
-- Só aparece quando há mais de um lembrete.
+- A barra e as caixas só aparecem quando há mais de um lembrete.
 - Só os lembretes que você pode desativar (os que têm o ícone de lixeira) recebem a caixa de
   seleção.
 - A desativação é a mesma do eproc: depois de confirmada, não há como desfazer pelo eploc.

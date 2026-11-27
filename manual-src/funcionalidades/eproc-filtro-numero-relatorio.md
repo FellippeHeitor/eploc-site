@@ -28,6 +28,10 @@ Com o filtro ativo, o selo fica azul e mostra o filtro e quantos processos da p�
 exemplo "5NNNNN[012] · 27 de 100". A tabela ganha uma borda azul e, quando há processos ocultos, uma
 faixa logo abaixo dela repete a contagem e traz o botão **Limpar**.
 
+Em **Meus Localizadores**, com o filtro ativo, a coluna "Quantidade de Processos" mostra quantos
+processos de cada localizador passam por ele, por exemplo "6 de 19". Passe o mouse sobre o número
+para ver o filtro usado.
+
 ## Passo a passo
 
 1. Gere o Relatório Geral (ou abra um localizador) normalmente e clique em **Filtrar nº**.
@@ -66,7 +70,10 @@ fica `5NNNNN[012], 0NNNN[012]N`.
 
 ## Configurações e opções
 
-Não há opções além de ligar e desligar. O filtro fica guardado e volta na próxima vez que você abrir
+- **Em Meus Localizadores, mostrar quantos processos de cada localizador passam pelo filtro**
+  (ligada por padrão): a contagem "6 de 19" descrita acima.
+
+O filtro fica guardado e volta na próxima vez que você abrir
 o relatório ou um localizador. É o mesmo filtro nas duas telas: mudar numa muda na outra.
 
 ## Observações
@@ -75,6 +82,9 @@ o relatório ou um localizador. É o mesmo filtro nas duas telas: mudar numa mud
   relatório estiver mostrando poucos processos por página, o painel avisa e oferece o botão
   **Mostrar 100 por página**, para o filtro alcançar mais processos de uma vez.
 - O filtro é guardado separadamente para cada perfil/unidade do eproc.
+- Para a contagem em Meus Localizadores, o eploc consulta em segundo plano a lista de cada
+  localizador, alguns por vez. Ela pode levar alguns segundos e fica guardada por alguns minutos.
+  Localizadores com mais de 500 processos não são contados e mostram "?".
 - Os processos ocultos pelo filtro nunca ficam marcados: se você usar o "marcar todos" do cabeçalho
   da tabela, só os processos visíveis continuam marcados. Assim, as ações em bloco do eproc (como
   "Alterar Localizador" e "Citação em Bloco") e as do eploc (como "Monitorar todos os processos

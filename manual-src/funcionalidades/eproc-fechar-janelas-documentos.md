@@ -32,9 +32,9 @@ Se você fechar alguma janela à mão, a quantidade diminui sozinha.
 
 Pela janela de documento:
 
-1. Com dois ou mais documentos do mesmo processo abertos, cada janela mostra no canto inferior
-   esquerdo um pequeno ícone de janela com um "x". Ao passar o mouse, ele mostra **Fechar todas** e, no
-   balão, quantas janelas serão fechadas.
+1. Cada janela de documento aberta pelo processo mostra no canto inferior esquerdo um pequeno ícone
+   de janela com um "x". Ao passar o mouse, ele mostra **Fechar todas** e, no balão, quantas janelas
+   serão fechadas. Se for a única janela aberta do processo, ele mostra só **Fechar**.
 2. Clique nele em qualquer uma delas. Ela e as demais janelas de documentos do processo se fecham,
    esteja a página do processo aberta ou não.
 
