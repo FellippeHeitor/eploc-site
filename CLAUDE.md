@@ -195,9 +195,12 @@ nova; não pergunte o que fazer):
    configurações). Cada `<li>` entra no grupo que combina; crie um novo só se nenhum servir. Cards e itens podem declarar `data-video="<id do script>"`:
    quando esse id tem URL em `videos.json`, `script.js` acrescenta sozinho um botão "Ver vídeo".
    Ao adicionar um item/card de um script que tem vídeo (ou terá), preencha o `data-video`.
-6. Atualize `manual-src/.vitepress/versao.json` para a versão mais recente do CHANGELOG — é a
+6. Confira a lista de tribunais contra o `_hostsEproc` de `/Users/fellippeheitor/git/eploc/src/manifest.json`
+   e corrija o que faltar: FAQ "Funciona no eproc de outros tribunais?" do `index.html`,
+   `manual-src/compatibilidade.md` (tabela de hosts) e `manual-src/inicio-rapido.md` (linha de permissões).
+7. Atualize `manual-src/.vitepress/versao.json` para a versão mais recente do CHANGELOG — é a
    versão impressa na capa do PDF do manual e não muda sozinha.
-7. Depois de editar, mostre o diff relevante mas não rode build nem commit a menos que pedido.
+8. Depois de editar, mostre o diff relevante mas não rode build nem commit a menos que pedido.
    Quando o usuário responder "done" depois de revisar, isso significa "commite" (o usuário não commita
    por conta própria). Não dê push a menos que pedido.
 
